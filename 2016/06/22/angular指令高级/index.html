@@ -6,28 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>angular指令高级 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="require 属性简单的理解，require 用于操作 noModel简单例子：html
+  <meta name="description" content="require 属性简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中简单例子：html
 &amp;lt;div ng-controller=&amp;quot;TestCtrl&amp;quot;&amp;gt;
     &amp;lt;div add ng-model=&amp;quot;num&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;p&amp;gt;{{num}}&amp;lt;/p&amp;gt;
-    &amp;lt;button ng-c">
+    &amp;lt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular指令高级">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/angular指令高级/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="require 属性简单的理解，require 用于操作 noModel简单例子：html
+<meta property="og:description" content="require 属性简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中简单例子：html
 &amp;lt;div ng-controller=&amp;quot;TestCtrl&amp;quot;&amp;gt;
     &amp;lt;div add ng-model=&amp;quot;num&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;p&amp;gt;{{num}}&amp;lt;/p&amp;gt;
-    &amp;lt;button ng-c">
-<meta property="og:updated_time" content="2016-06-22T07:48:37.000Z">
+    &amp;lt;">
+<meta property="og:updated_time" content="2016-06-22T08:19:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular指令高级">
-<meta name="twitter:description" content="require 属性简单的理解，require 用于操作 noModel简单例子：html
+<meta name="twitter:description" content="require 属性简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中简单例子：html
 &amp;lt;div ng-controller=&amp;quot;TestCtrl&amp;quot;&amp;gt;
     &amp;lt;div add ng-model=&amp;quot;num&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;p&amp;gt;{{num}}&amp;lt;/p&amp;gt;
-    &amp;lt;button ng-c">
+    &amp;lt;">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -246,7 +243,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="require-属性"><a href="#require-属性" class="headerlink" title="require 属性"></a>require 属性</h2><p>简单的理解，require 用于操作 noModel<br>简单例子：<br>html</p>
+        <h2 id="require-属性"><a href="#require-属性" class="headerlink" title="require 属性"></a>require 属性</h2><p>简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中<br>简单例子：<br>html</p>
 <pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
     &lt;div add ng-model=&quot;num&quot;&gt;&lt;/div&gt;
     &lt;p&gt;{{num}}&lt;/p&gt;
@@ -263,7 +260,7 @@
 <pre><code>app.directive(&apos;add&apos;, [function() {
     return {
         restrict: &apos;A&apos;,
-        require: &apos;?^ngModel&apos;,
+        require: &apos;ngModel&apos;,
         template: &apos;&lt;button&gt;add&lt;/button&gt;&apos;,
         link: function(scope, iElement, iAttrs, ngModelCtrl) {
             iElement.bind(&apos;click&apos;, function() {
@@ -272,7 +269,94 @@
         }
     };
 }]);
-</code></pre>
+</code></pre><p>ngModel前可以使用 ?^ 两个前缀<br>? - 不要抛出异常。这使这个依赖变为一个可选项<br>^ - 允许查找父元素的controller</p>
+<p>ngModelCtrl.$setViewValue 可改变 controller 中 ng-model 的值</p>
+<h2 id="自定义表单验证-setValidity"><a href="#自定义表单验证-setValidity" class="headerlink" title="自定义表单验证 $setValidity"></a>自定义表单验证 $setValidity</h2><pre><code>.has-error{
+    border: 1px solid red;
+}
+
+&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;form name=&quot;form&quot; novalidate&gt;
+        &lt;input type=&quot;text&quot; ng-model=&quot;user.name&quot; name=&quot;username&quot; custom-rule ng-class=&quot;{&apos;has-error&apos;: form.username.$invalid}&quot;&gt;
+        &lt;input type=&quot;text&quot; ng-model=&quot;user.phone&quot;&gt;
+        &lt;button ng-click=&quot;save()&quot;&gt;save&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {
+    $scope.user = {};
+    $scope.save = function(){
+        var form = $scope.form;
+        if(form.username.$invalid){
+            alert(&apos;username不可用&apos;);
+            return false;
+        }else{
+            alert(&apos;username可用&apos;);    
+        }
+    }
+}]);
+
+app.directive(&apos;customRule&apos;, [function () {
+    return {
+        restrict: &apos;A&apos;,
+        require: &apos;ngModel&apos;,
+        link: function (scope, iElement, iAttrs, ngModelCtrl) {
+            iElement.bind(&apos;blur&apos;,function(){
+                if(ngModelCtrl.$modelValue != &apos;xwill&apos;){
+                    ngModelCtrl.$setValidity(&quot;customRule&quot;, false);
+                }else{
+                    ngModelCtrl.$setValidity(&quot;customRule&quot;, true);
+                }
+            });
+        }
+    };
+}]);
+</code></pre><p>首先需要将默认的表单验证禁止 novalidate，设置 form 的 name 字段能让 controller 中通过 $scope.form 取到表单<br>在 username 字段中自定义验证规则 custom-rule，然后在 customRule 指令中规定只有输入为 xwill 时，表单才可用<br>在 controller 中可以使用 form.$invalid 判断表单是否可用，form.username.$invalid 判断某字段是否可用</p>
+<h2 id="formatters-和-parses"><a href="#formatters-和-parses" class="headerlink" title="$formatters 和 $parses"></a>$formatters 和 $parses</h2><pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;input text-transform=&quot;uppercase&quot; ng-model=&quot;text&quot;&gt;
+    &lt;p&gt;{{text}}&lt;/p&gt;
+    &lt;button ng-click=&quot;change()&quot;&gt;change&lt;/button&gt;
+&lt;/div&gt;
+
+app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {}]);
+app.directive(&apos;textTransform&apos;, function() {
+    var transformConfig = {
+        uppercase: function(input) {
+            return input.toUpperCase();
+        },
+        capitalize: function(input) {
+            return input.replace(
+                /([a-zA-Z])([a-zA-Z]*)/gi,
+                function(matched, $1, $2) {
+                    return $1.toUpperCase() + $2;
+                });
+        },
+        lowercase: function(input) {
+            return input.toLowerCase();
+        }
+    };
+    return {
+        require: &apos;ngModel&apos;,
+        link: function(scope, element, iAttrs, modelCtrl) {
+            var transform = transformConfig[iAttrs.textTransform];
+            if (transform) {
+                // $formatters 只改变 view 中的值
+                // modelCtrl.$formatters.push(function(input) {
+                //     return transform(input || &quot;&quot;);
+                // });
+
+                // $parsers 会改变 controller 中 ng-model 的值
+                modelCtrl.$parsers.push(function(input) {
+                    return transform(input || &quot;&quot;);
+                });
+
+                element.css(&quot;text-transform&quot;, iAttrs.textTransform);
+            }
+        }
+    };
+});
+</code></pre><p>这两个方法常用于输入小写，强制转为大写；输入负数转为0，等等～<br><a href="https://alexperry.io/angularjs/2014/12/10/parsers-and-formatters-angular.html" target="_blank" rel="external">$formatters 和 $parses 的区别</a></p>
+
       
     </div>
     
