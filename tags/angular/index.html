@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>xwillmadeit</title>
+  <title>Tag: angular | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/index.html">
+<meta property="og:url" content="https://xwillmadeit.github.io/tags/angular/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -198,85 +198,52 @@
 
       <div class="body-wrap">
   
-    <article id="post-angular指令高级" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2016/06/22/angular指令高级/" class="article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">2016-06-22</time>
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
+  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
 </a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
+      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
     </h1>
   
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="require-属性"><a href="#require-属性" class="headerlink" title="require 属性"></a>require 属性</h2><p>简单的理解，require 用于操作 noModel<br>简单例子：<br>html</p>
-<pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
-    &lt;div add ng-model=&quot;num&quot;&gt;&lt;/div&gt;
-    &lt;p&gt;{{num}}&lt;/p&gt;
-    &lt;button ng-click=&quot;get()&quot;&gt;get&lt;/button&gt;
-&lt;/div&gt;
-</code></pre><p>controller</p>
-<pre><code>app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {
-    $scope.num = 1;
-    $scope.get = function() {
-        alert($scope.num);
-    }
-}])
-</code></pre><p>directive</p>
-<pre><code>app.directive(&apos;add&apos;, [function() {
-    return {
-        restrict: &apos;A&apos;,
-        require: &apos;?^ngModel&apos;,
-        template: &apos;&lt;button&gt;add&lt;/button&gt;&apos;,
-        link: function(scope, iElement, iAttrs, ngModelCtrl) {
-            iElement.bind(&apos;click&apos;, function() {
-                ngModelCtrl.$setViewValue(2);
-            });
-        }
-    };
-}]);
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
 	</div>
 
-      
+          
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
 </article>
-
-
-
-
-
   
   
+    </div></section>
+  
+
+    
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -299,10 +266,10 @@
 	var yiliaConfig = {
 		fancybox: true,
 		animate: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}
