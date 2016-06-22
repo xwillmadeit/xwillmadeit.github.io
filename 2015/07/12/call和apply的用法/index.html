@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://xwillmadeit.github.io/2015/07/12/call和apply的用法/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="call 和 apply 的区别call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用">
-<meta property="og:updated_time" content="2016-06-22T09:02:05.000Z">
+<meta property="og:updated_time" content="2016-06-22T09:07:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="call和apply的用法">
 <meta name="twitter:description" content="call 和 apply 的区别call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用">
@@ -247,11 +247,15 @@ func.call(null,1,2,3);
 <li><p>改变 this 指向</p>
 <p> var obj1 = {</p>
 <pre><code>name: &apos;sven&apos;
-</code></pre><p> }<br> var obj2 = {</p>
+</code></pre><p> }</p>
+<p> var obj2 = {</p>
 <pre><code>name: &apos;anne&apos;
-</code></pre><p> }<br> window.name = ‘window’;<br> var getName = function(){</p>
+</code></pre><p> }</p>
+<p> window.name = ‘window’;</p>
+<p> var getName = function(){</p>
 <pre><code>alert(this.name); 
-</code></pre><p> }<br> getName(); //window<br> getName.apply(obj1); //sven<br> getName.apply(obj2); //anne</p>
+</code></pre><p> }</p>
+<p> getName(); //window<br> getName.apply(obj1); //sven<br> getName.apply(obj2); //anne</p>
 </li>
 </ol>
 <p>实战中</p>

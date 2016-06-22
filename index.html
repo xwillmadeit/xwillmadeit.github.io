@@ -1166,11 +1166,15 @@ func.call(null,1,2,3);
 <li><p>改变 this 指向</p>
 <p> var obj1 = {</p>
 <pre><code>name: &apos;sven&apos;
-</code></pre><p> }<br> var obj2 = {</p>
+</code></pre><p> }</p>
+<p> var obj2 = {</p>
 <pre><code>name: &apos;anne&apos;
-</code></pre><p> }<br> window.name = ‘window’;<br> var getName = function(){</p>
+</code></pre><p> }</p>
+<p> window.name = ‘window’;</p>
+<p> var getName = function(){</p>
 <pre><code>alert(this.name); 
-</code></pre><p> }<br> getName(); //window<br> getName.apply(obj1); //sven<br> getName.apply(obj2); //anne</p>
+</code></pre><p> }</p>
+<p> getName(); //window<br> getName.apply(obj1); //sven<br> getName.apply(obj2); //anne</p>
 </li>
 </ol>
 <p>实战中</p>
