@@ -4,17 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: angular | xwillmadeit</title>
+  <title>js中使用cookie | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/tags/angular/index.html">
+  <meta name="description" content="js 中操作 cookie不多说，直接上代码，无非就是 存，取，删除
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+    var cookieHandle = function(){}
+
+    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中使用cookie">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/js中使用cookie/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="js 中操作 cookie不多说，直接上代码，无非就是 存，取，删除
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+    var cookieHandle = function(){}
+
+    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){">
+<meta property="og:updated_time" content="2016-06-22T08:25:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="js中使用cookie">
+<meta name="twitter:description" content="js 中操作 cookie不多说，直接上代码，无非就是 存，取，删除
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+    var cookieHandle = function(){}
+
+    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -196,53 +209,118 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-js中使用cookie" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
+    <div class="article-meta">
+      <a href="/2016/06/22/js中使用cookie/" class="article-date">
+  	<time datetime="2016-06-22T08:22:47.000Z" itemprop="datePublished">2016-06-22</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js中使用cookie
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="js-中操作-cookie"><a href="#js-中操作-cookie" class="headerlink" title="js 中操作 cookie"></a>js 中操作 cookie</h2><p>不多说，直接上代码，无非就是 存，取，删除</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    var cookieHandle = function(){}
+
+    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){
+        var expire = new Date(),
+            name = name ? name: &apos;true&apos;,
+            days = days ? days: 30;
+
+        if(days&lt;0){
+            expire.setTime(expire.getTime() - 1000);
+        }else{
+            expire.setTime(expire.getTime() + days*24*60*60*1000);
+        }
+
+        if(firstDomain){ 
+            //指定存入一级域名下
+            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString() + &quot;;path=/&quot; + &quot;;domain=wxrrd.com&quot;;
+        }else{
+            //默认存入 domain 为 window.location.hostname
+            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString();
+        }
+    }
+
+    cookieHandle.prototype.getCookie = function(name){
+        var arr,
+            reg=new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;);
+
+        if(arr=document.cookie.match(reg)){
+            return unescape(arr[2]);
+        }
+        else{
+            return &apos;&apos;;
+        }
+    }
+
+    var cookieHandle = new cookieHandle();
+    if(cookieHandle.getCookie(&apos;name&apos;)==&apos;&apos;){
+        cookieHandle.setCookie(&apos;name&apos;,&apos;xwill&apos;,1);
+    }
+
+    console.log(cookieHandle.getCookie(&apos;name&apos;));
+&lt;/script&gt;
+</code></pre><p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/22/css3单位rem/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          css3单位rem
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/22/angular指令高级/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">angular指令高级</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
 
 </div>
       <footer id="footer">
@@ -267,9 +345,9 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}

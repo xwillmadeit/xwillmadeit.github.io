@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a>
+						<a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a>
 					</div>
 				</section>
 				
@@ -197,6 +197,351 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-js中获取url参数" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/22/js中获取url参数/" class="article-date">
+  	<time datetime="2016-06-22T08:37:52.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/js中获取url参数/">js中获取url参数</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="js中获取url地址栏问号后携带的参数"><a href="#js中获取url地址栏问号后携带的参数" class="headerlink" title="js中获取url地址栏问号后携带的参数"></a>js中获取url地址栏问号后携带的参数</h2><p>老生常谈的问题：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+function GetQueryString(name) {
+    var curl = window.location.search;
+    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;);
+    var r = decodeURI(curl).substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
+
+alert(GetQueryString(&apos;id&apos;));
+alert(GetQueryString(&apos;name&apos;));
+
+//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html
+&lt;/script&gt;
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queryString/">queryString</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+  
+    <article id="post-纯js倒计时" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/22/纯js倒计时/" class="article-date">
+  	<time datetime="2016-06-22T08:32:22.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/纯js倒计时/">纯js倒计时</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="javascript-倒计时"><a href="#javascript-倒计时" class="headerlink" title="javascript 倒计时"></a>javascript 倒计时</h2><p>最近项目中需要写个倒计时，就整理下…</p>
+<pre><code>&lt;script&gt;
+var countDown = function(targetTime, callback) {
+
+    var _second = 1000,
+        _minute = _second * 60,
+        _hour = _minute * 60,
+        _day = _hour * 24,
+        timer;
+
+    function addZero(num) {
+        if (num &lt; 10) {
+            return &apos;0&apos; + num;
+        }
+        return num;
+    }
+
+    function start() {
+        var endTime = new Date(targetTime).getTime(),
+            nowTime = new Date().getTime(),
+            timeDiff = endTime - nowTime,
+            data;
+
+        if (timeDiff &lt;= 0) {
+            clearInterval(timer);
+            if (typeof callback === &apos;function&apos;) {
+                callback();
+            }
+        } else {
+            if (!timer) {
+                timer = setInterval(start, 1000);
+            }
+        }
+
+        data = {
+            &apos;days&apos;: Math.floor(timeDiff / _day),
+            &apos;hours&apos;: addZero(Math.floor((timeDiff % _day) / _hour)),
+            &apos;minutes&apos;: addZero(Math.floor((timeDiff % _hour) / _minute)),
+            &apos;seconds&apos;: addZero(Math.floor((timeDiff % _minute) / _second))
+        }
+
+        console.log(&apos;hours:&apos; + data.hours + &apos;,minutes:&apos; + data.minutes + &apos;,seconds:&apos; + data.seconds);
+    }
+
+    start();
+};
+
+countDown(&apos;2016-06-12 14:58:00&apos;, function() {
+    console.log(&apos;do something&apos;);
+});
+&lt;/script&gt;
+</code></pre><p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
+<pre><code>function parseTime(strDate) {
+    return new Date(strDate.replace(/-/g, &apos;/&apos;)).getTime();
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/倒计时/">倒计时</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+  
+    <article id="post-css3单位rem" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/22/css3单位rem/" class="article-date">
+  	<time datetime="2016-06-22T08:26:28.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/css3单位rem/">css3单位rem</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="rem-的简单小结"><a href="#rem-的简单小结" class="headerlink" title="rem 的简单小结"></a>rem 的简单小结</h2><pre><code>&lt;style&gt;
+    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        font-size: 12px; /* font-size 最小为12px */
+    }
+
+    body{
+        font-size: 16px; 
+    }
+
+    div {
+        height: 10rem; /* 10*14 = 140px;*/
+        width: 10rem;
+        font-size: 1rem;
+        background: pink;
+    }
+&lt;/style&gt;
+</code></pre><p>rem 是相对于根元素尺寸的单位，如 html 的 font-size 为 12px，则所有元素的 rem 单位均为 (12*n)px<br>注意 html 中 font-size 最小为 12px </p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+  
+    <article id="post-js中使用cookie" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/22/js中使用cookie/" class="article-date">
+  	<time datetime="2016-06-22T08:22:47.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/js中使用cookie/">js中使用cookie</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="js-中操作-cookie"><a href="#js-中操作-cookie" class="headerlink" title="js 中操作 cookie"></a>js 中操作 cookie</h2><p>不多说，直接上代码，无非就是 存，取，删除</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    var cookieHandle = function(){}
+
+    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){
+        var expire = new Date(),
+            name = name ? name: &apos;true&apos;,
+            days = days ? days: 30;
+
+        if(days&lt;0){
+            expire.setTime(expire.getTime() - 1000);
+        }else{
+            expire.setTime(expire.getTime() + days*24*60*60*1000);
+        }
+
+        if(firstDomain){ 
+            //指定存入一级域名下
+            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString() + &quot;;path=/&quot; + &quot;;domain=wxrrd.com&quot;;
+        }else{
+            //默认存入 domain 为 window.location.hostname
+            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString();
+        }
+    }
+
+    cookieHandle.prototype.getCookie = function(name){
+        var arr,
+            reg=new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;);
+
+        if(arr=document.cookie.match(reg)){
+            return unescape(arr[2]);
+        }
+        else{
+            return &apos;&apos;;
+        }
+    }
+
+    var cookieHandle = new cookieHandle();
+    if(cookieHandle.getCookie(&apos;name&apos;)==&apos;&apos;){
+        cookieHandle.setCookie(&apos;name&apos;,&apos;xwill&apos;,1);
+    }
+
+    console.log(cookieHandle.getCookie(&apos;name&apos;));
+&lt;/script&gt;
+</code></pre><p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
   
     <article id="post-angular指令高级" class="article article-type-post" itemscope itemprop="blogPost">
   

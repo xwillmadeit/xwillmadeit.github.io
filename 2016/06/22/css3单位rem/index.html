@@ -4,17 +4,42 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: angular | xwillmadeit</title>
+  <title>css3单位rem | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/tags/angular/index.html">
+  <meta name="description" content="rem 的简单小结&amp;lt;style&amp;gt;
+    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        font-size: 12px; /* f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3单位rem">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/css3单位rem/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="rem 的简单小结&amp;lt;style&amp;gt;
+    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        font-size: 12px; /* f">
+<meta property="og:updated_time" content="2016-06-22T08:31:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="css3单位rem">
+<meta name="twitter:description" content="rem 的简单小结&amp;lt;style&amp;gt;
+    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        font-size: 12px; /* f">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -196,53 +221,97 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-css3单位rem" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
+    <div class="article-meta">
+      <a href="/2016/06/22/css3单位rem/" class="article-date">
+  	<time datetime="2016-06-22T08:26:28.000Z" itemprop="datePublished">2016-06-22</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      css3单位rem
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="rem-的简单小结"><a href="#rem-的简单小结" class="headerlink" title="rem 的简单小结"></a>rem 的简单小结</h2><pre><code>&lt;style&gt;
+    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        font-size: 12px; /* font-size 最小为12px */
+    }
+
+    body{
+        font-size: 16px; 
+    }
+
+    div {
+        height: 10rem; /* 10*14 = 140px;*/
+        width: 10rem;
+        font-size: 1rem;
+        background: pink;
+    }
+&lt;/style&gt;
+</code></pre><p>rem 是相对于根元素尺寸的单位，如 html 的 font-size 为 12px，则所有元素的 rem 单位均为 (12*n)px<br>注意 html 中 font-size 最小为 12px </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/22/纯js倒计时/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          纯js倒计时
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/22/js中使用cookie/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js中使用cookie</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
 
 </div>
       <footer id="footer">
@@ -267,9 +336,9 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}

@@ -4,17 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: angular | xwillmadeit</title>
+  <title>js中获取url参数 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/tags/angular/index.html">
+  <meta name="description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+function GetQueryString(name) {
+    var curl = window.location.search;
+    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中获取url参数">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/js中获取url参数/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+function GetQueryString(name) {
+    var curl = window.location.search;
+    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
+<meta property="og:updated_time" content="2016-06-22T08:39:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="js中获取url参数">
+<meta name="twitter:description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+function GetQueryString(name) {
+    var curl = window.location.search;
+    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -196,53 +209,80 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-js中获取url参数" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
+    <div class="article-meta">
+      <a href="/2016/06/22/js中获取url参数/" class="article-date">
+  	<time datetime="2016-06-22T08:37:52.000Z" itemprop="datePublished">2016-06-22</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js中获取url参数
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queryString/">queryString</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="js中获取url地址栏问号后携带的参数"><a href="#js中获取url地址栏问号后携带的参数" class="headerlink" title="js中获取url地址栏问号后携带的参数"></a>js中获取url地址栏问号后携带的参数</h2><p>老生常谈的问题：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+function GetQueryString(name) {
+    var curl = window.location.search;
+    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;);
+    var r = decodeURI(curl).substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
+
+alert(GetQueryString(&apos;id&apos;));
+alert(GetQueryString(&apos;name&apos;));
+
+//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html
+&lt;/script&gt;
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/22/纯js倒计时/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">纯js倒计时</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
 
 </div>
       <footer id="footer">
@@ -267,9 +307,9 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
