@@ -4,39 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>纯js倒计时 | xwillmadeit</title>
+  <title>Tag: 杂谈 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="javascript 倒计时最近项目中需要写个倒计时，就整理下…
-&amp;lt;script&amp;gt;
-var countDown = function(targetTime, callback) {
-
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _">
-<meta property="og:type" content="article">
-<meta property="og:title" content="纯js倒计时">
-<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/纯js倒计时/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xwillmadeit">
+<meta property="og:url" content="https://xwillmadeit.github.io/tags/杂谈/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="javascript 倒计时最近项目中需要写个倒计时，就整理下…
-&amp;lt;script&amp;gt;
-var countDown = function(targetTime, callback) {
-
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _">
-<meta property="og:updated_time" content="2016-06-22T08:36:45.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="纯js倒计时">
-<meta name="twitter:description" content="javascript 倒计时最近项目中需要写个倒计时，就整理下…
-&amp;lt;script&amp;gt;
-var countDown = function(targetTime, callback) {
-
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _">
+<meta name="twitter:title" content="xwillmadeit">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -177,129 +155,53 @@ var countDown = function(targetTime, callback) {
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-纯js倒计时" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/06/22/纯js倒计时/" class="article-date">
-  	<time datetime="2016-06-22T08:32:22.000Z" itemprop="datePublished">2016-06-22</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/06/22/关于时间管理/" class="archive-article-date">
+  	<time datetime="2016-06-22T14:37:50.000Z" itemprop="datePublished">Jun 22</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      纯js倒计时
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/06/22/关于时间管理/">关于时间管理</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/倒计时/">倒计时</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/思想/">思想</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
 	</div>
 
-        
+          
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="javascript-倒计时"><a href="#javascript-倒计时" class="headerlink" title="javascript 倒计时"></a>javascript 倒计时</h2><p>最近项目中需要写个倒计时，就整理下…</p>
-<pre><code>&lt;script&gt;
-var countDown = function(targetTime, callback) {
-
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _hour * 24,
-        timer;
-
-    function addZero(num) {
-        if (num &lt; 10) {
-            return &apos;0&apos; + num;
-        }
-        return num;
-    }
-
-    function start() {
-        var endTime = new Date(targetTime).getTime(),
-            nowTime = new Date().getTime(),
-            timeDiff = endTime - nowTime,
-            data;
-
-        if (timeDiff &lt;= 0) {
-            clearInterval(timer);
-            if (typeof callback === &apos;function&apos;) {
-                callback();
-            }
-        } else {
-            if (!timer) {
-                timer = setInterval(start, 1000);
-            }
-        }
-
-        data = {
-            &apos;days&apos;: Math.floor(timeDiff / _day),
-            &apos;hours&apos;: addZero(Math.floor((timeDiff % _day) / _hour)),
-            &apos;minutes&apos;: addZero(Math.floor((timeDiff % _hour) / _minute)),
-            &apos;seconds&apos;: addZero(Math.floor((timeDiff % _minute) / _second))
-        }
-
-        console.log(&apos;hours:&apos; + data.hours + &apos;,minutes:&apos; + data.minutes + &apos;,seconds:&apos; + data.seconds);
-    }
-
-    start();
-};
-
-countDown(&apos;2016-06-12 14:58:00&apos;, function() {
-    console.log(&apos;do something&apos;);
-});
-&lt;/script&gt;
-</code></pre><p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
-<pre><code>function parseTime(strDate) {
-    return new Date(strDate.replace(/-/g, &apos;/&apos;)).getTime();
-}
-</code></pre>
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/06/22/js中获取url参数/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          js中获取url参数
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/06/22/css3单位rem/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">css3单位rem</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-
+    
 
 </div>
       <footer id="footer">
@@ -324,9 +226,9 @@ countDown(&apos;2016-06-12 14:58:00&apos;, function() {
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}
