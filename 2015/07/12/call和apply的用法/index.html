@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/6 | xwillmadeit</title>
+  <title>call和apply的用法 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/archives/2016/06/index.html">
+  <meta name="description" content="call 和 apply 的区别call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="call和apply的用法">
+<meta property="og:url" content="https://xwillmadeit.github.io/2015/07/12/call和apply的用法/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="call 和 apply 的区别call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用">
+<meta property="og:updated_time" content="2016-06-22T09:02:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="call和apply的用法">
+<meta name="twitter:description" content="call 和 apply 的区别call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -196,177 +197,116 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-call和apply的用法" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2015/07/12/call和apply的用法/" class="article-date">
+  	<time datetime="2015-07-12T08:42:34.000Z" itemprop="datePublished">2015-07-12</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      call和apply的用法
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apply/">apply</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/call/">call</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中获取url参数/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:37:52.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中获取url参数/">js中获取url参数</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="call-和-apply-的区别"><a href="#call-和-apply-的区别" class="headerlink" title="call 和 apply 的区别"></a>call 和 apply 的区别</h2><p>call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。<br>call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用率更高，我们不必关心具体有多少个参数被传入函数，只要用 apply 一股脑推过去就可以了。</p>
+<pre><code>var func = function(a,b,c){
+    alert([a,b,c]);
+}
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queryString/">queryString</a></li></ul>
-	</div>
+func.apply(null,[1,2,3]);
+func.call(null,1,2,3);
+</code></pre><p>call 是包装在 apply 上面的一课语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 call 来传递参数。</p>
+<p>当使用 call 或者 apply 的时候，如果我们传入的第一个参数为 null，函数体内的 this 会指向默认的宿主对象，在浏览器中则是 window。</p>
+<h2 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h2><ol>
+<li><p>改变 this 指向</p>
+<p> var obj1 = {</p>
+<pre><code>name: &apos;sven&apos;
+</code></pre><p> }<br> var obj2 = {</p>
+<pre><code>name: &apos;anne&apos;
+</code></pre><p> }<br> window.name = ‘window’;<br> var getName = function(){</p>
+<pre><code>alert(this.name); 
+</code></pre><p> }<br> getName(); //window<br> getName.apply(obj1); //sven<br> getName.apply(obj2); //anne</p>
+</li>
+</ol>
+<p>实战中</p>
+<pre><code>window.id = &apos;window&apos;;
 
-          
+document.getElementById(&apos;div1&apos;).onclick = function(){
+    alert(this.id); 
+    var callback = function(){
+        alert(this.id); //div1
+    }
+    callback.apply(this);
+}
+</code></pre><h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><pre><code>var obj = {
+    num: 10
+}
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+var add = function(a,b,c){
+    return this.num + a + b + c;
+}
+
+console.log(add.apply(obj,[1,2,3]));
+
+var bound = add.bind(obj);
+console.log(bound(1,2,3));
+</code></pre>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/12/ionic打包未签名apk/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ionic打包未签名apk
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/11/javascript中this的指向/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript 中 this 的指向</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/纯js倒计时/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:32:22.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/纯js倒计时/">纯js倒计时</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/倒计时/">倒计时</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/css3单位rem/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:26:28.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/css3单位rem/">css3单位rem</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中使用cookie/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:22:47.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中使用cookie/">js中使用cookie</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 </div>
       <footer id="footer">
@@ -391,8 +331,8 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

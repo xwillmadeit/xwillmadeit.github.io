@@ -4,17 +4,39 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/6 | xwillmadeit</title>
+  <title>javascript模块化—如何组织js代码 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/archives/2016/06/index.html">
+  <meta name="description" content="The Module Patternvar s,
+NewsWidget = {
+    settings:{
+        numArticles: 5,
+        articleList: $(&amp;quot;#article-list&amp;quot;),
+        moreButton: $(&amp;quot;#more-button&amp;quot;)
+    },
+    init: funct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript模块化—如何组织js代码">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/03/11/javascript模块化—如何组织js代码/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="The Module Patternvar s,
+NewsWidget = {
+    settings:{
+        numArticles: 5,
+        articleList: $(&amp;quot;#article-list&amp;quot;),
+        moreButton: $(&amp;quot;#more-button&amp;quot;)
+    },
+    init: funct">
+<meta property="og:updated_time" content="2016-06-22T09:02:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="javascript模块化—如何组织js代码">
+<meta name="twitter:description" content="The Module Patternvar s,
+NewsWidget = {
+    settings:{
+        numArticles: 5,
+        articleList: $(&amp;quot;#article-list&amp;quot;),
+        moreButton: $(&amp;quot;#more-button&amp;quot;)
+    },
+    init: funct">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -196,177 +218,115 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-javascript模块化—如何组织js代码" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/03/11/javascript模块化—如何组织js代码/" class="article-date">
+  	<time datetime="2016-03-11T02:57:05.000Z" itemprop="datePublished">2016-03-11</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript模块化—如何组织js代码
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oop/">oop</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中获取url参数/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:37:52.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中获取url参数/">js中获取url参数</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="The-Module-Pattern"><a href="#The-Module-Pattern" class="headerlink" title="The Module Pattern"></a>The Module Pattern</h2><pre><code>var s,
+NewsWidget = {
+    settings:{
+        numArticles: 5,
+        articleList: $(&quot;#article-list&quot;),
+        moreButton: $(&quot;#more-button&quot;)
+    },
+    init: function(){
+        // kick things off
+        s = this.settings;
+        this.bindUiActions();
+    },
+    bindUiActions: function(){
+        s.moreButton.on(&apos;click&apos;,function(){
+            NewsWidget.getMoreArticles(s.numArticles);
+        });
+    },
+    getMoreArticles: function(nums){
+        console.log(&apos;获取&apos;+s.numArticles+&apos;条数据&apos;);
+    }
+}
+//使用这种方式内部属性可被修改
+NewsWidget.settings.numArticles = 6; 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queryString/">queryString</a></li></ul>
-	</div>
+//初始化组件
+NewsWidget.init();
+</code></pre><p><a href="https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/" target="_blank" rel="external">The Module Pattern Edition</a></p>
+<h2 id="The-Revealing-Module-Pattern"><a href="#The-Revealing-Module-Pattern" class="headerlink" title="The Revealing Module Pattern"></a>The Revealing Module Pattern</h2><pre><code>var Person = (function(){
+    var name = &apos;xwill&apos;;
 
-          
+    function sayName(){
+        alert(name);
+    }
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    return {
+        getName: sayName
+    }
+})();
+//使用这种方式无法修改匿名函数中的name属性！Person只有一个getName方法
+Person.name = &apos;kobe&apos;; //无效
+Person.getName() //仍为 xwill
+</code></pre>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/22/angular指令高级/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          angular指令高级
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/05/ionic完整环境搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ionic完整环境搭建</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/纯js倒计时/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:32:22.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/纯js倒计时/">纯js倒计时</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/倒计时/">倒计时</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/css3单位rem/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:26:28.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/css3单位rem/">css3单位rem</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中使用cookie/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:22:47.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中使用cookie/">js中使用cookie</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 </div>
       <footer id="footer">
@@ -391,8 +351,8 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

@@ -4,17 +4,33 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/6 | xwillmadeit</title>
+  <title>javascript 常见面试题 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/archives/2016/06/index.html">
+  <meta name="description" content="实时显示当时时间(function getDate(){
+    var date = new Date(),
+    DateObj = {
+        getTime: function(){
+            var year = date.getFullYear(),
+                month = (date.getMonth())+1, //月份从0开始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript 常见面试题">
+<meta property="og:url" content="https://xwillmadeit.github.io/2015/06/12/js面试题整理/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="实时显示当时时间(function getDate(){
+    var date = new Date(),
+    DateObj = {
+        getTime: function(){
+            var year = date.getFullYear(),
+                month = (date.getMonth())+1, //月份从0开始">
+<meta property="og:updated_time" content="2016-06-22T08:57:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="javascript 常见面试题">
+<meta name="twitter:description" content="实时显示当时时间(function getDate(){
+    var date = new Date(),
+    DateObj = {
+        getTime: function(){
+            var year = date.getFullYear(),
+                month = (date.getMonth())+1, //月份从0开始">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -196,177 +212,124 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-js面试题整理" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2015/06/12/js面试题整理/" class="article-date">
+  	<time datetime="2015-06-12T06:09:59.000Z" itemprop="datePublished">2015-06-12</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript 常见面试题
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中获取url参数/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:37:52.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中获取url参数/">js中获取url参数</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><pre><code>(function getDate(){
+    var date = new Date(),
+    DateObj = {
+        getTime: function(){
+            var year = date.getFullYear(),
+                month = (date.getMonth())+1, //月份从0开始
+                day = date.getDate(),
+                hour = this.addZero(date.getHours()),
+                min = this.addZero(date.getMinutes()),
+                sec = this.addZero(date.getSeconds());
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queryString/">queryString</a></li></ul>
-	</div>
+            alert(year+&apos;年&apos;+month+&apos;月&apos;+day+&apos;日 &apos;+hour+&apos;:&apos;+min+&apos;:&apos;+sec);
+        },
+        addZero: function(number) { //时分秒个位数补0
+            return (number &lt; 10 ? &apos;0&apos; : &apos;&apos;) + number;
+        }
+    }
 
-          
+    DateObj.getTime();
+})();
+</code></pre><h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><pre><code>alert(&apos;123\n456&apos;);
+</code></pre><h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><pre><code>function queryString(url){
+    this.url = url;
+    this.urlObj = {};
+    this.splitUrl = function(){
+        var paramsUrl = this.url.split(&apos;?&apos;)[1];
+            pair = paramsUrl.split(&apos;&amp;&apos;);
+        for(var i=0;i&lt;pair.length;i++){
+            var key = pair[i].split(&apos;=&apos;)[0],
+                val = pair[i].split(&apos;=&apos;)[1];
+            this.urlObj[key] = val;
+        }
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+        return this.urlObj;
+    }
+}
+
+var str = new queryString(&apos;http://www.taobao.com?item=10&amp;key=12&amp;productId=88&apos;);
+console.log(str.splitUrl());  //{item: &quot;10&quot;, key: &quot;12&quot;, productId: &quot;88&quot;}
+</code></pre><h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
+<ol>
+<li>参数都是体现在 url 上</li>
+<li>主要用于取（查询）数据</li>
+<li>url 有最大长度限制</li>
+<li>便于浏览器缓存 ok to cache</li>
+<li>不应该去改变服务端的数据</li>
+</ol>
+<p>POST 请求</p>
+<ol>
+<li>参数通过 body 传递</li>
+<li>用于更新数据</li>
+<li>没有长度限制</li>
+<li>不能做缓存 not ok to cache</li>
+<li>可以用作修改服务端数据</li>
+</ol>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/11/javascript中this的指向/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          javascript 中 this 的指向
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/纯js倒计时/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:32:22.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/纯js倒计时/">纯js倒计时</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/倒计时/">倒计时</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/css3单位rem/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:26:28.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/css3单位rem/">css3单位rem</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中使用cookie/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:22:47.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中使用cookie/">js中使用cookie</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 </div>
       <footer id="footer">
@@ -391,8 +354,8 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

@@ -4,17 +4,36 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/6 | xwillmadeit</title>
+  <title>ionic打包未签名apk | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/archives/2016/06/index.html">
+  <meta name="description" content="如何打包未签名 apkcordova build –release android
+可能会出现的错误
+查看错误日志发现问题基本是 translation 错误，解决方法：在 platforms/android/build.gradle 文件的android {} 节点中增加
+lintOptions{
+    abortOnError false
+    checkReleaseBuilds fal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ionic打包未签名apk">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/02/12/ionic打包未签名apk/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="如何打包未签名 apkcordova build –release android
+可能会出现的错误
+查看错误日志发现问题基本是 translation 错误，解决方法：在 platforms/android/build.gradle 文件的android {} 节点中增加
+lintOptions{
+    abortOnError false
+    checkReleaseBuilds fal">
+<meta property="og:image" content="https://xwillmadeit.github.io/../images/ionic/packError.png">
+<meta property="og:image" content="https://xwillmadeit.github.io/../images/ionic/addPackLine.png">
+<meta property="og:updated_time" content="2016-06-22T09:01:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="ionic打包未签名apk">
+<meta name="twitter:description" content="如何打包未签名 apkcordova build –release android
+可能会出现的错误
+查看错误日志发现问题基本是 translation 错误，解决方法：在 platforms/android/build.gradle 文件的android {} 节点中增加
+lintOptions{
+    abortOnError false
+    checkReleaseBuilds fal">
+<meta name="twitter:image" content="https://xwillmadeit.github.io/../images/ionic/packError.png">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -196,177 +215,83 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-ionic打包未签名apk" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/02/12/ionic打包未签名apk/" class="article-date">
+  	<time datetime="2016-02-11T16:43:02.000Z" itemprop="datePublished">2016-02-12</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ionic打包未签名apk
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cordova/">cordova</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ionic/">ionic</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中获取url参数/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:37:52.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中获取url参数/">js中获取url参数</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="如何打包未签名-apk"><a href="#如何打包未签名-apk" class="headerlink" title="如何打包未签名 apk"></a>如何打包未签名 apk</h2><p>cordova build –release android</p>
+<h2 id="可能会出现的错误"><a href="#可能会出现的错误" class="headerlink" title="可能会出现的错误"></a>可能会出现的错误</h2><p><img src="../images/ionic/packError.png" alt=""></p>
+<p>查看错误日志发现问题基本是 translation 错误，解决方法：<br>在 platforms/android/build.gradle 文件的android {} 节点中增加</p>
+<pre><code>lintOptions{
+    abortOnError false
+    checkReleaseBuilds false
+}
+</code></pre><p><img src="../images/ionic/addPackLine.png" alt=""></p>
+<p><a href="http://stackoverflow.com/questions/30345879/error-when-running-cordova-build-release-android" target="_blank" rel="external">参考</a></p>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queryString/">queryString</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/04/css中的各种居中/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          css中的各种居中
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/12/call和apply的用法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">call和apply的用法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/纯js倒计时/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:32:22.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/纯js倒计时/">纯js倒计时</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/倒计时/">倒计时</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/css3单位rem/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:26:28.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/css3单位rem/">css3单位rem</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/js中使用cookie/" class="archive-article-date">
-  	<time datetime="2016-06-22T08:22:47.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/js中使用cookie/">js中使用cookie</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/22/angular指令高级/" class="archive-article-date">
-  	<time datetime="2016-06-22T07:37:48.000Z" itemprop="datePublished">Jun 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/22/angular指令高级/">angular指令高级</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 </div>
       <footer id="footer">
@@ -391,8 +316,8 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

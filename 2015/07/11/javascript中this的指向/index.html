@@ -4,30 +4,48 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>js中获取url参数 | xwillmadeit</title>
+  <title>javascript 中 this 的指向 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
+  <meta name="description" content="this 的指向this 的指向大致可以分为以下4种
+
+作为对象的方法调用
+作为普通函数调用
+构造器调用
+Function.prototype.call 或 Function.prototype.apply 调用
+
+当函数作为对象的方法被调用时，this指向该对象：var obj = {
+    a: 1,
+    getA: function(){
+        alert(this == o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js中获取url参数">
-<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/js中获取url参数/index.html">
+<meta property="og:title" content="javascript 中 this 的指向">
+<meta property="og:url" content="https://xwillmadeit.github.io/2015/07/11/javascript中this的指向/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
-<meta property="og:updated_time" content="2016-06-22T08:39:01.000Z">
+<meta property="og:description" content="this 的指向this 的指向大致可以分为以下4种
+
+作为对象的方法调用
+作为普通函数调用
+构造器调用
+Function.prototype.call 或 Function.prototype.apply 调用
+
+当函数作为对象的方法被调用时，this指向该对象：var obj = {
+    a: 1,
+    getA: function(){
+        alert(this == o">
+<meta property="og:updated_time" content="2016-06-22T08:57:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中获取url参数">
-<meta name="twitter:description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
+<meta name="twitter:title" content="javascript 中 this 的指向">
+<meta name="twitter:description" content="this 的指向this 的指向大致可以分为以下4种
+
+作为对象的方法调用
+作为普通函数调用
+构造器调用
+Function.prototype.call 或 Function.prototype.apply 调用
+
+当函数作为对象的方法被调用时，this指向该对象：var obj = {
+    a: 1,
+    getA: function(){
+        alert(this == o">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -209,11 +227,11 @@ function GetQueryString(name) {
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-js中获取url参数" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-javascript中this的指向" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/22/js中获取url参数/" class="article-date">
-  	<time datetime="2016-06-22T08:37:52.000Z" itemprop="datePublished">2016-06-22</time>
+      <a href="/2015/07/11/javascript中this的指向/" class="article-date">
+  	<time datetime="2015-07-11T02:48:16.000Z" itemprop="datePublished">2015-07-11</time>
 </a>
     </div>
   
@@ -226,7 +244,7 @@ function GetQueryString(name) {
         
   
     <h1 class="article-title" itemprop="name">
-      js中获取url参数
+      javascript 中 this 的指向
     </h1>
   
 
@@ -235,7 +253,7 @@ function GetQueryString(name) {
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queryString/">queryString</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this/">this</a></li></ul>
 	</div>
 
         
@@ -246,21 +264,97 @@ function GetQueryString(name) {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="js中获取url地址栏问号后携带的参数"><a href="#js中获取url地址栏问号后携带的参数" class="headerlink" title="js中获取url地址栏问号后携带的参数"></a>js中获取url地址栏问号后携带的参数</h2><p>老生常谈的问题：</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;);
-    var r = decodeURI(curl).substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
-    return null;
+        <h2 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h2><p>this 的指向大致可以分为以下4种</p>
+<ol>
+<li>作为对象的方法调用</li>
+<li>作为普通函数调用</li>
+<li>构造器调用</li>
+<li>Function.prototype.call 或 Function.prototype.apply 调用</li>
+</ol>
+<h2 id="当函数作为对象的方法被调用时，this指向该对象："><a href="#当函数作为对象的方法被调用时，this指向该对象：" class="headerlink" title="当函数作为对象的方法被调用时，this指向该对象："></a>当函数作为对象的方法被调用时，this指向该对象：</h2><pre><code>var obj = {
+    a: 1,
+    getA: function(){
+        alert(this == obj); //输出：true
+        alert(this.a); //输出：1
+    }
+}
+obj.getA();
+</code></pre><h2 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h2><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的this总是指向全局对象。在浏览器的 javascript 里，这个全局变量是 window 对象。</p>
+<pre><code>window.name = &apos;globalName&apos;;
+var getName = function(){
+    return this.name;
 }
 
-alert(GetQueryString(&apos;id&apos;));
-alert(GetQueryString(&apos;name&apos;));
+console.log(getName()); //输出：globalName
+</code></pre><p>或者 </p>
+<pre><code>window.name = &apos;globalName&apos;;
+var myObj = {
+    name: &apos;sven&apos;,
+    getName: function(){
+        return this.name;
+    }
+}
 
-//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html
-&lt;/script&gt;
+var getName = myObj.getName();
+console.log(getName()); //globalName
+</code></pre><p>有时候我们会遇到一些困扰，比如在 div 节点的时间函数内部，有一个局部的 callback 方法，callback方法被作为普通的函数调用时，callback内部的this指向了window，但我们往往是想让它指向该div节点</p>
+<pre><code>window.id = &apos;window&apos;;
+
+document.getElementById(&apos;div1&apos;).onclick = function(){
+    alert(this.id); // tihs为该 div 节点，this.id = div1
+    //var that = this; //保存引用 that.id 指向 div1
+    var callback = function(){
+        alert(that.id); //window
+    }
+    callback();
+}
+</code></pre><p>此时需用 that 保存下 div 节点的引用。</p>
+<p>在 es5 的 strict 模式下，这种情况下的 this 已经被规定为不会指向全局对象，而是 undefined;</p>
+<pre><code>function func(){
+    &apos;use strict&apos;
+    alert(this); //undefined
+}
+
+func();
+</code></pre><h2 id="构造器调用"><a href="#构造器调用" class="headerlink" title="构造器调用"></a>构造器调用</h2><p>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的 this 就指向返回的这个对象。</p>
+<pre><code>var myClass = function(){
+    this.name = &apos;sven&apos;;
+}
+
+var obj = new myClass();
+alert(obj.name); //sven
+</code></pre><p>但用 new 调用构造器时，还需要注意一个问题，如果构造器显式地返回了一个 object 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this：</p>
+<pre><code>var myClass = function(){
+    this.name = &apos;sven&apos;;
+    return {
+        name: &apos;anne&apos;
+    }
+}
+
+var obj = new myClass();
+alert(obj.name); //anne
+</code></pre><p>如果构造器不显式地返回任何数据，或者是返回一个非对象类型的数据，就不会造成上述问题。</p>
+<pre><code>var myClass = function(){
+    this.name = &apos;sven&apos;;
+    return &apos;anne&apos;;
+}
+
+var obj = new myClass();
+alert(obj.name); //sven
+</code></pre><h2 id="Function-prototype-call-或-Function-prototype-apply-调用"><a href="#Function-prototype-call-或-Function-prototype-apply-调用" class="headerlink" title="Function.prototype.call 或 Function.prototype.apply 调用"></a>Function.prototype.call 或 Function.prototype.apply 调用</h2><p>这两个方法可以动态地改变传入函数的 this </p>
+<pre><code>var obj1 = {
+    name: &apos;sven&apos;,
+    getName: function(){
+        return this.name;
+    }
+}
+
+var obj2 = {
+    name: &apos;anne&apos;,
+}
+
+console.log(obj1.getName());
+console.log(obj1.getName.call(obj2));
 </code></pre>
       
     </div>
@@ -270,9 +364,18 @@ alert(GetQueryString(&apos;name&apos;));
     
 <nav id="article-nav">
   
+    <a href="/2015/07/12/call和apply的用法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          call和apply的用法
+        
+      </div>
+    </a>
   
-    <a href="/2016/06/22/纯js倒计时/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">纯js倒计时</div>
+  
+    <a href="/2015/06/12/js面试题整理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript 常见面试题</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
