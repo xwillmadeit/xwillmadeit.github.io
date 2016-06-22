@@ -233,22 +233,24 @@ func.apply(null,[1,2,3]);
 func.call(null,1,2,3);
 </code></pre><p>call 是包装在 apply 上面的一课语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 call 来传递参数。</p>
 <p>当使用 call 或者 apply 的时候，如果我们传入的第一个参数为 null，函数体内的 this 会指向默认的宿主对象，在浏览器中则是 window。</p>
-<h2 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h2><ol>
-<li><p>改变 this 指向</p>
-<p> var obj1 = {</p>
-<pre><code>name: &apos;sven&apos;
-</code></pre><p> }</p>
-<p> var obj2 = {</p>
-<pre><code>name: &apos;anne&apos;
-</code></pre><p> }</p>
-<p> window.name = ‘window’;</p>
-<p> var getName = function(){</p>
-<pre><code>alert(this.name); 
-</code></pre><p> }</p>
-<p> getName(); //window<br> getName.apply(obj1); //sven<br> getName.apply(obj2); //anne</p>
-</li>
-</ol>
-<p>实战中</p>
+<h2 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h2><h3 id="改变-this-指向"><a href="#改变-this-指向" class="headerlink" title="改变 this 指向"></a>改变 this 指向</h3><pre><code>var obj1 = {
+    name: &apos;sven&apos;
+};
+
+var obj2 = {
+    name: &apos;anne&apos;
+};
+
+window.name = &apos;window&apos;;
+
+var getName = function(){
+    alert(this.name); 
+};
+
+getName(); //window
+getName.apply(obj1); //sven
+getName.apply(obj2); //anne
+</code></pre><p>实战中</p>
 <pre><code>window.id = &apos;window&apos;;
 
 document.getElementById(&apos;div1&apos;).onclick = function(){
