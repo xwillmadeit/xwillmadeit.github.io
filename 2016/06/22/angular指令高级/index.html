@@ -6,25 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>angular指令高级 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="require 属性简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中简单例子：html
-&amp;lt;div ng-controller=&amp;quot;TestCtrl&amp;quot;&amp;gt;
-    &amp;lt;div add ng-model=&amp;quot;num&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;">
+  <meta name="description" content="scope 作用域&amp;lt;h1 click-me&amp;gt;{{name}}&amp;lt;/h1&amp;gt;
+
+&amp;lt;script&amp;gt;
+    var app = angular.module(&amp;apos;myapp&amp;apos;,[]);
+    app.controller(&amp;apos;firstCtrl&amp;apos;,[&amp;apos;$scope&amp;apos;,function($scope){">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular指令高级">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/angular指令高级/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="require 属性简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中简单例子：html
-&amp;lt;div ng-controller=&amp;quot;TestCtrl&amp;quot;&amp;gt;
-    &amp;lt;div add ng-model=&amp;quot;num&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;">
-<meta property="og:updated_time" content="2016-06-22T08:29:34.000Z">
+<meta property="og:description" content="scope 作用域&amp;lt;h1 click-me&amp;gt;{{name}}&amp;lt;/h1&amp;gt;
+
+&amp;lt;script&amp;gt;
+    var app = angular.module(&amp;apos;myapp&amp;apos;,[]);
+    app.controller(&amp;apos;firstCtrl&amp;apos;,[&amp;apos;$scope&amp;apos;,function($scope){">
+<meta property="og:updated_time" content="2016-06-23T02:35:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular指令高级">
-<meta name="twitter:description" content="require 属性简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中简单例子：html
-&amp;lt;div ng-controller=&amp;quot;TestCtrl&amp;quot;&amp;gt;
-    &amp;lt;div add ng-model=&amp;quot;num&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;">
+<meta name="twitter:description" content="scope 作用域&amp;lt;h1 click-me&amp;gt;{{name}}&amp;lt;/h1&amp;gt;
+
+&amp;lt;script&amp;gt;
+    var app = angular.module(&amp;apos;myapp&amp;apos;,[]);
+    app.controller(&amp;apos;firstCtrl&amp;apos;,[&amp;apos;$scope&amp;apos;,function($scope){">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -109,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 10px;">apply</a> <a href="/tags/call/" style="font-size: 10px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 15px;">cordova</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/ionic/" style="font-size: 15px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 10px;">apply</a> <a href="/tags/call/" style="font-size: 10px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 15px;">cordova</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 15px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
 					</div>
 				</section>
 				
@@ -202,7 +205,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="require-属性"><a href="#require-属性" class="headerlink" title="require 属性"></a>require 属性</h2><p>简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中<br>简单例子：<br>html</p>
+        <h2 id="scope-作用域"><a href="#scope-作用域" class="headerlink" title="scope 作用域"></a>scope 作用域</h2><pre><code>&lt;h1 click-me&gt;{{name}}&lt;/h1&gt;
+
+&lt;script&gt;
+    var app = angular.module(&apos;myapp&apos;,[]);
+    app.controller(&apos;firstCtrl&apos;,[&apos;$scope&apos;,function($scope){
+        $scope.name = &apos;xwill&apos;;
+    }]);
+    app.directive(&apos;clickMe&apos;,[function(){
+        return {
+            restrict: &apos;A&apos;,
+            scope: {}, //清空controller中scope值，默认是继承的
+            link: function(scope,elem,attr){
+                elem.bind(&apos;click&apos;,function(){
+                    console.log(scope.name); //undefined,scope值被清空
+                });
+            }
+        }
+    }]);
+&lt;/script&gt;
+</code></pre><p>使用 scope: {} 即给指令创建自己的作用域</p>
+<pre><code>app.directive(&apos;clickMe&apos;,[function(){
+    return {
+        restrict: &apos;A&apos;,
+        controller: &apos;secondCtrl&apos;,
+        link: function(scope,elem,attr){
+            elem.bind(&apos;click&apos;,function(){
+                console.log(scope.name);
+            });
+        }
+    }
+}]);
+app.controller(&apos;secondCtrl&apos;,[&apos;$scope&apos;,function($scope){
+    $scope.name = &apos;xwill2&apos;; //将会覆盖 firstCtrl 中 scope 的值
+}]);
+</code></pre><p>使用 controller 属性可改变 scope 指向</p>
+<p>&amp;、＝、@ 的区别</p>
+<pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
+    &lt;div free person=&quot;calo&quot; crime=&quot;gambel&quot; shout=&quot;say(&apos;no!&apos;)&quot;&gt;&lt;/div&gt;
+    &lt;div free person=&quot;corleone&quot; crime=&quot;killing&quot; shout=&quot;say(&apos;nonono!&apos;)&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {
+    $scope.calo = {name: &apos;calo&apos;, age: 22};
+    $scope.corleone = {name: &apos;corleone&apos;, age: 34};
+
+    $scope.say = function(word){
+        alert(word);
+    }
+}])
+app.directive(&apos;free&apos;, [function() {
+    return {
+        restrict: &apos;A&apos;,
+        template: &apos;&lt;div&gt;hello {{myPerson.name}},{{myPerson.age}},your crime is {{myCrime}}&lt;/div&gt;&apos;,
+        scope: {
+            myPerson: &apos;=person&apos;,  //=绑定 controller 中 scope 的值
+            myCrime: &apos;@crime&apos;,  //@取字符串
+            shout: &apos;&amp;&apos; //绑定方法
+        },
+        link: function(scope, iElement, iAttrs) {
+            iElement.bind(&apos;click&apos;,function(){
+                scope.shout();
+            });
+        }
+    };
+}]);
+&lt;/script&gt;
+</code></pre><p>= 用于绑定 controller 中的变量，<br>@ 获取属性的字面量值<br>&amp; 绑定 function</p>
+<h2 id="require-属性"><a href="#require-属性" class="headerlink" title="require 属性"></a>require 属性</h2><p>简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中<br>简单例子：<br>html</p>
 <pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
     &lt;div add ng-model=&quot;num&quot;&gt;&lt;/div&gt;
     &lt;p&gt;{{num}}&lt;/p&gt;
