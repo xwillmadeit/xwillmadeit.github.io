@@ -7,27 +7,18 @@
   <title>js中获取url参数 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
+1234567891011121314&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;function GetQueryString(name) &amp;#123;    var curl = window.location.search;    var reg = new RegExp(&quot;(^|&amp;amp;)&quot; + nam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中获取url参数">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/js中获取url参数/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
-<meta property="og:updated_time" content="2016-06-22T08:39:01.000Z">
+1234567891011121314&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;function GetQueryString(name) &amp;#123;    var curl = window.location.search;    var reg = new RegExp(&quot;(^|&amp;amp;)&quot; + nam">
+<meta property="og:updated_time" content="2016-06-23T03:44:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中获取url参数">
 <meta name="twitter:description" content="js中获取url地址栏问号后携带的参数老生常谈的问题：
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&amp;quot;(^|&amp;amp;)&amp;quot; + name">
+1234567891011121314&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;function GetQueryString(name) &amp;#123;    var curl = window.location.search;    var reg = new RegExp(&quot;(^|&amp;amp;)&quot; + nam">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -206,21 +197,7 @@ function GetQueryString(name) {
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="js中获取url地址栏问号后携带的参数"><a href="#js中获取url地址栏问号后携带的参数" class="headerlink" title="js中获取url地址栏问号后携带的参数"></a>js中获取url地址栏问号后携带的参数</h2><p>老生常谈的问题：</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;);
-    var r = decodeURI(curl).substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
-    return null;
-}
-
-alert(GetQueryString(&apos;id&apos;));
-alert(GetQueryString(&apos;name&apos;));
-
-//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html
-&lt;/script&gt;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetQueryString</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curl = <span class="built_in">window</span>.location.search;</span><br><span class="line">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^|&amp;)"</span> + name + <span class="string">"=([^&amp;]*)(&amp;|$)"</span>);</span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">decodeURI</span>(curl).substr(<span class="number">1</span>).match(reg);</span><br><span class="line">    <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">unescape</span>(r[<span class="number">2</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(GetQueryString(<span class="string">'id'</span>));</span><br><span class="line">alert(GetQueryString(<span class="string">'name'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
     

@@ -6,31 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>javascript 常见面试题 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="实时显示当时时间(function getDate(){
-    var date = new Date(),
-    DateObj = {
-        getTime: function(){
-            var year = date.getFullYear(),
-                month = (date.getMonth())+1, //月份从0开始">
+  <meta name="description" content="实时显示当时时间1234567891011121314151617181920(function getDate()&amp;#123;	var date = new Date(),	DateObj = &amp;#123;		getTime: function()&amp;#123;			var year = date.getFullYear(),				month = (date.getMonth())+1, //月">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript 常见面试题">
 <meta property="og:url" content="https://xwillmadeit.github.io/2015/06/12/js面试题整理/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="实时显示当时时间(function getDate(){
-    var date = new Date(),
-    DateObj = {
-        getTime: function(){
-            var year = date.getFullYear(),
-                month = (date.getMonth())+1, //月份从0开始">
-<meta property="og:updated_time" content="2016-06-22T08:57:56.000Z">
+<meta property="og:description" content="实时显示当时时间1234567891011121314151617181920(function getDate()&amp;#123;	var date = new Date(),	DateObj = &amp;#123;		getTime: function()&amp;#123;			var year = date.getFullYear(),				month = (date.getMonth())+1, //月">
+<meta property="og:updated_time" content="2016-06-23T03:44:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript 常见面试题">
-<meta name="twitter:description" content="实时显示当时时间(function getDate(){
-    var date = new Date(),
-    DateObj = {
-        getTime: function(){
-            var year = date.getFullYear(),
-                month = (date.getMonth())+1, //月份从0开始">
+<meta name="twitter:description" content="实时显示当时时间1234567891011121314151617181920(function getDate()&amp;#123;	var date = new Date(),	DateObj = &amp;#123;		getTime: function()&amp;#123;			var year = date.getFullYear(),				month = (date.getMonth())+1, //月">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -208,46 +193,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><pre><code>(function getDate(){
-    var date = new Date(),
-    DateObj = {
-        getTime: function(){
-            var year = date.getFullYear(),
-                month = (date.getMonth())+1, //月份从0开始
-                day = date.getDate(),
-                hour = this.addZero(date.getHours()),
-                min = this.addZero(date.getMinutes()),
-                sec = this.addZero(date.getSeconds());
-
-            alert(year+&apos;年&apos;+month+&apos;月&apos;+day+&apos;日 &apos;+hour+&apos;:&apos;+min+&apos;:&apos;+sec);
-        },
-        addZero: function(number) { //时分秒个位数补0
-            return (number &lt; 10 ? &apos;0&apos; : &apos;&apos;) + number;
-        }
-    }
-
-    DateObj.getTime();
-})();
-</code></pre><h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><pre><code>alert(&apos;123\n456&apos;);
-</code></pre><h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><pre><code>function queryString(url){
-    this.url = url;
-    this.urlObj = {};
-    this.splitUrl = function(){
-        var paramsUrl = this.url.split(&apos;?&apos;)[1];
-            pair = paramsUrl.split(&apos;&amp;&apos;);
-        for(var i=0;i&lt;pair.length;i++){
-            var key = pair[i].split(&apos;=&apos;)[0],
-                val = pair[i].split(&apos;=&apos;)[1];
-            this.urlObj[key] = val;
-        }
-
-        return this.urlObj;
-    }
-}
-
-var str = new queryString(&apos;http://www.taobao.com?item=10&amp;key=12&amp;productId=88&apos;);
-console.log(str.splitUrl());  //{item: &quot;10&quot;, key: &quot;12&quot;, productId: &quot;88&quot;}
-</code></pre><h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
+        <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">getDate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">	DateObj = &#123;</span><br><span class="line">		getTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> year = date.getFullYear(),</span><br><span class="line">				month = (date.getMonth())+<span class="number">1</span>, <span class="comment">//月份从0开始</span></span><br><span class="line">				day = date.getDate(),</span><br><span class="line">				hour = <span class="keyword">this</span>.addZero(date.getHours()),</span><br><span class="line">			    min = <span class="keyword">this</span>.addZero(date.getMinutes()),</span><br><span class="line">				sec = <span class="keyword">this</span>.addZero(date.getSeconds());</span><br><span class="line"></span><br><span class="line">			alert(year+<span class="string">'年'</span>+month+<span class="string">'月'</span>+day+<span class="string">'日 '</span>+hour+<span class="string">':'</span>+min+<span class="string">':'</span>+sec);</span><br><span class="line">		&#125;,</span><br><span class="line">		addZero: <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123; <span class="comment">//时分秒个位数补0</span></span><br><span class="line">			<span class="keyword">return</span> (number &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + number;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	DateObj.getTime();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'123\n456'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">queryString</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.url = url;</span><br><span class="line">	<span class="keyword">this</span>.urlObj = &#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.splitUrl = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> paramsUrl = <span class="keyword">this</span>.url.split(<span class="string">'?'</span>)[<span class="number">1</span>];</span><br><span class="line">			pair = paramsUrl.split(<span class="string">'&amp;'</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;pair.length;i++)&#123;</span><br><span class="line">			<span class="keyword">var</span> key = pair[i].split(<span class="string">'='</span>)[<span class="number">0</span>],</span><br><span class="line">				val = pair[i].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">this</span>.urlObj[key] = val;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.urlObj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> queryString(<span class="string">'http://www.taobao.com?item=10&amp;key=12&amp;productId=88'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str.splitUrl());  <span class="comment">//&#123;item: "10", key: "12", productId: "88"&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
 <ol>
 <li>参数都是体现在 url 上</li>
 <li>主要用于取（查询）数据</li>

@@ -13,10 +13,7 @@
 构造器调用
 Function.prototype.call 或 Function.prototype.apply 调用
 
-当函数作为对象的方法被调用时，this指向该对象：var obj = {
-    a: 1,
-    getA: function(){
-        alert(this == o">
+当函数作为对象的方法被调用时，this指向该对象：12345678var obj = &amp;#123;	a: 1,	getA: function()&amp;#123;		alert(this =">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript 中 this 的指向">
 <meta property="og:url" content="https://xwillmadeit.github.io/2015/07/11/javascript中this的指向/index.html">
@@ -28,11 +25,8 @@ Function.prototype.call 或 Function.prototype.apply 调用
 构造器调用
 Function.prototype.call 或 Function.prototype.apply 调用
 
-当函数作为对象的方法被调用时，this指向该对象：var obj = {
-    a: 1,
-    getA: function(){
-        alert(this == o">
-<meta property="og:updated_time" content="2016-06-22T08:57:10.000Z">
+当函数作为对象的方法被调用时，this指向该对象：12345678var obj = &amp;#123;	a: 1,	getA: function()&amp;#123;		alert(this =">
+<meta property="og:updated_time" content="2016-06-23T03:46:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript 中 this 的指向">
 <meta name="twitter:description" content="this 的指向this 的指向大致可以分为以下4种
@@ -42,10 +36,7 @@ Function.prototype.call 或 Function.prototype.apply 调用
 构造器调用
 Function.prototype.call 或 Function.prototype.apply 调用
 
-当函数作为对象的方法被调用时，this指向该对象：var obj = {
-    a: 1,
-    getA: function(){
-        alert(this == o">
+当函数作为对象的方法被调用时，this指向该对象：12345678var obj = &amp;#123;	a: 1,	getA: function()&amp;#123;		alert(this =">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -230,91 +221,25 @@ Function.prototype.call 或 Function.prototype.apply 调用
 <li>构造器调用</li>
 <li>Function.prototype.call 或 Function.prototype.apply 调用</li>
 </ol>
-<h2 id="当函数作为对象的方法被调用时，this指向该对象："><a href="#当函数作为对象的方法被调用时，this指向该对象：" class="headerlink" title="当函数作为对象的方法被调用时，this指向该对象："></a>当函数作为对象的方法被调用时，this指向该对象：</h2><pre><code>var obj = {
-    a: 1,
-    getA: function(){
-        alert(this == obj); //输出：true
-        alert(this.a); //输出：1
-    }
-}
-obj.getA();
-</code></pre><h2 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h2><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的this总是指向全局对象。在浏览器的 javascript 里，这个全局变量是 window 对象。</p>
-<pre><code>window.name = &apos;globalName&apos;;
-var getName = function(){
-    return this.name;
-}
-
-console.log(getName()); //输出：globalName
-</code></pre><p>或者 </p>
-<pre><code>window.name = &apos;globalName&apos;;
-var myObj = {
-    name: &apos;sven&apos;,
-    getName: function(){
-        return this.name;
-    }
-}
-
-var getName = myObj.getName();
-console.log(getName()); //globalName
-</code></pre><p>有时候我们会遇到一些困扰，比如在 div 节点的时间函数内部，有一个局部的 callback 方法，callback方法被作为普通的函数调用时，callback内部的this指向了window，但我们往往是想让它指向该div节点</p>
-<pre><code>window.id = &apos;window&apos;;
-
-document.getElementById(&apos;div1&apos;).onclick = function(){
-    alert(this.id); // tihs为该 div 节点，this.id = div1
-    //var that = this; //保存引用 that.id 指向 div1
-    var callback = function(){
-        alert(that.id); //window
-    }
-    callback();
-}
-</code></pre><p>此时需用 that 保存下 div 节点的引用。</p>
+<h2 id="当函数作为对象的方法被调用时，this指向该对象："><a href="#当函数作为对象的方法被调用时，this指向该对象：" class="headerlink" title="当函数作为对象的方法被调用时，this指向该对象："></a>当函数作为对象的方法被调用时，this指向该对象：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	a: <span class="number">1</span>,</span><br><span class="line">	getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span> == obj); <span class="comment">//输出：true</span></span><br><span class="line">		alert(<span class="keyword">this</span>.a); <span class="comment">//输出：1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
+<h2 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h2><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的this总是指向全局对象。在浏览器的 javascript 里，这个全局变量是 window 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//输出：globalName</span></span><br></pre></td></tr></table></figure>
+<p>或者 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> myObj = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getName = myObj.getName();</span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//globalName</span></span><br></pre></td></tr></table></figure>
+<p>有时候我们会遇到一些困扰，比如在 div 节点的时间函数内部，有一个局部的 callback 方法，callback方法被作为普通的函数调用时，callback内部的this指向了window，但我们往往是想让它指向该div节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.id = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.id); <span class="comment">// tihs为该 div 节点，this.id = div1</span></span><br><span class="line">	<span class="comment">//var that = this; //保存引用 that.id 指向 div1</span></span><br><span class="line">	<span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(that.id); <span class="comment">//window</span></span><br><span class="line">	&#125;</span><br><span class="line">	callback();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时需用 that 保存下 div 节点的引用。</p>
 <p>在 es5 的 strict 模式下，这种情况下的 this 已经被规定为不会指向全局对象，而是 undefined;</p>
-<pre><code>function func(){
-    &apos;use strict&apos;
-    alert(this); //undefined
-}
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">	'use strict'</span></span><br><span class="line">	alert(<span class="keyword">this</span>); <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
+<h2 id="构造器调用"><a href="#构造器调用" class="headerlink" title="构造器调用"></a>构造器调用</h2><p>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的 this 就指向返回的这个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
+<p>但用 new 调用构造器时，还需要注意一个问题，如果构造器显式地返回了一个 object 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		name: <span class="string">'anne'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//anne</span></span><br></pre></td></tr></table></figure>
+<p>如果构造器不显式地返回任何数据，或者是返回一个非对象类型的数据，就不会造成上述问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'anne'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function-prototype-call-或-Function-prototype-apply-调用"><a href="#Function-prototype-call-或-Function-prototype-apply-调用" class="headerlink" title="Function.prototype.call 或 Function.prototype.apply 调用"></a>Function.prototype.call 或 Function.prototype.apply 调用</h2><p>这两个方法可以动态地改变传入函数的 this </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">	name: <span class="string">'anne'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName());</span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName.call(obj2));</span><br></pre></td></tr></table></figure>
 
-func();
-</code></pre><h2 id="构造器调用"><a href="#构造器调用" class="headerlink" title="构造器调用"></a>构造器调用</h2><p>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的 this 就指向返回的这个对象。</p>
-<pre><code>var myClass = function(){
-    this.name = &apos;sven&apos;;
-}
-
-var obj = new myClass();
-alert(obj.name); //sven
-</code></pre><p>但用 new 调用构造器时，还需要注意一个问题，如果构造器显式地返回了一个 object 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this：</p>
-<pre><code>var myClass = function(){
-    this.name = &apos;sven&apos;;
-    return {
-        name: &apos;anne&apos;
-    }
-}
-
-var obj = new myClass();
-alert(obj.name); //anne
-</code></pre><p>如果构造器不显式地返回任何数据，或者是返回一个非对象类型的数据，就不会造成上述问题。</p>
-<pre><code>var myClass = function(){
-    this.name = &apos;sven&apos;;
-    return &apos;anne&apos;;
-}
-
-var obj = new myClass();
-alert(obj.name); //sven
-</code></pre><h2 id="Function-prototype-call-或-Function-prototype-apply-调用"><a href="#Function-prototype-call-或-Function-prototype-apply-调用" class="headerlink" title="Function.prototype.call 或 Function.prototype.apply 调用"></a>Function.prototype.call 或 Function.prototype.apply 调用</h2><p>这两个方法可以动态地改变传入函数的 this </p>
-<pre><code>var obj1 = {
-    name: &apos;sven&apos;,
-    getName: function(){
-        return this.name;
-    }
-}
-
-var obj2 = {
-    name: &apos;anne&apos;,
-}
-
-console.log(obj1.getName());
-console.log(obj1.getName.call(obj2));
-</code></pre>
       
     </div>
     

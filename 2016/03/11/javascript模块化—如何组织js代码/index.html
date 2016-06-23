@@ -6,37 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>javascript模块化—如何组织js代码 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The Module Patternvar s,
-NewsWidget = {
-    settings:{
-        numArticles: 5,
-        articleList: $(&amp;quot;#article-list&amp;quot;),
-        moreButton: $(&amp;quot;#more-button&amp;quot;)
-    },
-    init: funct">
+  <meta name="description" content="The Module Pattern1234567891011121314151617181920212223242526var s,NewsWidget = &amp;#123;	settings:&amp;#123;		numArticles: 5,		articleList: $(&quot;#article-list&quot;),		moreButton: $(&quot;#more-button&quot;)	&amp;#125;,	init: f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript模块化—如何组织js代码">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/03/11/javascript模块化—如何组织js代码/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="The Module Patternvar s,
-NewsWidget = {
-    settings:{
-        numArticles: 5,
-        articleList: $(&amp;quot;#article-list&amp;quot;),
-        moreButton: $(&amp;quot;#more-button&amp;quot;)
-    },
-    init: funct">
-<meta property="og:updated_time" content="2016-06-22T09:02:58.000Z">
+<meta property="og:description" content="The Module Pattern1234567891011121314151617181920212223242526var s,NewsWidget = &amp;#123;	settings:&amp;#123;		numArticles: 5,		articleList: $(&quot;#article-list&quot;),		moreButton: $(&quot;#more-button&quot;)	&amp;#125;,	init: f">
+<meta property="og:updated_time" content="2016-06-23T03:45:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript模块化—如何组织js代码">
-<meta name="twitter:description" content="The Module Patternvar s,
-NewsWidget = {
-    settings:{
-        numArticles: 5,
-        articleList: $(&amp;quot;#article-list&amp;quot;),
-        moreButton: $(&amp;quot;#more-button&amp;quot;)
-    },
-    init: funct">
+<meta name="twitter:description" content="The Module Pattern1234567891011121314151617181920212223242526var s,NewsWidget = &amp;#123;	settings:&amp;#123;		numArticles: 5,		articleList: $(&quot;#article-list&quot;),		moreButton: $(&quot;#more-button&quot;)	&amp;#125;,	init: f">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -214,48 +193,10 @@ NewsWidget = {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="The-Module-Pattern"><a href="#The-Module-Pattern" class="headerlink" title="The Module Pattern"></a>The Module Pattern</h2><pre><code>var s,
-NewsWidget = {
-    settings:{
-        numArticles: 5,
-        articleList: $(&quot;#article-list&quot;),
-        moreButton: $(&quot;#more-button&quot;)
-    },
-    init: function(){
-        // kick things off
-        s = this.settings;
-        this.bindUiActions();
-    },
-    bindUiActions: function(){
-        s.moreButton.on(&apos;click&apos;,function(){
-            NewsWidget.getMoreArticles(s.numArticles);
-        });
-    },
-    getMoreArticles: function(nums){
-        console.log(&apos;获取&apos;+s.numArticles+&apos;条数据&apos;);
-    }
-}
-//使用这种方式内部属性可被修改
-NewsWidget.settings.numArticles = 6; 
+        <h2 id="The-Module-Pattern"><a href="#The-Module-Pattern" class="headerlink" title="The Module Pattern"></a>The Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s,</span><br><span class="line">NewsWidget = &#123;</span><br><span class="line">	settings:&#123;</span><br><span class="line">		numArticles: <span class="number">5</span>,</span><br><span class="line">		articleList: $(<span class="string">"#article-list"</span>),</span><br><span class="line">		moreButton: $(<span class="string">"#more-button"</span>)</span><br><span class="line">	&#125;,</span><br><span class="line">	init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">// kick things off</span></span><br><span class="line">		s = <span class="keyword">this</span>.settings;</span><br><span class="line">		<span class="keyword">this</span>.bindUiActions();</span><br><span class="line">	&#125;,</span><br><span class="line">	bindUiActions: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		s.moreButton.on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			NewsWidget.getMoreArticles(s.numArticles);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	getMoreArticles: <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'获取'</span>+s.numArticles+<span class="string">'条数据'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用这种方式内部属性可被修改</span></span><br><span class="line">NewsWidget.settings.numArticles = <span class="number">6</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化组件</span></span><br><span class="line">NewsWidget.init();</span><br></pre></td></tr></table></figure>
+<p><a href="https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/" target="_blank" rel="external">The Module Pattern Edition</a></p>
+<h2 id="The-Revealing-Module-Pattern"><a href="#The-Revealing-Module-Pattern" class="headerlink" title="The Revealing Module Pattern"></a>The Revealing Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name = <span class="string">'xwill'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		getName: sayName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//使用这种方式无法修改匿名函数中的name属性！Person只有一个getName方法</span></span><br><span class="line">Person.name = <span class="string">'kobe'</span>; <span class="comment">//无效</span></span><br><span class="line">Person.getName() <span class="comment">//仍为 xwill</span></span><br></pre></td></tr></table></figure>
 
-//初始化组件
-NewsWidget.init();
-</code></pre><p><a href="https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/" target="_blank" rel="external">The Module Pattern Edition</a></p>
-<h2 id="The-Revealing-Module-Pattern"><a href="#The-Revealing-Module-Pattern" class="headerlink" title="The Revealing Module Pattern"></a>The Revealing Module Pattern</h2><pre><code>var Person = (function(){
-    var name = &apos;xwill&apos;;
-
-    function sayName(){
-        alert(name);
-    }
-
-    return {
-        getName: sayName
-    }
-})();
-//使用这种方式无法修改匿名函数中的name属性！Person只有一个getName方法
-Person.name = &apos;kobe&apos;; //无效
-Person.getName() //仍为 xwill
-</code></pre>
       
     </div>
     

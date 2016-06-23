@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://xwillmadeit.github.io/2015/07/12/call和apply的用法/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="call 和 apply 的区别call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用">
-<meta property="og:updated_time" content="2016-06-22T09:13:32.000Z">
+<meta property="og:updated_time" content="2016-06-23T03:42:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="call和apply的用法">
 <meta name="twitter:description" content="call 和 apply 的区别call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用">
@@ -194,54 +194,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="call-和-apply-的区别"><a href="#call-和-apply-的区别" class="headerlink" title="call 和 apply 的区别"></a>call 和 apply 的区别</h2><p>call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。<br>call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用率更高，我们不必关心具体有多少个参数被传入函数，只要用 apply 一股脑推过去就可以了。</p>
-<pre><code>var func = function(a,b,c){
-    alert([a,b,c]);
-}
-
-func.apply(null,[1,2,3]);
-func.call(null,1,2,3);
-</code></pre><p>call 是包装在 apply 上面的一课语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 call 来传递参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">a,b,c</span>)</span>&#123;</span><br><span class="line">	alert([a,b,c]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func.apply(<span class="literal">null</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);</span><br><span class="line">func.call(<span class="literal">null</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>call 是包装在 apply 上面的一课语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 call 来传递参数。</p>
 <p>当使用 call 或者 apply 的时候，如果我们传入的第一个参数为 null，函数体内的 this 会指向默认的宿主对象，在浏览器中则是 window。</p>
-<h2 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h2><h3 id="改变-this-指向"><a href="#改变-this-指向" class="headerlink" title="改变 this 指向"></a>改变 this 指向</h3><pre><code>var obj1 = {
-    name: &apos;sven&apos;
-};
+<h2 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h2><h3 id="改变-this-指向"><a href="#改变-this-指向" class="headerlink" title="改变 this 指向"></a>改变 this 指向</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">	name: <span class="string">'anne'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.name = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name); </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">getName(); <span class="comment">//window</span></span><br><span class="line">getName.apply(obj1); <span class="comment">//sven</span></span><br><span class="line">getName.apply(obj2); <span class="comment">//anne</span></span><br></pre></td></tr></table></figure>
+<p>实战中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.id = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.id); </span><br><span class="line">	<span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.id); <span class="comment">//div1</span></span><br><span class="line">	&#125;</span><br><span class="line">	callback.apply(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	num: <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a,b,c</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.num + a + b + c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add.apply(obj,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]));</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bound = add.bind(obj);</span><br><span class="line"><span class="built_in">console</span>.log(bound(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>));</span><br></pre></td></tr></table></figure>
 
-var obj2 = {
-    name: &apos;anne&apos;
-};
-
-window.name = &apos;window&apos;;
-
-var getName = function(){
-    alert(this.name); 
-};
-
-getName(); //window
-getName.apply(obj1); //sven
-getName.apply(obj2); //anne
-</code></pre><p>实战中</p>
-<pre><code>window.id = &apos;window&apos;;
-
-document.getElementById(&apos;div1&apos;).onclick = function(){
-    alert(this.id); 
-    var callback = function(){
-        alert(this.id); //div1
-    }
-    callback.apply(this);
-}
-</code></pre><h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><pre><code>var obj = {
-    num: 10
-}
-
-var add = function(a,b,c){
-    return this.num + a + b + c;
-}
-
-console.log(add.apply(obj,[1,2,3]));
-
-var bound = add.bind(obj);
-console.log(bound(1,2,3));
-</code></pre>
       
     </div>
     

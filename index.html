@@ -423,21 +423,7 @@ git config --global user.email [email]
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="js中获取url地址栏问号后携带的参数"><a href="#js中获取url地址栏问号后携带的参数" class="headerlink" title="js中获取url地址栏问号后携带的参数"></a>js中获取url地址栏问号后携带的参数</h2><p>老生常谈的问题：</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-function GetQueryString(name) {
-    var curl = window.location.search;
-    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;);
-    var r = decodeURI(curl).substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
-    return null;
-}
-
-alert(GetQueryString(&apos;id&apos;));
-alert(GetQueryString(&apos;name&apos;));
-
-//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html
-&lt;/script&gt;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetQueryString</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curl = <span class="built_in">window</span>.location.search;</span><br><span class="line">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^|&amp;)"</span> + name + <span class="string">"=([^&amp;]*)(&amp;|$)"</span>);</span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">decodeURI</span>(curl).substr(<span class="number">1</span>).match(reg);</span><br><span class="line">    <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">unescape</span>(r[<span class="number">2</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(GetQueryString(<span class="string">'id'</span>));</span><br><span class="line">alert(GetQueryString(<span class="string">'name'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -545,29 +531,8 @@ alert(GetQueryString(&apos;name&apos;));
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="rem-的简单小结"><a href="#rem-的简单小结" class="headerlink" title="rem 的简单小结"></a>rem 的简单小结</h2><pre><code>&lt;style&gt;
-    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    html {
-        font-size: 12px; /* font-size 最小为12px */
-    }
-
-    body{
-        font-size: 16px; 
-    }
-
-    div {
-        height: 10rem; /* 10*14 = 140px;*/
-        width: 10rem;
-        font-size: 1rem;
-        background: pink;
-    }
-&lt;/style&gt;
-</code></pre><p>rem 是相对于根元素尺寸的单位，如 html 的 font-size 为 12px，则所有元素的 rem 单位均为 (12*n)px<br>注意 html 中 font-size 最小为 12px </p>
+        <h2 id="rem-的简单小结"><a href="#rem-的简单小结" class="headerlink" title="rem 的简单小结"></a>rem 的简单小结</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */</span><br><span class="line">    * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    html &#123;</span><br><span class="line">        font-size: 12px; /* font-size 最小为12px */</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    body&#123;</span><br><span class="line">    	font-size: 16px; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    div &#123;</span><br><span class="line">        height: 10rem; /* 10*14 = 140px;*/</span><br><span class="line">        width: 10rem;</span><br><span class="line">        font-size: 1rem;</span><br><span class="line">        background: pink;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>rem 是相对于根元素尺寸的单位，如 html 的 font-size 为 12px，则所有元素的 rem 单位均为 (12*n)px<br>注意 html 中 font-size 最小为 12px </p>
 
       
     </div>
@@ -621,49 +586,8 @@ alert(GetQueryString(&apos;name&apos;));
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="js-中操作-cookie"><a href="#js-中操作-cookie" class="headerlink" title="js 中操作 cookie"></a>js 中操作 cookie</h2><p>不多说，直接上代码，无非就是 存，取，删除</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    var cookieHandle = function(){}
-
-    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){
-        var expire = new Date(),
-            name = name ? name: &apos;true&apos;,
-            days = days ? days: 30;
-
-        if(days&lt;0){
-            expire.setTime(expire.getTime() - 1000);
-        }else{
-            expire.setTime(expire.getTime() + days*24*60*60*1000);
-        }
-
-        if(firstDomain){ 
-            //指定存入一级域名下
-            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString() + &quot;;path=/&quot; + &quot;;domain=wxrrd.com&quot;;
-        }else{
-            //默认存入 domain 为 window.location.hostname
-            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString();
-        }
-    }
-
-    cookieHandle.prototype.getCookie = function(name){
-        var arr,
-            reg=new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;);
-
-        if(arr=document.cookie.match(reg)){
-            return unescape(arr[2]);
-        }
-        else{
-            return &apos;&apos;;
-        }
-    }
-
-    var cookieHandle = new cookieHandle();
-    if(cookieHandle.getCookie(&apos;name&apos;)==&apos;&apos;){
-        cookieHandle.setCookie(&apos;name&apos;,&apos;xwill&apos;,1);
-    }
-
-    console.log(cookieHandle.getCookie(&apos;name&apos;));
-&lt;/script&gt;
-</code></pre><p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> cookieHandle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.setCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name,value,days,firstDomain</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> expire = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">            name = name ? name: <span class="string">'true'</span>,</span><br><span class="line">            days = days ? days: <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(days&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            expire.setTime(expire.getTime() - <span class="number">1000</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            expire.setTime(expire.getTime() + days*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(firstDomain)&#123; </span><br><span class="line">        	<span class="comment">//指定存入一级域名下</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString() + <span class="string">";path=/"</span> + <span class="string">";domain=wxrrd.com"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        	<span class="comment">//默认存入 domain 为 window.location.hostname</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString();</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.getCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> arr,</span><br><span class="line">            reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^| )"</span>+name+<span class="string">"=([^;]*)(;|$)"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(arr=<span class="built_in">document</span>.cookie.match(reg))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(arr[<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> cookieHandle = <span class="keyword">new</span> cookieHandle();</span><br><span class="line">    <span class="keyword">if</span>(cookieHandle.getCookie(<span class="string">'name'</span>)==<span class="string">''</span>)&#123;</span><br><span class="line">    	cookieHandle.setCookie(<span class="string">'name'</span>,<span class="string">'xwill'</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(cookieHandle.getCookie(<span class="string">'name'</span>));</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
 
       
     </div>
@@ -722,7 +646,8 @@ alert(GetQueryString(&apos;name&apos;));
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">app.directive(<span class="string">'clickMe'</span>,[<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'A'</span>,</span><br><span class="line">        controller: <span class="string">'secondCtrl'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span>(<span class="params">scope,elem,attr</span>)</span>&#123;</span><br><span class="line">            elem.bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(scope.name);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;]);</span><br><span class="line">app.controller(<span class="string">'secondCtrl'</span>,[<span class="string">'$scope'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">    $scope.name = <span class="string">'xwill2'</span>; <span class="comment">//将会覆盖 firstCtrl 中 scope 的值</span></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
 <p>使用 controller 属性可改变 scope 指向</p>
 <p>&amp;、＝、@ 的区别</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-controller="TestCtrl"&gt;</span><br><span class="line">    &lt;div free person="calo" crime="gambel" shout="say('no!')"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div free person="corleone" crime="killing" shout="say('nonono!')"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type="text/javascript"&gt;</span><br><span class="line">app.controller('TestCtrl', ['$scope', function($scope) &#123;</span><br><span class="line">    $scope.calo = &#123;name: 'calo', age: 22&#125;;</span><br><span class="line">    $scope.corleone = &#123;name: 'corleone', age: 34&#125;;</span><br><span class="line"></span><br><span class="line">    $scope.say = function(word)&#123;</span><br><span class="line">        alert(word);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;])</span><br><span class="line">app.directive('free', [function() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        restrict: 'A',</span><br><span class="line">        template: '&lt;div&gt;hello &#123;&#123;myPerson.name&#125;&#125;,&#123;&#123;myPerson.age&#125;&#125;,your crime is &#123;&#123;myCrime&#125;&#125;&lt;/div&gt;',</span><br><span class="line">        scope: &#123;</span><br><span class="line">            myPerson: '=person',  //=绑定 controller 中 scope 的值</span><br><span class="line">            myCrime: '@crime',  //@取字符串</span><br><span class="line">            shout: '&amp;' //绑定方法</span><br><span class="line">        &#125;,</span><br><span class="line">        link: function(scope, iElement, iAttrs) &#123;</span><br><span class="line">            iElement.bind('click',function()&#123;</span><br><span class="line">                scope.shout();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;]);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"TestCtrl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">free</span> <span class="attr">person</span>=<span class="string">"calo"</span> <span class="attr">crime</span>=<span class="string">"gambel"</span> <span class="attr">shout</span>=<span class="string">"say('no!')"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">free</span> <span class="attr">person</span>=<span class="string">"corleone"</span> <span class="attr">crime</span>=<span class="string">"killing"</span> <span class="attr">shout</span>=<span class="string">"say('nonono!')"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">app.controller(<span class="string">'TestCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">    $scope.calo = &#123;name: <span class="string">'calo'</span>, age: <span class="number">22</span>&#125;;</span><br><span class="line">    $scope.corleone = &#123;name: <span class="string">'corleone'</span>, age: <span class="number">34</span>&#125;;</span><br><span class="line"></span><br><span class="line">    $scope.say = <span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">        alert(word);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;])</span><br><span class="line">app.directive(<span class="string">'free'</span>, [<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'A'</span>,</span><br><span class="line">        template: <span class="string">'&lt;div&gt;hello &#123;&#123;myPerson.name&#125;&#125;,&#123;&#123;myPerson.age&#125;&#125;,your crime is &#123;&#123;myCrime&#125;&#125;&lt;/div&gt;'</span>,</span><br><span class="line">        scope: &#123;</span><br><span class="line">            myPerson: <span class="string">'=person'</span>,  <span class="comment">//=绑定 controller 中 scope 的值</span></span><br><span class="line">            myCrime: <span class="string">'@crime'</span>,  <span class="comment">//@取字符串</span></span><br><span class="line">            shout: <span class="string">'&amp;'</span> <span class="comment">//绑定方法</span></span><br><span class="line">        &#125;,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span>(<span class="params">scope, iElement, iAttrs</span>) </span>&#123;</span><br><span class="line">            iElement.bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                scope.shout();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;]);</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>= 用于绑定 controller 中的变量，<br>@ 获取属性的字面量值<br>&amp; 绑定 function</p>
 <h2 id="require-属性"><a href="#require-属性" class="headerlink" title="require 属性"></a>require 属性</h2><p>简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中<br>简单例子：<br>html</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"TestCtrl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">add</span> <span class="attr">ng-model</span>=<span class="string">"num"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;num&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">"get()"</span>&gt;</span>get<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -732,91 +657,13 @@ alert(GetQueryString(&apos;name&apos;));
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.directive(<span class="string">'add'</span>, [<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'A'</span>,</span><br><span class="line">        <span class="built_in">require</span>: <span class="string">'ngModel'</span>,</span><br><span class="line">        template: <span class="string">'&lt;button&gt;add&lt;/button&gt;'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span>(<span class="params">scope, iElement, iAttrs, ngModelCtrl</span>) </span>&#123;</span><br><span class="line">            iElement.bind(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                ngModelCtrl.$setViewValue(<span class="number">2</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
 <p>ngModel前可以使用 ?^ 两个前缀<br>? - 不要抛出异常。这使这个依赖变为一个可选项<br>^ - 允许查找父元素的controller</p>
 <p>ngModelCtrl.$setViewValue 可改变 controller 中 ng-model 的值</p>
-<h2 id="自定义表单验证-setValidity"><a href="#自定义表单验证-setValidity" class="headerlink" title="自定义表单验证 $setValidity"></a>自定义表单验证 $setValidity</h2><pre><code>.has-error{
-    border: 1px solid red;
-}
-
-&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
-    &lt;form name=&quot;form&quot; novalidate&gt;
-        &lt;input type=&quot;text&quot; ng-model=&quot;user.name&quot; name=&quot;username&quot; custom-rule ng-class=&quot;{&apos;has-error&apos;: form.username.$invalid}&quot;&gt;
-        &lt;input type=&quot;text&quot; ng-model=&quot;user.phone&quot;&gt;
-        &lt;button ng-click=&quot;save()&quot;&gt;save&lt;/button&gt;
-    &lt;/form&gt;
-&lt;/div&gt;
-
-app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {
-    $scope.user = {};
-    $scope.save = function(){
-        var form = $scope.form;
-        if(form.username.$invalid){
-            alert(&apos;username不可用&apos;);
-            return false;
-        }else{
-            alert(&apos;username可用&apos;);    
-        }
-    }
-}]);
-
-app.directive(&apos;customRule&apos;, [function () {
-    return {
-        restrict: &apos;A&apos;,
-        require: &apos;ngModel&apos;,
-        link: function (scope, iElement, iAttrs, ngModelCtrl) {
-            iElement.bind(&apos;blur&apos;,function(){
-                if(ngModelCtrl.$modelValue != &apos;xwill&apos;){
-                    ngModelCtrl.$setValidity(&quot;customRule&quot;, false);
-                }else{
-                    ngModelCtrl.$setValidity(&quot;customRule&quot;, true);
-                }
-            });
-        }
-    };
-}]);
-</code></pre><p>首先需要将默认的表单验证禁止 novalidate，设置 form 的 name 字段能让 controller 中通过 $scope.form 取到表单<br>在 username 字段中自定义验证规则 custom-rule，然后在 customRule 指令中规定只有输入为 xwill 时，表单才可用<br>在 controller 中可以使用 form.$invalid 判断表单是否可用，form.username.$invalid 判断某字段是否可用</p>
-<h2 id="formatters-和-parses"><a href="#formatters-和-parses" class="headerlink" title="$formatters 和 $parses"></a>$formatters 和 $parses</h2><pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
-    &lt;input text-transform=&quot;uppercase&quot; ng-model=&quot;text&quot;&gt;
-    &lt;p&gt;{{text}}&lt;/p&gt;
-    &lt;button ng-click=&quot;change()&quot;&gt;change&lt;/button&gt;
-&lt;/div&gt;
-
-app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {}]);
-app.directive(&apos;textTransform&apos;, function() {
-    var transformConfig = {
-        uppercase: function(input) {
-            return input.toUpperCase();
-        },
-        capitalize: function(input) {
-            return input.replace(
-                /([a-zA-Z])([a-zA-Z]*)/gi,
-                function(matched, $1, $2) {
-                    return $1.toUpperCase() + $2;
-                });
-        },
-        lowercase: function(input) {
-            return input.toLowerCase();
-        }
-    };
-    return {
-        require: &apos;ngModel&apos;,
-        link: function(scope, element, iAttrs, modelCtrl) {
-            var transform = transformConfig[iAttrs.textTransform];
-            if (transform) {
-                // $formatters 只改变 view 中的值
-                // modelCtrl.$formatters.push(function(input) {
-                //     return transform(input || &quot;&quot;);
-                // });
-
-                // $parsers 会改变 controller 中 ng-model 的值
-                modelCtrl.$parsers.push(function(input) {
-                    return transform(input || &quot;&quot;);
-                });
-
-                element.css(&quot;text-transform&quot;, iAttrs.textTransform);
-            }
-        }
-    };
-});
-</code></pre><p>这两个方法常用于输入小写，强制转为大写；输入负数转为0，等等～<br><a href="https://alexperry.io/angularjs/2014/12/10/parsers-and-formatters-angular.html" target="_blank" rel="external">$formatters 和 $parses 的区别</a></p>
+<h2 id="自定义表单验证-setValidity"><a href="#自定义表单验证-setValidity" class="headerlink" title="自定义表单验证 $setValidity"></a>自定义表单验证 $setValidity</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.has-error</span>&#123;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"TestCtrl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">"form"</span> <span class="attr">novalidate</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"user.name"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">custom-rule</span> <span class="attr">ng-class</span>=<span class="string">"&#123;'has-error': form.username.$invalid&#125;"</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"user.phone"</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">"save()"</span>&gt;</span>save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">app.controller(<span class="string">'TestCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">	$scope.user = &#123;&#125;;</span><br><span class="line">	$scope.save = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> form = $scope.form;</span><br><span class="line">		<span class="keyword">if</span>(form.username.$invalid)&#123;</span><br><span class="line">			alert(<span class="string">'username不可用'</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			alert(<span class="string">'username可用'</span>);	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">app.directive(<span class="string">'customRule'</span>, [<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		restrict: <span class="string">'A'</span>,</span><br><span class="line">		<span class="built_in">require</span>: <span class="string">'ngModel'</span>,</span><br><span class="line">		link: <span class="function"><span class="keyword">function</span> (<span class="params">scope, iElement, iAttrs, ngModelCtrl</span>) </span>&#123;</span><br><span class="line">			iElement.bind(<span class="string">'blur'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(ngModelCtrl.$modelValue != <span class="string">'xwill'</span>)&#123;</span><br><span class="line">					ngModelCtrl.$setValidity(<span class="string">"customRule"</span>, <span class="literal">false</span>);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					ngModelCtrl.$setValidity(<span class="string">"customRule"</span>, <span class="literal">true</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>首先需要将默认的表单验证禁止 novalidate，设置 form 的 name 字段能让 controller 中通过 $scope.form 取到表单<br>在 username 字段中自定义验证规则 custom-rule，然后在 customRule 指令中规定只有输入为 xwill 时，表单才可用<br>在 controller 中可以使用 form.$invalid 判断表单是否可用，form.username.$invalid 判断某字段是否可用</p>
+<h2 id="formatters-和-parses"><a href="#formatters-和-parses" class="headerlink" title="$formatters 和 $parses"></a>$formatters 和 $parses</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"TestCtrl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">text-transform</span>=<span class="string">"uppercase"</span> <span class="attr">ng-model</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;text&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">"change()"</span>&gt;</span>change<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">app.controller(<span class="string">'TestCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;&#125;]);</span><br><span class="line">app.directive(<span class="string">'textTransform'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> transformConfig = &#123;</span><br><span class="line">        uppercase: <span class="function"><span class="keyword">function</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> input.toUpperCase();</span><br><span class="line">        &#125;,</span><br><span class="line">        capitalize: <span class="function"><span class="keyword">function</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> input.replace(</span><br><span class="line">                <span class="regexp">/([a-zA-Z])([a-zA-Z]*)/gi</span>,</span><br><span class="line">                <span class="function"><span class="keyword">function</span>(<span class="params">matched, $1, $2</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> $<span class="number">1.</span>toUpperCase() + $<span class="number">2</span>;</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        lowercase: <span class="function"><span class="keyword">function</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> input.toLowerCase();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="built_in">require</span>: <span class="string">'ngModel'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span>(<span class="params">scope, element, iAttrs, modelCtrl</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> transform = transformConfig[iAttrs.textTransform];</span><br><span class="line">            <span class="keyword">if</span> (transform) &#123;</span><br><span class="line">                <span class="comment">// $formatters 只改变 view 中的值</span></span><br><span class="line">                <span class="comment">// modelCtrl.$formatters.push(function(input) &#123;</span></span><br><span class="line">                <span class="comment">//     return transform(input || "");</span></span><br><span class="line">                <span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">// $parsers 会改变 controller 中 ng-model 的值</span></span><br><span class="line">                modelCtrl.$parsers.push(<span class="function"><span class="keyword">function</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> transform(input || <span class="string">""</span>);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">                element.css(<span class="string">"text-transform"</span>, iAttrs.textTransform);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这两个方法常用于输入小写，强制转为大写；输入负数转为0，等等～<br><a href="https://alexperry.io/angularjs/2014/12/10/parsers-and-formatters-angular.html" target="_blank" rel="external">$formatters 和 $parses 的区别</a></p>
 
       
     </div>
@@ -869,48 +716,10 @@ app.directive(&apos;textTransform&apos;, function() {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="The-Module-Pattern"><a href="#The-Module-Pattern" class="headerlink" title="The Module Pattern"></a>The Module Pattern</h2><pre><code>var s,
-NewsWidget = {
-    settings:{
-        numArticles: 5,
-        articleList: $(&quot;#article-list&quot;),
-        moreButton: $(&quot;#more-button&quot;)
-    },
-    init: function(){
-        // kick things off
-        s = this.settings;
-        this.bindUiActions();
-    },
-    bindUiActions: function(){
-        s.moreButton.on(&apos;click&apos;,function(){
-            NewsWidget.getMoreArticles(s.numArticles);
-        });
-    },
-    getMoreArticles: function(nums){
-        console.log(&apos;获取&apos;+s.numArticles+&apos;条数据&apos;);
-    }
-}
-//使用这种方式内部属性可被修改
-NewsWidget.settings.numArticles = 6; 
+        <h2 id="The-Module-Pattern"><a href="#The-Module-Pattern" class="headerlink" title="The Module Pattern"></a>The Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s,</span><br><span class="line">NewsWidget = &#123;</span><br><span class="line">	settings:&#123;</span><br><span class="line">		numArticles: <span class="number">5</span>,</span><br><span class="line">		articleList: $(<span class="string">"#article-list"</span>),</span><br><span class="line">		moreButton: $(<span class="string">"#more-button"</span>)</span><br><span class="line">	&#125;,</span><br><span class="line">	init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">// kick things off</span></span><br><span class="line">		s = <span class="keyword">this</span>.settings;</span><br><span class="line">		<span class="keyword">this</span>.bindUiActions();</span><br><span class="line">	&#125;,</span><br><span class="line">	bindUiActions: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		s.moreButton.on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			NewsWidget.getMoreArticles(s.numArticles);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	getMoreArticles: <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'获取'</span>+s.numArticles+<span class="string">'条数据'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用这种方式内部属性可被修改</span></span><br><span class="line">NewsWidget.settings.numArticles = <span class="number">6</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化组件</span></span><br><span class="line">NewsWidget.init();</span><br></pre></td></tr></table></figure>
+<p><a href="https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/" target="_blank" rel="external">The Module Pattern Edition</a></p>
+<h2 id="The-Revealing-Module-Pattern"><a href="#The-Revealing-Module-Pattern" class="headerlink" title="The Revealing Module Pattern"></a>The Revealing Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name = <span class="string">'xwill'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		getName: sayName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//使用这种方式无法修改匿名函数中的name属性！Person只有一个getName方法</span></span><br><span class="line">Person.name = <span class="string">'kobe'</span>; <span class="comment">//无效</span></span><br><span class="line">Person.getName() <span class="comment">//仍为 xwill</span></span><br></pre></td></tr></table></figure>
 
-//初始化组件
-NewsWidget.init();
-</code></pre><p><a href="https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/" target="_blank" rel="external">The Module Pattern Edition</a></p>
-<h2 id="The-Revealing-Module-Pattern"><a href="#The-Revealing-Module-Pattern" class="headerlink" title="The Revealing Module Pattern"></a>The Revealing Module Pattern</h2><pre><code>var Person = (function(){
-    var name = &apos;xwill&apos;;
-
-    function sayName(){
-        alert(name);
-    }
-
-    return {
-        getName: sayName
-    }
-})();
-//使用这种方式无法修改匿名函数中的name属性！Person只有一个getName方法
-Person.name = &apos;kobe&apos;; //无效
-Person.getName() //仍为 xwill
-</code></pre>
       
     </div>
     

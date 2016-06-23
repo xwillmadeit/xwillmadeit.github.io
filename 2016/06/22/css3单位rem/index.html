@@ -6,40 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>css3单位rem | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="rem 的简单小结&amp;lt;style&amp;gt;
-    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    html {
-        font-size: 12px; /* f">
+  <meta name="description" content="rem 的简单小结12345678910111213141516171819202122&amp;lt;style&amp;gt;    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */    * &amp;#123;        padding: 0;        margin: 0;    &amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css3单位rem">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/css3单位rem/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="rem 的简单小结&amp;lt;style&amp;gt;
-    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    html {
-        font-size: 12px; /* f">
-<meta property="og:updated_time" content="2016-06-22T08:31:14.000Z">
+<meta property="og:description" content="rem 的简单小结12345678910111213141516171819202122&amp;lt;style&amp;gt;    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */    * &amp;#123;        padding: 0;        margin: 0;    &amp;#125;">
+<meta property="og:updated_time" content="2016-06-23T03:43:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css3单位rem">
-<meta name="twitter:description" content="rem 的简单小结&amp;lt;style&amp;gt;
-    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    html {
-        font-size: 12px; /* f">
+<meta name="twitter:description" content="rem 的简单小结12345678910111213141516171819202122&amp;lt;style&amp;gt;    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */    * &amp;#123;        padding: 0;        margin: 0;    &amp;#125;">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -217,29 +193,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="rem-的简单小结"><a href="#rem-的简单小结" class="headerlink" title="rem 的简单小结"></a>rem 的简单小结</h2><pre><code>&lt;style&gt;
-    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    html {
-        font-size: 12px; /* font-size 最小为12px */
-    }
-
-    body{
-        font-size: 16px; 
-    }
-
-    div {
-        height: 10rem; /* 10*14 = 140px;*/
-        width: 10rem;
-        font-size: 1rem;
-        background: pink;
-    }
-&lt;/style&gt;
-</code></pre><p>rem 是相对于根元素尺寸的单位，如 html 的 font-size 为 12px，则所有元素的 rem 单位均为 (12*n)px<br>注意 html 中 font-size 最小为 12px </p>
+        <h2 id="rem-的简单小结"><a href="#rem-的简单小结" class="headerlink" title="rem 的简单小结"></a>rem 的简单小结</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */</span><br><span class="line">    * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    html &#123;</span><br><span class="line">        font-size: 12px; /* font-size 最小为12px */</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    body&#123;</span><br><span class="line">    	font-size: 16px; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    div &#123;</span><br><span class="line">        height: 10rem; /* 10*14 = 140px;*/</span><br><span class="line">        width: 10rem;</span><br><span class="line">        font-size: 1rem;</span><br><span class="line">        background: pink;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>rem 是相对于根元素尺寸的单位，如 html 的 font-size 为 12px，则所有元素的 rem 单位均为 (12*n)px<br>注意 html 中 font-size 最小为 12px </p>
 
       
     </div>

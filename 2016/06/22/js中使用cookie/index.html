@@ -7,27 +7,18 @@
   <title>js中使用cookie | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="js 中操作 cookie不多说，直接上代码，无非就是 存，取，删除
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-    var cookieHandle = function(){}
-
-    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){">
+123456789101112131415161718192021222324252627282930313233343536373839404142&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;	var cookieHandle = function()&amp;#123;&amp;#125;	cookieHand">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中使用cookie">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/js中使用cookie/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="js 中操作 cookie不多说，直接上代码，无非就是 存，取，删除
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-    var cookieHandle = function(){}
-
-    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){">
-<meta property="og:updated_time" content="2016-06-22T08:25:34.000Z">
+123456789101112131415161718192021222324252627282930313233343536373839404142&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;	var cookieHandle = function()&amp;#123;&amp;#125;	cookieHand">
+<meta property="og:updated_time" content="2016-06-23T03:43:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中使用cookie">
 <meta name="twitter:description" content="js 中操作 cookie不多说，直接上代码，无非就是 存，取，删除
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-    var cookieHandle = function(){}
-
-    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){">
+123456789101112131415161718192021222324252627282930313233343536373839404142&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;	var cookieHandle = function()&amp;#123;&amp;#125;	cookieHand">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -206,49 +197,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="js-中操作-cookie"><a href="#js-中操作-cookie" class="headerlink" title="js 中操作 cookie"></a>js 中操作 cookie</h2><p>不多说，直接上代码，无非就是 存，取，删除</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    var cookieHandle = function(){}
-
-    cookieHandle.prototype.setCookie = function(name,value,days,firstDomain){
-        var expire = new Date(),
-            name = name ? name: &apos;true&apos;,
-            days = days ? days: 30;
-
-        if(days&lt;0){
-            expire.setTime(expire.getTime() - 1000);
-        }else{
-            expire.setTime(expire.getTime() + days*24*60*60*1000);
-        }
-
-        if(firstDomain){ 
-            //指定存入一级域名下
-            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString() + &quot;;path=/&quot; + &quot;;domain=wxrrd.com&quot;;
-        }else{
-            //默认存入 domain 为 window.location.hostname
-            document.cookie = name + &quot;=&quot; + escape(value) + &quot;;expires=&quot; + expire.toGMTString();
-        }
-    }
-
-    cookieHandle.prototype.getCookie = function(name){
-        var arr,
-            reg=new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;);
-
-        if(arr=document.cookie.match(reg)){
-            return unescape(arr[2]);
-        }
-        else{
-            return &apos;&apos;;
-        }
-    }
-
-    var cookieHandle = new cookieHandle();
-    if(cookieHandle.getCookie(&apos;name&apos;)==&apos;&apos;){
-        cookieHandle.setCookie(&apos;name&apos;,&apos;xwill&apos;,1);
-    }
-
-    console.log(cookieHandle.getCookie(&apos;name&apos;));
-&lt;/script&gt;
-</code></pre><p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> cookieHandle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.setCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name,value,days,firstDomain</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> expire = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">            name = name ? name: <span class="string">'true'</span>,</span><br><span class="line">            days = days ? days: <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(days&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            expire.setTime(expire.getTime() - <span class="number">1000</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            expire.setTime(expire.getTime() + days*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(firstDomain)&#123; </span><br><span class="line">        	<span class="comment">//指定存入一级域名下</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString() + <span class="string">";path=/"</span> + <span class="string">";domain=wxrrd.com"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        	<span class="comment">//默认存入 domain 为 window.location.hostname</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString();</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.getCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> arr,</span><br><span class="line">            reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^| )"</span>+name+<span class="string">"=([^;]*)(;|$)"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(arr=<span class="built_in">document</span>.cookie.match(reg))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(arr[<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> cookieHandle = <span class="keyword">new</span> cookieHandle();</span><br><span class="line">    <span class="keyword">if</span>(cookieHandle.getCookie(<span class="string">'name'</span>)==<span class="string">''</span>)&#123;</span><br><span class="line">    	cookieHandle.setCookie(<span class="string">'name'</span>,<span class="string">'xwill'</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(cookieHandle.getCookie(<span class="string">'name'</span>));</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
 
       
     </div>

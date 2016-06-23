@@ -574,54 +574,14 @@ div {
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="call-和-apply-的区别"><a href="#call-和-apply-的区别" class="headerlink" title="call 和 apply 的区别"></a>call 和 apply 的区别</h2><p>call 和 apply 作用一模一样，区别仅在于传入参数形式的不同。<br>call 和 apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向。其中 apply 的第二个参数为一个带下标的集合，这个集合可以为数组，也可以类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数。而 call 传入的参数不固定。apply 比 call 的使用率更高，我们不必关心具体有多少个参数被传入函数，只要用 apply 一股脑推过去就可以了。</p>
-<pre><code>var func = function(a,b,c){
-    alert([a,b,c]);
-}
-
-func.apply(null,[1,2,3]);
-func.call(null,1,2,3);
-</code></pre><p>call 是包装在 apply 上面的一课语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 call 来传递参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">a,b,c</span>)</span>&#123;</span><br><span class="line">	alert([a,b,c]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func.apply(<span class="literal">null</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);</span><br><span class="line">func.call(<span class="literal">null</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>call 是包装在 apply 上面的一课语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 call 来传递参数。</p>
 <p>当使用 call 或者 apply 的时候，如果我们传入的第一个参数为 null，函数体内的 this 会指向默认的宿主对象，在浏览器中则是 window。</p>
-<h2 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h2><h3 id="改变-this-指向"><a href="#改变-this-指向" class="headerlink" title="改变 this 指向"></a>改变 this 指向</h3><pre><code>var obj1 = {
-    name: &apos;sven&apos;
-};
+<h2 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h2><h3 id="改变-this-指向"><a href="#改变-this-指向" class="headerlink" title="改变 this 指向"></a>改变 this 指向</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">	name: <span class="string">'anne'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.name = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name); </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">getName(); <span class="comment">//window</span></span><br><span class="line">getName.apply(obj1); <span class="comment">//sven</span></span><br><span class="line">getName.apply(obj2); <span class="comment">//anne</span></span><br></pre></td></tr></table></figure>
+<p>实战中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.id = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.id); </span><br><span class="line">	<span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.id); <span class="comment">//div1</span></span><br><span class="line">	&#125;</span><br><span class="line">	callback.apply(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	num: <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a,b,c</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.num + a + b + c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add.apply(obj,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]));</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bound = add.bind(obj);</span><br><span class="line"><span class="built_in">console</span>.log(bound(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>));</span><br></pre></td></tr></table></figure>
 
-var obj2 = {
-    name: &apos;anne&apos;
-};
-
-window.name = &apos;window&apos;;
-
-var getName = function(){
-    alert(this.name); 
-};
-
-getName(); //window
-getName.apply(obj1); //sven
-getName.apply(obj2); //anne
-</code></pre><p>实战中</p>
-<pre><code>window.id = &apos;window&apos;;
-
-document.getElementById(&apos;div1&apos;).onclick = function(){
-    alert(this.id); 
-    var callback = function(){
-        alert(this.id); //div1
-    }
-    callback.apply(this);
-}
-</code></pre><h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><pre><code>var obj = {
-    num: 10
-}
-
-var add = function(a,b,c){
-    return this.num + a + b + c;
-}
-
-console.log(add.apply(obj,[1,2,3]));
-
-var bound = add.bind(obj);
-console.log(bound(1,2,3));
-</code></pre>
       
     </div>
     
@@ -680,91 +640,25 @@ console.log(bound(1,2,3));
 <li>构造器调用</li>
 <li>Function.prototype.call 或 Function.prototype.apply 调用</li>
 </ol>
-<h2 id="当函数作为对象的方法被调用时，this指向该对象："><a href="#当函数作为对象的方法被调用时，this指向该对象：" class="headerlink" title="当函数作为对象的方法被调用时，this指向该对象："></a>当函数作为对象的方法被调用时，this指向该对象：</h2><pre><code>var obj = {
-    a: 1,
-    getA: function(){
-        alert(this == obj); //输出：true
-        alert(this.a); //输出：1
-    }
-}
-obj.getA();
-</code></pre><h2 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h2><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的this总是指向全局对象。在浏览器的 javascript 里，这个全局变量是 window 对象。</p>
-<pre><code>window.name = &apos;globalName&apos;;
-var getName = function(){
-    return this.name;
-}
-
-console.log(getName()); //输出：globalName
-</code></pre><p>或者 </p>
-<pre><code>window.name = &apos;globalName&apos;;
-var myObj = {
-    name: &apos;sven&apos;,
-    getName: function(){
-        return this.name;
-    }
-}
-
-var getName = myObj.getName();
-console.log(getName()); //globalName
-</code></pre><p>有时候我们会遇到一些困扰，比如在 div 节点的时间函数内部，有一个局部的 callback 方法，callback方法被作为普通的函数调用时，callback内部的this指向了window，但我们往往是想让它指向该div节点</p>
-<pre><code>window.id = &apos;window&apos;;
-
-document.getElementById(&apos;div1&apos;).onclick = function(){
-    alert(this.id); // tihs为该 div 节点，this.id = div1
-    //var that = this; //保存引用 that.id 指向 div1
-    var callback = function(){
-        alert(that.id); //window
-    }
-    callback();
-}
-</code></pre><p>此时需用 that 保存下 div 节点的引用。</p>
+<h2 id="当函数作为对象的方法被调用时，this指向该对象："><a href="#当函数作为对象的方法被调用时，this指向该对象：" class="headerlink" title="当函数作为对象的方法被调用时，this指向该对象："></a>当函数作为对象的方法被调用时，this指向该对象：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	a: <span class="number">1</span>,</span><br><span class="line">	getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span> == obj); <span class="comment">//输出：true</span></span><br><span class="line">		alert(<span class="keyword">this</span>.a); <span class="comment">//输出：1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
+<h2 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h2><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的this总是指向全局对象。在浏览器的 javascript 里，这个全局变量是 window 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//输出：globalName</span></span><br></pre></td></tr></table></figure>
+<p>或者 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> myObj = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getName = myObj.getName();</span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//globalName</span></span><br></pre></td></tr></table></figure>
+<p>有时候我们会遇到一些困扰，比如在 div 节点的时间函数内部，有一个局部的 callback 方法，callback方法被作为普通的函数调用时，callback内部的this指向了window，但我们往往是想让它指向该div节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.id = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.id); <span class="comment">// tihs为该 div 节点，this.id = div1</span></span><br><span class="line">	<span class="comment">//var that = this; //保存引用 that.id 指向 div1</span></span><br><span class="line">	<span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(that.id); <span class="comment">//window</span></span><br><span class="line">	&#125;</span><br><span class="line">	callback();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时需用 that 保存下 div 节点的引用。</p>
 <p>在 es5 的 strict 模式下，这种情况下的 this 已经被规定为不会指向全局对象，而是 undefined;</p>
-<pre><code>function func(){
-    &apos;use strict&apos;
-    alert(this); //undefined
-}
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">	'use strict'</span></span><br><span class="line">	alert(<span class="keyword">this</span>); <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
+<h2 id="构造器调用"><a href="#构造器调用" class="headerlink" title="构造器调用"></a>构造器调用</h2><p>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的 this 就指向返回的这个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
+<p>但用 new 调用构造器时，还需要注意一个问题，如果构造器显式地返回了一个 object 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		name: <span class="string">'anne'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//anne</span></span><br></pre></td></tr></table></figure>
+<p>如果构造器不显式地返回任何数据，或者是返回一个非对象类型的数据，就不会造成上述问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'anne'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function-prototype-call-或-Function-prototype-apply-调用"><a href="#Function-prototype-call-或-Function-prototype-apply-调用" class="headerlink" title="Function.prototype.call 或 Function.prototype.apply 调用"></a>Function.prototype.call 或 Function.prototype.apply 调用</h2><p>这两个方法可以动态地改变传入函数的 this </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">	name: <span class="string">'anne'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName());</span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName.call(obj2));</span><br></pre></td></tr></table></figure>
 
-func();
-</code></pre><h2 id="构造器调用"><a href="#构造器调用" class="headerlink" title="构造器调用"></a>构造器调用</h2><p>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的 this 就指向返回的这个对象。</p>
-<pre><code>var myClass = function(){
-    this.name = &apos;sven&apos;;
-}
-
-var obj = new myClass();
-alert(obj.name); //sven
-</code></pre><p>但用 new 调用构造器时，还需要注意一个问题，如果构造器显式地返回了一个 object 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this：</p>
-<pre><code>var myClass = function(){
-    this.name = &apos;sven&apos;;
-    return {
-        name: &apos;anne&apos;
-    }
-}
-
-var obj = new myClass();
-alert(obj.name); //anne
-</code></pre><p>如果构造器不显式地返回任何数据，或者是返回一个非对象类型的数据，就不会造成上述问题。</p>
-<pre><code>var myClass = function(){
-    this.name = &apos;sven&apos;;
-    return &apos;anne&apos;;
-}
-
-var obj = new myClass();
-alert(obj.name); //sven
-</code></pre><h2 id="Function-prototype-call-或-Function-prototype-apply-调用"><a href="#Function-prototype-call-或-Function-prototype-apply-调用" class="headerlink" title="Function.prototype.call 或 Function.prototype.apply 调用"></a>Function.prototype.call 或 Function.prototype.apply 调用</h2><p>这两个方法可以动态地改变传入函数的 this </p>
-<pre><code>var obj1 = {
-    name: &apos;sven&apos;,
-    getName: function(){
-        return this.name;
-    }
-}
-
-var obj2 = {
-    name: &apos;anne&apos;,
-}
-
-console.log(obj1.getName());
-console.log(obj1.getName.call(obj2));
-</code></pre>
       
     </div>
     
@@ -816,46 +710,10 @@ console.log(obj1.getName.call(obj2));
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><pre><code>(function getDate(){
-    var date = new Date(),
-    DateObj = {
-        getTime: function(){
-            var year = date.getFullYear(),
-                month = (date.getMonth())+1, //月份从0开始
-                day = date.getDate(),
-                hour = this.addZero(date.getHours()),
-                min = this.addZero(date.getMinutes()),
-                sec = this.addZero(date.getSeconds());
-
-            alert(year+&apos;年&apos;+month+&apos;月&apos;+day+&apos;日 &apos;+hour+&apos;:&apos;+min+&apos;:&apos;+sec);
-        },
-        addZero: function(number) { //时分秒个位数补0
-            return (number &lt; 10 ? &apos;0&apos; : &apos;&apos;) + number;
-        }
-    }
-
-    DateObj.getTime();
-})();
-</code></pre><h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><pre><code>alert(&apos;123\n456&apos;);
-</code></pre><h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><pre><code>function queryString(url){
-    this.url = url;
-    this.urlObj = {};
-    this.splitUrl = function(){
-        var paramsUrl = this.url.split(&apos;?&apos;)[1];
-            pair = paramsUrl.split(&apos;&amp;&apos;);
-        for(var i=0;i&lt;pair.length;i++){
-            var key = pair[i].split(&apos;=&apos;)[0],
-                val = pair[i].split(&apos;=&apos;)[1];
-            this.urlObj[key] = val;
-        }
-
-        return this.urlObj;
-    }
-}
-
-var str = new queryString(&apos;http://www.taobao.com?item=10&amp;key=12&amp;productId=88&apos;);
-console.log(str.splitUrl());  //{item: &quot;10&quot;, key: &quot;12&quot;, productId: &quot;88&quot;}
-</code></pre><h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
+        <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">getDate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">	DateObj = &#123;</span><br><span class="line">		getTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> year = date.getFullYear(),</span><br><span class="line">				month = (date.getMonth())+<span class="number">1</span>, <span class="comment">//月份从0开始</span></span><br><span class="line">				day = date.getDate(),</span><br><span class="line">				hour = <span class="keyword">this</span>.addZero(date.getHours()),</span><br><span class="line">			    min = <span class="keyword">this</span>.addZero(date.getMinutes()),</span><br><span class="line">				sec = <span class="keyword">this</span>.addZero(date.getSeconds());</span><br><span class="line"></span><br><span class="line">			alert(year+<span class="string">'年'</span>+month+<span class="string">'月'</span>+day+<span class="string">'日 '</span>+hour+<span class="string">':'</span>+min+<span class="string">':'</span>+sec);</span><br><span class="line">		&#125;,</span><br><span class="line">		addZero: <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123; <span class="comment">//时分秒个位数补0</span></span><br><span class="line">			<span class="keyword">return</span> (number &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + number;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	DateObj.getTime();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'123\n456'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">queryString</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.url = url;</span><br><span class="line">	<span class="keyword">this</span>.urlObj = &#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.splitUrl = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> paramsUrl = <span class="keyword">this</span>.url.split(<span class="string">'?'</span>)[<span class="number">1</span>];</span><br><span class="line">			pair = paramsUrl.split(<span class="string">'&amp;'</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;pair.length;i++)&#123;</span><br><span class="line">			<span class="keyword">var</span> key = pair[i].split(<span class="string">'='</span>)[<span class="number">0</span>],</span><br><span class="line">				val = pair[i].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">this</span>.urlObj[key] = val;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.urlObj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> queryString(<span class="string">'http://www.taobao.com?item=10&amp;key=12&amp;productId=88'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str.splitUrl());  <span class="comment">//&#123;item: "10", key: "12", productId: "88"&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
 <ol>
 <li>参数都是体现在 url 上</li>
 <li>主要用于取（查询）数据</li>
