@@ -245,26 +245,8 @@
       
         <h2 id="使用连接池"><a href="#使用连接池" class="headerlink" title="使用连接池"></a>使用连接池</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);</span><br><span class="line"><span class="keyword">var</span> pool = mysql.createPool(&#123;</span><br><span class="line">    host: <span class="string">'192.168.20.6'</span>,</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    password: <span class="string">'123321'</span>,</span><br><span class="line">    database: <span class="string">'magic'</span></span><br><span class="line">&#125;);</span><br><span class="line">pool.getConnection(<span class="function"><span class="keyword">function</span>(<span class="params">err, connection</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">    connection.query(sql, <span class="function"><span class="keyword">function</span>(<span class="params">qerr, result</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (qerr) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(qerr);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//释放连接</span></span><br><span class="line">        connection.release();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>实战中使用 promise 处理 mysql 异步返回的数据</p>
-<pre><code>function getResult(mysqlPool, sql) {
-    return new Promise(function(resolve, reject) {
-        mysqlPool.getConnection(function(err, connection){
-            if (err) {
-                reject(err);
-            }
-
-            connection.query(sql, function(qerr, result){
-                if (qerr) {
-                    reject(qerr);
-                } else {
-                    resolve({ result: result }); 
-                }
-                //释放连接
-                connection.release();
-            });
-        });
-    });
-}
-</code></pre><p><a href="https://github.com/mysqljs/mysql#pool-options" target="_blank" rel="external">使用连接池</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getResult</span>(<span class="params">mysqlPool, sql</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        mysqlPool.getConnection(<span class="function"><span class="keyword">function</span>(<span class="params">err, connection</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            connection.query(sql, <span class="function"><span class="keyword">function</span>(<span class="params">qerr, result</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (qerr) &#123;</span><br><span class="line">                    reject(qerr);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    resolve(&#123; result: result &#125;); </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//释放连接</span></span><br><span class="line">                connection.release();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/mysqljs/mysql#pool-options" target="_blank" rel="external">使用连接池</a></p>
 
       
     </div>
@@ -508,61 +490,10 @@ alert(GetQueryString(&apos;name&apos;));
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="javascript-倒计时"><a href="#javascript-倒计时" class="headerlink" title="javascript 倒计时"></a>javascript 倒计时</h2><p>最近项目中需要写个倒计时，就整理下…</p>
-<pre><code>&lt;script&gt;
-var countDown = function(targetTime, callback) {
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countDown = <span class="function"><span class="keyword">function</span>(<span class="params">targetTime, callback</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> _second = <span class="number">1000</span>,</span><br><span class="line">        _minute = _second * <span class="number">60</span>,</span><br><span class="line">        _hour = _minute * <span class="number">60</span>,</span><br><span class="line">        _day = _hour * <span class="number">24</span>,</span><br><span class="line">        timer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addZero</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span> + num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> endTime = <span class="keyword">new</span> <span class="built_in">Date</span>(targetTime).getTime(),</span><br><span class="line">            nowTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime(),</span><br><span class="line">            timeDiff = endTime - nowTime,</span><br><span class="line">            data;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timeDiff &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> callback === <span class="string">'function'</span>) &#123;</span><br><span class="line">                callback();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">                timer = setInterval(start, <span class="number">1000</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'days'</span>: <span class="built_in">Math</span>.floor(timeDiff / _day),</span><br><span class="line">            <span class="string">'hours'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _day) / _hour)),</span><br><span class="line">            <span class="string">'minutes'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _hour) / _minute)),</span><br><span class="line">            <span class="string">'seconds'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _minute) / _second))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hours:'</span> + data.hours + <span class="string">',minutes:'</span> + data.minutes + <span class="string">',seconds:'</span> + data.seconds);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    start();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">countDown(<span class="string">'2016-06-12 14:58:00'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'do something'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTime</span>(<span class="params">strDate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(strDate.replace(<span class="regexp">/-/g</span>, <span class="string">'/'</span>)).getTime();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _hour * 24,
-        timer;
-
-    function addZero(num) {
-        if (num &lt; 10) {
-            return &apos;0&apos; + num;
-        }
-        return num;
-    }
-
-    function start() {
-        var endTime = new Date(targetTime).getTime(),
-            nowTime = new Date().getTime(),
-            timeDiff = endTime - nowTime,
-            data;
-
-        if (timeDiff &lt;= 0) {
-            clearInterval(timer);
-            if (typeof callback === &apos;function&apos;) {
-                callback();
-            }
-        } else {
-            if (!timer) {
-                timer = setInterval(start, 1000);
-            }
-        }
-
-        data = {
-            &apos;days&apos;: Math.floor(timeDiff / _day),
-            &apos;hours&apos;: addZero(Math.floor((timeDiff % _day) / _hour)),
-            &apos;minutes&apos;: addZero(Math.floor((timeDiff % _hour) / _minute)),
-            &apos;seconds&apos;: addZero(Math.floor((timeDiff % _minute) / _second))
-        }
-
-        console.log(&apos;hours:&apos; + data.hours + &apos;,minutes:&apos; + data.minutes + &apos;,seconds:&apos; + data.seconds);
-    }
-
-    start();
-};
-
-countDown(&apos;2016-06-12 14:58:00&apos;, function() {
-    console.log(&apos;do something&apos;);
-});
-&lt;/script&gt;
-</code></pre><p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
-<pre><code>function parseTime(strDate) {
-    return new Date(strDate.replace(/-/g, &apos;/&apos;)).getTime();
-}
-</code></pre>
       
     </div>
     
@@ -785,101 +716,20 @@ countDown(&apos;2016-06-12 14:58:00&apos;, function() {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="scope-作用域"><a href="#scope-作用域" class="headerlink" title="scope 作用域"></a>scope 作用域</h2><pre><code>&lt;h1 click-me&gt;{{name}}&lt;/h1&gt;
-
-&lt;script&gt;
-    var app = angular.module(&apos;myapp&apos;,[]);
-    app.controller(&apos;firstCtrl&apos;,[&apos;$scope&apos;,function($scope){
-        $scope.name = &apos;xwill&apos;;
-    }]);
-    app.directive(&apos;clickMe&apos;,[function(){
-        return {
-            restrict: &apos;A&apos;,
-            scope: {}, //清空controller中scope值，默认是继承的
-            link: function(scope,elem,attr){
-                elem.bind(&apos;click&apos;,function(){
-                    console.log(scope.name); //undefined,scope值被清空
-                });
-            }
-        }
-    }]);
-&lt;/script&gt;
-</code></pre><p>使用 scope: {} 即给指令创建自己的作用域</p>
-<pre><code>app.directive(&apos;clickMe&apos;,[function(){
-    return {
-        restrict: &apos;A&apos;,
-        controller: &apos;secondCtrl&apos;,
-        link: function(scope,elem,attr){
-            elem.bind(&apos;click&apos;,function(){
-                console.log(scope.name);
-            });
-        }
-    }
-}]);
-app.controller(&apos;secondCtrl&apos;,[&apos;$scope&apos;,function($scope){
-    $scope.name = &apos;xwill2&apos;; //将会覆盖 firstCtrl 中 scope 的值
-}]);
-</code></pre><p>使用 controller 属性可改变 scope 指向</p>
+        <h2 id="scope-作用域"><a href="#scope-作用域" class="headerlink" title="scope 作用域"></a>scope 作用域</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 click-me&gt;&#123;&#123;name&#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = angular.module('myapp',[]);</span><br><span class="line">    app.controller('firstCtrl',['$scope',function($scope)&#123;</span><br><span class="line">        $scope.name = 'xwill';</span><br><span class="line">    &#125;]);</span><br><span class="line">    app.directive('clickMe',[function()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            restrict: 'A',</span><br><span class="line">            scope: &#123;&#125;, //清空controller中scope值，默认是继承的</span><br><span class="line">            link: function(scope,elem,attr)&#123;</span><br><span class="line">                elem.bind('click',function()&#123;</span><br><span class="line">                    console.log(scope.name); //undefined,scope值被清空</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;]);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 scope: {} 即给指令创建自己的作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">app.directive(<span class="string">'clickMe'</span>,[<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'A'</span>,</span><br><span class="line">        controller: <span class="string">'secondCtrl'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span>(<span class="params">scope,elem,attr</span>)</span>&#123;</span><br><span class="line">            elem.bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(scope.name);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;]);</span><br><span class="line">app.controller(<span class="string">'secondCtrl'</span>,[<span class="string">'$scope'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">    $scope.name = <span class="string">'xwill2'</span>; <span class="comment">//将会覆盖 firstCtrl 中 scope 的值</span></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>使用 controller 属性可改变 scope 指向</p>
 <p>&amp;、＝、@ 的区别</p>
-<pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
-    &lt;div free person=&quot;calo&quot; crime=&quot;gambel&quot; shout=&quot;say(&apos;no!&apos;)&quot;&gt;&lt;/div&gt;
-    &lt;div free person=&quot;corleone&quot; crime=&quot;killing&quot; shout=&quot;say(&apos;nonono!&apos;)&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {
-    $scope.calo = {name: &apos;calo&apos;, age: 22};
-    $scope.corleone = {name: &apos;corleone&apos;, age: 34};
-
-    $scope.say = function(word){
-        alert(word);
-    }
-}])
-app.directive(&apos;free&apos;, [function() {
-    return {
-        restrict: &apos;A&apos;,
-        template: &apos;&lt;div&gt;hello {{myPerson.name}},{{myPerson.age}},your crime is {{myCrime}}&lt;/div&gt;&apos;,
-        scope: {
-            myPerson: &apos;=person&apos;,  //=绑定 controller 中 scope 的值
-            myCrime: &apos;@crime&apos;,  //@取字符串
-            shout: &apos;&amp;&apos; //绑定方法
-        },
-        link: function(scope, iElement, iAttrs) {
-            iElement.bind(&apos;click&apos;,function(){
-                scope.shout();
-            });
-        }
-    };
-}]);
-&lt;/script&gt;
-</code></pre><p>= 用于绑定 controller 中的变量，<br>@ 获取属性的字面量值<br>&amp; 绑定 function</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-controller="TestCtrl"&gt;</span><br><span class="line">    &lt;div free person="calo" crime="gambel" shout="say('no!')"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div free person="corleone" crime="killing" shout="say('nonono!')"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type="text/javascript"&gt;</span><br><span class="line">app.controller('TestCtrl', ['$scope', function($scope) &#123;</span><br><span class="line">    $scope.calo = &#123;name: 'calo', age: 22&#125;;</span><br><span class="line">    $scope.corleone = &#123;name: 'corleone', age: 34&#125;;</span><br><span class="line"></span><br><span class="line">    $scope.say = function(word)&#123;</span><br><span class="line">        alert(word);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;])</span><br><span class="line">app.directive('free', [function() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        restrict: 'A',</span><br><span class="line">        template: '&lt;div&gt;hello &#123;&#123;myPerson.name&#125;&#125;,&#123;&#123;myPerson.age&#125;&#125;,your crime is &#123;&#123;myCrime&#125;&#125;&lt;/div&gt;',</span><br><span class="line">        scope: &#123;</span><br><span class="line">            myPerson: '=person',  //=绑定 controller 中 scope 的值</span><br><span class="line">            myCrime: '@crime',  //@取字符串</span><br><span class="line">            shout: '&amp;' //绑定方法</span><br><span class="line">        &#125;,</span><br><span class="line">        link: function(scope, iElement, iAttrs) &#123;</span><br><span class="line">            iElement.bind('click',function()&#123;</span><br><span class="line">                scope.shout();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;]);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>= 用于绑定 controller 中的变量，<br>@ 获取属性的字面量值<br>&amp; 绑定 function</p>
 <h2 id="require-属性"><a href="#require-属性" class="headerlink" title="require 属性"></a>require 属性</h2><p>简单的理解，require 用于请求另外的 controller,传入当前 directive 的 linking function 中<br>简单例子：<br>html</p>
-<pre><code>&lt;div ng-controller=&quot;TestCtrl&quot;&gt;
-    &lt;div add ng-model=&quot;num&quot;&gt;&lt;/div&gt;
-    &lt;p&gt;{{num}}&lt;/p&gt;
-    &lt;button ng-click=&quot;get()&quot;&gt;get&lt;/button&gt;
-&lt;/div&gt;
-</code></pre><p>controller</p>
-<pre><code>app.controller(&apos;TestCtrl&apos;, [&apos;$scope&apos;, function($scope) {
-    $scope.num = 1;
-    $scope.get = function() {
-        alert($scope.num);
-    }
-}])
-</code></pre><p>directive</p>
-<pre><code>app.directive(&apos;add&apos;, [function() {
-    return {
-        restrict: &apos;A&apos;,
-        require: &apos;ngModel&apos;,
-        template: &apos;&lt;button&gt;add&lt;/button&gt;&apos;,
-        link: function(scope, iElement, iAttrs, ngModelCtrl) {
-            iElement.bind(&apos;click&apos;, function() {
-                ngModelCtrl.$setViewValue(2);
-            });
-        }
-    };
-}]);
-</code></pre><p>ngModel前可以使用 ?^ 两个前缀<br>? - 不要抛出异常。这使这个依赖变为一个可选项<br>^ - 允许查找父元素的controller</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"TestCtrl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">add</span> <span class="attr">ng-model</span>=<span class="string">"num"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;num&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">"get()"</span>&gt;</span>get<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>controller</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.controller(<span class="string">'TestCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">    $scope.num = <span class="number">1</span>;</span><br><span class="line">    $scope.get = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert($scope.num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p>directive</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.directive(<span class="string">'add'</span>, [<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'A'</span>,</span><br><span class="line">        <span class="built_in">require</span>: <span class="string">'ngModel'</span>,</span><br><span class="line">        template: <span class="string">'&lt;button&gt;add&lt;/button&gt;'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span>(<span class="params">scope, iElement, iAttrs, ngModelCtrl</span>) </span>&#123;</span><br><span class="line">            iElement.bind(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                ngModelCtrl.$setViewValue(<span class="number">2</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>ngModel前可以使用 ?^ 两个前缀<br>? - 不要抛出异常。这使这个依赖变为一个可选项<br>^ - 允许查找父元素的controller</p>
 <p>ngModelCtrl.$setViewValue 可改变 controller 中 ng-model 的值</p>
 <h2 id="自定义表单验证-setValidity"><a href="#自定义表单验证-setValidity" class="headerlink" title="自定义表单验证 $setValidity"></a>自定义表单验证 $setValidity</h2><pre><code>.has-error{
     border: 1px solid red;

@@ -7,36 +7,18 @@
   <title>纯js倒计时 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="javascript 倒计时最近项目中需要写个倒计时，就整理下…
-&amp;lt;script&amp;gt;
-var countDown = function(targetTime, callback) {
-
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _">
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748var countDown = function(targetTime, callback) &amp;#123;    var _second = 1000,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="纯js倒计时">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/22/纯js倒计时/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="javascript 倒计时最近项目中需要写个倒计时，就整理下…
-&amp;lt;script&amp;gt;
-var countDown = function(targetTime, callback) {
-
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _">
-<meta property="og:updated_time" content="2016-06-22T08:36:45.000Z">
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748var countDown = function(targetTime, callback) &amp;#123;    var _second = 1000,">
+<meta property="og:updated_time" content="2016-06-23T03:36:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="纯js倒计时">
 <meta name="twitter:description" content="javascript 倒计时最近项目中需要写个倒计时，就整理下…
-&amp;lt;script&amp;gt;
-var countDown = function(targetTime, callback) {
-
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _">
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748var countDown = function(targetTime, callback) &amp;#123;    var _second = 1000,">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -215,61 +197,10 @@ var countDown = function(targetTime, callback) {
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="javascript-倒计时"><a href="#javascript-倒计时" class="headerlink" title="javascript 倒计时"></a>javascript 倒计时</h2><p>最近项目中需要写个倒计时，就整理下…</p>
-<pre><code>&lt;script&gt;
-var countDown = function(targetTime, callback) {
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countDown = <span class="function"><span class="keyword">function</span>(<span class="params">targetTime, callback</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> _second = <span class="number">1000</span>,</span><br><span class="line">        _minute = _second * <span class="number">60</span>,</span><br><span class="line">        _hour = _minute * <span class="number">60</span>,</span><br><span class="line">        _day = _hour * <span class="number">24</span>,</span><br><span class="line">        timer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addZero</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span> + num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> endTime = <span class="keyword">new</span> <span class="built_in">Date</span>(targetTime).getTime(),</span><br><span class="line">            nowTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime(),</span><br><span class="line">            timeDiff = endTime - nowTime,</span><br><span class="line">            data;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timeDiff &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> callback === <span class="string">'function'</span>) &#123;</span><br><span class="line">                callback();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">                timer = setInterval(start, <span class="number">1000</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'days'</span>: <span class="built_in">Math</span>.floor(timeDiff / _day),</span><br><span class="line">            <span class="string">'hours'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _day) / _hour)),</span><br><span class="line">            <span class="string">'minutes'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _hour) / _minute)),</span><br><span class="line">            <span class="string">'seconds'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _minute) / _second))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hours:'</span> + data.hours + <span class="string">',minutes:'</span> + data.minutes + <span class="string">',seconds:'</span> + data.seconds);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    start();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">countDown(<span class="string">'2016-06-12 14:58:00'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'do something'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTime</span>(<span class="params">strDate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(strDate.replace(<span class="regexp">/-/g</span>, <span class="string">'/'</span>)).getTime();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    var _second = 1000,
-        _minute = _second * 60,
-        _hour = _minute * 60,
-        _day = _hour * 24,
-        timer;
-
-    function addZero(num) {
-        if (num &lt; 10) {
-            return &apos;0&apos; + num;
-        }
-        return num;
-    }
-
-    function start() {
-        var endTime = new Date(targetTime).getTime(),
-            nowTime = new Date().getTime(),
-            timeDiff = endTime - nowTime,
-            data;
-
-        if (timeDiff &lt;= 0) {
-            clearInterval(timer);
-            if (typeof callback === &apos;function&apos;) {
-                callback();
-            }
-        } else {
-            if (!timer) {
-                timer = setInterval(start, 1000);
-            }
-        }
-
-        data = {
-            &apos;days&apos;: Math.floor(timeDiff / _day),
-            &apos;hours&apos;: addZero(Math.floor((timeDiff % _day) / _hour)),
-            &apos;minutes&apos;: addZero(Math.floor((timeDiff % _hour) / _minute)),
-            &apos;seconds&apos;: addZero(Math.floor((timeDiff % _minute) / _second))
-        }
-
-        console.log(&apos;hours:&apos; + data.hours + &apos;,minutes:&apos; + data.minutes + &apos;,seconds:&apos; + data.seconds);
-    }
-
-    start();
-};
-
-countDown(&apos;2016-06-12 14:58:00&apos;, function() {
-    console.log(&apos;do something&apos;);
-});
-&lt;/script&gt;
-</code></pre><p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
-<pre><code>function parseTime(strDate) {
-    return new Date(strDate.replace(/-/g, &apos;/&apos;)).getTime();
-}
-</code></pre>
       
     </div>
     
