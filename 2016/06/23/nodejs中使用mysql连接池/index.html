@@ -4,17 +4,33 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: this | xwillmadeit</title>
+  <title>nodejs中使用mysql连接池 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xwillmadeit">
-<meta property="og:url" content="https://xwillmadeit.github.io/tags/this/index.html">
+  <meta name="description" content="使用连接池var mysql = require(&amp;apos;mysql&amp;apos;);
+var pool = mysql.createPool({
+    host: &amp;apos;192.168.20.6&amp;apos;,
+    user: &amp;apos;root&amp;apos;,
+    password: &amp;apos;123321&amp;apos;,
+    database: &amp;apos;magic&amp;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs中使用mysql连接池">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/23/nodejs中使用mysql连接池/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description">
+<meta property="og:description" content="使用连接池var mysql = require(&amp;apos;mysql&amp;apos;);
+var pool = mysql.createPool({
+    host: &amp;apos;192.168.20.6&amp;apos;,
+    user: &amp;apos;root&amp;apos;,
+    password: &amp;apos;123321&amp;apos;,
+    database: &amp;apos;magic&amp;a">
+<meta property="og:updated_time" content="2016-06-23T02:47:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xwillmadeit">
-<meta name="twitter:description">
+<meta name="twitter:title" content="nodejs中使用mysql连接池">
+<meta name="twitter:description" content="使用连接池var mysql = require(&amp;apos;mysql&amp;apos;);
+var pool = mysql.createPool({
+    host: &amp;apos;192.168.20.6&amp;apos;,
+    user: &amp;apos;root&amp;apos;,
+    password: &amp;apos;123321&amp;apos;,
+    database: &amp;apos;magic&amp;a">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -155,53 +171,107 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-nodejs中使用mysql连接池" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/07/11/javascript中this的指向/" class="archive-article-date">
-  	<time datetime="2015-07-11T02:48:16.000Z" itemprop="datePublished">Jul 11</time>
+    <div class="article-meta">
+      <a href="/2016/06/23/nodejs中使用mysql连接池/" class="article-date">
+  	<time datetime="2016-06-23T02:42:17.000Z" itemprop="datePublished">2016-06-23</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/11/javascript中this的指向/">javascript 中 this 的指向</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nodejs中使用mysql连接池
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this/">this</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用连接池"><a href="#使用连接池" class="headerlink" title="使用连接池"></a>使用连接池</h2><pre><code>var mysql = require(&apos;mysql&apos;);
+var pool = mysql.createPool({
+    host: &apos;192.168.20.6&apos;,
+    user: &apos;root&apos;,
+    password: &apos;123321&apos;,
+    database: &apos;magic&apos;
+});
+pool.getConnection(function(err, connection){
+    if (err) {
+        console.log(err);
+    }
+    connection.query(sql, function(qerr, result){
+        if (qerr) {
+            console.log(qerr);
+        } else {
+            console.log(result);
+        }
+        //释放连接
+        connection.release();
+    });
+});
+</code></pre><p>实战中使用 promise 处理 mysql 异步返回的数据</p>
+<pre><code>function getResult(mysqlPool, sql) {
+    return new Promise(function(resolve, reject) {
+        mysqlPool.getConnection(function(err, connection){
+            if (err) {
+                reject(err);
+            }
+
+            connection.query(sql, function(qerr, result){
+                if (qerr) {
+                    reject(qerr);
+                } else {
+                    resolve({ result: result }); 
+                }
+                //释放连接
+                connection.release();
+            });
+        });
+    });
+}
+</code></pre><p><a href="https://github.com/mysqljs/mysql#pool-options" target="_blank" rel="external">使用连接池</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/23/git设置全局用户名和邮箱/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git设置全局用户名和邮箱</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
 
 </div>
       <footer id="footer">
@@ -226,9 +296,9 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}

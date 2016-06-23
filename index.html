@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -99,7 +99,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 10px;">apply</a> <a href="/tags/call/" style="font-size: 10px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 15px;">cordova</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 15px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 10px;">apply</a> <a href="/tags/call/" style="font-size: 10px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 15px;">cordova</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 15px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
 					</div>
 				</section>
 				
@@ -156,6 +156,100 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-nodejs中使用mysql连接池" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/23/nodejs中使用mysql连接池/" class="article-date">
+  	<time datetime="2016-06-23T02:42:17.000Z" itemprop="datePublished">2016-06-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/23/nodejs中使用mysql连接池/">nodejs中使用mysql连接池</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用连接池"><a href="#使用连接池" class="headerlink" title="使用连接池"></a>使用连接池</h2><pre><code>var mysql = require(&apos;mysql&apos;);
+var pool = mysql.createPool({
+    host: &apos;192.168.20.6&apos;,
+    user: &apos;root&apos;,
+    password: &apos;123321&apos;,
+    database: &apos;magic&apos;
+});
+pool.getConnection(function(err, connection){
+    if (err) {
+        console.log(err);
+    }
+    connection.query(sql, function(qerr, result){
+        if (qerr) {
+            console.log(qerr);
+        } else {
+            console.log(result);
+        }
+        //释放连接
+        connection.release();
+    });
+});
+</code></pre><p>实战中使用 promise 处理 mysql 异步返回的数据</p>
+<pre><code>function getResult(mysqlPool, sql) {
+    return new Promise(function(resolve, reject) {
+        mysqlPool.getConnection(function(err, connection){
+            if (err) {
+                reject(err);
+            }
+
+            connection.query(sql, function(qerr, result){
+                if (qerr) {
+                    reject(qerr);
+                } else {
+                    resolve({ result: result }); 
+                }
+                //释放连接
+                connection.release();
+            });
+        });
+    });
+}
+</code></pre><p><a href="https://github.com/mysqljs/mysql#pool-options" target="_blank" rel="external">使用连接池</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
   
     <article id="post-git设置全局用户名和邮箱" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -998,70 +1092,6 @@ Person.getName() //仍为 xwill
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flux/">Flux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-  
-    <article id="post-ionic完整环境搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/05/ionic完整环境搭建/" class="article-date">
-  	<time datetime="2016-03-05T09:20:47.000Z" itemprop="datePublished">2016-03-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/05/ionic完整环境搭建/">ionic完整环境搭建</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装-JDK-（java）"><a href="#安装-JDK-（java）" class="headerlink" title="安装 JDK （java）"></a>安装 JDK （java）</h2><p>下载 jdk 并安装。比如安装在 C:\Program Files\Java\jdk1.7.0_67 目录<br>安装完后执行 java -version，如出现 jdk 版本号，说明 jdk 安装成功</p>
-<p>系统变量中增加 JAVA_HOME<br>C:\Program Files\Java\jdk1.7.0_67</p>
-<p>修改系统变量PATH，在最前面加上<br>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</p>
-<p>重启命令行 执行 JAVAC，如出现 java 帮助文档，则说明环境变量配置成功。</p>
-<h2 id="配置-android-环境-amp-ant-环境"><a href="#配置-android-环境-amp-ant-环境" class="headerlink" title="配置 android 环境 &amp; ant 环境"></a>配置 android 环境 &amp; ant 环境</h2><p>解压 adt-bundle-windows-x86_64-20140702.zip 至D盘<br>D:\adt-bundle-windows-x86_64-20140702</p>
-<p>修改系统变量PATH，在最前面加上<br>D:\adt-bundle-windows-x86_64-20140702\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\bin;D:\adt-bundle-windows-x86_64-20140702\sdk\tools;D:\adt-bundle-windows-x86_64-20140702\sdk\platform-tools;</p>
-<p>PATH 参考:<br>D:\adt-bundle-windows-x86_64-20140702\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\bin;D:\adt-bundle-windows-x86_64-20140702\sdk\tools;D:\adt-bundle-windows-x86_64-20140702\sdk\platform-tools;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</p>
-<h2 id="cordova-环境配置"><a href="#cordova-环境配置" class="headerlink" title="cordova 环境配置"></a>cordova 环境配置</h2><p>1）首先安装 node.js （64位）<br>下载地址：<a href="https://nodejs.org/download/release/v0.12.8/x64/" target="_blank" rel="external">https://nodejs.org/download/release/v0.12.8/x64/</a><br>下载 node-v0.12.8-x64.msi 并安装</p>
-<p>安装完后执行<br>node -v<br>npm -v<br>查看 node 和 npm 是否安装，安装成功会先显示版本号</p>
-<p>2）安装 cordova<br>npm install -g cordova<br>安装完后 执行 cordova -v 查看是否安装成功</p>
-<p>注意，无需安装 phonegap</p>
-<p>3）安装 ionic<br>npm install -g ionic<br>执行 ionic -v 查看 ionic 是否安装成功</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cordova/">cordova</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ionic/">ionic</a></li></ul>
 	</div>
 
       
