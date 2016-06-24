@@ -4,38 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>css布局技巧 | xwillmadeit</title>
+  <title>Tag: bind | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主流处理等分布局参考各大网站发现都使用到了给 ul 设置负的 margin 值
-
-
-首先将宽度除以份数，如 1200／5 则每个格子 240px; 
-给每份增加 margin-left 如 20px，则每个格子 width 减少 20px 变为 220px
-第一个元素不需要 margin-left ，所以使用对 ul 使用 margin-left: -20px，则盒子总宽度1220px
-1220/">
-<meta property="og:type" content="article">
-<meta property="og:title" content="css布局技巧">
-<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/23/css布局技巧/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xwillmadeit">
+<meta property="og:url" content="https://xwillmadeit.github.io/tags/bind/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="主流处理等分布局参考各大网站发现都使用到了给 ul 设置负的 margin 值
-
-
-首先将宽度除以份数，如 1200／5 则每个格子 240px; 
-给每份增加 margin-left 如 20px，则每个格子 width 减少 20px 变为 220px
-第一个元素不需要 margin-left ，所以使用对 ul 使用 margin-left: -20px，则盒子总宽度1220px
-1220/">
-<meta property="og:image" content="https://xwillmadeit.github.io/images/css/1142876.jpg">
-<meta property="og:updated_time" content="2016-06-23T02:55:57.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css布局技巧">
-<meta name="twitter:description" content="主流处理等分布局参考各大网站发现都使用到了给 ul 设置负的 margin 值
-
-
-首先将宽度除以份数，如 1200／5 则每个格子 240px; 
-给每份增加 margin-left 如 20px，则每个格子 width 减少 20px 变为 220px
-第一个元素不需要 margin-left ，所以使用对 ul 使用 margin-left: -20px，则盒子总宽度1220px
-1220/">
-<meta name="twitter:image" content="https://xwillmadeit.github.io/images/css/1142876.jpg">
+<meta name="twitter:title" content="xwillmadeit">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -177,82 +156,53 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-css布局技巧" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/06/23/css布局技巧/" class="article-date">
-  	<time datetime="2016-06-23T02:50:35.000Z" itemprop="datePublished">2016-06-23</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/06/24/call和apply详解/" class="archive-article-date">
+  	<time datetime="2016-06-24T02:07:12.000Z" itemprop="datePublished">Jun 24</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      css布局技巧
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/06/24/call和apply详解/">call，apply，bind再一次整理</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apply/">apply</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bind/">bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/call/">call</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 	</div>
 
-        
+          
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="主流处理等分布局"><a href="#主流处理等分布局" class="headerlink" title="主流处理等分布局"></a>主流处理等分布局</h2><p>参考各大网站发现都使用到了给 ul 设置负的 margin 值</p>
-<p><img src="/images/css/1142876.jpg" alt=""></p>
-<ol>
-<li>首先将宽度除以份数，如 1200／5 则每个格子 240px; </li>
-<li>给每份增加 margin-left 如 20px，则每个格子 width 减少 20px 变为 220px</li>
-<li>第一个元素不需要 margin-left ，所以使用对 ul 使用 margin-left: -20px，则盒子总宽度1220px</li>
-<li>1220/5 则每个格子占 244px，所以每个格子的 width 为 224px </li>
-</ol>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/06/24/call和apply详解/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          call，apply，bind再一次整理
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/06/23/nodejs中使用mysql连接池/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">nodejs中使用mysql连接池</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-
+    
 
 </div>
       <footer id="footer">
@@ -277,9 +227,9 @@
 		fancybox: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}

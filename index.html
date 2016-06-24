@@ -67,10 +67,10 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>Menu</li>
-						<li>Tags</li>
+						<li>Тэги</li>
 						
 						
-						<li>Über</li>
+						<li>О сайте</li>
 						
 					</ul>
 				</div>
@@ -100,7 +100,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 10px;">apply</a> <a href="/tags/call/" style="font-size: 10px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 13.33px;">cordova</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 13.33px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 13.33px;">apply</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/call/" style="font-size: 13.33px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 13.33px;">cordova</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 13.33px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
 					</div>
 				</section>
 				
@@ -157,6 +157,77 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-call和apply详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/24/call和apply详解/" class="article-date">
+  	<time datetime="2016-06-24T02:07:12.000Z" itemprop="datePublished">2016-06-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/24/call和apply详解/">call，apply，bind再一次整理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="call-和-apply-能用来干嘛？"><a href="#call-和-apply-能用来干嘛？" class="headerlink" title="call 和 apply 能用来干嘛？"></a>call 和 apply 能用来干嘛？</h2><p>1.借用别人的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Fruits = &#123;</span><br><span class="line">	name: <span class="string">'Fruits'</span>,</span><br><span class="line">	say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'im '</span> + <span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Apple = &#123;</span><br><span class="line">	name: <span class="string">'apple'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Fruits.say();</span><br><span class="line">Fruits.say.call(Apple);</span><br><span class="line">Fruits.say.apply(Apple);</span><br></pre></td></tr></table></figure>
+<p>2.数组之间追加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array1 = [<span class="number">12</span> , <span class="string">"foo"</span> , &#123;name: <span class="string">"Joe"</span>&#125; , <span class="number">-2458</span>]; </span><br><span class="line"><span class="keyword">var</span> array2 = [<span class="string">"Doe"</span> , <span class="number">555</span> , <span class="number">100</span>];</span><br><span class="line"><span class="built_in">Array</span>.prototype.push.apply(array1, array2); </span><br><span class="line"><span class="built_in">console</span>.log(array1);</span><br></pre></td></tr></table></figure>
+<p>3.代理方法<br>比如写一个 log 函数，用于实现 console.log</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//注意 arguments 不是数组！直接 console.log(arguments) 无效</span></span><br><span class="line">	<span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>如果想在每个 console.log 前加个前缀</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>); <span class="comment">//转为标准数组</span></span><br><span class="line">  	args.unshift(<span class="string">'(app)'</span>);</span><br><span class="line"></span><br><span class="line">  	<span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="call-和-apply-有什么区别？"><a href="#call-和-apply-有什么区别？" class="headerlink" title="call 和 apply 有什么区别？"></a>call 和 apply 有什么区别？</h2><p>其实功能一样，只是 apply 的第二个参数接受数组，不需要知道传入的个数，包装成数组即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">arg1, arg2</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func.call(<span class="keyword">this</span>, arg1, arg2);</span><br><span class="line">func.apply(<span class="keyword">this</span>, [arg1, arg2]);</span><br></pre></td></tr></table></figure>
+<h2 id="bind-有什么用？"><a href="#bind-有什么用？" class="headerlink" title="bind 有什么用？"></a>bind 有什么用？</h2><p>首先 bind 是什么？MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p>
+<p>挖槽这怎么看的懂？？？上代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">    bar : <span class="number">1</span>,</span><br><span class="line">    eventBind: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">        $(<span class="string">'.someClass'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(_this.bar); </span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码很容易理解，this 发生了变化，所以必须将 this 赋予 _this</p>
+<p>使用 bind 改造这段代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">    bar : <span class="number">1</span>,</span><br><span class="line">    eventBind: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'.someClass'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(_this.bar); </span><br><span class="line">        &#125;, bind(<span class="keyword">this</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述代码里，bind() 创建了一个函数，当这个click事件绑定在被调用的时候，它的 this 关键词会被设置成被传入的值（这里指调用bind()时传入的参数）。因此，这里我们传入想要的上下文 this(其实就是 foo )，到 bind() 函数中。然后，当回调函数被执行的时候， this 便指向 foo 对象。</p>
+<h2 id="bind-call-apply-区别"><a href="#bind-call-apply-区别" class="headerlink" title="bind call apply 区别"></a>bind call apply 区别</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">	x: <span class="number">5</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar.bind(foo)(); </span><br><span class="line"></span><br><span class="line">bar.apply(foo); </span><br><span class="line"></span><br><span class="line">bar.call(foo);</span><br></pre></td></tr></table></figure>
+<p>其实 call,apply,bind 的作用都是改变 this 的指向，只是 bind 需要调用执行，apply 和 call 会立即执行。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apply/">apply</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bind/">bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/call/">call</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
   
     <article id="post-css布局技巧" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -674,61 +745,6 @@ git config --global user.email [email]
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/directive/">directive</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-  
-    <article id="post-javascript模块化—如何组织js代码" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/11/javascript模块化—如何组织js代码/" class="article-date">
-  	<time datetime="2016-03-11T02:57:05.000Z" itemprop="datePublished">2016-03-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/11/javascript模块化—如何组织js代码/">javascript模块化—如何组织js代码</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="The-Module-Pattern"><a href="#The-Module-Pattern" class="headerlink" title="The Module Pattern"></a>The Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s,</span><br><span class="line">NewsWidget = &#123;</span><br><span class="line">	settings:&#123;</span><br><span class="line">		numArticles: <span class="number">5</span>,</span><br><span class="line">		articleList: $(<span class="string">"#article-list"</span>),</span><br><span class="line">		moreButton: $(<span class="string">"#more-button"</span>)</span><br><span class="line">	&#125;,</span><br><span class="line">	init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">// kick things off</span></span><br><span class="line">		s = <span class="keyword">this</span>.settings;</span><br><span class="line">		<span class="keyword">this</span>.bindUiActions();</span><br><span class="line">	&#125;,</span><br><span class="line">	bindUiActions: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		s.moreButton.on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			NewsWidget.getMoreArticles(s.numArticles);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	getMoreArticles: <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'获取'</span>+s.numArticles+<span class="string">'条数据'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用这种方式内部属性可被修改</span></span><br><span class="line">NewsWidget.settings.numArticles = <span class="number">6</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化组件</span></span><br><span class="line">NewsWidget.init();</span><br></pre></td></tr></table></figure>
-<p><a href="https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/" target="_blank" rel="external">The Module Pattern Edition</a></p>
-<h2 id="The-Revealing-Module-Pattern"><a href="#The-Revealing-Module-Pattern" class="headerlink" title="The Revealing Module Pattern"></a>The Revealing Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name = <span class="string">'xwill'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		getName: sayName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//使用这种方式无法修改匿名函数中的name属性！Person只有一个getName方法</span></span><br><span class="line">Person.name = <span class="string">'kobe'</span>; <span class="comment">//无效</span></span><br><span class="line">Person.getName() <span class="comment">//仍为 xwill</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oop/">oop</a></li></ul>
 	</div>
 
       
