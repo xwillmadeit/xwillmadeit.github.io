@@ -158,6 +158,67 @@
 
       <div class="body-wrap">
   
+    <article id="post-css奇淫技巧大搜罗" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/25/css奇淫技巧大搜罗/" class="article-date">
+  	<time datetime="2016-06-25T02:44:24.000Z" itemprop="datePublished">2016-06-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/25/css奇淫技巧大搜罗/">css奇淫技巧大搜罗</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使元素变灰"><a href="#使元素变灰" class="headerlink" title="使元素变灰"></a>使元素变灰</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-webkit-filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-moz-filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-ms-filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-o-filter: grayscale(<span class="number">100</span>%);</span><br></pre></td></tr></table></figure>
+<p>如果想使整个网站变灰，只需在 html 上使用上面的样式即可～</p>
+<h2 id="页面顶部阴影"><a href="#页面顶部阴影" class="headerlink" title="页面顶部阴影"></a>页面顶部阴影</h2><p>这个小trick真是不错～<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">body:before &#123;</span><br><span class="line">	content: <span class="string">""</span>;</span><br><span class="line">	position: fixed;</span><br><span class="line">	top: <span class="number">-10</span>px;</span><br><span class="line">	left: <span class="number">0</span>;</span><br><span class="line">	width: <span class="number">100</span>%;</span><br><span class="line">	height: <span class="number">10</span>px;</span><br><span class="line"></span><br><span class="line">	-webkit-box-shadow: <span class="number">0</span>px <span class="number">0</span>px <span class="number">10</span>px rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">.8</span>);</span><br><span class="line">	-moz-box-shadow: <span class="number">0</span>px <span class="number">0</span>px <span class="number">10</span>px rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">.8</span>);</span><br><span class="line">	box-shadow: <span class="number">0</span>px <span class="number">0</span>px <span class="number">10</span>px rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">.8</span>);</span><br><span class="line"></span><br><span class="line">	z-index: <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使-footer-粘住底部，无论内容区是否足够高"><a href="#使-footer-粘住底部，无论内容区是否足够高" class="headerlink" title="使 footer 粘住底部，无论内容区是否足够高"></a>使 footer 粘住底部，无论内容区是否足够高</h2><p>方法一，使用视口区域减去底部高度：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.content &#123;</span><br><span class="line">    min-height: calc(<span class="number">100</span>vh - <span class="number">50</span>px);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footer &#123;</span><br><span class="line">    height: <span class="number">50</span>px;</span><br><span class="line">    width: <span class="number">100</span>%;</span><br><span class="line">    background-color: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="content"&gt;</span><br><span class="line">    content</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;footer class="footer"&gt;&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+<p>方法二，全局增加一个负值下边距等于底部高度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">html, body &#123;</span><br><span class="line">	height: <span class="number">100</span>%;</span><br><span class="line">	margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.wrapper &#123;</span><br><span class="line">	min-height: <span class="number">100</span>%;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Equal to height of footer */</span></span><br><span class="line">	<span class="comment">/* But also accounting for potential margin-bottom of last child */</span></span><br><span class="line">	margin-bottom: <span class="number">-50</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.footer,</span><br><span class="line">.push &#123;</span><br><span class="line">	height: <span class="number">50</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.footer &#123;</span><br><span class="line">	width: <span class="number">100</span>%;</span><br><span class="line">    background-color: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="wrapper"&gt;</span><br><span class="line">  content</span><br><span class="line">	&lt;div class="push"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;footer class="footer"&gt;&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+<p>这两种用的最多</p>
+<p><a href="http://caibaojian.com/css-5-ways-sticky-footer.html" target="_blank" rel="external">css粘住底部</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+  
     <article id="post-移动端适配终极解决方案" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -678,61 +739,6 @@ git config --global user.email [email]
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-  
-    <article id="post-js中使用cookie" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/22/js中使用cookie/" class="article-date">
-  	<time datetime="2016-06-22T08:22:47.000Z" itemprop="datePublished">2016-06-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/22/js中使用cookie/">js中使用cookie</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="js-中操作-cookie"><a href="#js-中操作-cookie" class="headerlink" title="js 中操作 cookie"></a>js 中操作 cookie</h2><p>不多说，直接上代码，无非就是 存，取，删除</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> cookieHandle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.setCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name,value,days,firstDomain</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> expire = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">            name = name ? name: <span class="string">'true'</span>,</span><br><span class="line">            days = days ? days: <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(days&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            expire.setTime(expire.getTime() - <span class="number">1000</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            expire.setTime(expire.getTime() + days*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(firstDomain)&#123; </span><br><span class="line">        	<span class="comment">//指定存入一级域名下</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString() + <span class="string">";path=/"</span> + <span class="string">";domain=wxrrd.com"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        	<span class="comment">//默认存入 domain 为 window.location.hostname</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString();</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.getCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> arr,</span><br><span class="line">            reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^| )"</span>+name+<span class="string">"=([^;]*)(;|$)"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(arr=<span class="built_in">document</span>.cookie.match(reg))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(arr[<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> cookieHandle = <span class="keyword">new</span> cookieHandle();</span><br><span class="line">    <span class="keyword">if</span>(cookieHandle.getCookie(<span class="string">'name'</span>)==<span class="string">''</span>)&#123;</span><br><span class="line">    	cookieHandle.setCookie(<span class="string">'name'</span>,<span class="string">'xwill'</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(cookieHandle.getCookie(<span class="string">'name'</span>));</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 	</div>
 
       
