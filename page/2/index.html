@@ -100,7 +100,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 13.33px;">apply</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/call/" style="font-size: 13.33px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 13.33px;">cordova</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 13.33px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/viewport/" style="font-size: 10px;">viewport</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 13.33px;">apply</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/call/" style="font-size: 13.33px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 13.33px;">cordova</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 13.33px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 13.33px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/viewport/" style="font-size: 10px;">viewport</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
 					</div>
 				</section>
 				
@@ -157,6 +157,116 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-纯js倒计时" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/22/纯js倒计时/" class="article-date">
+  	<time datetime="2016-06-22T08:32:22.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/纯js倒计时/">纯js倒计时</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="javascript-倒计时"><a href="#javascript-倒计时" class="headerlink" title="javascript 倒计时"></a>javascript 倒计时</h2><p>最近项目中需要写个倒计时，就整理下…</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countDown = <span class="function"><span class="keyword">function</span>(<span class="params">targetTime, callback</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> _second = <span class="number">1000</span>,</span><br><span class="line">        _minute = _second * <span class="number">60</span>,</span><br><span class="line">        _hour = _minute * <span class="number">60</span>,</span><br><span class="line">        _day = _hour * <span class="number">24</span>,</span><br><span class="line">        timer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addZero</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span> + num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> endTime = <span class="keyword">new</span> <span class="built_in">Date</span>(targetTime).getTime(),</span><br><span class="line">            nowTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime(),</span><br><span class="line">            timeDiff = endTime - nowTime,</span><br><span class="line">            data;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timeDiff &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> callback === <span class="string">'function'</span>) &#123;</span><br><span class="line">                callback();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">                timer = setInterval(start, <span class="number">1000</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'days'</span>: <span class="built_in">Math</span>.floor(timeDiff / _day),</span><br><span class="line">            <span class="string">'hours'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _day) / _hour)),</span><br><span class="line">            <span class="string">'minutes'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _hour) / _minute)),</span><br><span class="line">            <span class="string">'seconds'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _minute) / _second))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hours:'</span> + data.hours + <span class="string">',minutes:'</span> + data.minutes + <span class="string">',seconds:'</span> + data.seconds);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    start();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">countDown(<span class="string">'2016-06-12 14:58:00'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'do something'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTime</span>(<span class="params">strDate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(strDate.replace(<span class="regexp">/-/g</span>, <span class="string">'/'</span>)).getTime();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/倒计时/">倒计时</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+  
+    <article id="post-css3单位rem" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/22/css3单位rem/" class="article-date">
+  	<time datetime="2016-06-22T08:26:28.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/22/css3单位rem/">css3单位rem</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="rem-的简单小结"><a href="#rem-的简单小结" class="headerlink" title="rem 的简单小结"></a>rem 的简单小结</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    /* rem 中的 r 表示 root，一般基于 html 的 font-size，如果 html 没设置，则找 body ... 依次往上到上级元素 */</span><br><span class="line">    * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    html &#123;</span><br><span class="line">        font-size: 12px; /* font-size 最小为12px */</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    body&#123;</span><br><span class="line">    	font-size: 16px; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    div &#123;</span><br><span class="line">        height: 10rem; /* 10*14 = 140px;*/</span><br><span class="line">        width: 10rem;</span><br><span class="line">        font-size: 1rem;</span><br><span class="line">        background: pink;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>rem 是相对于根元素尺寸的单位，如 html 的 font-size 为 12px，则所有元素的 rem 单位均为 (12*n)px<br>注意 html 中 font-size 最小为 12px </p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
   
     <article id="post-js中使用cookie" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -390,7 +500,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flux/">Flux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flux/">Flux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
 	</div>
 
       
@@ -794,157 +904,9 @@ div {
 
 
   
-    <article id="post-javascript中this的指向" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/javascript中this的指向/" class="article-date">
-  	<time datetime="2015-07-11T02:48:16.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/javascript中this的指向/">javascript 中 this 的指向</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h2><p>this 的指向大致可以分为以下4种</p>
-<ol>
-<li>作为对象的方法调用</li>
-<li>作为普通函数调用</li>
-<li>构造器调用</li>
-<li>Function.prototype.call 或 Function.prototype.apply 调用</li>
-</ol>
-<h2 id="当函数作为对象的方法被调用时，this指向该对象："><a href="#当函数作为对象的方法被调用时，this指向该对象：" class="headerlink" title="当函数作为对象的方法被调用时，this指向该对象："></a>当函数作为对象的方法被调用时，this指向该对象：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	a: <span class="number">1</span>,</span><br><span class="line">	getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span> == obj); <span class="comment">//输出：true</span></span><br><span class="line">		alert(<span class="keyword">this</span>.a); <span class="comment">//输出：1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
-<h2 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h2><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的this总是指向全局对象。在浏览器的 javascript 里，这个全局变量是 window 对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//输出：globalName</span></span><br></pre></td></tr></table></figure>
-<p>或者 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> myObj = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getName = myObj.getName;</span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//globalName</span></span><br></pre></td></tr></table></figure>
-<p>有时候我们会遇到一些困扰，比如在 div 节点的时间函数内部，有一个局部的 callback 方法，callback方法被作为普通的函数调用时，callback内部的this指向了window，但我们往往是想让它指向该div节点</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.id = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.id); <span class="comment">// tihs为该 div 节点，this.id = div1</span></span><br><span class="line">	<span class="comment">//var that = this; //保存引用 that.id 指向 div1</span></span><br><span class="line">	<span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(that.id); <span class="comment">//window</span></span><br><span class="line">	&#125;</span><br><span class="line">	callback();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此时需用 that 保存下 div 节点的引用。</p>
-<p>在 es5 的 strict 模式下，这种情况下的 this 已经被规定为不会指向全局对象，而是 undefined;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">	'use strict'</span></span><br><span class="line">	alert(<span class="keyword">this</span>); <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
-<h2 id="构造器调用"><a href="#构造器调用" class="headerlink" title="构造器调用"></a>构造器调用</h2><p>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的 this 就指向返回的这个对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
-<p>但用 new 调用构造器时，还需要注意一个问题，如果构造器显式地返回了一个 object 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		name: <span class="string">'anne'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//anne</span></span><br></pre></td></tr></table></figure>
-<p>如果构造器不显式地返回任何数据，或者是返回一个非对象类型的数据，就不会造成上述问题。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'anne'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
-<h2 id="Function-prototype-call-或-Function-prototype-apply-调用"><a href="#Function-prototype-call-或-Function-prototype-apply-调用" class="headerlink" title="Function.prototype.call 或 Function.prototype.apply 调用"></a>Function.prototype.call 或 Function.prototype.apply 调用</h2><p>这两个方法可以动态地改变传入函数的 this </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">	name: <span class="string">'anne'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName());</span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName.call(obj2));</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this/">this</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-  
-    <article id="post-js面试题整理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/06/12/js面试题整理/" class="article-date">
-  	<time datetime="2015-06-12T06:09:59.000Z" itemprop="datePublished">2015-06-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/12/js面试题整理/">javascript 常见面试题</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">getDate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">	DateObj = &#123;</span><br><span class="line">		getTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> year = date.getFullYear(),</span><br><span class="line">				month = (date.getMonth())+<span class="number">1</span>, <span class="comment">//月份从0开始</span></span><br><span class="line">				day = date.getDate(),</span><br><span class="line">				hour = <span class="keyword">this</span>.addZero(date.getHours()),</span><br><span class="line">			    min = <span class="keyword">this</span>.addZero(date.getMinutes()),</span><br><span class="line">				sec = <span class="keyword">this</span>.addZero(date.getSeconds());</span><br><span class="line"></span><br><span class="line">			alert(year+<span class="string">'年'</span>+month+<span class="string">'月'</span>+day+<span class="string">'日 '</span>+hour+<span class="string">':'</span>+min+<span class="string">':'</span>+sec);</span><br><span class="line">		&#125;,</span><br><span class="line">		addZero: <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123; <span class="comment">//时分秒个位数补0</span></span><br><span class="line">			<span class="keyword">return</span> (number &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + number;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	DateObj.getTime();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'123\n456'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">queryString</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.url = url;</span><br><span class="line">	<span class="keyword">this</span>.urlObj = &#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.splitUrl = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> paramsUrl = <span class="keyword">this</span>.url.split(<span class="string">'?'</span>)[<span class="number">1</span>];</span><br><span class="line">			pair = paramsUrl.split(<span class="string">'&amp;'</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;pair.length;i++)&#123;</span><br><span class="line">			<span class="keyword">var</span> key = pair[i].split(<span class="string">'='</span>)[<span class="number">0</span>],</span><br><span class="line">				val = pair[i].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">this</span>.urlObj[key] = val;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.urlObj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> queryString(<span class="string">'http://www.taobao.com?item=10&amp;key=12&amp;productId=88'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str.splitUrl());  <span class="comment">//&#123;item: "10", key: "12", productId: "88"&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
-<ol>
-<li>参数都是体现在 url 上</li>
-<li>主要用于取（查询）数据</li>
-<li>url 有最大长度限制</li>
-<li>便于浏览器缓存 ok to cache</li>
-<li>不应该去改变服务端的数据</li>
-</ol>
-<p>POST 请求</p>
-<ol>
-<li>参数通过 body 传递</li>
-<li>用于更新数据</li>
-<li>没有长度限制</li>
-<li>不能做缓存 not ok to cache</li>
-<li>可以用作修改服务端数据</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>
