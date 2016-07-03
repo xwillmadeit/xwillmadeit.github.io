@@ -7,18 +7,27 @@
   <title>react重起航 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="从官网的一个评论组件开始commentBox组件
-state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state 应该存放那些会实际影响 DOM 的内容，这样也是最有效率的方法。参考这篇，慢慢翻译">
+state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state 应该存放那些会实际影响 DOM 的内容，这样也是最有效率的方法。参考这篇，慢慢翻译
+reduxRedux中文文档React+Redux系列教程
+遇到的一些问题
+React在ES6中去掉了getInitialState函数，需">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react重起航">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/27/react重起航/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="从官网的一个评论组件开始commentBox组件
-state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state 应该存放那些会实际影响 DOM 的内容，这样也是最有效率的方法。参考这篇，慢慢翻译">
-<meta property="og:updated_time" content="2016-06-27T06:27:54.000Z">
+state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state 应该存放那些会实际影响 DOM 的内容，这样也是最有效率的方法。参考这篇，慢慢翻译
+reduxRedux中文文档React+Redux系列教程
+遇到的一些问题
+React在ES6中去掉了getInitialState函数，需">
+<meta property="og:updated_time" content="2016-06-28T10:15:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react重起航">
 <meta name="twitter:description" content="从官网的一个评论组件开始commentBox组件
-state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state 应该存放那些会实际影响 DOM 的内容，这样也是最有效率的方法。参考这篇，慢慢翻译">
+state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state 应该存放那些会实际影响 DOM 的内容，这样也是最有效率的方法。参考这篇，慢慢翻译
+reduxRedux中文文档React+Redux系列教程
+遇到的一些问题
+React在ES6中去掉了getInitialState函数，需">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -104,7 +113,7 @@ state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 13.33px;">apply</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/call/" style="font-size: 13.33px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 13.33px;">cordova</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 13.33px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 13.33px;">react</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/viewport/" style="font-size: 10px;">viewport</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+						<a href="/tags/Flux/" style="font-size: 10px;">Flux</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/apply/" style="font-size: 13.33px;">apply</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/call/" style="font-size: 13.33px;">call</a> <a href="/tags/cookie/" style="font-size: 10px;">cookie</a> <a href="/tags/cordova/" style="font-size: 13.33px;">cordova</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/directive/" style="font-size: 10px;">directive</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ionic/" style="font-size: 13.33px;">ionic</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 13.33px;">nodejs</a> <a href="/tags/oop/" style="font-size: 10px;">oop</a> <a href="/tags/queryString/" style="font-size: 10px;">queryString</a> <a href="/tags/react/" style="font-size: 13.33px;">react</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/viewport/" style="font-size: 10px;">viewport</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/倒计时/" style="font-size: 10px;">倒计时</a> <a href="/tags/居中/" style="font-size: 10px;">居中</a> <a href="/tags/思想/" style="font-size: 10px;">思想</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/移动端/" style="font-size: 10px;">移动端</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
 					</div>
 				</section>
 				
@@ -199,6 +208,22 @@ state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state
       
         <h2 id="从官网的一个评论组件开始"><a href="#从官网的一个评论组件开始" class="headerlink" title="从官网的一个评论组件开始"></a>从官网的一个评论组件开始</h2><p><a href="https://github.com/xwillmadeit/reactFromBottom/blob/master/commentBox.html" target="_blank" rel="external">commentBox组件</a></p>
 <h2 id="state-和-props-的区别"><a href="#state-和-props-的区别" class="headerlink" title="state 和 props 的区别"></a>state 和 props 的区别</h2><p>setState 会 trigger DOM 的 rerendering，所以 state 应该存放那些会实际影响 DOM 的内容，这样也是最有效率的方法。<br>参考<a href="https://github.com/uberVU/react-guide/blob/master/props-vs-state.md" target="_blank" rel="external">这篇</a>，慢慢翻译</p>
+<h2 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h2><p><a href="http://cn.redux.js.org//index.html" target="_blank" rel="external">Redux中文文档</a><br><a href="https://github.com/lewis617/react-redux-tutorial" target="_blank" rel="external">React+Redux系列教程</a></p>
+<h2 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h2><ul>
+<li>React在ES6中去掉了getInitialState函数，需要写在constructor中<blockquote>
+<p>The API (via ‘extends React.Component’) is similar to React.createClass with the exception of getInitialState. Instead of providing a separate getInitialState method, you set up your own state property in the constructor.</p>
+</blockquote>
+</li>
+</ul>
+<p>非ES6<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CommentBox = React.createClass(&#123;</span><br><span class="line">	getInitialState:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;data:[]&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="keyword">return</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>ES6<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentBox</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;data:[]&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>()&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>No Autobinding<blockquote>
+<p>Methods follow the same semantics as regular ES6 classes, meaning that they don’t automatically bind this to the instance. You’ll have to explicitly use .bind(this) or arrow functions =&gt;.</p>
+</blockquote>
+</li>
+</ul>
+<p>ES6中this需要手动绑定：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	handleSubmit(e)&#123;</span><br><span class="line">		e.preventDefault();</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	render()&#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			&lt;form className="commentForm" onSubmit=&#123;this.handleSubmit&#125;&gt;</span><br><span class="line">				&lt;input type="text" placeholder="your name" ref="author"/&gt;</span><br><span class="line">				&lt;input type="text" placeholder="say something..." ref="text" /&gt;</span><br><span class="line">				&lt;input type="submit" value="Post" /&gt;</span><br><span class="line">			&lt;/form&gt;</span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -207,6 +232,15 @@ state 和 props 的区别setState 会 trigger DOM 的 rerendering，所以 state
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/06/30/webpack使用整理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          webpack使用整理
+        
+      </div>
+    </a>
   
   
     <a href="/2016/06/27/检测设备访问类型/" id="article-nav-older" class="article-nav-link-wrap">
