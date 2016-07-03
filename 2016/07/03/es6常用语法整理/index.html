@@ -4,21 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>webpack使用整理 | xwillmadeit</title>
+  <title>es6常用语法整理 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="遇到的坑
-React v1.5 打包后提示Warning: It looks like you’re using a minified copy of the development build of React. When deploying React apps to production, make sure to use the production build which skips d">
+  <meta name="description" content="一些关于箭头函数的知识点上代码1234567891011121314151617181920212223var obj = &amp;#123;	name: &apos;xwill&apos;,	say: function()&amp;#123;		setTimeout(() =&amp;gt; &amp;#123;			console.log(this.name); //xwill, 箭头函数改变 this 指向		&amp;#125;,1000);	&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack使用整理">
-<meta property="og:url" content="https://xwillmadeit.github.io/2016/06/30/webpack使用整理/index.html">
+<meta property="og:title" content="es6常用语法整理">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/07/03/es6常用语法整理/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="遇到的坑
-React v1.5 打包后提示Warning: It looks like you’re using a minified copy of the development build of React. When deploying React apps to production, make sure to use the production build which skips d">
-<meta property="og:updated_time" content="2016-07-01T06:07:08.000Z">
+<meta property="og:description" content="一些关于箭头函数的知识点上代码1234567891011121314151617181920212223var obj = &amp;#123;	name: &apos;xwill&apos;,	say: function()&amp;#123;		setTimeout(() =&amp;gt; &amp;#123;			console.log(this.name); //xwill, 箭头函数改变 this 指向		&amp;#125;,1000);	&amp;">
+<meta property="og:updated_time" content="2016-07-03T12:00:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack使用整理">
-<meta name="twitter:description" content="遇到的坑
-React v1.5 打包后提示Warning: It looks like you’re using a minified copy of the development build of React. When deploying React apps to production, make sure to use the production build which skips d">
+<meta name="twitter:title" content="es6常用语法整理">
+<meta name="twitter:description" content="一些关于箭头函数的知识点上代码1234567891011121314151617181920212223var obj = &amp;#123;	name: &apos;xwill&apos;,	say: function()&amp;#123;		setTimeout(() =&amp;gt; &amp;#123;			console.log(this.name); //xwill, 箭头函数改变 this 指向		&amp;#125;,1000);	&amp;">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -160,11 +157,11 @@ React v1.5 打包后提示Warning: It looks like you’re using a minified copy 
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-webpack使用整理" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-es6常用语法整理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/30/webpack使用整理/" class="article-date">
-  	<time datetime="2016-06-30T01:54:34.000Z" itemprop="datePublished">2016-06-30</time>
+      <a href="/2016/07/03/es6常用语法整理/" class="article-date">
+  	<time datetime="2016-07-03T11:53:55.000Z" itemprop="datePublished">2016-07-03</time>
 </a>
     </div>
   
@@ -177,7 +174,7 @@ React v1.5 打包后提示Warning: It looks like you’re using a minified copy 
         
   
     <h1 class="article-title" itemprop="name">
-      webpack使用整理
+      es6常用语法整理
     </h1>
   
 
@@ -186,7 +183,7 @@ React v1.5 打包后提示Warning: It looks like you’re using a minified copy 
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 	</div>
 
         
@@ -197,23 +194,8 @@ React v1.5 打包后提示Warning: It looks like you’re using a minified copy 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><ul>
-<li>React v1.5 打包后提示<br>Warning: It looks like you’re using a minified copy of the development build of React. When deploying React apps to production, make sure to use the production build which skips development warnings and is faster. See <a href="https://fb.me/react-minification" target="_blank" rel="external">https://fb.me/react-minification</a> for more details.</li>
-</ul>
-<p>解决方法：<br>在Webpack的plugins里添加：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">  <span class="string">"process.env"</span>: &#123; </span><br><span class="line">     NODE_ENV: <span class="built_in">JSON</span>.stringify(<span class="string">"production"</span>) </span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://github.com/facebook/react/issues/6479" target="_blank" rel="external">github-issue</a></p>
-<ul>
-<li>在 production 环境中禁止 react-transform-hmr<br>Uncaught Error: locals[0] does not appear to be a <code>module</code> object with Hot Module replacement API enabled. You should disable react-transform-hmr in production by using <code>env</code> section in Babel configuration. </li>
-</ul>
-<p>解决方法：<br>在 package.json 的命令中加入 NODE_ENV=production<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"build"</span>: <span class="string">"NODE_ENV=production webpack --progress --profile --colors --config webpack.prod.config.js"</span></span><br></pre></td></tr></table></figure></p>
-<p><a href="https://babeljs.io/docs/usage/babelrc/#env-option" target="_blank" rel="external">babel-env-option</a></p>
-<ul>
-<li>如何处理第三方类库, 如 jQuery 及 jQuery libs<blockquote>
-<p>Just put it in static and directly reference it in index.html. You don’t want to pack it with your app code because jQuery never changes and would be better cached if loaded separately.</p>
-</blockquote>
-</li>
-</ul>
-<p><a href="https://github.com/vuejs-templates/webpack/issues/88" target="_blank" rel="external">https://github.com/vuejs-templates/webpack/issues/88</a></p>
+        <h2 id="一些关于箭头函数的知识点"><a href="#一些关于箭头函数的知识点" class="headerlink" title="一些关于箭头函数的知识点"></a>一些关于箭头函数的知识点</h2><p>上代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		setTimeout(() =&gt; &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">//xwill, 箭头函数改变 this 指向</span></span><br><span class="line">		&#125;,<span class="number">1000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.say();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> talk = () =&gt; &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// this 指向 talk 函数被定义的环境，这里是window</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">talk();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = (name,age) =&gt; &#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> person(<span class="string">'xwill'</span>,<span class="number">24</span>); <span class="comment">//person 不是一个构造函数</span></span><br></pre></td></tr></table></figure></p>
+<p>箭头函数<a href="http://es6.ruanyifeng.com/#docs/function#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9" target="_blank" rel="external">更多的用法</a></p>
 
       
     </div>
@@ -223,18 +205,9 @@ React v1.5 打包后提示Warning: It looks like you’re using a minified copy 
     
 <nav id="article-nav">
   
-    <a href="/2016/07/03/nodejs中使用redis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          nodejs中使用redis
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/27/react重起航/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">react重起航</div>
+    <a href="/2016/07/03/nodejs中使用redis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nodejs中使用redis</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
