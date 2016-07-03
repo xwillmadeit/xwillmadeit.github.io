@@ -6,16 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>es6常用语法整理 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一些关于箭头函数的知识点上代码1234567891011121314151617181920212223var obj = &amp;#123;	name: &apos;xwill&apos;,	say: function()&amp;#123;		setTimeout(() =&amp;gt; &amp;#123;			console.log(this.name); //xwill, 箭头函数改变 this 指向		&amp;#125;,1000);	&amp;">
+  <meta name="description" content="一些关于箭头函数的知识点箭头函数有几个使用注意点：（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。
+（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。
+上代码1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="es6常用语法整理">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/07/03/es6常用语法整理/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="一些关于箭头函数的知识点上代码1234567891011121314151617181920212223var obj = &amp;#123;	name: &apos;xwill&apos;,	say: function()&amp;#123;		setTimeout(() =&amp;gt; &amp;#123;			console.log(this.name); //xwill, 箭头函数改变 this 指向		&amp;#125;,1000);	&amp;">
-<meta property="og:updated_time" content="2016-07-03T12:00:02.000Z">
+<meta property="og:description" content="一些关于箭头函数的知识点箭头函数有几个使用注意点：（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。
+（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。
+上代码1234">
+<meta property="og:updated_time" content="2016-07-03T12:04:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="es6常用语法整理">
-<meta name="twitter:description" content="一些关于箭头函数的知识点上代码1234567891011121314151617181920212223var obj = &amp;#123;	name: &apos;xwill&apos;,	say: function()&amp;#123;		setTimeout(() =&amp;gt; &amp;#123;			console.log(this.name); //xwill, 箭头函数改变 this 指向		&amp;#125;,1000);	&amp;">
+<meta name="twitter:description" content="一些关于箭头函数的知识点箭头函数有几个使用注意点：（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。
+（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。
+上代码1234">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -194,7 +206,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一些关于箭头函数的知识点"><a href="#一些关于箭头函数的知识点" class="headerlink" title="一些关于箭头函数的知识点"></a>一些关于箭头函数的知识点</h2><p>上代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		setTimeout(() =&gt; &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">//xwill, 箭头函数改变 this 指向</span></span><br><span class="line">		&#125;,<span class="number">1000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.say();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> talk = () =&gt; &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// this 指向 talk 函数被定义的环境，这里是window</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">talk();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = (name,age) =&gt; &#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> person(<span class="string">'xwill'</span>,<span class="number">24</span>); <span class="comment">//person 不是一个构造函数</span></span><br></pre></td></tr></table></figure></p>
+        <h2 id="一些关于箭头函数的知识点"><a href="#一些关于箭头函数的知识点" class="headerlink" title="一些关于箭头函数的知识点"></a>一些关于箭头函数的知识点</h2><p>箭头函数有几个使用注意点：<br>（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<p>（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</p>
+<p>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
+<p>（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。</p>
+<p>上代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		setTimeout(() =&gt; &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">//xwill, 箭头函数改变 this 指向</span></span><br><span class="line">		&#125;,<span class="number">1000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.say();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> talk = () =&gt; &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.id); <span class="comment">//40</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.id = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">talk.call(&#123;id: <span class="number">40</span>&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = (name,age) =&gt; &#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> person(<span class="string">'xwill'</span>,<span class="number">24</span>); <span class="comment">//person 不是一个构造函数</span></span><br></pre></td></tr></table></figure></p>
 <p>箭头函数<a href="http://es6.ruanyifeng.com/#docs/function#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9" target="_blank" rel="external">更多的用法</a></p>
 
       
