@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -218,6 +218,14 @@
 </blockquote>
 <h2 id="inline，inline-block-和-block-到底有什么区别"><a href="#inline，inline-block-和-block-到底有什么区别" class="headerlink" title="inline，inline-block 和 block 到底有什么区别"></a>inline，inline-block 和 block 到底有什么区别</h2><p>三张图说明一切:<br><strong>inline</strong><br><img src="/images/css/Emf0B.png" alt=""><br><strong>inline-block</strong><br><img src="/images/css/1vbks.png" alt=""><br><strong>block</strong><br><img src="/images/css/IPf9Q.png" alt=""></p>
 <p><a href="http://stackoverflow.com/questions/8969381/what-is-the-difference-between-display-inline-and-display-inline-block" target="_blank" rel="external">三者的区别</a></p>
+<h2 id="清除浮动几种方式PK"><a href="#清除浮动几种方式PK" class="headerlink" title="清除浮动几种方式PK"></a>清除浮动几种方式PK</h2><p>最常用的</p>
+<ul>
+<li>父元素 overflow: hidden</li>
+<li>下面的元素 clear: both</li>
+</ul>
+<p>清除浮动理论上就应该用 clear，不然名称取着干嘛～<br>这里关于 overflow: hidden 清除浮动的问题会有什么<a href="http://stackoverflow.com/questions/15725667/clearboth-or-overflowauto-which-is-better" target="_blank" rel="external">问题</a></p>
+<p>当然我们是牛逼的要用牛逼的方法，以下是 bootstrap 中 clearfix 的样式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .clearfix:after&#123;</span><br><span class="line">	display: table;</span><br><span class="line">	content: <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix:after&#123;</span><br><span class="line">	clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>只需在父元素上加上 clearfix 样式即可</p>
 
       
     </div>
