@@ -805,6 +805,14 @@ div {
 <p>localStorage 用法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'name'</span>, <span class="string">'xwill'</span>);</span><br><span class="line">localStorage.getItem(<span class="string">'name'</span>);  <span class="comment">//xwill</span></span><br><span class="line">localStorage.removeItem(<span class="string">'name'</span>); </span><br><span class="line">localStorage.clear();  <span class="comment">//清除所有</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注意 localStorage 还可以 dot 方式使用 localStorage.name = 'xwill'，但 key，value 形式显然更容易维护。</span></span><br></pre></td></tr></table></figure></p>
 <p>4.表单属性<br>html5 增加了 placeholder 属性，另外 input 的 type 增加了：color, date, datetime, datetime-local, month, week, time, email, number, range, search, tel 以及 url。</p>
 <p>5….</p>
+<h2 id="函数声明和函数表达式的区别"><a href="#函数声明和函数表达式的区别" class="headerlink" title="函数声明和函数表达式的区别"></a>函数声明和函数表达式的区别</h2><p>怎么记呢？有 ＝ 就是表达式～<br>函数声明：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>函数表达式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>区别：<br>函数声明定义的函数可在定义前和后同时调用，而函数表达式定义的函数只能在定义代码下方调用。</p>
+<p>哪种定义方式好？函数声明，可参考 airbnb 的 <a href="https://github.com/airbnb/javascript" target="_blank" rel="external">javascript style guide</a></p>
+<h2 id="jsonp-跨域的原理和实现"><a href="#jsonp-跨域的原理和实现" class="headerlink" title="jsonp 跨域的原理和实现"></a>jsonp 跨域的原理和实现</h2><blockquote>
+<p>jsonp的核心则是动态添加 script 标签来调用服务器提供的js脚本。</p>
+</blockquote>
+<p><a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">jsonp跨域的原理和实现</a></p>
 
       
     </div>
