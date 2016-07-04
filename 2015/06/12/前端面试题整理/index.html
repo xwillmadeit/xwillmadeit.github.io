@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://xwillmadeit.github.io/2015/06/12/前端面试题整理/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="实时显示当时时间1234567891011121314151617181920(function getDate()&amp;#123;	var date = new Date(),	DateObj = &amp;#123;		getTime: function()&amp;#123;			var year = date.getFullYear(),				month = (date.getMonth())+1, //月">
-<meta property="og:updated_time" content="2016-07-04T10:20:28.000Z">
+<meta property="og:updated_time" content="2016-07-04T10:21:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端常见面试题">
 <meta name="twitter:description" content="实时显示当时时间1234567891011121314151617181920(function getDate()&amp;#123;	var date = new Date(),	DateObj = &amp;#123;		getTime: function()&amp;#123;			var year = date.getFullYear(),				month = (date.getMonth())+1, //月">
@@ -236,7 +236,7 @@
 <h2 id="函数声明和函数表达式的区别"><a href="#函数声明和函数表达式的区别" class="headerlink" title="函数声明和函数表达式的区别"></a>函数声明和函数表达式的区别</h2><p>怎么记呢？有 ＝ 就是表达式～<br>函数声明：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>函数表达式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>区别：<br>函数声明定义的函数可在定义前和后同时调用，而函数表达式定义的函数只能在定义代码下方调用。</p>
-<p>哪种定义方式好？函数声明，可参考 airbnb 的 <a href="https://github.com/airbnb/javascript" target="_blank" rel="external">javascript style guide</a></p>
+<p>哪种定义方式好？<br>函数声明，可参考 airbnb 的 <a href="https://github.com/airbnb/javascript" target="_blank" rel="external">javascript style guide</a></p>
 <h2 id="jsonp-跨域的原理和实现"><a href="#jsonp-跨域的原理和实现" class="headerlink" title="jsonp 跨域的原理和实现"></a>jsonp 跨域的原理和实现</h2><blockquote>
 <p>jsonp的核心则是动态添加 script 标签来调用服务器提供的js脚本。</p>
 </blockquote>
