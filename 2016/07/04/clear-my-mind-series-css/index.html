@@ -14,11 +14,15 @@
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="css 中的一些容易搞不灵清的问题整理这篇主要记录一些 css 易搞不灵清的问题
 关于元素使用百分比做高度123456789101112*&amp;#123;	padding: 0;margin: 0;&amp;#125;.box&amp;#123; 	width: 100px;	background-color: pink;&amp;#125;.inner&amp;#123;	height: 10%;	width: 20px; 	ba">
-<meta property="og:updated_time" content="2016-07-04T03:38:56.000Z">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/css/Emf0B.png">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/css/1vbks.png">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/css/IPf9Q.png">
+<meta property="og:updated_time" content="2016-07-04T06:03:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="clear my mind series - css">
 <meta name="twitter:description" content="css 中的一些容易搞不灵清的问题整理这篇主要记录一些 css 易搞不灵清的问题
 关于元素使用百分比做高度123456789101112*&amp;#123;	padding: 0;margin: 0;&amp;#125;.box&amp;#123; 	width: 100px;	background-color: pink;&amp;#125;.inner&amp;#123;	height: 10%;	width: 20px; 	ba">
+<meta name="twitter:image" content="https://xwillmadeit.github.io/images/css/Emf0B.png">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -74,7 +78,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -216,6 +220,21 @@
 <blockquote>
 <p>float 的元素脱离文档流，压在不浮动的元素上面；<br>两个浮动的元素重叠时（margin为负值），定义在后面的元素会压在前面的元素上。</p>
 </blockquote>
+<h2 id="盒模型-margin-折叠问题"><a href="#盒模型-margin-折叠问题" class="headerlink" title="盒模型 margin 折叠问题"></a>盒模型 margin 折叠问题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width: <span class="number">300</span>px;</span><br><span class="line">	height: <span class="number">200</span>px;</span><br><span class="line">	margin-top: <span class="number">10</span>px;</span><br><span class="line">	background-color: pink;</span><br><span class="line">&#125;</span><br><span class="line">.inner&#123;</span><br><span class="line">	width: <span class="number">80</span>px;</span><br><span class="line">	height: <span class="number">80</span>px;</span><br><span class="line">	margin-top: <span class="number">20</span>px;</span><br><span class="line">	background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span>&gt;</span><br><span class="line">    &lt;div class="inner"&gt;</span><br><span class="line">    	hello</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果是 inner 和 box 一起距离 body 20px，且 inner 和 box 之间没有 margin-top!这是为什么呢？</p>
+<blockquote>
+<p>在常规文档流中，2个或以上的块级盒模型相邻的垂直margin会被折叠。最终的margin值计算方法如下：<br>全部都为正值，取最大者；<br>不全是正值，则都取绝对值，然后用正值减去最大值；<br>没有正值，则都取绝对值，然后用0减去最大值。</p>
+</blockquote>
+<p>具体参考<a href="http://blog.csdn.net/zerlinda_c/article/details/50054639" target="_blank" rel="external">这篇</a></p>
+<p>解决方法有很多，最常用的：<br><strong>在父层div加上：overflow: hidden</strong></p>
+<h2 id="为什么-input，img等内联元素可以设置宽高？"><a href="#为什么-input，img等内联元素可以设置宽高？" class="headerlink" title="为什么 input，img等内联元素可以设置宽高？"></a>为什么 input，img等内联元素可以设置宽高？</h2><p>关于这个问题，css中有这么两个名词，替换和不可替换元素。那么这两个莫名其妙的东东到底是什么意思呢？<br><a href="http://blog.csdn.net/jlds123/article/details/8647448" target="_blank" rel="external">为什么 input，img等内联元素可以设置宽高</a></p>
+<p>这里我们只是需要知道，img、input等行内元素比较特殊，他们属于可替换元素：</p>
+<blockquote>
+<p>替换元素一般有内在尺寸，所以具有width和height，可以设定。例如你不指定img的width和height时，就按其内在尺寸显示，也就是图片被保存的时候的宽度和高度。对于表单元素，浏览器也有默认的样式，包括宽度和高度。</p>
+</blockquote>
+<h2 id="inline，inline-block-和-block-到底有什么区别"><a href="#inline，inline-block-和-block-到底有什么区别" class="headerlink" title="inline，inline-block 和 block 到底有什么区别"></a>inline，inline-block 和 block 到底有什么区别</h2><p>三张图说明一切:<br><strong>inline</strong><br><img src="/images/css/Emf0B.png" alt=""><br><strong>inline-block</strong><br><img src="/images/css/1vbks.png" alt=""><br><strong>block</strong><br><img src="/images/css/IPf9Q.png" alt=""></p>
+<p><a href="http://stackoverflow.com/questions/8969381/what-is-the-difference-between-display-inline-and-display-inline-block" target="_blank" rel="external">三者的区别</a></p>
 
       
     </div>
