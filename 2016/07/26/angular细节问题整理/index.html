@@ -6,19 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>angular细节问题整理 | xwillmadeit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="directive 中监听 controller 多个对象或数组的变化//init$scope.chartData = {   xdata: [],   ydata: {    guestData: [],    …   }}
-//change data，注意这里必须重新赋值，push 没用$scope.change = function(){    $scope.chartData.xdata">
+  <meta name="description" content="directive 中监听 controller 多个对象或数组的变化1234567891011121314151617181920212223242526272829303132//init$scope.chartData = &amp;#123;   xdata: [],   ydata: &amp;#123;    guestData: [],    ...   &amp;#125;&amp;#125;//change d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular细节问题整理">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/07/26/angular细节问题整理/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="directive 中监听 controller 多个对象或数组的变化//init$scope.chartData = {   xdata: [],   ydata: {    guestData: [],    …   }}
-//change data，注意这里必须重新赋值，push 没用$scope.change = function(){    $scope.chartData.xdata">
-<meta property="og:updated_time" content="2016-07-26T03:09:56.000Z">
+<meta property="og:description" content="directive 中监听 controller 多个对象或数组的变化1234567891011121314151617181920212223242526272829303132//init$scope.chartData = &amp;#123;   xdata: [],   ydata: &amp;#123;    guestData: [],    ...   &amp;#125;&amp;#125;//change d">
+<meta property="og:updated_time" content="2016-07-26T03:11:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular细节问题整理">
-<meta name="twitter:description" content="directive 中监听 controller 多个对象或数组的变化//init$scope.chartData = {   xdata: [],   ydata: {    guestData: [],    …   }}
-//change data，注意这里必须重新赋值，push 没用$scope.change = function(){    $scope.chartData.xdata">
+<meta name="twitter:description" content="directive 中监听 controller 多个对象或数组的变化1234567891011121314151617181920212223242526272829303132//init$scope.chartData = &amp;#123;   xdata: [],   ydata: &amp;#123;    guestData: [],    ...   &amp;#125;&amp;#125;//change d">
   
     <link rel="alternative" href="/atom.xml" title="xwillmadeit" type="application/atom+xml">
   
@@ -212,11 +209,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="directive-中监听-controller-多个对象或数组的变化"><a href="#directive-中监听-controller-多个对象或数组的变化" class="headerlink" title="directive 中监听 controller 多个对象或数组的变化"></a>directive 中监听 controller 多个对象或数组的变化</h2><p>//init<br>$scope.chartData = {<br>   xdata: [],<br>   ydata: {<br>    guestData: [],<br>    …<br>   }<br>}</p>
-<p>//change data，注意这里必须重新赋值，push 没用<br>$scope.change = function(){<br>    $scope.chartData.xdata = [1];<br>    $scope.chartData.ydata = {<br>        guestData: [1,2],<br>        browseData: [1,2],<br>        loseData: [1,2],<br>        avgData: [1,2]<br>    };<br>}</p>
-<p><chart-line xdata="chartData.xdata" ydata="chartData.ydata"></chart-line></p>
-<p>//directive<br>scope: {<br>    xdata: ‘=’,<br>    ydata: ‘=’<br>}</p>
-<p>//只要 xdata 或 ydata 任意一个对象变化即可<br>scope.$watchCollection(‘[xdata, ydata]’, function(newVal,oldVal) {<br>    console.log(newVal);<br>})<br>```</p>
+        <h2 id="directive-中监听-controller-多个对象或数组的变化"><a href="#directive-中监听-controller-多个对象或数组的变化" class="headerlink" title="directive 中监听 controller 多个对象或数组的变化"></a>directive 中监听 controller 多个对象或数组的变化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//init</span></span><br><span class="line">$scope.chartData = &#123;</span><br><span class="line">   xdata: [],</span><br><span class="line">   ydata: &#123;</span><br><span class="line">    guestData: [],</span><br><span class="line">    ...</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//change data，注意这里必须重新赋值，push 没用</span></span><br><span class="line">$scope.change = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $scope.chartData.xdata = [<span class="number">1</span>];</span><br><span class="line">	$scope.chartData.ydata = &#123;</span><br><span class="line">        guestData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        browseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        loseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        avgData: [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;chart-line xdata=<span class="string">"chartData.xdata"</span> ydata=<span class="string">"chartData.ydata"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">chart-line</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//directive</span><br><span class="line">scope: &#123;</span><br><span class="line">    xdata: '=',</span><br><span class="line">    ydata: '='</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//只要 xdata 或 ydata 任意一个对象变化即可</span><br><span class="line">scope.$watchCollection('[xdata, ydata]', function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
 
       
     </div>

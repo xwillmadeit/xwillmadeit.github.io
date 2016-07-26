@@ -173,64 +173,6 @@
 
       <div class="body-wrap">
   
-    <article id="post-es6常用语法整理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/03/es6常用语法整理/" class="article-date">
-  	<time datetime="2016-07-03T11:53:55.000Z" itemprop="datePublished">2016-07-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/03/es6常用语法整理/">es6常用语法整理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一些关于箭头函数的知识点"><a href="#一些关于箭头函数的知识点" class="headerlink" title="一些关于箭头函数的知识点"></a>一些关于箭头函数的知识点</h2><p>箭头函数有几个使用注意点：<br>（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
-<p>（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</p>
-<p>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
-<p>（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。</p>
-<p> (5) 只有一个参数可以省略 ()<br>上代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	say() &#123;</span><br><span class="line">		setTimeout(() =&gt; &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">//xwill, 箭头函数改变 this 指向</span></span><br><span class="line">		&#125;,<span class="number">1000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.say();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> talk = () =&gt; &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.id); <span class="comment">//40</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.id = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">talk.call(&#123;id: <span class="number">40</span>&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = (name,age) =&gt; &#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> person(<span class="string">'xwill'</span>,<span class="number">24</span>); <span class="comment">//person 不是一个构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//只有一个参数可以省略 ()，但是注意啦，函数定义最好用函数声明！</span></span><br><span class="line"><span class="keyword">var</span> say = word =&gt; <span class="built_in">console</span>.log(word);</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].map(key =&gt; <span class="built_in">console</span>.log(key))</span><br></pre></td></tr></table></figure></p>
-<p>箭头函数<a href="http://es6.ruanyifeng.com/#docs/function#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9" target="_blank" rel="external">更多的用法</a></p>
-<h2 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a>函数参数的默认值</h2>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-  
     <article id="post-nodejs中使用redis" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -816,6 +758,63 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+  
+    <article id="post-git设置全局用户名和邮箱" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/23/git设置全局用户名和邮箱/" class="article-date">
+  	<time datetime="2016-06-23T02:38:47.000Z" itemprop="datePublished">2016-06-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/23/git设置全局用户名和邮箱/">git设置全局用户名和邮箱</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="查看全局设置"><a href="#查看全局设置" class="headerlink" title="查看全局设置"></a>查看全局设置</h2><p>git config –list</p>
+<h2 id="设置用户名和邮箱"><a href="#设置用户名和邮箱" class="headerlink" title="设置用户名和邮箱"></a>设置用户名和邮箱</h2><pre><code>git config --global user.name [username]
+git config --global user.email [email]
+</code></pre><p>遇到 fatal: unable to access SSL certificate problem: certificate is not yet valid 之类的错误</p>
+<pre><code>git config --global http.sslVerify false 
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 	</div>
 
       

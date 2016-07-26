@@ -199,11 +199,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="directive-中监听-controller-多个对象或数组的变化"><a href="#directive-中监听-controller-多个对象或数组的变化" class="headerlink" title="directive 中监听 controller 多个对象或数组的变化"></a>directive 中监听 controller 多个对象或数组的变化</h2><p>//init<br>$scope.chartData = {<br>   xdata: [],<br>   ydata: {<br>    guestData: [],<br>    …<br>   }<br>}</p>
-<p>//change data，注意这里必须重新赋值，push 没用<br>$scope.change = function(){<br>    $scope.chartData.xdata = [1];<br>    $scope.chartData.ydata = {<br>        guestData: [1,2],<br>        browseData: [1,2],<br>        loseData: [1,2],<br>        avgData: [1,2]<br>    };<br>}</p>
-<p><chart-line xdata="chartData.xdata" ydata="chartData.ydata"></chart-line></p>
-<p>//directive<br>scope: {<br>    xdata: ‘=’,<br>    ydata: ‘=’<br>}</p>
-<p>//只要 xdata 或 ydata 任意一个对象变化即可<br>scope.$watchCollection(‘[xdata, ydata]’, function(newVal,oldVal) {<br>    console.log(newVal);<br>})<br>```</p>
+        <h2 id="directive-中监听-controller-多个对象或数组的变化"><a href="#directive-中监听-controller-多个对象或数组的变化" class="headerlink" title="directive 中监听 controller 多个对象或数组的变化"></a>directive 中监听 controller 多个对象或数组的变化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//init</span></span><br><span class="line">$scope.chartData = &#123;</span><br><span class="line">   xdata: [],</span><br><span class="line">   ydata: &#123;</span><br><span class="line">    guestData: [],</span><br><span class="line">    ...</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//change data，注意这里必须重新赋值，push 没用</span></span><br><span class="line">$scope.change = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $scope.chartData.xdata = [<span class="number">1</span>];</span><br><span class="line">	$scope.chartData.ydata = &#123;</span><br><span class="line">        guestData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        browseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        loseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        avgData: [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;chart-line xdata=<span class="string">"chartData.xdata"</span> ydata=<span class="string">"chartData.ydata"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">chart-line</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//directive</span><br><span class="line">scope: &#123;</span><br><span class="line">    xdata: '=',</span><br><span class="line">    ydata: '='</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//只要 xdata 或 ydata 任意一个对象变化即可</span><br><span class="line">scope.$watchCollection('[xdata, ydata]', function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -345,62 +341,6 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-  
-    <article id="post-javascript中一些细节问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/11/javascript中一些细节问题/" class="article-date">
-  	<time datetime="2016-07-11T09:40:54.000Z" itemprop="datePublished">2016-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/11/javascript中一些细节问题/">javascript中一些细节问题</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="和-有什么区别"><a href="#和-有什么区别" class="headerlink" title="== 和 === 有什么区别"></a>== 和 === 有什么区别</h2><p>首先看看 == 和 === 有什么区别<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="literal">true</span>  <span class="comment">//true</span></span><br><span class="line"><span class="number">1</span> == <span class="string">'1'</span>  <span class="comment">//true</span></span><br><span class="line"><span class="number">0</span> == <span class="string">''</span>  <span class="comment">//true</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> === <span class="literal">true</span>  <span class="comment">//false</span></span><br><span class="line"><span class="number">1</span> === <span class="string">'1'</span>  <span class="comment">//false</span></span><br><span class="line"><span class="number">0</span> === <span class="string">''</span>  <span class="comment">//false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
-<p>很明显看出来 == 在运算的时候做了什么：类型转换，而 === 在运算的时候比较了类型。那么，该用 == 还是 === ？</p>
-<p>这个问题吧，我觉得其实用 === 当然更靠谱规矩，但是实际中 == 也常在用，就算碰到 x == 1 x传入’1’之类的也没关系，反正都是要类型转换的。综上，看项目中怎么用吧，如果刚开始的项目，规范的用 === 吧！</p>
-<p><a href="http://www.zhihu.com/question/20348948" target="_blank" rel="external">javascript中用 == 还是 ===</a></p>
-<h2 id="null-和-undefined-的区别"><a href="#null-和-undefined-的区别" class="headerlink" title="null 和 undefined 的区别"></a>null 和 undefined 的区别</h2>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 	</div>
 
       
@@ -869,6 +809,64 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/music/">music</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/纯音乐/">纯音乐</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+  
+    <article id="post-es6常用语法整理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/03/es6常用语法整理/" class="article-date">
+  	<time datetime="2016-07-03T11:53:55.000Z" itemprop="datePublished">2016-07-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/03/es6常用语法整理/">es6常用语法整理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一些关于箭头函数的知识点"><a href="#一些关于箭头函数的知识点" class="headerlink" title="一些关于箭头函数的知识点"></a>一些关于箭头函数的知识点</h2><p>箭头函数有几个使用注意点：<br>（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<p>（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</p>
+<p>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
+<p>（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。</p>
+<p> (5) 只有一个参数可以省略 ()<br>上代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	say() &#123;</span><br><span class="line">		setTimeout(() =&gt; &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">//xwill, 箭头函数改变 this 指向</span></span><br><span class="line">		&#125;,<span class="number">1000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.say();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> talk = () =&gt; &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.id); <span class="comment">//40</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.id = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">talk.call(&#123;id: <span class="number">40</span>&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = (name,age) =&gt; &#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> person(<span class="string">'xwill'</span>,<span class="number">24</span>); <span class="comment">//person 不是一个构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//只有一个参数可以省略 ()，但是注意啦，函数定义最好用函数声明！</span></span><br><span class="line"><span class="keyword">var</span> say = word =&gt; <span class="built_in">console</span>.log(word);</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].map(key =&gt; <span class="built_in">console</span>.log(key))</span><br></pre></td></tr></table></figure></p>
+<p>箭头函数<a href="http://es6.ruanyifeng.com/#docs/function#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9" target="_blank" rel="external">更多的用法</a></p>
+<h2 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a>函数参数的默认值</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 	</div>
 
       
