@@ -1,0 +1,618 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,jasmine,测试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Jasmine 入门Jasmine 的四个核心概念: 分组(Suites)、用例(Specs)、期望(Expectations)、匹配(Matchers).
+开始捣鼓例子1:
+12345678910function add(a)&amp;#123;	return a+=10;&amp;#125;describe(&quot;A suite&quot;, function() &amp;#123;	it(&quot;contains spec with">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jasmine学习">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/09/26/jasmine学习/index.html">
+<meta property="og:site_name" content="xwillmadeit">
+<meta property="og:description" content="Jasmine 入门Jasmine 的四个核心概念: 分组(Suites)、用例(Specs)、期望(Expectations)、匹配(Matchers).
+开始捣鼓例子1:
+12345678910function add(a)&amp;#123;	return a+=10;&amp;#125;describe(&quot;A suite&quot;, function() &amp;#123;	it(&quot;contains spec with">
+<meta property="og:updated_time" content="2016-09-27T01:58:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jasmine学习">
+<meta name="twitter:description" content="Jasmine 入门Jasmine 的四个核心概念: 分组(Suites)、用例(Specs)、期望(Expectations)、匹配(Matchers).
+开始捣鼓例子1:
+12345678910function add(a)&amp;#123;	return a+=10;&amp;#125;describe(&quot;A suite&quot;, function() &amp;#123;	it(&quot;contains spec with">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://xwillmadeit.github.io/2016/09/26/jasmine学习/"/>
+
+
+  <title> jasmine学习 | xwillmadeit </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xwillmadeit</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jasmine学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-26T09:52:38+08:00" content="2016-09-26">
+              2016-09-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Jasmine-入门"><a href="#Jasmine-入门" class="headerlink" title="Jasmine 入门"></a>Jasmine 入门</h2><p>Jasmine 的四个核心概念: <b>分组(Suites)、用例(Specs)、期望(Expectations)、匹配(Matchers).</b></p>
+<h2 id="开始捣鼓"><a href="#开始捣鼓" class="headerlink" title="开始捣鼓"></a>开始捣鼓</h2><p>例子1:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a+=<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">"A suite"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">"contains spec with an expectation"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = add(<span class="number">10</span>);</span><br><span class="line">		expect(a).toEqual(<span class="number">20</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>describe 用于定义这组测试的标题<br>it 用于定义某个具体测试的标题</p>
+<p>例子2:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getVal</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a || <span class="number">20</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'getVal函数测试'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">'contains spec with an expectation'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = getVal(<span class="number">10</span>);</span><br><span class="line">		<span class="keyword">var</span> b = getVal(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">var</span> c = getVal(<span class="string">''</span>);</span><br><span class="line">		<span class="keyword">var</span> d = getVal(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">		expect(a).toBe(<span class="number">10</span>);</span><br><span class="line">		expect(b).toBe(<span class="number">20</span>);</span><br><span class="line">		expect(c).toBe(<span class="number">20</span>);</span><br><span class="line">		expect(d).toBe(<span class="number">20</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>例子2:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//匹配邮箱</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/[\w\.]+@\w+\.(com|cn|net)/</span>;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'正则匹配邮箱'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	it(<span class="string">'匹配邮箱'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = <span class="string">'976962324@qq.com'</span>,</span><br><span class="line">			b = <span class="string">'xiesenzhengyi@gmail.com'</span>,</span><br><span class="line">			c = <span class="string">'xiesen01@outlook.com'</span>,</span><br><span class="line">			d = <span class="string">'xiesen.01@hahaha.net'</span>;</span><br><span class="line"></span><br><span class="line">		expect(a).toMatch(reg);</span><br><span class="line">		expect(b).toMatch(reg);</span><br><span class="line">		expect(c).toMatch(reg);</span><br><span class="line">		expect(d).toMatch(reg);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="一些常用的方法"><a href="#一些常用的方法" class="headerlink" title="一些常用的方法"></a>一些常用的方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">beforeEach</span><br><span class="line">afterEach</span><br><span class="line">beforeAll</span><br><span class="line">afterAll</span><br><span class="line">toBeTruthy</span><br><span class="line">toBeFalsy</span><br><span class="line">toBeNull</span><br><span class="line">toBeUndefined</span><br></pre></td></tr></table></figure>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"Asynchronous specs"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> value;</span><br><span class="line"></span><br><span class="line">	beforeEach(<span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		  value = <span class="number">0</span>;</span><br><span class="line">		  done();</span><br><span class="line">		&#125;, <span class="number">1000</span>);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	it(<span class="string">"should support async execution of test preparation and expectations"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		value++;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			expect(value).toBeGreaterThan(<span class="number">0</span>);</span><br><span class="line">			<span class="comment">//done();</span></span><br><span class="line">		&#125;, <span class="number">2000</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>beforeEach 方法接受 done 表示等异步方法执行完，再调用测试用例 it<br>同样 it 方法中接受 done 可用于在异步节后执行测试用例</p>
+<h2 id="在-angular-中使用-jasmine"><a href="#在-angular-中使用-jasmine" class="headerlink" title="在 angular 中使用 jasmine"></a>在 angular 中使用 jasmine</h2><ol>
+<li>安装依赖</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g karma-cli</span><br><span class="line">npm install --save-dev karma karma-jasmine jasmine-core karma-chrome-launcher</span><br><span class="line">npm install --save-dev angular angular-mocks</span><br></pre></td></tr></table></figure>
+<p>注意：如果全局装有 karma 和 jasmine，最好删除</p>
+<ol>
+<li>生成 karma.conf.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma init</span><br></pre></td></tr></table></figure>
+<p>一路按照提示即可</p>
+<ol>
+<li>第一个测试<br>karma.conf.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">files: [</span><br><span class="line">    <span class="string">'node_modules/angular/angular.js'</span>,</span><br><span class="line">    <span class="string">'node_modules/angular-mocks/angular-mocks.js'</span>,</span><br><span class="line">    <span class="string">'js/greeting.js'</span>,</span><br><span class="line">    <span class="string">'test/getGreeting.spec.js'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>js/greeting.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'demo'</span>, [])</span><br><span class="line">.factory(<span class="string">'greeter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getFullName: <span class="function"><span class="keyword">function</span>(<span class="params">firstname, lastname</span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> firstname + lastname;</span><br><span class="line">    &#125;,</span><br><span class="line">    getGreeting: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello "</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>test/getGreeting.spec.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"getGreeting"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> greeter;</span><br><span class="line">  beforeEach(<span class="built_in">module</span>(<span class="string">'demo'</span>));</span><br><span class="line">  beforeEach(inject(<span class="function"><span class="keyword">function</span>(<span class="params">_greeter_</span>) </span>&#123; <span class="comment">//这里可以注入依赖</span></span><br><span class="line">    greeter = _greeter_;</span><br><span class="line">  &#125;));</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"says Hello to me"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    expect(greeter.getGreeting(<span class="string">"Dave"</span>)).toEqual(<span class="string">"Hello Dave"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should return fullname"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    expect(greeter.getFullName(<span class="string">'xwill'</span>, <span class="string">'madeit'</span>)).toEqual(<span class="string">"xwillmadeit"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>总结一下大致步骤</p>
+<blockquote>
+<ul>
+<li>Import the module that contains the service you’re testing.</li>
+<li>Inject the service you’re testing, and save it for later use. You may also want to set up mocks or spies at this point.</li>
+<li>Write the tests. Each one should ideally follow the pattern of Given/When/Then, an idea from BDD (Behavior-Driven Development)：<blockquote>
+<ul>
+<li>Given some particular state of my app<br>set up state, mock or spy functions if necessary</li>
+<li>When I call some method<br>call the method you’re testing</li>
+<li>Then that method behaves in a certain way<br>verify the method did the right thing</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/jasmine/" rel="tag">#jasmine</a>
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/23/小程序开发实战/" rel="next" title="小程序开发实战">
+                <i class="fa fa-chevron-left"></i> 小程序开发实战
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/17/The-Final-Closure/" rel="prev" title="The Final Closure">
+                The Final Closure <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xwillmadeit" />
+          <p class="site-author-name" itemprop="name">xwillmadeit</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jasmine-入门"><span class="nav-number">1.</span> <span class="nav-text">Jasmine 入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始捣鼓"><span class="nav-number">2.</span> <span class="nav-text">开始捣鼓</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些常用的方法"><span class="nav-number">3.</span> <span class="nav-text">一些常用的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步"><span class="nav-number">4.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-angular-中使用-jasmine"><span class="nav-number">5.</span> <span class="nav-text">在 angular 中使用 jasmine</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xwillmadeit</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
