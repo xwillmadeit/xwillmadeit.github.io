@@ -233,6 +233,879 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/31/聊聊-Function-Composition/" itemprop="url">
+                  聊聊 Function Composition
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-31T12:02:57+08:00" content="2017-01-31">
+              2017-01-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><b>Function Composition 是把两个或多个方法合成为一个新方法的过程</b><br>Function composition is the process of combining two or more functions to produce a new function. Composing functions together is like snapping together a series of pipes for our data to flow through.</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>一个常见需求：把下面数组中所有的 type 为 Household 的找出来，计算他们的 price 总和</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> expenses = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Rent'</span>,</span><br><span class="line">    price: <span class="number">500</span>,</span><br><span class="line">    type: <span class="string">'Household'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: <span class="string">'Netflix'</span>,</span><br><span class="line">    price: <span class="number">5.99</span>,</span><br><span class="line">    type: <span class="string">'Services'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: <span class="string">'Gym'</span>,</span><br><span class="line">    price: <span class="number">15</span>,</span><br><span class="line">    type: <span class="string">'Health'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: <span class="string">'Bills'</span>,</span><br><span class="line">    price: <span class="number">100</span>,</span><br><span class="line">    type: <span class="string">'Household'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>使用 Pure Function + Pure Function 我们这样处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> typeHousehold = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> item.type === <span class="string">'Household'</span>;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> allPriceHousehold = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total += item.price;</span><br><span class="line">	&#125;, <span class="number">0</span>);	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(allPriceHousehold(typeHousehold(expenses))); <span class="comment">//600</span></span><br></pre></td></tr></table></figure>
+<p>我们也可以使用 Function Composition</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> typeHousehold = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> item.type === <span class="string">'Household'</span>;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sumAll = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total += item.price;</span><br><span class="line">	&#125;, <span class="number">0</span>);	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> compose = <span class="function"><span class="keyword">function</span>(<span class="params">f, g</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> g(f(x));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sumAllHousehold = compose(typeHousehold, sumAll);</span><br><span class="line"><span class="built_in">console</span>.log(sumAllHousehold(expenses)); <span class="comment">//600</span></span><br></pre></td></tr></table></figure>
+<p>compose 函数如果用 es6 写的话，更佳简洁</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compose = (f, g) =&gt; x =&gt; g(f(x));</span><br></pre></td></tr></table></figure>
+<h2 id="工具库"><a href="#工具库" class="headerlink" title="工具库"></a>工具库</h2><p>lodash 提供了 <em>.flow 和 </em>.flowRight 方法来获得一个合成过的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sumAllHousehold = _.flow([typeHousehold, sumAll]); <span class="comment">// 从左到右</span></span><br><span class="line"><span class="keyword">const</span> sumAllHousehold = _.flowRight([sumAll, typeHousehold]); <span class="comment">//从右到左</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sumAllHousehold(expenses)); <span class="comment">//600</span></span><br></pre></td></tr></table></figure>
+<p>Ramda 也提供了 R.compose 方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const sumAllHousehold = R.compose(sumAll, typeHousehold);</span><br><span class="line"></span><br><span class="line">console.log(sumAllHousehold(expenses)); //600</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.ricardofilipe.com/post/javascript-composition-for-dummies" target="_blank" rel="external">A Gentle Introduction to Composition in JavaScript</a></p>
+<p><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-function-composition-20dfb109a1a0#.4oz5dmmij" target="_blank" rel="external">What is Function Composition</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/31/聊聊-Pure-Function/" itemprop="url">
+                  聊聊 Pure Function
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-31T10:53:31+08:00" content="2017-01-31">
+              2017-01-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><b>Pure Function 是不依赖且不改变其外部作用域中变量的函数</b><br>A pure function doesn’t depend on and doesn’t modify the states of variables out of its scope.</p>
+<p>Pure Function 是 Functional Programming 的核心</p>
+<p>稍微有点抽象，别急…</p>
+<h2 id="不依赖-amp-改变外部作用域变量的值"><a href="#不依赖-amp-改变外部作用域变量的值" class="headerlink" title="不依赖 &amp; 改变外部作用域变量的值"></a>不依赖 &amp; 改变外部作用域变量的值</h2><p>看下面这个 function </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = &#123; a: <span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">impureFunction</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  items.a = items.a * b + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> items.a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = impureFunction(values);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(values, c); <span class="comment">// &#123;a: 3&#125;, 3</span></span><br></pre></td></tr></table></figure>
+<p>这个 function 依赖了其外部作用域中的变量，并且把外部作用域变量中的属性值改了，这个 function 不是干净的 function，它容易产生副作用（side effect）</p>
+<p>使用 Pure Function 改写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = &#123; a: <span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">impureFunction</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  a = a * b + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = impureFunction(values.a);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(values, c); <span class="comment">// &#123;a: 1&#125;, 3</span></span><br></pre></td></tr></table></figure>
+<p>这时候函数并没有改变 values 对象的 a 属性值，它是一个 Pure Function</p>
+<p><b>再来看一个常见的需求，求以下对象数组中所有 price 总和</b><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> expenses = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Rent'</span>,</span><br><span class="line">    price: <span class="number">500</span>,</span><br><span class="line">    type: <span class="string">'Household'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: <span class="string">'Netflix'</span>,</span><br><span class="line">    price: <span class="number">5.99</span>,</span><br><span class="line">    type: <span class="string">'Services'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: <span class="string">'Gym'</span>,</span><br><span class="line">    price: <span class="number">15</span>,</span><br><span class="line">    type: <span class="string">'Health'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: <span class="string">'Bills'</span>,</span><br><span class="line">    price: <span class="number">100</span>,</span><br><span class="line">    type: <span class="string">'Household'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p>传统方式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> total = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//other code goes here</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;expenses.length; i++) &#123;</span><br><span class="line">	total += expenses[i].price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(total);</span><br></pre></td></tr></table></figure></p>
+<p>很明显结果不会错，但是这中写法的缺陷：</p>
+<ul>
+<li>它依赖外部作用域中的变量 total，而这个变量有可能在其他代码中被覆盖，很难去追踪它的状态变化，不好预测</li>
+<li>如果有另一个需求也是求所用数组的属性和，那这个 for 循环又得写一遍</li>
+</ul>
+<p>使用 Pure Function<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total += item.price;</span><br><span class="line">	&#125;, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(expenses));</span><br></pre></td></tr></table></figure></p>
+<p>好处一目了然</p>
+<h2 id="使用-Pure-Function-的好处"><a href="#使用-Pure-Function-的好处" class="headerlink" title="使用 Pure Function 的好处"></a>使用 Pure Function 的好处</h2><ul>
+<li>没有副作用，因为它不会改变它外部作用域中变量的状态</li>
+<li>容易单元测试，因为 Pure Function 不依赖外部作用域的变量，只需要关心输入和输出值</li>
+<li>使代码更佳简洁，更灵活，提高复用性</li>
+</ul>
+<p><a href="http://www.nicoespeon.com/en/2015/01/pure-functions-javascript/" target="_blank" rel="external">Pure Function in javascript</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/30/聊聊Promise/" itemprop="url">
+                  聊聊 Promise
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-30T11:22:55+08:00" content="2017-01-30">
+              2017-01-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Promise 是一个对象，用于提供一个未来值，这个值可能是成功值，也可能是失败值。</p>
+<blockquote>
+<p>A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved.</p>
+</blockquote>
+<h2 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h2><p><b>Pending</b><br>initial state, not fulfilled or rejected.<br>pending 状态就相当于 http 请求正在等待服务器返回结果一样，可能是等待成功，也可能是失败</p>
+<p><b>Fulfilled</b><br>the operation completed successfully.<br>Fulfilled 状态表示 promise 返回了一个成功值，即 resolve 值</p>
+<p><b>Rejected</b><br>the operation failed.<br>Rejected 状态表示 promise 返回了一个失败值，即 reject 值</p>
+<h2 id="简单实例"><a href="#简单实例" class="headerlink" title="简单实例"></a>简单实例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> say = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'yes'</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'no'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'begin'</span>);</span><br><span class="line"></span><br><span class="line">say.then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res),</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'end'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套-Chaining"><a href="#嵌套-Chaining" class="headerlink" title="嵌套 (Chaining)"></a>嵌套 (Chaining)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> greet = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'hello'</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'no welcome'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> toSb = greet =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      resolve(<span class="string">`<span class="subst">$&#123;greet&#125;</span> to sb`</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet.then(</span><br><span class="line">  greet =&gt; toSb(greet)</span><br><span class="line">).then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res)</span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><b>Something Important</b></p>
+<p>错误处理在 promise 中有两种</p>
+<blockquote>
+<ol>
+<li>Promise.prototype.catch(onRejected)</li>
+<li>Promise.prototype.then(onFulfilled, onRejected)</li>
+</ol>
+</blockquote>
+<p>因为 .then() 总是返回一个 new promise，所以如果在 then 中处理 onRejected，那么在 promise 嵌套时，第二个 .then() 中的代码总会被执行，在这个例子中就会输出 undefined   </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">greet.then(</span><br><span class="line">  greet =&gt; toSb(greet),</span><br><span class="line">  greetErr =&gt; <span class="built_in">console</span>.log(greetTxt) <span class="comment">//if promise is rejected</span></span><br><span class="line">).then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res)  <span class="comment">// here will always print undefined</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>个人推荐使用 .catch() 处理 onRejected</p>
+<h2 id="多个-Promise"><a href="#多个-Promise" class="headerlink" title="多个 Promise"></a>多个 Promise</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">1000</span>),</span><br><span class="line">	<span class="number">1000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;); </span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; reject(<span class="number">2000</span>),</span><br><span class="line">	<span class="number">2000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">3000</span>),</span><br><span class="line">	<span class="number">3000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2s to reject the promise</span></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(values =&gt; &#123; </span><br><span class="line">  <span class="built_in">console</span>.log(values);</span><br><span class="line">&#125;).catch(reason =&gt; &#123; </span><br><span class="line">  <span class="built_in">console</span>.log(reason)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>所有的 promise 成功 resolve 后，则 Promise.all 也成功 resolve<br>只要有一个 promise 被 reject，则 Promise.all 返回的新 promise 也被 reject<br>Promise.all reject 的值为第一个被 reject 的 promise 的值</p>
+</blockquote>
+<h2 id="结合-async-amp-await-example"><a href="#结合-async-amp-await-example" class="headerlink" title="结合 async &amp; await (example)"></a>结合 async &amp; await (example)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">1000</span>),</span><br><span class="line">	<span class="number">1000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">2000</span>),</span><br><span class="line">	<span class="number">2000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; reject(<span class="number">3000</span>),</span><br><span class="line">	<span class="number">3000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">allPromise</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([p1, p2, p3]);</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allPromise().then(</span><br><span class="line">	res =&gt; <span class="built_in">console</span>.log(res)</span><br><span class="line">).catch(</span><br><span class="line">	err =&gt; <span class="built_in">console</span>.log(err) <span class="comment">//3000</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261#.y8mslze0c" target="_blank" rel="external">掌握Promise</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/26/Git-Ninja/" itemprop="url">
+                  Git Ninja
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T09:42:12+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="版本管理的发展史"><a href="#版本管理的发展史" class="headerlink" title="版本管理的发展史"></a>版本管理的发展史</h2><p><b>Local Version Control Systems</b><br><img src="/images/git/local.png" alt=""></p>
+<p>To collaborate with developers on other systems，Centralized Version Control Systems (CVCSs) were developed.</p>
+<p><b>Centralized Version Control Systems</b><br><img src="/images/git/centralized.png" alt=""></p>
+<p>其中就有大名鼎鼎的 SVN (Subversion)，这种中央版本管理系统的特点：<br>have a single server that contains all the versioned files, and a number of clients that check out files from that central place.</p>
+<p>这种标准被沿用多年，不过其缺点也很明显：<br>If that server goes down for an hour, then during that hour nobody can collaborate at all or save versioned changes to anything they’re working on. If the hard disk the central database is on becomes corrupted, and proper backups haven’t been kept, you lose absolutely everything.</p>
+<p>当你的整个文件修改历史被保存在一个地方时，就有失去所有的风险</p>
+<p><b>Distributed Version Control Systems</b><br><img src="/images/git/distributed.png" alt=""></p>
+<p>从上图很明显的看出，每个客户端都保有一个项目的所有版本修改历史<br>if any server dies, any of the client repositories can be copied back up to the server to restore it. Every clone is really a full backup of all the data.</p>
+<h2 id="Git-中的文件状态"><a href="#Git-中的文件状态" class="headerlink" title="Git 中的文件状态"></a>Git 中的文件状态</h2><p>要理解 git，必须理解 git 中文件的三种状态</p>
+<p>Modified<br>Staged<br>Committed</p>
+<p><img src="/images/git/areas.png" alt=""></p>
+<p>Modified 对应文件所处区域 Working directory<br>Staged 对应文件所处区域 Staging area<br>Committed 对应文件所处区域 Git directory</p>
+<p><b>The basic Git workflow goes something like this:</b></p>
+<ul>
+<li>You modify files in your working directory.</li>
+<li>You stage the files, adding snapshots of them to your staging area.</li>
+<li>You do a commit, which takes the files as they are in the staging area and stores that snapshot permanently to your Git directory.</li>
+</ul>
+<h2 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"John Doe"</span></span><br><span class="line">git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+<p><b>安装完 git 后，第一件事情就是设置全局 Identity：</b><br>The first thing you should do when you install Git is to set your user name and email address. This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating.</p>
+<p>这是全局的，如果想针对某个项目设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name <span class="string">"John Doe"</span></span><br><span class="line">git config user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+<p>查看设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<h2 id="Git-常用命令整理"><a href="#Git-常用命令整理" class="headerlink" title="Git 常用命令整理"></a>Git 常用命令整理</h2><p>首先看一副图，基本上所有常用命令都可以用这张图上的某个过程描述<br><img src="/images/git/lifecycle.png" alt=""></p>
+<h3 id="Two-main-approaches-to-get-a-git-project"><a href="#Two-main-approaches-to-get-a-git-project" class="headerlink" title="Two main approaches to get a git project"></a>Two main approaches to get a git project</h3><p>Initializing a Repository in an Existing Directory</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add file&lt;&gt;</span><br><span class="line">git commit -m <span class="string">"initial commit"</span></span><br></pre></td></tr></table></figure>
+<p>Cloning an Existing Repository</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="comment">//github.com/xwillmadeit/webpack2.git [projectName](optional)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Add-file-to-the-staged-area"><a href="#Add-file-to-the-staged-area" class="headerlink" title="Add file to the staged area"></a>Add file to the staged area</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git add &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Commit-all-staged-files"><a href="#Commit-all-staged-files" class="headerlink" title="Commit all staged files"></a>Commit all staged files</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"initial commit"</span></span><br><span class="line">git commit -a -m <span class="string">"skip git add"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Check-status"><a href="#Check-status" class="headerlink" title="Check status"></a>Check status</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git status -s</span><br></pre></td></tr></table></figure>
+<h3 id="Check-the-changes"><a href="#Check-the-changes" class="headerlink" title="Check the changes"></a>Check the changes</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff  (compare <span class="keyword">with</span> unstaged status <span class="keyword">with</span> staged or last commit status)</span><br><span class="line">git diff --staged (compare <span class="keyword">with</span> staged status and last commit status)</span><br><span class="line">git difftool</span><br></pre></td></tr></table></figure>
+<h3 id="Undoing-things"><a href="#Undoing-things" class="headerlink" title="Undoing things"></a>Undoing things</h3><ol>
+<li>当想要修改上次提交文件或提交信息时，可以使用该命令</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+<p>You end up with a single commit – the second commit replaces the results of the first.</p>
+<ol>
+<li>Unstage a file</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Unmodifying a Modified File</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>this command will revert it back to what it looked like when you last committed.</p>
+<h3 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h3><p>list all branches</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>create a new branch</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch test</span><br></pre></td></tr></table></figure>
+<p>switch to another branch</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout test</span><br></pre></td></tr></table></figure>
+<p>create and switch</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b iss53</span><br></pre></td></tr></table></figure>
+<h3 id="show-log"><a href="#show-log" class="headerlink" title="show log"></a>show log</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log &lt;file&gt;</span><br><span class="line">git log -p &lt;file&gt;</span><br><span class="line">git show &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Stash-changes-before-switching-branch"><a href="#Stash-changes-before-switching-branch" class="headerlink" title="Stash changes before switching branch"></a>Stash changes before switching branch</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line">git checkcout test</span><br><span class="line">git stash pop/apply</span><br></pre></td></tr></table></figure>
+<p>到这里就整理这么多，都是根据 git book 官方原版书总结出来的，有机会再进阶一下</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/22/ES6-Destructuring/" itemprop="url">
+                  ES6 Destructuring
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T16:26:27+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Destructuring"><a href="#Destructuring" class="headerlink" title="Destructuring"></a>Destructuring</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  first: <span class="string">'Wes'</span>,</span><br><span class="line">  last: <span class="string">'Bos'</span>,</span><br><span class="line">  country: <span class="string">'Canada'</span>,</span><br><span class="line">  city: <span class="string">'Hamilton'</span>,</span><br><span class="line">  twitter: <span class="string">'@wesbos'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> first = person.first;</span><br><span class="line"><span class="keyword">const</span> last = person.last;</span><br></pre></td></tr></table></figure>
+<p>缺点，需重新定义两个变量，然后得重复好多代码，总之麻烦</p>
+<p>使用 Destructuring </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; name, age &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">//xwill</span></span><br><span class="line"><span class="built_in">console</span>.log(age); <span class="comment">//24</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以重命名变量</span></span><br><span class="line"><span class="keyword">var</span> &#123; name: myName &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(myName); <span class="comment">//xwill</span></span><br></pre></td></tr></table></figure>
+<p>更复杂的结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wes = &#123;</span><br><span class="line">  first: <span class="string">'Wes'</span>,</span><br><span class="line">  last: <span class="string">'Bos'</span>,</span><br><span class="line">  links: &#123;</span><br><span class="line">    social: &#123;</span><br><span class="line">      twitter: <span class="string">'https://twitter.com/wesbos'</span>,</span><br><span class="line">      facebook: <span class="string">'https://facebook.com/wesbos.developer'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    web: &#123;</span><br><span class="line">      blog: <span class="string">'https://wesbos.com'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果想拿出 twitter 和 facebook</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> twitter = wes.links.social.twitter;</span><br><span class="line"><span class="keyword">const</span> facebook = wes.links.social.facebook;</span><br><span class="line"><span class="comment">// Annoying!</span></span><br></pre></td></tr></table></figure>
+<p>使用 Destructuring</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; twitter, facebook &#125; = wes.links.social;</span><br><span class="line"><span class="built_in">console</span>.log(twitter, facebook); <span class="comment">// logs the 2 variables</span></span><br></pre></td></tr></table></figure>
+<h2 id="Destructuring-设置默认值"><a href="#Destructuring-设置默认值" class="headerlink" title="Destructuring 设置默认值"></a>Destructuring 设置默认值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123; name, age, height = <span class="number">175</span> &#125; = obj;</span><br></pre></td></tr></table></figure>
+<p>注意，这里 height 并不能在 obj 的属性中，所以，当 Destructuring 一个不存在的属性，如果设置了默认值，则相当于定义了一个新的变量，并赋予默认值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123; name, age = <span class="number">20</span>, height: myHeight = <span class="number">175</span> &#125; = person;</span><br></pre></td></tr></table></figure>
+<p>分析：</p>
+<ul>
+<li>First we create a new const var called myHeight.</li>
+<li>Next we look for person.height. If there was a person.height property, it would be put into the myHeight varaible.</li>
+<li>There isn’t a height property on our person object, so we fall back to the default of 175. </li>
+</ul>
+<p>注意，这里 age 的默认赋值无效。只要 obj 有某属性属性，destructuring 时无论是 undefined，null，0，false，赋值都无效。只有属性不存在的情况下，赋值才有效。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/22/what-i-ve-learned-today-16-11-22/" itemprop="url">
+                  what i've learned today in 2016
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T09:42:27+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用同一个-tab-页同时调试前端-js-和-node"><a href="#使用同一个-tab-页同时调试前端-js-和-node" class="headerlink" title="使用同一个 tab 页同时调试前端 js 和 node"></a>使用同一个 tab 页同时调试前端 js 和 node</h2><p>之前 Paul Irish 提到了使用 chrome 调试 nodejs，当时需要单独开一个 tab，现在这个功能被升级为同一个 tab 可同时调试前后端 js。</p>
+<h3 id="What-you-need："><a href="#What-you-need：" class="headerlink" title="What you need："></a>What you need：</h3><ul>
+<li><p>Node.js 6.3+ （最好使用 6.6+）, “in 6.4 there are a few flaky bugs”</p>
+</li>
+<li><p>Chrome 55+</p>
+</li>
+</ul>
+<h3 id="Enable-a-new-way-of-Node-js-debugging-in-Chrome"><a href="#Enable-a-new-way-of-Node-js-debugging-in-Chrome" class="headerlink" title="Enable a new way of Node.js debugging in Chrome"></a>Enable a new way of Node.js debugging in Chrome</h3><ul>
+<li>Open the chrome://flags/#enable-devtools-experiments URL</li>
+<li>Enable the Developer Tools experiments flag</li>
+<li>Relaunch Chrome</li>
+<li>Open DevTools Setting -&gt; Experiments tab (it started being visible after the reload)</li>
+<li>Press “SHIFT” 6 times (enjoy it ¯ \ <em> (ツ) </em> / ¯) to show the hidden experiments</li>
+<li>Check the “Node debugging” checkbox</li>
+<li>Open/close DevTools</li>
+</ul>
+<h2 id="清除-event-listener"><a href="#清除-event-listener" class="headerlink" title="清除 event listener"></a>清除 event listener</h2><p>注意添加事件时不要直接传入匿名回调函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Use a reference:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Tada!"</span>)</span><br><span class="line">&#125;</span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, handler)</span><br><span class="line"><span class="comment">// Later on</span></span><br><span class="line">element.removeEventListener(<span class="string">"click"</span>, handler)</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (someCondition) &#123;</span><br><span class="line">    <span class="keyword">return</span> e.currentTarget.removeEventListener(<span class="string">'click'</span>, click);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>事件可在 devTools 中查看</p>
+<p><img src="/images/1122/1.jpeg" alt=""></p>
+<h2 id="airbnb-的-css，sass-规范中的一些重点"><a href="#airbnb-的-css，sass-规范中的一些重点" class="headerlink" title="airbnb 的 css，sass 规范中的一些重点"></a>airbnb 的 css，sass 规范中的一些重点</h2><ol>
+<li><p>为了避免 css 选择器和 js 选择器的一些误解，js 用的选择器最好加上 js- 前缀<br><a href="https://github.com/airbnb/css#javascript-hooks" target="_blank" rel="external">https://github.com/airbnb/css#javascript-hooks</a></p>
+</li>
+<li><p>Do not nest selectors more than three levels deep!</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.page-container &#123;</span><br><span class="line">  .content &#123;</span><br><span class="line">    .profile &#123;</span><br><span class="line">      // STOP!</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Strongly coupled to the HTML (fragile) —OR—</li>
+<li>Overly specific (powerful) —OR—</li>
+<li>Not reusable</li>
+</ul>
+<h2 id="Using-Object-assign-to-set-inline-styles"><a href="#Using-Object-assign-to-set-inline-styles" class="headerlink" title="Using Object.assign to set inline styles"></a>Using Object.assign to set inline styles</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> styles = &#123;</span><br><span class="line">		width: <span class="string">'200px'</span>,</span><br><span class="line">		height: <span class="string">'200px'</span>,</span><br><span class="line">		backgroundColor: <span class="string">'salmon'</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> elem = <span class="built_in">document</span>.querySelector(<span class="string">'.box'</span>);</span><br><span class="line">	<span class="built_in">Object</span>.assign(elem.style, styles);</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>This pattern seems neat.</p>
+<h2 id="Mozilla-is-working-on-a-new-UI-for-input-type-“time”"><a href="#Mozilla-is-working-on-a-new-UI-for-input-type-“time”" class="headerlink" title="Mozilla is working on a new UI for input type “time”"></a>Mozilla is working on a new UI for input type “time”</h2><p><img src="/images/1121/1.jpeg" alt=""></p>
+<p>you can test it in Firefox Nightly by enabling dom.forms.datetime in about:config</p>
+<h2 id="两个-Elements-Panel-中的小技巧"><a href="#两个-Elements-Panel-中的小技巧" class="headerlink" title="两个 Elements Panel 中的小技巧"></a>两个 Elements Panel 中的小技巧</h2><ul>
+<li>Elements panel 中的元素可以拖拽</li>
+<li>获取元素在 dom 结构中的选择器结构<br>Elements 中选中元素，Right click &gt; copy &gt; copy selector.</li>
+</ul>
+<h2 id="Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities"><a href="#Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities" class="headerlink" title="Get an overview of all CSS selectors or all JavaScript functions with searching abilities"></a>Get an overview of all CSS selectors or all JavaScript functions with searching abilities</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + shift + o</span><br></pre></td></tr></table></figure>
+<p>For CSS, you get an overview of all selectors and can filter to a selector of interest.<br>For JavaScript, you can see all functions, but also, their signatures.</p>
+<h2 id="利用-Chrome-Experiments-查看修改过的-css"><a href="#利用-Chrome-Experiments-查看修改过的-css" class="headerlink" title="利用 Chrome Experiments 查看修改过的 css"></a>利用 Chrome Experiments 查看修改过的 css</h2><p>开启：<br>chrome://flags/#enable-devtools-experiments<br><a href="http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/" target="_blank" rel="external">http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/</a></p>
+<p><img src="/images/1121/2.jpeg" alt=""></p>
+<p>really cool shit!!!</p>
+<h2 id="css-覆盖率"><a href="#css-覆盖率" class="headerlink" title="css 覆盖率"></a>css 覆盖率</h2><p>开启<br><img src="/images/1121/3.jpeg" alt=""></p>
+<p>然后在 timeline 中 record，停止以后回到 source panel，多余的会红色标注。</p>
+<h2 id="devTool-修改直接保存到源文件"><a href="#devTool-修改直接保存到源文件" class="headerlink" title="devTool 修改直接保存到源文件"></a>devTool 修改直接保存到源文件</h2><p>开启 Persistence 2.0，把开发目录拖入 devTools，然后匹配的文件会有绿勾出现<br><img src="/images/1121/4.jpeg" alt=""></p>
+<p>修改后发现源码也被修改。</p>
+<h2 id="纯-css-爆酷炫图片滤镜效果"><a href="#纯-css-爆酷炫图片滤镜效果" class="headerlink" title="纯 css 爆酷炫图片滤镜效果"></a>纯 css 爆酷炫图片滤镜效果</h2><p><a href="http://bennettfeely.com/image-effects/" target="_blank" rel="external">http://bennettfeely.com/image-effects/</a></p>
+<h2 id="JSON-Splora"><a href="#JSON-Splora" class="headerlink" title="JSON-Splora"></a>JSON-Splora</h2><p>JSON-Splora is a GUI for editing, visualizing, and manipulating JSON data with jq or JavaScript.</p>
+<p>安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g <span class="built_in">JSON</span>-Splora</span><br></pre></td></tr></table></figure>
+<p>打开</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsplora</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys <span class="comment">//输出所有 key</span></span><br><span class="line"></span><br><span class="line">.data <span class="comment">//输出 data 节点</span></span><br><span class="line"></span><br><span class="line">.data.filter(d =&gt; d.id &gt; <span class="number">5</span>) <span class="comment">//输出 data 数组中 id &gt; 5 的元素</span></span><br><span class="line"></span><br><span class="line">.data.map(d =&gt; d.price_key) <span class="comment">//输出所有 data 数组中的 price_key 值</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/28/学习前端时学到的单词/" itemprop="url">
+                  学习前端时学到的单词
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T14:02:19+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="学习前端时学到的单词"><a href="#学习前端时学到的单词" class="headerlink" title="学习前端时学到的单词"></a>学习前端时学到的单词</h2><p>concise<br>adj. 简约; 简明的，简洁的; 精炼;<br>[例句] Burton’s text is concise and informative.<br>伯顿的文章语言简洁，信息丰富。</p>
+<p>diagnose<br>vt.    诊断; 判断;<br>[例句] It could cause bugs that are difficult to diagnose.</p>
+<p>revise<br>vt.    修订; 修正; 改变;<br>[例句] Revise the constructor to capture the ElementRef.nativeElement in this variable.</p>
+<p>consists<br>v.    包括; 由…组成( consist的第三人称单数 );<br>[例句] The framework consists of several libraries.</p>
+<p>interactions<br>n.    互动; 一起活动( interaction的名词复数 );<br>[例句] Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you’ve provided.</p>
+<p>cohesive<br>adj.    有黏着力的; 紧密结合的;<br>[例句] Most apps have many more feature modules, each a cohesive block of code dedicated to an application domain.</p>
+<p>complementary<br>adj.    互补的; 补充的，补足的;<br>[例句] These are two different and complementary module systems. Use them both to write your apps.</p>
+<p>tedious<br>adj.    冗长乏味的; 单调沉闷的; 令人生厌的;<br>[例句] Writing such push/pull logic by hand is tedious</p>
+<p>nontrivial<br>adj.    非平凡的;<br>[例句] It delegates everything nontrivial to services.</p>
+<p>precisely<br>adv.    精确地; 恰好地; 严谨地，严格地; 一丝不苟地;<br>[例句] More precisely, the redisplay occurs after some kind of asynchronous event related to the view, such as a keystroke, a timer completion, or a response to an HTTP request.</p>
+<p>intriguing<br>adj.    有趣的; 迷人的;<br>[例句] That template reference variable is intriguing.</p>
+<p>fair game<br>n.    准许捕猎的猎物，可攻击的对象;<br>[例句] Pretty much everything else is fair game.</p>
+<p>provisional<br>adj.    暂定的; 暂时的，临时的;<br>n.    临时性; 临时人员;<br>[例句] Content is provisional and may change.</p>
+<p>arbitrary<br>adj.    乱; 随意的，任性的，随心所欲的; 主观的，武断的; 霸道的，专制的，专横的，独断独行的;<br>[例句] The data property in the third route is a place to store arbitrary data associated with each specific route. </p>
+<p>wildcard<br>n.    通配符;<br>[例句] The wildcard route is listed last as it’s the most generic route and should be matched only if no other routes are matched first.</p>
+<p>gloss over<br>粉饰; 掩饰（错误）; 把…搪塞过去;<br>例句] We gloss over everything in between.</p>
+<p>ongoing<br>adj.    不间断的，进行的; 前进的;<br>[例句] There is an ongoing debate on the issue.</p>
+<p>skeleton<br>n.    骨骼; （建筑物等的） 骨架; 梗概; 骨瘦如柴的人（或动物）;<br>adj.    骨骼的; 骨瘦如柴的; 概略的; 基本的;<br>[例句] Use the application generator tool, express-generator, to quickly create an application skeleton.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/17/The-Final-Closure/" itemprop="url">
                   The Final Closure
                 </a>
@@ -292,6 +1165,104 @@
 <p>使用块作用域：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;buttons.length ;i++) &#123;</span><br><span class="line">	buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/04/Some-Strange-Things-About-Javascript/" itemprop="url">
+                  Some Strange Things About Javascript
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-04T09:34:16+08:00" content="2016-10-04">
+              2016-10-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span> === <span class="string">'number'</span>  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>ECMAScript 5.1 Edition Spec 中 <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.20" target="_blank" rel="external">Number Type</a> 定义：</p>
+<blockquote>
+<p>set of all possible Number values including the special “Not-a-Number” (NaN) values, positive infinity, and negative infinity</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span>  <span class="comment">//false</span></span><br><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span>  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
           
         
       
@@ -454,962 +1425,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/23/小程序开发实战/" itemprop="url">
-                  小程序开发实战
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-23T10:41:22+08:00" content="2016-09-23">
-              2016-09-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="开始动手"><a href="#开始动手" class="headerlink" title="开始动手"></a>开始动手</h2><p>破解什么的就不说了，直接结合文档实战！<br><a href="http://wxopen.notedown.cn/" target="_blank" rel="external">小程序开发文档</a></p>
-<h2 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h2><p>Page() 函数用来注册一个页面。接受一个object参数，其指定页面的初始数据、生命周期函数、事件处理函数等。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;view bindtap=<span class="string">"viewTap"</span>&gt;click me&lt;<span class="regexp">/view&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  <span class="comment">//初始化数据，类似于 vue 的 data</span></span><br><span class="line">  data: &#123;</span><br><span class="line">    text: <span class="string">"This is page data."</span></span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do some initialize when page load.</span></span><br><span class="line">  &#125;,</span><br><span class="line">  onReady: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something when page ready.</span></span><br><span class="line">  &#125;,</span><br><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something when page show.</span></span><br><span class="line">  &#125;,</span><br><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something when page hide.</span></span><br><span class="line">  &#125;,</span><br><span class="line">  onUnload: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Do something when page close.</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// Event handler.</span></span><br><span class="line">  viewTap: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      text: <span class="string">'Set some data for updating view.'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><b>着重注意 page 中的这两个参数 data, viewTap</b><br>data 是 page 的初始化数据，类似于 vue 的 data<br>viewTap 即事件处理函数，在 Page 中还可以定义事件处理函数<br>this.setData 用于设计修改数据，类似于 react 的 setState 方法</p>
-<p><b>ps:</b></p>
-<ol>
-<li>view 就是一个节点块的意思，类似于 section </li>
-<li>MINA 中的点击触发事件为 bindtap</li>
-<li>每个 page 中的数据都是存在于独立的作用于，如果想设置全局数据，可在 app.js 中设置</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  globalData: <span class="number">1</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>在某个 page 中获得全局数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = getApp();</span><br><span class="line"><span class="built_in">console</span>.log(app.globalData); <span class="comment">//1</span></span><br><span class="line">app.globalData++  <span class="comment">//也可以修改</span></span><br></pre></td></tr></table></figure>
-<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>类似于 commonjs 语法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//common.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + name + <span class="string">'!'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayHello: sayHello</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> common = <span class="built_in">require</span>(<span class="string">'common'</span>);</span><br><span class="line">common.sayHello();</span><br></pre></td></tr></table></figure>
-<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><p><a href="http://wxopen.notedown.cn/framework/view/wxml/" target="_blank" rel="external">常用指令</a></p>
-<p>ps:</p>
-<ol>
-<li>添加 block 元素并添加 wx:if 即可不用额外添加元素控制显示。 </li>
-<li>这里的属性绑定和 angular, vue 不同，需要加双花括号中</li>
-</ol>
-<h2 id="WXSS-样式"><a href="#WXSS-样式" class="headerlink" title="WXSS 样式"></a>WXSS 样式</h2><p>根据文档：weixin style sheets 除了保留 css 大部分特性，扩充了两种特性</p>
-<ol>
-<li>尺寸单位</li>
-<li>样式导入<br>虽然本质仍是 css 但支持 scss 语法，可使用 import 导入</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">"common.wxss"</span>;</span><br></pre></td></tr></table></figure>
-<p><b>全局样式与局部样式</b><br>定义在app.wxss中的样式为全局样式，作用于每一个页面。在page的wxss文件中定义的样式为局部样式，<br>只作用在对应的页面，并会覆盖app.wxss中相同的选择器。</p>
-<p><b>ps</b>: 开发微信小程序时设计师可以用iPhone6作为视觉稿的标准。<br><b>pss</b>: wxss 实现了 css module，在不同 page 中相同的选择器样式并不会有冲突，但会覆盖app.wxss中相同的选择器。（app.wxss中的样式为全局样式）</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/21/前端模块化/" itemprop="url">
-                  前端模块化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T13:37:55+08:00" content="2016-09-21">
-              2016-09-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>原来</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">talk</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>缺点<br>污染全局空间，容易冲突</p>
-<p>改进一、简单封装 namespace</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">	talk: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>减少了全局空间下的变量数量，本质是对象，不安全</p>
-<p>改进二、匿名闭包 (IIFE 模式)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> _name = <span class="string">'xwill'</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">talk</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(_name);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		talk: talk</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<p>函数是 JavaScript 唯一的 Local Scope</p>
-<p>再增强一点：引入依赖</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = (<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> _$body = $(<span class="string">'body'</span>);</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">talk</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(_$body);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		talk: talk</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
-<p>这就是模块模式，也是现代模块实现的基石。<br>但是只有封装性可不够，我们还需要加载。</p>
-<h2 id="script-loader"><a href="#script-loader" class="headerlink" title="script loader"></a>script loader</h2><p>原来，按顺序引入</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"app.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>实际上有大量的js需要按顺序引入，模块之间的依赖非常不好管理<br>难以维护 Very difficult to maintain!<br>依赖模糊 Unclear Dependencies<br>请求过多 Too much HTTP calls</p>
-<h2 id="CommonJS-征服世界的第一步是跳出浏览器"><a href="#CommonJS-征服世界的第一步是跳出浏览器" class="headerlink" title="CommonJS 征服世界的第一步是跳出浏览器"></a>CommonJS 征服世界的第一步是跳出浏览器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//math.js</span></span><br><span class="line">exports.add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>); </span><br><span class="line"><span class="built_in">console</span>.log(math.add(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-<p>同步加载</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// timeout.js</span></span><br><span class="line"><span class="keyword">var</span> EXE_TIME = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">second</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> start = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">while</span>(start + second*<span class="number">1000</span> &gt; <span class="keyword">new</span> <span class="built_in">Date</span>())&#123;&#125;</span><br><span class="line">&#125;)(EXE_TIME)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"2000ms executed"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./timeout'</span>);   <span class="comment">// sync load</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'done!'</span>);</span><br></pre></td></tr></table></figure>
-<p>同步加载对服务器/本地环境并不是问题，浏览器环境才是问题！</p>
-<h2 id="AMD／CMD-浏览器环境模块化方案"><a href="#AMD／CMD-浏览器环境模块化方案" class="headerlink" title="AMD／CMD 浏览器环境模块化方案"></a>AMD／CMD 浏览器环境模块化方案</h2><p>AMD(Async Module Definition)<br>RequireJS 对模块定义的规范化产出</p>
-<p>CMD(Common Module Definition)<br>SeaJS 对模块定义的规范化产出</p>
-<p>// AMD recommended<br>define([‘a’, ‘b’], function(a, b){<br>    a.doSomething();    // 依赖前置，提前执行<br>    b.doSomething();<br>})</p>
-<p>// CMD recommanded<br>define(function(require, exports, module){<br>    var a = require(“a”);<br>    a.doSomething();<br>    var b = require(“b”);<br>    b.doSomething();    // 依赖就近，延迟执行<br>})</p>
-<h2 id="BROWSERIFY-WEBPACK"><a href="#BROWSERIFY-WEBPACK" class="headerlink" title="BROWSERIFY/WEBPACK"></a>BROWSERIFY/WEBPACK</h2><p>Browsers don’t have the require method defined, but Node.js does.</p>
-<p>Browserify - CommonJS In Browser<br>require(‘modules’) in the browser by bundling up all of your dependencies</p>
-<p>Webpack - Module Bundler<br>transforming, bundling, or packaging just about any resource or asset</p>
-<p>Browserify vs Webpack<br>小而美 VS 大而全</p>
-<h2 id="ES6-MODULE"><a href="#ES6-MODULE" class="headerlink" title="ES6 MODULE"></a>ES6 MODULE</h2><p><a href="http://huangxuan.me/js-module-7day/#/" target="_blank" rel="external">JS模块化七日谈</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/21/关于正则/" itemprop="url">
-                  关于正则
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T09:37:36+08:00" content="2016-09-21">
-              2016-09-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="正则表达式的作用"><a href="#正则表达式的作用" class="headerlink" title="正则表达式的作用"></a>正则表达式的作用</h2><p>正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。</p>
-<h2 id="常用字符"><a href="#常用字符" class="headerlink" title="常用字符"></a>常用字符</h2><p>\w: 匹配包括下划线的任何单词字符。等价于 [A-Za-z0-9<em>]<br>\W: 匹配任何非单词字符。等价于 [^A-Za-z0-9</em>]<br>\s: 匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]<br>{n,m}: 最少匹配n次且最多匹配m次<br>{n,}: 至少匹配n次<br>(pattern): 匹配pattern并获取这一匹配的子字符串，js中使用$0-$9匹配<br>?: 匹配前面的子表达式零次或一次<br>+: 匹配前面的子表达式一次或多次<br>*: 匹配前面的子表达式零次或多次<br>.: 匹配除“\n”之外的任何单个字符。要匹配包括“\n”在内的任何字符，请使用像“(.|\n)”的模式<br>\b: 匹配一个单词边界，也就是指单词和空格间的位置</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" target="_blank" rel="external">完整列表</a></p>
-<h2 id="一些练习"><a href="#一些练习" class="headerlink" title="一些练习"></a>一些练习</h2><ol>
-<li>找出 <a href="http://tieba.baidu.com/p/3938045873" target="_blank" rel="external">http://tieba.baidu.com/p/3938045873</a> 所有邮箱</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.body.innerText.match(<span class="regexp">/\w+@\w+\.(com|net|cn)/g</span>)</span><br></pre></td></tr></table></figure>
-<ol>
-<li>将以下md格式链接写成 html a 标签形式</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Google](http:<span class="comment">//www.google.com)</span></span><br><span class="line">[Baidu](http:<span class="comment">//www.baidu.com)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg: \[(.*)\]\((http.*com)\)</span><br><span class="line">replace: <span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$2"</span>&gt;</span>$1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/04/js一些令我困惑的知识点/" itemprop="url">
-                  js一些令我困惑的知识点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-04T09:54:09+08:00" content="2016-08-04">
-              2016-08-04
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="严格模式下的-call-this"><a href="#严格模式下的-call-this" class="headerlink" title="严格模式下的 call(this)"></a>严格模式下的 call(this)</h2><p>常看到这样的代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">	'use strict'</span></span><br><span class="line">	<span class="comment">//some code</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span> == <span class="built_in">window</span>)  <span class="comment">//true</span></span><br><span class="line">&#125;).call(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
-<p>和下面的立即执行函数有什么不同吗？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">	'use strict'</span></span><br><span class="line">	<span class="comment">//some code</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span> == <span class="built_in">window</span>)  <span class="comment">//false, this == undefined</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>严格模式下，this != window，需要强制改正 this 的指向。</p>
-<h2 id="什么时候使用-hasOwnProperty"><a href="#什么时候使用-hasOwnProperty" class="headerlink" title="什么时候使用 hasOwnProperty"></a>什么时候使用 hasOwnProperty</h2><p>确认属性是否只来自于对象自身定义，而不是来自原型链，相当于做了一次 check。<br><a href="http://stackoverflow.com/questions/32422867/when-do-i-need-to-use-hasownproperty" target="_blank" rel="external">什么时候使用 hasOwnProperty</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/26/angular细节问题整理/" itemprop="url">
-                  angular细节问题整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-26T10:54:03+08:00" content="2016-07-26">
-              2016-07-26
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="directive-中监听-controller-多个对象或数组的变化"><a href="#directive-中监听-controller-多个对象或数组的变化" class="headerlink" title="directive 中监听 controller 多个对象或数组的变化"></a>directive 中监听 controller 多个对象或数组的变化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//init</span></span><br><span class="line">$scope.chartData = &#123;</span><br><span class="line">   xdata: [],</span><br><span class="line">   ydata: &#123;</span><br><span class="line">    guestData: [],</span><br><span class="line">    ...</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//change data，注意这里必须重新赋值，push 没用</span></span><br><span class="line">$scope.change = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $scope.chartData.xdata = [<span class="number">1</span>];</span><br><span class="line">	$scope.chartData.ydata = &#123;</span><br><span class="line">        guestData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        browseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        loseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        avgData: [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;chart-line xdata=<span class="string">"chartData.xdata"</span> ydata=<span class="string">"chartData.ydata"</span>&gt;&lt;/chart-line&gt;</span><br><span class="line"></span><br><span class="line">//directive</span><br><span class="line">scope: &#123;</span><br><span class="line">    xdata: '=',</span><br><span class="line">    ydata: '='</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//只要 xdata 或 ydata 任意一个对象变化即可</span><br><span class="line">scope.$watchCollection('[xdata, ydata]', function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span><br><span class="line">//watchGroup 亦可，注意写法差别</span><br><span class="line">scope.$watchGroup(['xdata', 'ydata'], function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="apply-和-digest"><a href="#apply-和-digest" class="headerlink" title="$apply 和 $digest"></a>$apply 和 $digest</h2><p>什么时候用 <b>$apply</b> 和 <b>$digest</b></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;rootName&#125;&#125;</span><br><span class="line">&lt;div ng-controller=<span class="string">"testCtrl"</span>&gt;</span><br><span class="line">  &#123;&#123;name&#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.controller(<span class="string">'testCtrl'</span>, [<span class="string">'$scope'</span>, <span class="string">'$rootScope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $rootScope</span>)</span>&#123;</span><br><span class="line">    $rootScope.rootName = <span class="string">'rootName'</span>;</span><br><span class="line">    $scope.name = <span class="string">'scopeName'</span>;</span><br><span class="line"></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'in'</span>);</span><br><span class="line">      $scope.$apply(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $rootScope.rootName = <span class="string">'rootName2'</span>;</span><br><span class="line">        $scope.name = <span class="string">'scopeName2'</span>;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="comment">// $scope.$apply(); 不推荐</span></span><br><span class="line">    &#125;,<span class="number">2000</span>);</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>当使用非 angular 包装方法，如 setTimeout 等原生 js 方法去改变 model 值的时候，需手动调用 $apply 或 $digest 去更新 view 显示。</li>
-<li>$apply 会一直向上检查到 $rootScope 变化。$digest 只会检查自己及子 scope 变化。</li>
-<li>使用 $apply 时，总是 $scope.$apply(function(){}) 这样使用，因为这样 angular 会 try… catch…</li>
-</ul>
-</blockquote>
-<p><a href="http://www.sitepoint.com/understanding-angulars-apply-digest/" target="_blank" rel="external">理解 $apply 和 $digest</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/13/redux深入研究/" itemprop="url">
-                  redux深入研究
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-13T09:52:33+08:00" content="2016-07-13">
-              2016-07-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="redux-到底是什么？"><a href="#redux-到底是什么？" class="headerlink" title="redux 到底是什么？"></a>redux 到底是什么？</h2><p>首先明确一个概念，redux 是管理 javascript 应用状态 state 的框架，与 react 无关！与 react 无关！与 react 无关！</p>
-<p>为什么会出现 redux，redux 出现的动机是什么？<br><a href="http://cn.redux.js.org/docs/introduction/Motivation.html" target="_blank" rel="external">http://cn.redux.js.org/docs/introduction/Motivation.html</a></p>
-<p>其实 redux 就是一个管理 js 中复杂的 state 变化的一个 js 库。</p>
-<h2 id="Redux-三大原则"><a href="#Redux-三大原则" class="headerlink" title="Redux 三大原则"></a>Redux 三大原则</h2><ol>
-<li><p>单一数据源</p>
-<blockquote>
-<p>整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。</p>
-</blockquote>
-</li>
-<li><p>State 是只读的</p>
-<blockquote>
-<p>惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
-</blockquote>
-</li>
-<li><p>使用纯函数来执行修改</p>
-<blockquote>
-<p>为了描述 action 如何改变 state tree ，你需要编写 reducers。</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><p>定义：</p>
-<blockquote>
-<p>Action 是把数据从应用（译者注：这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 ）传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过 store.dispatch() 将 action 传到 store。</p>
-</blockquote>
-<p>注意：</p>
-<blockquote>
-<p>Action 本质上是 JavaScript 普通对象。我们约定，action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。当应用规模越来越大时，建议使用单独的模块或文件来存放 action。</p>
-</blockquote>
-<p>Action 中还有个概念叫 Action Creator</p>
-<blockquote>
-<p>Action 创建函数 就是生成 action 的方法。“action” 和 “action 创建函数” 这两个概念很容易混在一起，使用时最好注意区分。<br>在 Redux 中的 action 创建函数只是简单的返回一个 action:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTodo</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    type: ADD_TODO,</span><br><span class="line">    text</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h2><p>定义：</p>
-<blockquote>
-<p>Action 只是描述了有事情发生了这一事实，并没有指明应用如何更新 state。而这正是 reducer 要做的事情。</p>
-</blockquote>
-<p>注意，永远不要在 reducer 中做以下事情：<br><strong>修改传入参数</strong><br><strong>执行有副作用的操作，如 API 请求和路由跳转</strong><br><strong>调用非纯函数，如 Date.now() 或 Math.random()</strong></p>
-<p>只需要谨记 reducer 一定要保持纯净。只要传入参数相同，返回计算得到的下一个 state 就一定相同。没有特殊情况、没有副作用，没有 API 请求、没有变量修改，单纯执行计算。</p>
-<p>看一段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> initialState = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todoApp</span>(<span class="params">state = initialState, action</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 这里暂不处理任何 action，</span></span><br><span class="line">  <span class="comment">// 仅返回传入的 state。</span></span><br><span class="line">  <span class="keyword">return</span> state</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>可以通过 es 参数默认值来初始化 state 的值。</p>
-<p>这里注意两点非常重要：</p>
-<ol>
-<li>不要修改 state。 可使用 Object.assign() 新建一个副本。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>不能这样使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(state, &#123;&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。你也可以开启对ES7提案对象展开运算符的支持, 从而使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; ...state, &#123;&#125;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>达到相同的目的。</p>
-<p><strong>时刻谨记永远不要在克隆 state 前修改它</strong></p>
-<ol>
-<li>在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</li>
-</ol>
-<h2 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h2><p>Store 有以下职责：</p>
-<ol>
-<li>维持应用的 state；</li>
-<li>提供 getState() 方法获取 state；</li>
-<li>提供 dispatch(action) 方法更新 state；</li>
-<li>通过 subscribe(listener) 注册监听器;</li>
-<li>通过 subscribe(listener) 返回的函数注销监听器。</li>
-</ol>
-<p>再次强调一下：<br><strong>Redux 应用只有一个单一的 store。当需要拆分数据处理逻辑时，你应该使用 reducer 组合 而不是创建多个 store</strong></p>
-<p>store有几个方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取 state</span></span><br><span class="line">store.getState()</span><br><span class="line"><span class="comment">//接受action，更新 state</span></span><br><span class="line">store.dispatch(action)</span><br><span class="line"><span class="comment">//注册监听器</span></span><br><span class="line"><span class="keyword">let</span> unsubscribe = store.subscribe(listener)</span><br><span class="line"><span class="comment">//通过 subscribe(listener) 返回的函数注销监听器</span></span><br><span class="line">unsubscribe()</span><br></pre></td></tr></table></figure></p>
-<p>另外已有的 reducer 创建 store 是非常容易的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> store = createStore(reducers);</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>createStore() 的第二个参数是可选的, 用于设置 state 初始状态。这对开发同构应用时非常有用，服务器端 redux 应用的 state 结构可以与客户端保持一致, 那么客户端可以将从网络接收到的服务端 state 直接用于本地数据初始化。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> store = createStore(todoApp, <span class="built_in">window</span>.STATE_FROM_SERVER)</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h2><p><strong>严格的单向数据流是 Redux 架构的设计核心</strong></p>
-<p>Redux 应用中数据的生命周期遵循下面 4 个步骤：</p>
-<ol>
-<li><p>调用 store.dispatch(action)，你可以在任何地方调用 store.dispatch(action)，包括组件中、XHR 回调中、甚至定时器中。</p>
-</li>
-<li><p>Redux store 调用传入的 reducer 函数，Store 会把两个参数传入 reducer： 当前的 state 树和 action。</p>
-</li>
-<li><p>根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。</p>
-</li>
-<li><p>Redux store 保存了根 reducer 返回的完整 state 树。这个新的树就是应用的下一个 state！所有订阅 store.subscribe(listener) 的监听器都将被调用；监听器里可以调用 store.getState() 获得当前 state。</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reducer = (state=<span class="number">0</span>, action) =&gt; &#123;</span><br><span class="line">  <span class="keyword">switch</span>(action.type)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'INC'</span>:</span><br><span class="line">      state+=<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">break</span>; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> state;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer);</span><br><span class="line"></span><br><span class="line">store.subscribe(() =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'store changed'</span>, store.getState());</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">store.dispatch(&#123;type: <span class="string">'INC'</span>&#125;);</span><br></pre></td></tr></table></figure>
-<p>从上面这段代码来看 redux 的三大原则</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/变得更强！思维发散练习/" itemprop="url">
-                  变得更强！思维发散练习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T11:44:35+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="为什么要写这篇"><a href="#为什么要写这篇" class="headerlink" title="为什么要写这篇"></a>为什么要写这篇</h2><p>想学到大神们优秀的思想，敏锐的解决问题的思路！</p>
-<h2 id="给定一个字符串，若字符串大于4位字符，则保留后四位，前面的字符用”-”代替"><a href="#给定一个字符串，若字符串大于4位字符，则保留后四位，前面的字符用”-”代替" class="headerlink" title="给定一个字符串，若字符串大于4位字符，则保留后四位，前面的字符用”#”代替"></a>给定一个字符串，若字符串大于4位字符，则保留后四位，前面的字符用”#”代替</h2><p>我的最优方案：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">maskStr</span>(<span class="params">cc</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> length = cc.length;</span><br><span class="line">    <span class="keyword">if</span> (length &gt; <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> cc.substr(<span class="number">0</span>, length - <span class="number">4</span>).replace(<span class="regexp">/./g</span>, <span class="string">'#'</span>) + cc.substr(length - <span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>让人眼前一亮的牛逼方案：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">maskify</span>(<span class="params">cc</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> cc.slice(<span class="number">0</span>, <span class="number">-4</span>).replace(<span class="regexp">/./g</span>, <span class="string">'#'</span>) + cc.slice(<span class="number">-4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其实就是 slice 方法负数的妙用！</p>
-<p>这里涉及到就是同为切割字符串的函数，slice 和 substr 有什么区别？</p>
-<ul>
-<li>slice(start,end) 接受两个参数<blockquote>
-<p>start：要抽取的片断的起始下标。如果是负数，则该参数规定的是从字符串的尾部开始算起的位置。也就是说，-1 指字符串的最后一个字符，-2 指倒数第二个字符，以此类推。<br>end：紧接着要抽取的片段的结尾的下标。若未指定此参数，则要提取的子串包括 start 到原字符串结尾的字符串。如果该参数是负数，那么它规定的是从字符串的尾部开始算起的位置。</p>
-</blockquote>
-</li>
-</ul>
-<p><img src="/images/js/slice.png" alt=""></p>
-<p>常用（隐藏手机号中间四位）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeStr</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//这里可以这样记，3-7 即  x&gt;3 &amp;&amp; x&lt;=7，x=4,5,6,7</span></span><br><span class="line">	<span class="keyword">return</span> str.slice(<span class="number">0</span>,<span class="number">3</span>) + str.slice(<span class="number">3</span>,<span class="number">7</span>).replace(<span class="regexp">/./g</span>,<span class="string">'#'</span>) + str.slice(<span class="number">7</span>,<span class="number">11</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>substr(start,length) 接受两个参数<blockquote>
-<p>start    必需。要抽取的子串的起始下标。必须是数值。如果是负数，那么该参数声明从字符串的尾部开始算起的位置。也就是说，-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。<br>length 可选。子串中的字符数。必须是数值。如果省略了该参数，那么返回从 stringObject 的开始位置到结尾的字串。</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>重要事项：ECMAscript 没有对 substr 方法进行标准化，因此反对使用它。</strong></p>
-<h2 id="长度大于5位的字符串反向"><a href="#长度大于5位的字符串反向" class="headerlink" title="长度大于5位的字符串反向"></a>长度大于5位的字符串反向</h2><p>需求：输入一个字符串，形式为 hello world kobe，处理长度大于5位的字符串反向。返回结果 olleh dlrow kobe<br>我的方案：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spinWords</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	word = word.split(<span class="string">' '</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;word.length;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(word[i].length&gt;=<span class="number">5</span>)&#123;</span><br><span class="line">			word[i] = word[i].split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> word.join(<span class="string">' '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>牛逼的方案1:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spinWords</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> word.split(<span class="string">' '</span>).map((word) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> (word.length&gt;<span class="number">4</span>)?word.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>):word</span><br><span class="line">	&#125;).join(<span class="string">' '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>牛逼的方案2:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spinWords</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> word.replace(<span class="regexp">/\w&#123;5,&#125;/g</span>,(w) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> w.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里 word.replace(/\w{5,}/g) 中 \w 表示匹配所有的下划线，字母，数字;{5,}表示前面的字符至少出现5次，g表示全局。</p>
-<p><strong>牢记：字符串reverse的最常用方法 str.split(‘’).reverse().join(‘’)，先转为数组reverse，然后转回字符串</strong></p>
-<h2 id="输入一个正整数，计算从1加到该数的合"><a href="#输入一个正整数，计算从1加到该数的合" class="headerlink" title="输入一个正整数，计算从1加到该数的合"></a>输入一个正整数，计算从1加到该数的合</h2><h2 id="我的方案"><a href="#我的方案" class="headerlink" title="我的方案"></a>我的方案</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> n !=<span class="string">'number'</span> || n&lt;=<span class="number">0</span> || n%<span class="number">1</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		sum+=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="更优的解决方案"><a href="#更优的解决方案" class="headerlink" title="更优的解决方案"></a>更优的解决方案</h2><p>首先，从1加到某数有个公式，呃，数学差连这个都忘了 n*(n+1)/2<br>其次，要想办法把简单的 if 转化成 三元表达式！！！<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">typeof</span> n !=<span class="string">'number'</span> || n&lt;=<span class="number">0</span> || n%<span class="number">1</span>!=<span class="number">0</span>)?<span class="literal">false</span>:n*(n+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>ps:判断一个数是否为正整数最简单的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.isInteger(n) &amp;&amp; n &gt; <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="输入一个字符串，判断该字符串中-x-和-o-的数量是否一致，不分大小写"><a href="#输入一个字符串，判断该字符串中-x-和-o-的数量是否一致，不分大小写" class="headerlink" title="输入一个字符串，判断该字符串中 x 和 o 的数量是否一致，不分大小写"></a>输入一个字符串，判断该字符串中 x 和 o 的数量是否一致，不分大小写</h2><p>我的方案：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">XO</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    str = str.split(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0</span>,</span><br><span class="line">        o = <span class="number">0</span>;</span><br><span class="line">    str.map((data) =&gt; &#123;</span><br><span class="line">        <span class="keyword">switch</span> (data.toLowerCase()) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'x'</span>:</span><br><span class="line">                x += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'o'</span>:</span><br><span class="line">                o += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x == o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>更优的解决方案：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">XO</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> x = str.match(<span class="regexp">/x/g</span>);</span><br><span class="line">	<span class="keyword">var</span> o = str.match(<span class="regexp">/o/g</span>);</span><br><span class="line">	<span class="keyword">return</span> (x &amp;&amp; x.length) === (o &amp;&amp; o.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>发现n多次处理数据匹配都是用正则更高效！<br>这里 match 的用法有两种：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stringObject.match(searchvalue)</span><br><span class="line">stringObject.match(regexp)</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>searchvalue    必需。规定要检索的字符串值。<br>regexp    必需。规定要匹配的模式的 RegExp 对象。如果该参数不是 RegExp 对象，则需要首先把它传递给 RegExp 构造函数，将其转换为 RegExp 对象。</p>
-</blockquote>
-<p>注意：</p>
-<blockquote>
-<p>如果 regexp 没有标志 g，那么 match() 方法就只能在 stringObject 中执行一次匹配。如果没有找到任何匹配的文本， match() 将返回 null。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。该数组的第 0 个元素存放的是匹配文本，而其余的元素存放的是与正则表达式的子表达式匹配的文本。除了这些常规的数组元素之外，返回的数组还含有两个对象属性。index 属性声明的是匹配文本的起始字符在 stringObject 中的位置，input 属性声明的是对 stringObject 的引用。<br>如果 regexp 具有标志 g，则 match() 方法将执行全局检索，找到 stringObject 中的所有匹配子字符串。若没有找到任何匹配的子串，则返回 null。如果找到了一个或多个匹配子串，则返回一个数组。不过全局匹配返回的数组的内容与前者大不相同，它的数组元素中存放的是 stringObject 中所有的匹配子串，而且也没有 index 属性或 input 属性。</p>
-</blockquote>
-<h2 id="给定一个秒数，转换为-HH-mm-ss"><a href="#给定一个秒数，转换为-HH-mm-ss" class="headerlink" title="给定一个秒数，转换为 HH:mm:ss"></a>给定一个秒数，转换为 HH:mm:ss</h2><p>大神的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">humanReadable</span>(<span class="params">seconds</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pad = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> (x &lt; <span class="number">10</span>) ? <span class="string">"0"</span>+x : x; &#125;</span><br><span class="line">  <span class="keyword">return</span> pad(<span class="built_in">parseInt</span>(seconds / (<span class="number">60</span>*<span class="number">60</span>))) + <span class="string">":"</span> +</span><br><span class="line">         pad(<span class="built_in">parseInt</span>(seconds / <span class="number">60</span> % <span class="number">60</span>)) + <span class="string">":"</span> +</span><br><span class="line">         pad(seconds % <span class="number">60</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/常用的css交互集合/" itemprop="url">
-                  常用的css交互集合
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T09:22:34+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="图片缩放效果"><a href="#图片缩放效果" class="headerlink" title="图片缩放效果"></a>图片缩放效果</h2><p>第一次看到是在慕课网，第一次做网站就用上了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">    width: <span class="number">200</span>px;</span><br><span class="line">    height: <span class="number">100</span>px;</span><br><span class="line">    background-color: pink;</span><br><span class="line">    margin: <span class="number">0</span> auto;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box img &#123;</span><br><span class="line">    width: <span class="number">100</span>%;</span><br><span class="line">    height: <span class="number">100</span>%;</span><br><span class="line">    transition: <span class="number">0.3</span>s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box:hover img &#123;</span><br><span class="line">    transform: scale(<span class="number">1.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span>&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/1.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1450,7 +1470,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1460,7 +1480,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1497,7 +1517,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

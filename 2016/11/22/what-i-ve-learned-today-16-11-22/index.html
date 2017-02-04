@@ -1,0 +1,639 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,css,html," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="使用同一个 tab 页同时调试前端 js 和 node之前 Paul Irish 提到了使用 chrome 调试 nodejs，当时需要单独开一个 tab，现在这个功能被升级为同一个 tab 可同时调试前后端 js。
+What you need：
+Node.js 6.3+ （最好使用 6.6+）, “in 6.4 there are a few flaky bugs”
+
+Chrome 55+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="what i've learned today in 2016">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/11/22/what-i-ve-learned-today-16-11-22/index.html">
+<meta property="og:site_name" content="xwillmadeit">
+<meta property="og:description" content="使用同一个 tab 页同时调试前端 js 和 node之前 Paul Irish 提到了使用 chrome 调试 nodejs，当时需要单独开一个 tab，现在这个功能被升级为同一个 tab 可同时调试前后端 js。
+What you need：
+Node.js 6.3+ （最好使用 6.6+）, “in 6.4 there are a few flaky bugs”
+
+Chrome 55+">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/1122/1.jpeg">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/1121/1.jpeg">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/1121/2.jpeg">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/1121/3.jpeg">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/1121/4.jpeg">
+<meta property="og:updated_time" content="2016-12-13T08:55:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="what i've learned today in 2016">
+<meta name="twitter:description" content="使用同一个 tab 页同时调试前端 js 和 node之前 Paul Irish 提到了使用 chrome 调试 nodejs，当时需要单独开一个 tab，现在这个功能被升级为同一个 tab 可同时调试前后端 js。
+What you need：
+Node.js 6.3+ （最好使用 6.6+）, “in 6.4 there are a few flaky bugs”
+
+Chrome 55+">
+<meta name="twitter:image" content="https://xwillmadeit.github.io/images/1122/1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://xwillmadeit.github.io/2016/11/22/what-i-ve-learned-today-16-11-22/"/>
+
+
+  <title> what i've learned today in 2016 | xwillmadeit </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xwillmadeit</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                what i've learned today in 2016
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T09:42:27+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="使用同一个-tab-页同时调试前端-js-和-node"><a href="#使用同一个-tab-页同时调试前端-js-和-node" class="headerlink" title="使用同一个 tab 页同时调试前端 js 和 node"></a>使用同一个 tab 页同时调试前端 js 和 node</h2><p>之前 Paul Irish 提到了使用 chrome 调试 nodejs，当时需要单独开一个 tab，现在这个功能被升级为同一个 tab 可同时调试前后端 js。</p>
+<h3 id="What-you-need："><a href="#What-you-need：" class="headerlink" title="What you need："></a>What you need：</h3><ul>
+<li><p>Node.js 6.3+ （最好使用 6.6+）, “in 6.4 there are a few flaky bugs”</p>
+</li>
+<li><p>Chrome 55+</p>
+</li>
+</ul>
+<h3 id="Enable-a-new-way-of-Node-js-debugging-in-Chrome"><a href="#Enable-a-new-way-of-Node-js-debugging-in-Chrome" class="headerlink" title="Enable a new way of Node.js debugging in Chrome"></a>Enable a new way of Node.js debugging in Chrome</h3><ul>
+<li>Open the chrome://flags/#enable-devtools-experiments URL</li>
+<li>Enable the Developer Tools experiments flag</li>
+<li>Relaunch Chrome</li>
+<li>Open DevTools Setting -&gt; Experiments tab (it started being visible after the reload)</li>
+<li>Press “SHIFT” 6 times (enjoy it ¯ \ <em> (ツ) </em> / ¯) to show the hidden experiments</li>
+<li>Check the “Node debugging” checkbox</li>
+<li>Open/close DevTools</li>
+</ul>
+<h2 id="清除-event-listener"><a href="#清除-event-listener" class="headerlink" title="清除 event listener"></a>清除 event listener</h2><p>注意添加事件时不要直接传入匿名回调函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Use a reference:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Tada!"</span>)</span><br><span class="line">&#125;</span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, handler)</span><br><span class="line"><span class="comment">// Later on</span></span><br><span class="line">element.removeEventListener(<span class="string">"click"</span>, handler)</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (someCondition) &#123;</span><br><span class="line">    <span class="keyword">return</span> e.currentTarget.removeEventListener(<span class="string">'click'</span>, click);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>事件可在 devTools 中查看</p>
+<p><img src="/images/1122/1.jpeg" alt=""></p>
+<h2 id="airbnb-的-css，sass-规范中的一些重点"><a href="#airbnb-的-css，sass-规范中的一些重点" class="headerlink" title="airbnb 的 css，sass 规范中的一些重点"></a>airbnb 的 css，sass 规范中的一些重点</h2><ol>
+<li><p>为了避免 css 选择器和 js 选择器的一些误解，js 用的选择器最好加上 js- 前缀<br><a href="https://github.com/airbnb/css#javascript-hooks" target="_blank" rel="external">https://github.com/airbnb/css#javascript-hooks</a></p>
+</li>
+<li><p>Do not nest selectors more than three levels deep!</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.page-container &#123;</span><br><span class="line">  .content &#123;</span><br><span class="line">    .profile &#123;</span><br><span class="line">      // STOP!</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Strongly coupled to the HTML (fragile) —OR—</li>
+<li>Overly specific (powerful) —OR—</li>
+<li>Not reusable</li>
+</ul>
+<h2 id="Using-Object-assign-to-set-inline-styles"><a href="#Using-Object-assign-to-set-inline-styles" class="headerlink" title="Using Object.assign to set inline styles"></a>Using Object.assign to set inline styles</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> styles = &#123;</span><br><span class="line">		width: <span class="string">'200px'</span>,</span><br><span class="line">		height: <span class="string">'200px'</span>,</span><br><span class="line">		backgroundColor: <span class="string">'salmon'</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> elem = <span class="built_in">document</span>.querySelector(<span class="string">'.box'</span>);</span><br><span class="line">	<span class="built_in">Object</span>.assign(elem.style, styles);</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>This pattern seems neat.</p>
+<h2 id="Mozilla-is-working-on-a-new-UI-for-input-type-“time”"><a href="#Mozilla-is-working-on-a-new-UI-for-input-type-“time”" class="headerlink" title="Mozilla is working on a new UI for input type “time”"></a>Mozilla is working on a new UI for input type “time”</h2><p><img src="/images/1121/1.jpeg" alt=""></p>
+<p>you can test it in Firefox Nightly by enabling dom.forms.datetime in about:config</p>
+<h2 id="两个-Elements-Panel-中的小技巧"><a href="#两个-Elements-Panel-中的小技巧" class="headerlink" title="两个 Elements Panel 中的小技巧"></a>两个 Elements Panel 中的小技巧</h2><ul>
+<li>Elements panel 中的元素可以拖拽</li>
+<li>获取元素在 dom 结构中的选择器结构<br>Elements 中选中元素，Right click &gt; copy &gt; copy selector.</li>
+</ul>
+<h2 id="Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities"><a href="#Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities" class="headerlink" title="Get an overview of all CSS selectors or all JavaScript functions with searching abilities"></a>Get an overview of all CSS selectors or all JavaScript functions with searching abilities</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + shift + o</span><br></pre></td></tr></table></figure>
+<p>For CSS, you get an overview of all selectors and can filter to a selector of interest.<br>For JavaScript, you can see all functions, but also, their signatures.</p>
+<h2 id="利用-Chrome-Experiments-查看修改过的-css"><a href="#利用-Chrome-Experiments-查看修改过的-css" class="headerlink" title="利用 Chrome Experiments 查看修改过的 css"></a>利用 Chrome Experiments 查看修改过的 css</h2><p>开启：<br>chrome://flags/#enable-devtools-experiments<br><a href="http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/" target="_blank" rel="external">http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/</a></p>
+<p><img src="/images/1121/2.jpeg" alt=""></p>
+<p>really cool shit!!!</p>
+<h2 id="css-覆盖率"><a href="#css-覆盖率" class="headerlink" title="css 覆盖率"></a>css 覆盖率</h2><p>开启<br><img src="/images/1121/3.jpeg" alt=""></p>
+<p>然后在 timeline 中 record，停止以后回到 source panel，多余的会红色标注。</p>
+<h2 id="devTool-修改直接保存到源文件"><a href="#devTool-修改直接保存到源文件" class="headerlink" title="devTool 修改直接保存到源文件"></a>devTool 修改直接保存到源文件</h2><p>开启 Persistence 2.0，把开发目录拖入 devTools，然后匹配的文件会有绿勾出现<br><img src="/images/1121/4.jpeg" alt=""></p>
+<p>修改后发现源码也被修改。</p>
+<h2 id="纯-css-爆酷炫图片滤镜效果"><a href="#纯-css-爆酷炫图片滤镜效果" class="headerlink" title="纯 css 爆酷炫图片滤镜效果"></a>纯 css 爆酷炫图片滤镜效果</h2><p><a href="http://bennettfeely.com/image-effects/" target="_blank" rel="external">http://bennettfeely.com/image-effects/</a></p>
+<h2 id="JSON-Splora"><a href="#JSON-Splora" class="headerlink" title="JSON-Splora"></a>JSON-Splora</h2><p>JSON-Splora is a GUI for editing, visualizing, and manipulating JSON data with jq or JavaScript.</p>
+<p>安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g <span class="built_in">JSON</span>-Splora</span><br></pre></td></tr></table></figure>
+<p>打开</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsplora</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys <span class="comment">//输出所有 key</span></span><br><span class="line"></span><br><span class="line">.data <span class="comment">//输出 data 节点</span></span><br><span class="line"></span><br><span class="line">.data.filter(d =&gt; d.id &gt; <span class="number">5</span>) <span class="comment">//输出 data 数组中 id &gt; 5 的元素</span></span><br><span class="line"></span><br><span class="line">.data.map(d =&gt; d.price_key) <span class="comment">//输出所有 data 数组中的 price_key 值</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+            <a href="/tags/html/" rel="tag">#html</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/28/学习前端时学到的单词/" rel="next" title="学习前端时学到的单词">
+                <i class="fa fa-chevron-left"></i> 学习前端时学到的单词
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/22/ES6-Destructuring/" rel="prev" title="ES6 Destructuring">
+                ES6 Destructuring <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="xwillmadeit" />
+          <p class="site-author-name" itemprop="name">xwillmadeit</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用同一个-tab-页同时调试前端-js-和-node"><span class="nav-number">1.</span> <span class="nav-text">使用同一个 tab 页同时调试前端 js 和 node</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-you-need："><span class="nav-number">1.1.</span> <span class="nav-text">What you need：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-a-new-way-of-Node-js-debugging-in-Chrome"><span class="nav-number">1.2.</span> <span class="nav-text">Enable a new way of Node.js debugging in Chrome</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除-event-listener"><span class="nav-number">2.</span> <span class="nav-text">清除 event listener</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#airbnb-的-css，sass-规范中的一些重点"><span class="nav-number">3.</span> <span class="nav-text">airbnb 的 css，sass 规范中的一些重点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Object-assign-to-set-inline-styles"><span class="nav-number">4.</span> <span class="nav-text">Using Object.assign to set inline styles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mozilla-is-working-on-a-new-UI-for-input-type-“time”"><span class="nav-number">5.</span> <span class="nav-text">Mozilla is working on a new UI for input type “time”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两个-Elements-Panel-中的小技巧"><span class="nav-number">6.</span> <span class="nav-text">两个 Elements Panel 中的小技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities"><span class="nav-number">7.</span> <span class="nav-text">Get an overview of all CSS selectors or all JavaScript functions with searching abilities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-Chrome-Experiments-查看修改过的-css"><span class="nav-number">8.</span> <span class="nav-text">利用 Chrome Experiments 查看修改过的 css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css-覆盖率"><span class="nav-number">9.</span> <span class="nav-text">css 覆盖率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#devTool-修改直接保存到源文件"><span class="nav-number">10.</span> <span class="nav-text">devTool 修改直接保存到源文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纯-css-爆酷炫图片滤镜效果"><span class="nav-number">11.</span> <span class="nav-text">纯 css 爆酷炫图片滤镜效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-Splora"><span class="nav-number">12.</span> <span class="nav-text">JSON-Splora</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xwillmadeit</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

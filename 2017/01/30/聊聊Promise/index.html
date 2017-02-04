@@ -1,0 +1,598 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,promise,ES6," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="定义Promise 是一个对象，用于提供一个未来值，这个值可能是成功值，也可能是失败值。
+
+A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved.
+
+三种状态Pendingi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊 Promise">
+<meta property="og:url" content="https://xwillmadeit.github.io/2017/01/30/聊聊Promise/index.html">
+<meta property="og:site_name" content="xwillmadeit">
+<meta property="og:description" content="定义Promise 是一个对象，用于提供一个未来值，这个值可能是成功值，也可能是失败值。
+
+A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved.
+
+三种状态Pendingi">
+<meta property="og:updated_time" content="2017-01-30T15:42:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊聊 Promise">
+<meta name="twitter:description" content="定义Promise 是一个对象，用于提供一个未来值，这个值可能是成功值，也可能是失败值。
+
+A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved.
+
+三种状态Pendingi">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://xwillmadeit.github.io/2017/01/30/聊聊Promise/"/>
+
+
+  <title> 聊聊 Promise | xwillmadeit </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xwillmadeit</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                聊聊 Promise
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-30T11:22:55+08:00" content="2017-01-30">
+              2017-01-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Promise 是一个对象，用于提供一个未来值，这个值可能是成功值，也可能是失败值。</p>
+<blockquote>
+<p>A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved.</p>
+</blockquote>
+<h2 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h2><p><b>Pending</b><br>initial state, not fulfilled or rejected.<br>pending 状态就相当于 http 请求正在等待服务器返回结果一样，可能是等待成功，也可能是失败</p>
+<p><b>Fulfilled</b><br>the operation completed successfully.<br>Fulfilled 状态表示 promise 返回了一个成功值，即 resolve 值</p>
+<p><b>Rejected</b><br>the operation failed.<br>Rejected 状态表示 promise 返回了一个失败值，即 reject 值</p>
+<h2 id="简单实例"><a href="#简单实例" class="headerlink" title="简单实例"></a>简单实例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> say = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'yes'</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'no'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'begin'</span>);</span><br><span class="line"></span><br><span class="line">say.then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res),</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'end'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套-Chaining"><a href="#嵌套-Chaining" class="headerlink" title="嵌套 (Chaining)"></a>嵌套 (Chaining)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> greet = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'hello'</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'no welcome'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> toSb = greet =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      resolve(<span class="string">`<span class="subst">$&#123;greet&#125;</span> to sb`</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet.then(</span><br><span class="line">  greet =&gt; toSb(greet)</span><br><span class="line">).then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res)</span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><b>Something Important</b></p>
+<p>错误处理在 promise 中有两种</p>
+<blockquote>
+<ol>
+<li>Promise.prototype.catch(onRejected)</li>
+<li>Promise.prototype.then(onFulfilled, onRejected)</li>
+</ol>
+</blockquote>
+<p>因为 .then() 总是返回一个 new promise，所以如果在 then 中处理 onRejected，那么在 promise 嵌套时，第二个 .then() 中的代码总会被执行，在这个例子中就会输出 undefined   </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">greet.then(</span><br><span class="line">  greet =&gt; toSb(greet),</span><br><span class="line">  greetErr =&gt; <span class="built_in">console</span>.log(greetTxt) <span class="comment">//if promise is rejected</span></span><br><span class="line">).then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res)  <span class="comment">// here will always print undefined</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>个人推荐使用 .catch() 处理 onRejected</p>
+<h2 id="多个-Promise"><a href="#多个-Promise" class="headerlink" title="多个 Promise"></a>多个 Promise</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">1000</span>),</span><br><span class="line">	<span class="number">1000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;); </span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; reject(<span class="number">2000</span>),</span><br><span class="line">	<span class="number">2000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">3000</span>),</span><br><span class="line">	<span class="number">3000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2s to reject the promise</span></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(values =&gt; &#123; </span><br><span class="line">  <span class="built_in">console</span>.log(values);</span><br><span class="line">&#125;).catch(reason =&gt; &#123; </span><br><span class="line">  <span class="built_in">console</span>.log(reason)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>所有的 promise 成功 resolve 后，则 Promise.all 也成功 resolve<br>只要有一个 promise 被 reject，则 Promise.all 返回的新 promise 也被 reject<br>Promise.all reject 的值为第一个被 reject 的 promise 的值</p>
+</blockquote>
+<h2 id="结合-async-amp-await-example"><a href="#结合-async-amp-await-example" class="headerlink" title="结合 async &amp; await (example)"></a>结合 async &amp; await (example)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">1000</span>),</span><br><span class="line">	<span class="number">1000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">2000</span>),</span><br><span class="line">	<span class="number">2000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; reject(<span class="number">3000</span>),</span><br><span class="line">	<span class="number">3000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">allPromise</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([p1, p2, p3]);</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allPromise().then(</span><br><span class="line">	res =&gt; <span class="built_in">console</span>.log(res)</span><br><span class="line">).catch(</span><br><span class="line">	err =&gt; <span class="built_in">console</span>.log(err) <span class="comment">//3000</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261#.y8mslze0c" target="_blank" rel="external">掌握Promise</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/promise/" rel="tag">#promise</a>
+          
+            <a href="/tags/ES6/" rel="tag">#ES6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/26/Git-Ninja/" rel="next" title="Git Ninja">
+                <i class="fa fa-chevron-left"></i> Git Ninja
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/31/聊聊-Pure-Function/" rel="prev" title="聊聊 Pure Function">
+                聊聊 Pure Function <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="xwillmadeit" />
+          <p class="site-author-name" itemprop="name">xwillmadeit</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种状态"><span class="nav-number">2.</span> <span class="nav-text">三种状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单实例"><span class="nav-number">3.</span> <span class="nav-text">简单实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套-Chaining"><span class="nav-number">4.</span> <span class="nav-text">嵌套 (Chaining)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个-Promise"><span class="nav-number">5.</span> <span class="nav-text">多个 Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结合-async-amp-await-example"><span class="nav-number">6.</span> <span class="nav-text">结合 async & await (example)</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xwillmadeit</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

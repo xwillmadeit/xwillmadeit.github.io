@@ -233,507 +233,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/23/css布局技巧/" itemprop="url">
-                  css布局技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-23T10:50:35+08:00" content="2016-06-23">
-              2016-06-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="主流处理等分布局"><a href="#主流处理等分布局" class="headerlink" title="主流处理等分布局"></a>主流处理等分布局</h2><p>参考各大网站发现都使用到了给 ul 设置负的 margin 值</p>
-<p><img src="/images/css/1142876.jpg" alt=""></p>
-<ol>
-<li>首先将宽度除以份数，如 1200／5 则每个格子 240px; </li>
-<li>给每份增加 margin-left 如 20px，则每个格子 width 减少 20px 变为 220px</li>
-<li>第一个元素不需要 margin-left ，所以使用对 ul 使用 margin-left: -20px，则盒子总宽度1220px</li>
-<li>1220/5 则每个格子占 244px，所以每个格子的 width 为 224px </li>
-</ol>
-<h2 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h2><p>关于什么是双飞翼布局，网上一大堆介绍…主要实现的是左右固定而中间区域自适应…废话不说，上代码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class = "container"&gt;</span><br><span class="line">    &lt;div class="center col"&gt;</span><br><span class="line">        &lt;div class="main"&gt;这是一行字&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class="left col"&gt;这是一行字&lt;/div&gt;</span><br><span class="line">    &lt;div class="right col"&gt;这是一行字&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.col</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.center</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background</span>: pink;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意两点：<br>1.center 为什么写在最前面，因为可以起到中间内容区优先加载的作用。<br>2.为什么要在 center 中套一个 main？因为 left 把 center 的内容遮挡了，需要 margin-left 一个 left 的宽度，同理，right 也是</p>
-<p><a href="https://github.com/xdlrt/roadToFe/tree/master/css/layout/wings" target="_blank" rel="external">双飞翼布局是个啥</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/23/nodejs中使用mysql连接池/" itemprop="url">
-                  nodejs中使用mysql连接池
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-23T10:42:17+08:00" content="2016-06-23">
-              2016-06-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="使用连接池"><a href="#使用连接池" class="headerlink" title="使用连接池"></a>使用连接池</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);</span><br><span class="line"><span class="keyword">var</span> pool = mysql.createPool(&#123;</span><br><span class="line">    host: <span class="string">'192.168.20.6'</span>,</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    password: <span class="string">'123321'</span>,</span><br><span class="line">    database: <span class="string">'magic'</span></span><br><span class="line">&#125;);</span><br><span class="line">pool.getConnection(<span class="function"><span class="keyword">function</span>(<span class="params">err, connection</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">    connection.query(sql, <span class="function"><span class="keyword">function</span>(<span class="params">qerr, result</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (qerr) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(qerr);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//释放连接</span></span><br><span class="line">        connection.release();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="实战中使用-node-mysql"><a href="#实战中使用-node-mysql" class="headerlink" title="实战中使用 node-mysql"></a>实战中使用 node-mysql</h2><p>这里将查询 sql 返回结果封装成了 sqlHandle.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getResult</span>(<span class="params">pool,sql</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve,reject) =&gt; &#123;</span><br><span class="line">        pool.getConnection((err,connection) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            connection.query(sql, (qerr, result) =&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (qerr) &#123;</span><br><span class="line">                    reject(qerr);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    resolve(&#123;result: result&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//释放连接</span></span><br><span class="line">                connection.release();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    getResult</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://github.com/mysqljs/mysql#pool-options" target="_blank" rel="external">使用连接池</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/23/git设置全局用户名和邮箱/" itemprop="url">
-                  git设置全局用户名和邮箱
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-23T10:38:47+08:00" content="2016-06-23">
-              2016-06-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="查看全局设置"><a href="#查看全局设置" class="headerlink" title="查看全局设置"></a>查看全局设置</h2><p>git config –list</p>
-<h2 id="设置用户名和邮箱"><a href="#设置用户名和邮箱" class="headerlink" title="设置用户名和邮箱"></a>设置用户名和邮箱</h2><pre><code>git config --global user.name [username]
-git config --global user.email [email]
-</code></pre><p>遇到 fatal: unable to access SSL certificate problem: certificate is not yet valid 之类的错误</p>
-<pre><code>git config --global http.sslVerify false 
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/22/关于时间管理/" itemprop="url">
-                  关于时间管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-22T22:37:50+08:00" content="2016-06-22">
-              2016-06-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="关于时间管理的几句话"><a href="#关于时间管理的几句话" class="headerlink" title="关于时间管理的几句话"></a>关于时间管理的几句话</h2><p>在阮一峰老师的博客里看到的关于时间管理的几句话，比较有感触，所以小整理一下。</p>
-<ol>
-<li><p>进程切换非常昂贵，避免多任务，保持单进程。</p>
-</li>
-<li><p>集中注意力、高效工作，每天最多4小时。</p>
-</li>
-<li><p>划分任务的优先级，不要把“急切”当作“重要”。<br><img src="/images/time/timeManage1.png" alt=""></p>
-</li>
-<li><p>避免开会，至少不要参加与你无关的会。站着开会，也许是一个缩短会议时间的好办法。</p>
-</li>
-<li><p>你没空时不会做的事情，有空了也不会做。<br>世上并没有拖延症，只是不想做而已。如果可能，应该尽早放弃你没有意愿去做的那些事。而那些没有时间也会去做的事，才是你应该全力以赴的人生方向。</p>
-</li>
-</ol>
-<p><a href="http://www.ruanyifeng.com/blog/2016/05/time-management.html" target="_blank" rel="external">时间管理的7句话</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/22/js中获取url参数/" itemprop="url">
-                  js中获取url参数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-22T16:37:52+08:00" content="2016-06-22">
-              2016-06-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="js中获取url地址栏问号后携带的参数"><a href="#js中获取url地址栏问号后携带的参数" class="headerlink" title="js中获取url地址栏问号后携带的参数"></a>js中获取url地址栏问号后携带的参数</h2><p>老生常谈的问题：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetQueryString</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> curl = <span class="built_in">window</span>.location.search;</span><br><span class="line">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^|&amp;)"</span> + name + <span class="string">"=([^&amp;]*)(&amp;|$)"</span>);</span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">decodeURI</span>(curl).substr(<span class="number">1</span>).match(reg);</span><br><span class="line">    <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">unescape</span>(r[<span class="number">2</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(GetQueryString(<span class="string">'id'</span>));</span><br><span class="line">alert(GetQueryString(<span class="string">'name'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//http://www.cnblogs.com/fishtreeyu/archive/2011/02/27/1966178.html</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/06/22/纯js倒计时/" itemprop="url">
                   纯js倒计时
                 </a>
@@ -782,102 +281,6 @@ git config --global user.email [email]
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countDown = <span class="function"><span class="keyword">function</span>(<span class="params">targetTime, callback</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> _second = <span class="number">1000</span>,</span><br><span class="line">        _minute = _second * <span class="number">60</span>,</span><br><span class="line">        _hour = _minute * <span class="number">60</span>,</span><br><span class="line">        _day = _hour * <span class="number">24</span>,</span><br><span class="line">        timer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addZero</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span> + num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> endTime = <span class="keyword">new</span> <span class="built_in">Date</span>(targetTime).getTime(),</span><br><span class="line">            nowTime = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime(),</span><br><span class="line">            timeDiff = endTime - nowTime,</span><br><span class="line">            data;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timeDiff &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> callback === <span class="string">'function'</span>) &#123;</span><br><span class="line">                callback();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">                timer = setInterval(start, <span class="number">1000</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'days'</span>: <span class="built_in">Math</span>.floor(timeDiff / _day),</span><br><span class="line">            <span class="string">'hours'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _day) / _hour)),</span><br><span class="line">            <span class="string">'minutes'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _hour) / _minute)),</span><br><span class="line">            <span class="string">'seconds'</span>: addZero(<span class="built_in">Math</span>.floor((timeDiff % _minute) / _second))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hours:'</span> + data.hours + <span class="string">',minutes:'</span> + data.minutes + <span class="string">',seconds:'</span> + data.seconds);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    start();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">countDown(<span class="string">'2016-06-12 14:58:00'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'do something'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>注意坑！ios系统中，new Date(‘2016-06-12 12:23:34’).getTime() 为 NaN<br>简单的解决方法，写个替换函数，格式为 2016/06/12 12:23:34 即可</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTime</span>(<span class="params">strDate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(strDate.replace(<span class="regexp">/-/g</span>, <span class="string">'/'</span>)).getTime();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/22/js中使用cookie/" itemprop="url">
-                  js中使用cookie
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-22T16:22:47+08:00" content="2016-06-22">
-              2016-06-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="js-中操作-cookie"><a href="#js-中操作-cookie" class="headerlink" title="js 中操作 cookie"></a>js 中操作 cookie</h2><p>不多说，直接上代码，无非就是 存，取，删除</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> cookieHandle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.setCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name,value,days,firstDomain</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> expire = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">            name = name ? name: <span class="string">'true'</span>,</span><br><span class="line">            days = days ? days: <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(days&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            expire.setTime(expire.getTime() - <span class="number">1000</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            expire.setTime(expire.getTime() + days*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(firstDomain)&#123; </span><br><span class="line">        	<span class="comment">//指定存入一级域名下</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString() + <span class="string">";path=/"</span> + <span class="string">";domain=wxrrd.com"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        	<span class="comment">//默认存入 domain 为 window.location.hostname</span></span><br><span class="line">            <span class="built_in">document</span>.cookie = name + <span class="string">"="</span> + <span class="built_in">escape</span>(value) + <span class="string">";expires="</span> + expire.toGMTString();</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cookieHandle.prototype.getCookie = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> arr,</span><br><span class="line">            reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^| )"</span>+name+<span class="string">"=([^;]*)(;|$)"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(arr=<span class="built_in">document</span>.cookie.match(reg))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(arr[<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> cookieHandle = <span class="keyword">new</span> cookieHandle();</span><br><span class="line">    <span class="keyword">if</span>(cookieHandle.getCookie(<span class="string">'name'</span>)==<span class="string">''</span>)&#123;</span><br><span class="line">    	cookieHandle.setCookie(<span class="string">'name'</span>,<span class="string">'xwill'</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(cookieHandle.getCookie(<span class="string">'name'</span>));</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>注意，js 中删除 cookie 即设置失效时间为负数即可<br>另外需要注意，可指定存入domain</p>
 
           
         
@@ -1046,8 +449,8 @@ git config --global user.email [email]
             
               
                 
-                <a class="post-title-link" href="/2016/03/11/javascript模块化—如何组织js代码/" itemprop="url">
-                  javascript模块化—如何组织js代码
+                <a class="post-title-link" href="/2016/03/05/ionic完整环境搭建/" itemprop="url">
+                  ionic完整环境搭建
                 </a>
               
             
@@ -1060,8 +463,8 @@ git config --global user.email [email]
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T10:57:05+08:00" content="2016-03-11">
-              2016-03-11
+            <time itemprop="dateCreated" datetime="2016-03-05T17:20:47+08:00" content="2016-03-05">
+              2016-03-05
             </time>
           </span>
 
@@ -1090,9 +493,18 @@ git config --global user.email [email]
       
         
           
-            <h2 id="The-Module-Pattern"><a href="#The-Module-Pattern" class="headerlink" title="The Module Pattern"></a>The Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s,</span><br><span class="line">NewsWidget = &#123;</span><br><span class="line">	settings:&#123;</span><br><span class="line">		numArticles: <span class="number">5</span>,</span><br><span class="line">		articleList: $(<span class="string">"#article-list"</span>),</span><br><span class="line">		moreButton: $(<span class="string">"#more-button"</span>)</span><br><span class="line">	&#125;,</span><br><span class="line">	init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">// kick things off</span></span><br><span class="line">		s = <span class="keyword">this</span>.settings;</span><br><span class="line">		<span class="keyword">this</span>.bindUiActions();</span><br><span class="line">	&#125;,</span><br><span class="line">	bindUiActions: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		s.moreButton.on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			NewsWidget.getMoreArticles(s.numArticles);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	getMoreArticles: <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'获取'</span>+s.numArticles+<span class="string">'条数据'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用这种方式内部属性可被修改</span></span><br><span class="line">NewsWidget.settings.numArticles = <span class="number">6</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化组件</span></span><br><span class="line">NewsWidget.init();</span><br></pre></td></tr></table></figure>
-<p><a href="https://css-tricks.com/how-do-you-structure-javascript-the-module-pattern-edition/" target="_blank" rel="external">The Module Pattern Edition</a></p>
-<h2 id="The-Revealing-Module-Pattern"><a href="#The-Revealing-Module-Pattern" class="headerlink" title="The Revealing Module Pattern"></a>The Revealing Module Pattern</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name = <span class="string">'xwill'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		getName: sayName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//使用这种方式无法修改匿名函数中的name属性！Person只有一个getName方法</span></span><br><span class="line">Person.name = <span class="string">'kobe'</span>; <span class="comment">//无效</span></span><br><span class="line">Person.getName() <span class="comment">//仍为 xwill</span></span><br></pre></td></tr></table></figure>
+            <h2 id="安装-JDK-（java）"><a href="#安装-JDK-（java）" class="headerlink" title="安装 JDK （java）"></a>安装 JDK （java）</h2><p>下载 jdk 并安装。比如安装在 C:\Program Files\Java\jdk1.7.0_67 目录<br>安装完后执行 java -version，如出现 jdk 版本号，说明 jdk 安装成功</p>
+<p>系统变量中增加 JAVA_HOME<br>C:\Program Files\Java\jdk1.7.0_67</p>
+<p>修改系统变量PATH，在最前面加上<br>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</p>
+<p>重启命令行 执行 JAVAC，如出现 java 帮助文档，则说明环境变量配置成功。</p>
+<h2 id="配置-android-环境-amp-ant-环境"><a href="#配置-android-环境-amp-ant-环境" class="headerlink" title="配置 android 环境 &amp; ant 环境"></a>配置 android 环境 &amp; ant 环境</h2><p>解压 adt-bundle-windows-x86_64-20140702.zip 至D盘<br>D:\adt-bundle-windows-x86_64-20140702</p>
+<p>修改系统变量PATH，在最前面加上<br>D:\adt-bundle-windows-x86_64-20140702\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\bin;D:\adt-bundle-windows-x86_64-20140702\sdk\tools;D:\adt-bundle-windows-x86_64-20140702\sdk\platform-tools;</p>
+<p>PATH 参考:<br>D:\adt-bundle-windows-x86_64-20140702\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\bin;D:\adt-bundle-windows-x86_64-20140702\sdk\tools;D:\adt-bundle-windows-x86_64-20140702\sdk\platform-tools;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</p>
+<h2 id="cordova-环境配置"><a href="#cordova-环境配置" class="headerlink" title="cordova 环境配置"></a>cordova 环境配置</h2><p>1）首先安装 node.js （64位）<br>下载地址：<a href="https://nodejs.org/download/release/v0.12.8/x64/" target="_blank" rel="external">https://nodejs.org/download/release/v0.12.8/x64/</a><br>下载 node-v0.12.8-x64.msi 并安装</p>
+<p>安装完后执行<br>node -v<br>npm -v<br>查看 node 和 npm 是否安装，安装成功会先显示版本号</p>
+<p>2）安装 cordova<br>npm install -g cordova<br>安装完后 执行 cordova -v 查看是否安装成功</p>
+<p>注意，无需安装 phonegap</p>
+<p>3）安装 ionic<br>npm install -g ionic<br>执行 ionic -v 查看 ionic 是否安装成功</p>
 
           
         
@@ -1142,8 +554,8 @@ git config --global user.email [email]
             
               
                 
-                <a class="post-title-link" href="/2016/03/09/react入门学习/" itemprop="url">
-                  react入门学习
+                <a class="post-title-link" href="/2016/03/04/css中的各种居中/" itemprop="url">
+                  css中的各种居中
                 </a>
               
             
@@ -1156,8 +568,8 @@ git config --global user.email [email]
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-09T07:30:41+08:00" content="2016-03-09">
-              2016-03-09
+            <time itemprop="dateCreated" datetime="2016-03-04T21:24:56+08:00" content="2016-03-04">
+              2016-03-04
             </time>
           </span>
 
@@ -1186,18 +598,515 @@ git config --global user.email [email]
       
         
           
-            <h2 id="react-从何而来"><a href="#react-从何而来" class="headerlink" title="react 从何而来"></a>react 从何而来</h2><p>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。</p>
-<h2 id="为什么会有-react"><a href="#为什么会有-react" class="headerlink" title="为什么会有 react"></a>为什么会有 react</h2><p>Facebook认为MVC无法满足他们的扩展需求，由于他们非常巨大的代码库和庞大的组织，使得MVC很快变得非常复复杂，每当需要添加一项新的功能或特性时，系统的复杂度就成级数增长，致使代码变得脆弱和不可预测，结果导致他们的MVC正在土崩瓦解。认为MVC不适合大规模应用，当系统中有很多的模型和相应的视图时，其复杂度就会迅速扩大，非常难以理解和调试，特别是模型和视图间可能存在的双向数据流动。</p>
-<p>解决这个问题需要“以某种方式组织代码，使其更加可预测”，这通过他们(Facebook)提出的Flux和React已经完成。</p>
-<p>Flux是一个系统架构，用于推进应用中的数据单向流动。React是一个JavaScript框架，用于构建“可预期的”和“声明式的”Web用户界面，它已经使Facebook更快地开发Web应用。</p>
-<p><img src="/images/react/flux.png" alt=""></p>
-<h2 id="react-主要特点"><a href="#react-主要特点" class="headerlink" title="react 主要特点"></a>react 主要特点</h2><ol>
-<li>简单<br>简单的表述任意时间点你的应用应该是什么样子的，React将会自动的管理UI界面更新当数据发生变化的时候。</li>
-<li>声明式<br>在数据发生变化的时候，React从概念上讲与点击了F5一样，实际上它仅仅是更新了变化的一部分而已。<br>React是关于构造可重用组件的，实际上，使用React你做的仅仅是构建组建。通过封装，使得组件代码复用、测试以及关注点分离更加容易。</li>
+            <h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><h2 id="垂直居中一个块级元素"><a href="#垂直居中一个块级元素" class="headerlink" title="垂直居中一个块级元素"></a>垂直居中一个块级元素</h2><h3 id="知道该块级元素的高"><a href="#知道该块级元素的高" class="headerlink" title="知道该块级元素的高"></a>知道该块级元素的高</h3><pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  margin-top: -50px; 
+}
+</code></pre><h3 id="不知道该块级元素的宽高"><a href="#不知道该块级元素的宽高" class="headerlink" title="不知道该块级元素的宽高"></a>不知道该块级元素的宽高</h3><pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</code></pre><h3 id="使用-flexbox"><a href="#使用-flexbox" class="headerlink" title="使用 flexbox"></a>使用 flexbox</h3><pre><code>.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+</code></pre><h2 id="垂直居中一个行内元素"><a href="#垂直居中一个行内元素" class="headerlink" title="垂直居中一个行内元素"></a>垂直居中一个行内元素</h2><h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><p>一般使 height 和 line-height 相同即可</p>
+<pre><code>.center-text-trick {
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+}
+</code></pre><p>若父元素高度未指定可设置上下 padding 相等</p>
+<pre><code>.text-center{
+    width: 100px;
+    background-color: pink;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+</code></pre><h3 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h3><p>方案1</p>
+<pre><code>div {
+   display: table;
+}
+div p {
+   display:table-cell;
+   vertical-align: middle;
+}
+</code></pre><p>方案2</p>
+<pre><code>&lt;div class=&quot;flex-center&quot;&gt;
+  &lt;p&gt;I&apos;m vertically centered multiple lines of text in a flexbox container.&lt;/p&gt;
+&lt;/div&gt;
+
+body {
+  background: #f06d06;
+  font-size: 80%;
+}
+
+div {
+  background: white;
+  width: 240px;
+  margin: 20px;
+}
+
+.flex-center {
+  background: black;
+  color: white;
+  border: 10px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  resize: vertical;
+  overflow: auto;
+}
+.flex-center p {
+  margin: 0;
+  padding: 60px;
+}
+</code></pre><p>方案3 - 诡异的方法</p>
+<pre><code>&lt;div class=&quot;ghost-center&quot;&gt;
+  &lt;p&gt;I&apos;m vertically centered multiple lines of text in a container. Centered with a ghost pseudo element&lt;/p&gt;
+&lt;/div&gt;
+
+body {
+  background: #f06d06;
+  font-size: 80%;
+}
+
+div {
+  background: white;
+  width: 240px;
+  height: 200px;
+  margin: 20px;
+  color: white;
+  resize: vertical;
+  overflow: auto;
+  padding: 20px;
+}
+
+.ghost-center {
+  position: relative;
+}
+.ghost-center::before {
+  content: &quot; &quot;;
+  display: inline-block;
+  height: 100%;
+  width: 1%;
+  vertical-align: middle;
+}
+.ghost-center p {
+  display: inline-block;
+  vertical-align: middle;
+  width: 190px;
+  margin: 0;
+  padding: 20px;
+  background: black;
+}
+</code></pre><h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><h2 id="水平居中一个块级元素"><a href="#水平居中一个块级元素" class="headerlink" title="水平居中一个块级元素"></a>水平居中一个块级元素</h2><pre><code>.center-me {
+  margin: 0 auto;
+}
+</code></pre><h2 id="水平居中一个行内元素"><a href="#水平居中一个行内元素" class="headerlink" title="水平居中一个行内元素"></a>水平居中一个行内元素</h2><pre><code>.center-children {
+  text-align: center;
+}
+</code></pre><h1 id="垂直水平居中"><a href="#垂直水平居中" class="headerlink" title="垂直水平居中"></a>垂直水平居中</h1><h2 id="固定宽高"><a href="#固定宽高" class="headerlink" title="固定宽高"></a>固定宽高</h2><pre><code>.parent {
+  position: relative;
+}
+
+.child {
+  width: 300px;
+  height: 100px;
+  padding: 20px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin: -70px 0 0 -170px;
+}
+</code></pre><h2 id="不知道宽高"><a href="#不知道宽高" class="headerlink" title="不知道宽高"></a>不知道宽高</h2><pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</code></pre><h2 id="使用-flexbox-1"><a href="#使用-flexbox-1" class="headerlink" title="使用 flexbox"></a>使用 flexbox</h2><pre><code>.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</code></pre><p><a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="external">css居中各种方法</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/12/ionic打包未签名apk/" itemprop="url">
+                  ionic打包未签名apk
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-12T00:43:02+08:00" content="2016-02-12">
+              2016-02-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="如何打包未签名-apk"><a href="#如何打包未签名-apk" class="headerlink" title="如何打包未签名 apk"></a>如何打包未签名 apk</h2><p>cordova build –release android</p>
+<h2 id="可能会出现的错误"><a href="#可能会出现的错误" class="headerlink" title="可能会出现的错误"></a>可能会出现的错误</h2><p><img src="/images/ionic/packError.png" alt=""></p>
+<p>查看错误日志发现问题基本是 translation 错误，解决方法：<br>在 platforms/android/build.gradle 文件的android {} 节点中增加</p>
+<pre><code>lintOptions{
+    abortOnError false
+    checkReleaseBuilds false
+}
+</code></pre><p><img src="/images/ionic/addPackLine.png" alt=""></p>
+<p><a href="http://stackoverflow.com/questions/30345879/error-when-running-cordova-build-release-android" target="_blank" rel="external">参考</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/11/javascript中this的指向/" itemprop="url">
+                  javascript 中 this 的指向
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-11T10:48:16+08:00" content="2015-07-11">
+              2015-07-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h2><p>this 的指向大致可以分为以下4种</p>
+<ol>
+<li>作为对象的方法调用</li>
+<li>作为普通函数调用</li>
+<li>构造器调用</li>
+<li>Function.prototype.call 或 Function.prototype.apply 调用</li>
 </ol>
-<h2 id="主要原理"><a href="#主要原理" class="headerlink" title="主要原理"></a>主要原理</h2><p>传统的web应用，操作DOM一般是直接更新操作的，但是我们知道DOM更新通常是比较昂贵的。而React为了尽可能减少对DOM的操作，提供了一种不同的而又强大的方式来更新DOM，代替直接的DOM操作。就是Virtual DOM,一个轻量级的虚拟的DOM，就是React抽象出来的一个对象，描述dom应该什么样子的，应该如何呈现。通过这个Virtual DOM去更新真实的DOM，由这个Virtual DOM管理真实DOM的更新。</p>
-<p>为什么通过这多一层的Virtual DOM操作就能更快呢？ 这是因为React有个diff算法，更新Virtual DOM并不保证马上影响真实的DOM，React会等到事件循环结束，然后利用这个diff算法，通过当前新的dom表述与之前的作比较，计算出最小的步骤更新真实的DOM。</p>
-<p><a href="https://github.com/xwillmadeit/reactFromBottom" target="_blank" rel="external">入门工程</a><br><a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">阮一峰 react 入门</a><br><a href="https://github.com/xwillmadeit/fluxboiler" target="_blank" rel="external">Flux 架构 Demo</a></p>
+<h2 id="当函数作为对象的方法被调用时，this指向该对象："><a href="#当函数作为对象的方法被调用时，this指向该对象：" class="headerlink" title="当函数作为对象的方法被调用时，this指向该对象："></a>当函数作为对象的方法被调用时，this指向该对象：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	a: <span class="number">1</span>,</span><br><span class="line">	getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span> == obj); <span class="comment">//输出：true</span></span><br><span class="line">		alert(<span class="keyword">this</span>.a); <span class="comment">//输出：1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
+<h2 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h2><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的this总是指向全局对象。在浏览器的 javascript 里，这个全局变量是 window 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//输出：globalName</span></span><br></pre></td></tr></table></figure>
+<p>或者 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">'globalName'</span>;</span><br><span class="line"><span class="keyword">var</span> myObj = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getName = myObj.getName;</span><br><span class="line"><span class="built_in">console</span>.log(getName()); <span class="comment">//globalName</span></span><br></pre></td></tr></table></figure>
+<p>有时候我们会遇到一些困扰，比如在 div 节点的时间函数内部，有一个局部的 callback 方法，callback方法被作为普通的函数调用时，callback内部的this指向了window，但我们往往是想让它指向该div节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.id = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.id); <span class="comment">// tihs为该 div 节点，this.id = div1</span></span><br><span class="line">	<span class="comment">//var that = this; //保存引用 that.id 指向 div1</span></span><br><span class="line">	<span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(that.id); <span class="comment">//window</span></span><br><span class="line">	&#125;</span><br><span class="line">	callback();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时需用 that 保存下 div 节点的引用。</p>
+<p>在 es5 的 strict 模式下，这种情况下的 this 已经被规定为不会指向全局对象，而是 undefined;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">	'use strict'</span></span><br><span class="line">	alert(<span class="keyword">this</span>); <span class="comment">//undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
+<h2 id="构造器调用"><a href="#构造器调用" class="headerlink" title="构造器调用"></a>构造器调用</h2><p>当用 new 运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的 this 就指向返回的这个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
+<p>但用 new 调用构造器时，还需要注意一个问题，如果构造器显式地返回了一个 object 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		name: <span class="string">'anne'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//anne</span></span><br></pre></td></tr></table></figure>
+<p>如果构造器不显式地返回任何数据，或者是返回一个非对象类型的数据，就不会造成上述问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'sven'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'anne'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> myClass();</span><br><span class="line">alert(obj.name); <span class="comment">//sven</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function-prototype-call-或-Function-prototype-apply-调用"><a href="#Function-prototype-call-或-Function-prototype-apply-调用" class="headerlink" title="Function.prototype.call 或 Function.prototype.apply 调用"></a>Function.prototype.call 或 Function.prototype.apply 调用</h2><p>这两个方法可以动态地改变传入函数的 this </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">	name: <span class="string">'sven'</span>,</span><br><span class="line">	getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">	name: <span class="string">'anne'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName());</span><br><span class="line"><span class="built_in">console</span>.log(obj1.getName.call(obj2));</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/12/前端面试题整理/" itemprop="url">
+                  前端常见面试题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-12T14:09:59+08:00" content="2015-06-12">
+              2015-06-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">getDate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">	DateObj = &#123;</span><br><span class="line">		getTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> year = date.getFullYear(),</span><br><span class="line">				month = (date.getMonth())+<span class="number">1</span>, <span class="comment">//月份从0开始</span></span><br><span class="line">				day = date.getDate(),</span><br><span class="line">				hour = <span class="keyword">this</span>.addZero(date.getHours()),</span><br><span class="line">			    min = <span class="keyword">this</span>.addZero(date.getMinutes()),</span><br><span class="line">				sec = <span class="keyword">this</span>.addZero(date.getSeconds());</span><br><span class="line"></span><br><span class="line">			alert(year+<span class="string">'年'</span>+month+<span class="string">'月'</span>+day+<span class="string">'日 '</span>+hour+<span class="string">':'</span>+min+<span class="string">':'</span>+sec);</span><br><span class="line">		&#125;,</span><br><span class="line">		addZero: <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123; <span class="comment">//时分秒个位数补0</span></span><br><span class="line">			<span class="keyword">return</span> (number &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + number;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	DateObj.getTime();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'123\n456'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">queryString</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.url = url;</span><br><span class="line">	<span class="keyword">this</span>.urlObj = &#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.splitUrl = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> paramsUrl = <span class="keyword">this</span>.url.split(<span class="string">'?'</span>)[<span class="number">1</span>];</span><br><span class="line">			pair = paramsUrl.split(<span class="string">'&amp;'</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;pair.length;i++)&#123;</span><br><span class="line">			<span class="keyword">var</span> key = pair[i].split(<span class="string">'='</span>)[<span class="number">0</span>],</span><br><span class="line">				val = pair[i].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">this</span>.urlObj[key] = val;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.urlObj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> queryString(<span class="string">'http://www.taobao.com?item=10&amp;key=12&amp;productId=88'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str.splitUrl());  <span class="comment">//&#123;item: "10", key: "12", productId: "88"&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
+<ol>
+<li>参数都是体现在 url 上</li>
+<li>主要用于取（查询）数据</li>
+<li>url 有最大长度限制</li>
+<li>便于浏览器缓存 ok to cache</li>
+<li>不应该去改变服务端的数据</li>
+</ol>
+<p>POST 请求</p>
+<ol>
+<li>参数通过 body 传递</li>
+<li>用于更新数据</li>
+<li>没有长度限制</li>
+<li>不能做缓存 not ok to cache</li>
+<li>可以用作修改服务端数据</li>
+</ol>
+<h2 id="html5-有哪些新特性"><a href="#html5-有哪些新特性" class="headerlink" title="html5 有哪些新特性"></a>html5 有哪些新特性</h2><p>1.canvas </p>
+<p>2.data-<em> 属性<br>使用data-</em>可以解决自定义属性混乱无管理的现状<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"box"</span> data-age=<span class="string">"23"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="built_in">document</span>.getElementById(<span class="string">'box'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(b.dataset.age);</span><br><span class="line"></span><br><span class="line"><span class="comment">//jQuery</span></span><br><span class="line">$(<span class="string">'#box'</span>).data(<span class="string">'age'</span>);</span><br></pre></td></tr></table></figure>
+<p>3.localStorage，sessionStorage</p>
+<blockquote>
+<p>之前，这些都是由 cookie 完成的。但是 cookie 不适合大量数据的存储，因为它们由每个对服务器的请求来传递，这使得 cookie 速度很慢而且效率也不高。<br>在 HTML5 中，数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。</p>
+</blockquote>
+<p>localStorage 和 sessionStorage 的区别：</p>
+<ul>
+<li>localStorage生命周期是永久，这意味着除非用户显示在浏览器提供的UI上清除localStorage信息，否则这些信息将永远存在。</li>
+<li>sessionStorage生命周期为当前窗口或标签页，一旦窗口或标签页被永久关闭了，那么所有通过sessionStorage存储的数据也就被清空了。</li>
+</ul>
+<p>localStorage 和 cookie 的区别：</p>
+<ul>
+<li>cookie 需要指定作用域，不可以跨域调用</li>
+<li>cookie 有时间限制，localStorage 是永久的</li>
+</ul>
+<p>localStorage 用法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'name'</span>, <span class="string">'xwill'</span>);</span><br><span class="line">localStorage.getItem(<span class="string">'name'</span>);  <span class="comment">//xwill</span></span><br><span class="line">localStorage.removeItem(<span class="string">'name'</span>); </span><br><span class="line">localStorage.clear();  <span class="comment">//清除所有</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注意 localStorage 还可以 dot 方式使用 localStorage.name = 'xwill'，但 key，value 形式显然更容易维护。</span></span><br></pre></td></tr></table></figure></p>
+<p>4.表单属性<br>html5 增加了 placeholder 属性，另外 input 的 type 增加了：color, date, datetime, datetime-local, month, week, time, email, number, range, search, tel 以及 url。</p>
+<p>5….</p>
+<h2 id="函数声明和函数表达式的区别"><a href="#函数声明和函数表达式的区别" class="headerlink" title="函数声明和函数表达式的区别"></a>函数声明和函数表达式的区别</h2><p>怎么记呢？有 ＝ 就是表达式～<br>函数声明：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>函数表达式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>区别：<br>函数声明定义的函数可在定义前和后同时调用，而函数表达式定义的函数只能在定义代码下方调用。</p>
+<p>哪种定义方式好？<br>函数声明，可参考 airbnb 的 <a href="https://github.com/airbnb/javascript" target="_blank" rel="external">javascript style guide</a></p>
+<h2 id="jsonp-跨域的原理和实现"><a href="#jsonp-跨域的原理和实现" class="headerlink" title="jsonp 跨域的原理和实现"></a>jsonp 跨域的原理和实现</h2><blockquote>
+<p>jsonp的核心则是动态添加 script 标签来调用服务器提供的js脚本。</p>
+</blockquote>
+<p><a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">jsonp跨域的原理和实现</a></p>
 
           
         
@@ -1230,7 +1139,7 @@ git config --global user.email [email]
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 
@@ -1271,7 +1180,7 @@ git config --global user.email [email]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1281,7 +1190,7 @@ git config --global user.email [email]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1318,7 +1227,7 @@ git config --global user.email [email]
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -1,0 +1,629 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="版本管理的发展史Local Version Control Systems
+To collaborate with developers on other systems，Centralized Version Control Systems (CVCSs) were developed.
+Centralized Version Control Systems
+其中就有大名鼎鼎的 SVN (Sub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git Ninja">
+<meta property="og:url" content="https://xwillmadeit.github.io/2016/12/26/Git-Ninja/index.html">
+<meta property="og:site_name" content="xwillmadeit">
+<meta property="og:description" content="版本管理的发展史Local Version Control Systems
+To collaborate with developers on other systems，Centralized Version Control Systems (CVCSs) were developed.
+Centralized Version Control Systems
+其中就有大名鼎鼎的 SVN (Sub">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/git/local.png">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/git/centralized.png">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/git/distributed.png">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/git/areas.png">
+<meta property="og:image" content="https://xwillmadeit.github.io/images/git/lifecycle.png">
+<meta property="og:updated_time" content="2016-12-26T02:28:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git Ninja">
+<meta name="twitter:description" content="版本管理的发展史Local Version Control Systems
+To collaborate with developers on other systems，Centralized Version Control Systems (CVCSs) were developed.
+Centralized Version Control Systems
+其中就有大名鼎鼎的 SVN (Sub">
+<meta name="twitter:image" content="https://xwillmadeit.github.io/images/git/local.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://xwillmadeit.github.io/2016/12/26/Git-Ninja/"/>
+
+
+  <title> Git Ninja | xwillmadeit </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xwillmadeit</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git Ninja
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T09:42:12+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="版本管理的发展史"><a href="#版本管理的发展史" class="headerlink" title="版本管理的发展史"></a>版本管理的发展史</h2><p><b>Local Version Control Systems</b><br><img src="/images/git/local.png" alt=""></p>
+<p>To collaborate with developers on other systems，Centralized Version Control Systems (CVCSs) were developed.</p>
+<p><b>Centralized Version Control Systems</b><br><img src="/images/git/centralized.png" alt=""></p>
+<p>其中就有大名鼎鼎的 SVN (Subversion)，这种中央版本管理系统的特点：<br>have a single server that contains all the versioned files, and a number of clients that check out files from that central place.</p>
+<p>这种标准被沿用多年，不过其缺点也很明显：<br>If that server goes down for an hour, then during that hour nobody can collaborate at all or save versioned changes to anything they’re working on. If the hard disk the central database is on becomes corrupted, and proper backups haven’t been kept, you lose absolutely everything.</p>
+<p>当你的整个文件修改历史被保存在一个地方时，就有失去所有的风险</p>
+<p><b>Distributed Version Control Systems</b><br><img src="/images/git/distributed.png" alt=""></p>
+<p>从上图很明显的看出，每个客户端都保有一个项目的所有版本修改历史<br>if any server dies, any of the client repositories can be copied back up to the server to restore it. Every clone is really a full backup of all the data.</p>
+<h2 id="Git-中的文件状态"><a href="#Git-中的文件状态" class="headerlink" title="Git 中的文件状态"></a>Git 中的文件状态</h2><p>要理解 git，必须理解 git 中文件的三种状态</p>
+<p>Modified<br>Staged<br>Committed</p>
+<p><img src="/images/git/areas.png" alt=""></p>
+<p>Modified 对应文件所处区域 Working directory<br>Staged 对应文件所处区域 Staging area<br>Committed 对应文件所处区域 Git directory</p>
+<p><b>The basic Git workflow goes something like this:</b></p>
+<ul>
+<li>You modify files in your working directory.</li>
+<li>You stage the files, adding snapshots of them to your staging area.</li>
+<li>You do a commit, which takes the files as they are in the staging area and stores that snapshot permanently to your Git directory.</li>
+</ul>
+<h2 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"John Doe"</span></span><br><span class="line">git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+<p><b>安装完 git 后，第一件事情就是设置全局 Identity：</b><br>The first thing you should do when you install Git is to set your user name and email address. This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating.</p>
+<p>这是全局的，如果想针对某个项目设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name <span class="string">"John Doe"</span></span><br><span class="line">git config user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+<p>查看设置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<h2 id="Git-常用命令整理"><a href="#Git-常用命令整理" class="headerlink" title="Git 常用命令整理"></a>Git 常用命令整理</h2><p>首先看一副图，基本上所有常用命令都可以用这张图上的某个过程描述<br><img src="/images/git/lifecycle.png" alt=""></p>
+<h3 id="Two-main-approaches-to-get-a-git-project"><a href="#Two-main-approaches-to-get-a-git-project" class="headerlink" title="Two main approaches to get a git project"></a>Two main approaches to get a git project</h3><p>Initializing a Repository in an Existing Directory</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add file&lt;&gt;</span><br><span class="line">git commit -m <span class="string">"initial commit"</span></span><br></pre></td></tr></table></figure>
+<p>Cloning an Existing Repository</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="comment">//github.com/xwillmadeit/webpack2.git [projectName](optional)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Add-file-to-the-staged-area"><a href="#Add-file-to-the-staged-area" class="headerlink" title="Add file to the staged area"></a>Add file to the staged area</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git add &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Commit-all-staged-files"><a href="#Commit-all-staged-files" class="headerlink" title="Commit all staged files"></a>Commit all staged files</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"initial commit"</span></span><br><span class="line">git commit -a -m <span class="string">"skip git add"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Check-status"><a href="#Check-status" class="headerlink" title="Check status"></a>Check status</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git status -s</span><br></pre></td></tr></table></figure>
+<h3 id="Check-the-changes"><a href="#Check-the-changes" class="headerlink" title="Check the changes"></a>Check the changes</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff  (compare <span class="keyword">with</span> unstaged status <span class="keyword">with</span> staged or last commit status)</span><br><span class="line">git diff --staged (compare <span class="keyword">with</span> staged status and last commit status)</span><br><span class="line">git difftool</span><br></pre></td></tr></table></figure>
+<h3 id="Undoing-things"><a href="#Undoing-things" class="headerlink" title="Undoing things"></a>Undoing things</h3><ol>
+<li>当想要修改上次提交文件或提交信息时，可以使用该命令</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+<p>You end up with a single commit – the second commit replaces the results of the first.</p>
+<ol>
+<li>Unstage a file</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Unmodifying a Modified File</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>this command will revert it back to what it looked like when you last committed.</p>
+<h3 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h3><p>list all branches</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>create a new branch</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch test</span><br></pre></td></tr></table></figure>
+<p>switch to another branch</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout test</span><br></pre></td></tr></table></figure>
+<p>create and switch</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b iss53</span><br></pre></td></tr></table></figure>
+<h3 id="show-log"><a href="#show-log" class="headerlink" title="show log"></a>show log</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log &lt;file&gt;</span><br><span class="line">git log -p &lt;file&gt;</span><br><span class="line">git show &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Stash-changes-before-switching-branch"><a href="#Stash-changes-before-switching-branch" class="headerlink" title="Stash changes before switching branch"></a>Stash changes before switching branch</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line">git checkcout test</span><br><span class="line">git stash pop/apply</span><br></pre></td></tr></table></figure>
+<p>到这里就整理这么多，都是根据 git book 官方原版书总结出来的，有机会再进阶一下</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/22/ES6-Destructuring/" rel="next" title="ES6 Destructuring">
+                <i class="fa fa-chevron-left"></i> ES6 Destructuring
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/30/聊聊Promise/" rel="prev" title="聊聊 Promise">
+                聊聊 Promise <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="xwillmadeit" />
+          <p class="site-author-name" itemprop="name">xwillmadeit</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本管理的发展史"><span class="nav-number">1.</span> <span class="nav-text">版本管理的发展史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-中的文件状态"><span class="nav-number">2.</span> <span class="nav-text">Git 中的文件状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-配置"><span class="nav-number">3.</span> <span class="nav-text">Git 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-常用命令整理"><span class="nav-number">4.</span> <span class="nav-text">Git 常用命令整理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-main-approaches-to-get-a-git-project"><span class="nav-number">4.1.</span> <span class="nav-text">Two main approaches to get a git project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-file-to-the-staged-area"><span class="nav-number">4.2.</span> <span class="nav-text">Add file to the staged area</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Commit-all-staged-files"><span class="nav-number">4.3.</span> <span class="nav-text">Commit all staged files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-status"><span class="nav-number">4.4.</span> <span class="nav-text">Check status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-the-changes"><span class="nav-number">4.5.</span> <span class="nav-text">Check the changes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undoing-things"><span class="nav-number">4.6.</span> <span class="nav-text">Undoing things</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Branch"><span class="nav-number">4.7.</span> <span class="nav-text">Branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show-log"><span class="nav-number">4.8.</span> <span class="nav-text">show log</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stash-changes-before-switching-branch"><span class="nav-number">5.</span> <span class="nav-text">Stash changes before switching branch</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xwillmadeit</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
