@@ -96,7 +96,7 @@ Pure Function 是 Functional Programming 的核心
 Pure Function 是 Functional Programming 的核心
 稍微有点抽象，别急…
 不依赖 &amp;amp; 改变外部作">
-<meta property="og:updated_time" content="2017-01-31T05:13:27.000Z">
+<meta property="og:updated_time" content="2017-02-13T14:15:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊 Pure Function">
 <meta name="twitter:description" content="定义Pure Function 是不依赖且不改变其外部作用域中变量的函数A pure function doesn’t depend on and doesn’t modify the states of variables out of its scope.
@@ -283,7 +283,7 @@ Pure Function 是 Functional Programming 的核心
         <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><b>Pure Function 是不依赖且不改变其外部作用域中变量的函数</b><br>A pure function doesn’t depend on and doesn’t modify the states of variables out of its scope.</p>
 <p>Pure Function 是 Functional Programming 的核心</p>
 <p>稍微有点抽象，别急…</p>
-<h2 id="不依赖-amp-改变外部作用域变量的值"><a href="#不依赖-amp-改变外部作用域变量的值" class="headerlink" title="不依赖 &amp; 改变外部作用域变量的值"></a>不依赖 &amp; 改变外部作用域变量的值</h2><p>看下面这个 function </p>
+<h2 id="不依赖-amp-改变外部作用域变量的值"><a href="#不依赖-amp-改变外部作用域变量的值" class="headerlink" title="不依赖 &amp; 改变外部作用域变量的值"></a>不依赖 &amp; 改变外部作用域变量的值</h2><p>看下面这个 function</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = &#123; a: <span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">impureFunction</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  items.a = items.a * b + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> items.a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = impureFunction(values);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(values, c); <span class="comment">// &#123;a: 3&#125;, 3</span></span><br></pre></td></tr></table></figure>
 <p>这个 function 依赖了其外部作用域中的变量，并且把外部作用域变量中的属性值改了，这个 function 不是干净的 function，它容易产生副作用（side effect）</p>
 <p>使用 Pure Function 改写</p>
@@ -298,6 +298,11 @@ Pure Function 是 Functional Programming 的核心
 </ul>
 <p>使用 Pure Function<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total += item.price;</span><br><span class="line">	&#125;, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(expenses));</span><br></pre></td></tr></table></figure></p>
 <p>好处一目了然</p>
+<h2 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h2><p>Pure Function 特征：</p>
+<ol>
+<li>必须有返回值</li>
+<li>Same Input，Same Output</li>
+</ol>
 <h2 id="使用-Pure-Function-的好处"><a href="#使用-Pure-Function-的好处" class="headerlink" title="使用 Pure Function 的好处"></a>使用 Pure Function 的好处</h2><ul>
 <li>没有副作用，因为它不会改变它外部作用域中变量的状态</li>
 <li>容易单元测试，因为 Pure Function 不依赖外部作用域的变量，只需要关心输入和输出值</li>
@@ -415,7 +420,7 @@ Pure Function 是 Functional Programming 的核心
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -425,7 +430,7 @@ Pure Function 是 Functional Programming 的核心
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -454,7 +459,7 @@ Pure Function 是 Functional Programming 的核心
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不依赖-amp-改变外部作用域变量的值"><span class="nav-number">2.</span> <span class="nav-text">不依赖 & 改变外部作用域变量的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Pure-Function-的好处"><span class="nav-number">3.</span> <span class="nav-text">使用 Pure Function 的好处</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不依赖-amp-改变外部作用域变量的值"><span class="nav-number">2.</span> <span class="nav-text">不依赖 & 改变外部作用域变量的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Views"><span class="nav-number">3.</span> <span class="nav-text">Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Pure-Function-的好处"><span class="nav-number">4.</span> <span class="nav-text">使用 Pure Function 的好处</span></a></li></ol></div>
             
           </div>
         </section>

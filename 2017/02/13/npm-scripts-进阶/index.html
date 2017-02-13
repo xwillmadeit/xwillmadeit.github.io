@@ -1,0 +1,582 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,tool," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="使用 &amp;amp;&amp;amp; 按顺序依次执行1gulp css &amp;amp;&amp;amp; gulp js &amp;amp;&amp;amp; gulp version
+使用 &amp;amp; 并行同时执行1gulp css &amp;amp; gulp js
+注意，最好在命令尾部加上 &amp;amp; wait，这样 commond + c 才能彻底退出
+1gulp css &amp;amp; gulp js &amp;amp; wait
+npm-ru">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm scripts 进阶">
+<meta property="og:url" content="https://xwillmadeit.github.io/2017/02/13/npm-scripts-进阶/index.html">
+<meta property="og:site_name" content="xwillmadeit">
+<meta property="og:description" content="使用 &amp;amp;&amp;amp; 按顺序依次执行1gulp css &amp;amp;&amp;amp; gulp js &amp;amp;&amp;amp; gulp version
+使用 &amp;amp; 并行同时执行1gulp css &amp;amp; gulp js
+注意，最好在命令尾部加上 &amp;amp; wait，这样 commond + c 才能彻底退出
+1gulp css &amp;amp; gulp js &amp;amp; wait
+npm-ru">
+<meta property="og:updated_time" content="2017-02-13T03:24:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="npm scripts 进阶">
+<meta name="twitter:description" content="使用 &amp;amp;&amp;amp; 按顺序依次执行1gulp css &amp;amp;&amp;amp; gulp js &amp;amp;&amp;amp; gulp version
+使用 &amp;amp; 并行同时执行1gulp css &amp;amp; gulp js
+注意，最好在命令尾部加上 &amp;amp; wait，这样 commond + c 才能彻底退出
+1gulp css &amp;amp; gulp js &amp;amp; wait
+npm-ru">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://xwillmadeit.github.io/2017/02/13/npm-scripts-进阶/"/>
+
+
+  <title> npm scripts 进阶 | xwillmadeit </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xwillmadeit</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                npm scripts 进阶
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-13T11:06:56+08:00" content="2017-02-13">
+              2017-02-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="使用-amp-amp-按顺序依次执行"><a href="#使用-amp-amp-按顺序依次执行" class="headerlink" title="使用 &amp;&amp; 按顺序依次执行"></a>使用 &amp;&amp; 按顺序依次执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp;&amp; gulp js &amp;&amp; gulp version</span><br></pre></td></tr></table></figure>
+<h2 id="使用-amp-并行同时执行"><a href="#使用-amp-并行同时执行" class="headerlink" title="使用 &amp; 并行同时执行"></a>使用 &amp; 并行同时执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp; gulp js</span><br></pre></td></tr></table></figure>
+<p>注意，最好在命令尾部加上 &amp; wait，这样 commond + c 才能彻底退出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp; gulp js &amp; wait</span><br></pre></td></tr></table></figure>
+<h2 id="npm-run-all"><a href="#npm-run-all" class="headerlink" title="npm-run-all"></a>npm-run-all</h2><p>使用 npm-run-all 可以代替手动输入 npm run</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all eslint stylelint mocha</span><br></pre></td></tr></table></figure>
+<p>这里 eslint stylelint mocha 三个任务会顺序执行</p>
+<p>如果想并行执行</p>
+<p>npm run all –parallel eslint mocha stylelint</p>
+<p>npm run all 自动帮你在后面增加 &amp; wait</p>
+<h2 id="npm-run-all-使用通配符"><a href="#npm-run-all-使用通配符" class="headerlink" title="npm-run-all 使用通配符"></a>npm-run-all 使用通配符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lint:js</span><br><span class="line">lint:css</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all lint:*</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lint:js:fix</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all lint:**</span><br></pre></td></tr></table></figure>
+<h2 id="npm-script-lifecycle-hooks"><a href="#npm-script-lifecycle-hooks" class="headerlink" title="npm script lifecycle hooks"></a>npm script lifecycle hooks</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pretest</span><br><span class="line">test</span><br><span class="line">posttest</span><br></pre></td></tr></table></figure>
+<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"test"</span>: <span class="string">"mocha"</span>,</span><br><span class="line"><span class="string">"watch:test"</span>: <span class="string">"npm test -- watch"</span></span><br></pre></td></tr></table></figure>
+<h2 id="onchange-库"><a href="#onchange-库" class="headerlink" title="onchange 库"></a>onchange 库</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/tool/" rel="tag">#tool</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/10/prototype/" rel="next" title="prototype && inheritance">
+                <i class="fa fa-chevron-left"></i> prototype && inheritance
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="xwillmadeit" />
+          <p class="site-author-name" itemprop="name">xwillmadeit</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-amp-amp-按顺序依次执行"><span class="nav-number">1.</span> <span class="nav-text">使用 && 按顺序依次执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-amp-并行同时执行"><span class="nav-number">2.</span> <span class="nav-text">使用 & 并行同时执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-run-all"><span class="nav-number">3.</span> <span class="nav-text">npm-run-all</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-run-all-使用通配符"><span class="nav-number">4.</span> <span class="nav-text">npm-run-all 使用通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-script-lifecycle-hooks"><span class="nav-number">5.</span> <span class="nav-text">npm script lifecycle hooks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递参数"><span class="nav-number">6.</span> <span class="nav-text">传递参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onchange-库"><span class="nav-number">7.</span> <span class="nav-text">onchange 库</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xwillmadeit</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

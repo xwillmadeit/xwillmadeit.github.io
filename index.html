@@ -233,6 +233,709 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/13/npm-scripts-进阶/" itemprop="url">
+                  npm scripts 进阶
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-13T11:06:56+08:00" content="2017-02-13">
+              2017-02-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用-amp-amp-按顺序依次执行"><a href="#使用-amp-amp-按顺序依次执行" class="headerlink" title="使用 &amp;&amp; 按顺序依次执行"></a>使用 &amp;&amp; 按顺序依次执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp;&amp; gulp js &amp;&amp; gulp version</span><br></pre></td></tr></table></figure>
+<h2 id="使用-amp-并行同时执行"><a href="#使用-amp-并行同时执行" class="headerlink" title="使用 &amp; 并行同时执行"></a>使用 &amp; 并行同时执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp; gulp js</span><br></pre></td></tr></table></figure>
+<p>注意，最好在命令尾部加上 &amp; wait，这样 commond + c 才能彻底退出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp; gulp js &amp; wait</span><br></pre></td></tr></table></figure>
+<h2 id="npm-run-all"><a href="#npm-run-all" class="headerlink" title="npm-run-all"></a>npm-run-all</h2><p>使用 npm-run-all 可以代替手动输入 npm run</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all eslint stylelint mocha</span><br></pre></td></tr></table></figure>
+<p>这里 eslint stylelint mocha 三个任务会顺序执行</p>
+<p>如果想并行执行</p>
+<p>npm run all –parallel eslint mocha stylelint</p>
+<p>npm run all 自动帮你在后面增加 &amp; wait</p>
+<h2 id="npm-run-all-使用通配符"><a href="#npm-run-all-使用通配符" class="headerlink" title="npm-run-all 使用通配符"></a>npm-run-all 使用通配符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lint:js</span><br><span class="line">lint:css</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all lint:*</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lint:js:fix</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all lint:**</span><br></pre></td></tr></table></figure>
+<h2 id="npm-script-lifecycle-hooks"><a href="#npm-script-lifecycle-hooks" class="headerlink" title="npm script lifecycle hooks"></a>npm script lifecycle hooks</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pretest</span><br><span class="line">test</span><br><span class="line">posttest</span><br></pre></td></tr></table></figure>
+<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"test"</span>: <span class="string">"mocha"</span>,</span><br><span class="line"><span class="string">"watch:test"</span>: <span class="string">"npm test -- watch"</span></span><br></pre></td></tr></table></figure>
+<h2 id="onchange-库"><a href="#onchange-库" class="headerlink" title="onchange 库"></a>onchange 库</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/10/prototype/" itemprop="url">
+                  prototype && inheritance
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-10T17:31:18+08:00" content="2017-02-10">
+              2017-02-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="prototype-是哪里来的？"><a href="#prototype-是哪里来的？" class="headerlink" title="prototype 是哪里来的？"></a>prototype 是哪里来的？</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个简单的函数声明，除了声明函数，还发生了什么？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype = &#123; <span class="keyword">constructor</span>: Person &#125;;</span><br></pre></td></tr></table></figure>
+<p>这里我们发现函数 Person 声明完以后，多了一个叫 prototype 的属性，它也是一个对象，包含一个 constructor 属性，constructor 也是一个引用，指向了 Person 函数本身</p>
+<h2 id="proto-是什么鬼？"><a href="#proto-是什么鬼？" class="headerlink" title="..proto.. 是什么鬼？"></a><em>.</em>.<em>proto</em>.<em>.</em> 是什么鬼？</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xwill = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(xwill); <span class="comment">// &#123; __proto__: Object&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们使用 new 关键字生成一个 Person 的实例对象 xwill，然后打印了这个对象，我们发现，xwill 对象中出现了一个 <strong>proto</strong> 属性，而这个 <strong>proto</strong> 属性的值是一个对象。展开这个对象</p>
+<p><img src="../images/prototype/protoObject.jpeg" alt="image"></p>
+<p>很清楚了吧，xwill 中的 proto 对象和 Person.prototype 对象实际上是同一个，xwill 的 proto 对象指向了 Person.prototype 对象</p>
+<p><img src="../images/prototype/__proto__.jpeg" alt="image"></p>
+<p>我们来验证一下</p>
+<p><img src="../images/prototype/proto3.jpeg" alt="image"></p>
+<p>嗯，确实是这样</p>
+<h2 id="沿着-prototype-寻找属性"><a href="#沿着-prototype-寻找属性" class="headerlink" title="沿着 prototype 寻找属性"></a>沿着 prototype 寻找属性</h2><p>思考一个问题，当我们去获取 xwill 对象的某个属性的时候，在 js 引擎中，到底发生了什么？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// what happend in js engine ???</span></span><br><span class="line"><span class="built_in">console</span>.log(xwill.name);</span><br></pre></td></tr></table></figure>
+<p>这个问题有点高级，我们先来回答一个简单的问题，console.log(xwill.name) 会输出什么？<br>毫无疑问， xwill 暂时只有一个 proto 属性，并没有 name 属性，所以输出 undefined</p>
+<p>如果我们给 xwill.name 赋值，那么显然 xwill.name 就会等于所赋的值</p>
+<p><img src="../images/prototype/proto4.jpeg" alt="image"></p>
+<p>实际上，当我们在获取 xwill.name 的值的时候，js 引擎做了两件事</p>
+<ol>
+<li>寻找 xwill 对象上有没有 name 属性，有，则返回</li>
+<li>如果没有，则寻找 xwill 的 proto 对象中有没有 name 属性（由于 xwill 的 proto 对象等于 Person 的 prototype 对象，所以就相当于寻找 Person 的 prototype 对象中是否有 name 属性），有，则返回</li>
+</ol>
+<p><img src="../images/prototype/proto5.jpeg" alt="image"></p>
+<p>现在我们可以回答一个常见的问题，为什么使用 prototype 定义方法 ？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'xwill'</span>);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'jack'</span>);</span><br><span class="line"></span><br><span class="line">p1.say(); <span class="comment">// hello</span></span><br><span class="line">p2.say(); <span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+<p>p1 和 p2 对象并没有 say 方法，但是它们的 proto 对象中有 say 方法（因为 Person 的 prototype 对象定义了 say 方法，而 p1，p2 的 proto 对象又都等于 Person 的 prototype 对象），所以，相当于实现了方法共享，这样做的好处就是如果有100个对象，那么这100个对象共享一个方法，而不是各自有一个一样的方法</p>
+<h2 id="prototype-继承-（classic-inheritance）"><a href="#prototype-继承-（classic-inheritance）" class="headerlink" title="prototype 继承 （classic inheritance）"></a>prototype 继承 （classic inheritance）</h2><p>有了上面的基础，我们就可以通过改变 prototype 的指向，从而达到继承的效果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, jobName</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.jobName = jobName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.getPersonName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Job</span>(<span class="params">jobName</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.jobName = jobName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Job.prototype.getJobName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.jobName);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'xwill'</span>, <span class="string">'worker'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果这样做，只会改变 p1 的 __proto__ 指向 Job.prototype，很明显，p1 将不会有 getPersonName 方法</span></span><br><span class="line">p1.__proto__ = Job.prototype; <span class="comment">// not work</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面三种改变 prototype 指向的方法都可以使 Person 对象继承到 Job 对象的 getJobName 方法</span></span><br><span class="line">p1.__proto__.__proto__ = Job.prototype; <span class="comment">// works</span></span><br><span class="line">Person.prototype.__proto__ = Job.prototype; <span class="comment">// works too</span></span><br><span class="line"><span class="comment">// ES6 特性</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(Person.prototype, Job.prototype); <span class="comment">// also works</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(p1.__proto__, Job.prototype); <span class="comment">// alsoooo works</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype.__proto__ === Job.prototype); <span class="comment">//true</span></span><br><span class="line">p1.getPersonName();</span><br><span class="line">p1.getJobName();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'xwill2'</span>, <span class="string">'developer'</span>);</span><br><span class="line">p2.getPersonName();</span><br><span class="line">p2.getJobName();</span><br></pre></td></tr></table></figure>
+<p>这时候看看 Person.prototype 的 proto 属性，指向的对象已经是 Job 的 prototype 了</p>
+<p><img src="../images/prototype/proto6.jpeg" alt="image"></p>
+<p>现在 p1 和 p2 既是 Person 的实例，又是 Job 的实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(p1 <span class="keyword">instanceof</span> Person); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(p1 <span class="keyword">instanceof</span> Job); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(p2 <span class="keyword">instanceof</span> Person); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(p2 <span class="keyword">instanceof</span> Job); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Prototypal-Inheritance"><a href="#Prototypal-Inheritance" class="headerlink" title="Prototypal Inheritance"></a>Prototypal Inheritance</h2><p>这是另一种原型继承模式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Prototypal Pattern</span></span><br><span class="line"><span class="keyword">var</span> human = &#123;</span><br><span class="line">	species: <span class="string">'human'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xwill = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xwill = <span class="built_in">Object</span>.create(human);</span><br><span class="line"><span class="comment">// xwill.__proto__ = human;</span></span><br><span class="line">xwill.species = <span class="string">'superman'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(xwill.species); <span class="comment">// superman</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> xwill.species;</span><br><span class="line"><span class="built_in">console</span>.log(xwill.species); <span class="comment">// human</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(xwill) === human); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(xwill.hasOwnProperty(<span class="string">'species'</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>连续继承：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// prototypal</span></span><br><span class="line"><span class="keyword">var</span> human = &#123;</span><br><span class="line">	species: <span class="string">'human'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> musician = <span class="built_in">Object</span>.create(human);</span><br><span class="line">musician.instrument = <span class="string">'drum'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xwill = <span class="built_in">Object</span>.create(musician);</span><br><span class="line"><span class="built_in">console</span>.log(xwill.instrument);</span><br><span class="line"><span class="built_in">console</span>.log(xwill.species);</span><br></pre></td></tr></table></figure>
+<p>这里 xwill 继承了 musician，而 musician 继承了 human，所以 xwill 即可以使用 musician 上的属性，也可以使用 human 上的属性</p>
+<p><img src="../images/prototype/proto7.jpeg" alt="image"></p>
+<p><a href="https://www.youtube.com/watch?v=doXpW5AD60Q" target="_blank" rel="external">Prototypal Pattern Video</a><br><a href="http://javascript.info/tutorial/inheritance" target="_blank" rel="external">Prototypal inheritance</a></p>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><p>nodejs 0.1.0 使用的继承<a href="https://github.com/nodejs/node-v0.x-archive/blob/master/lib/util.js#L634-L644" target="_blank" rel="external">工具方法</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherits</span>(<span class="params">ctor, superCtor</span>) </span>&#123;</span><br><span class="line">  ctor.super_ = superCtor;</span><br><span class="line">  ctor.prototype = <span class="built_in">Object</span>.create(superCtor.prototype, &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: &#123;</span><br><span class="line">      value: ctor,</span><br><span class="line">      enumerable: <span class="literal">false</span>,</span><br><span class="line">      writable: <span class="literal">true</span>,</span><br><span class="line">      configurable: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Musician</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	Musician.super_.call(<span class="keyword">this</span>, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(Musician, Person);</span><br></pre></td></tr></table></figure>
+<p>node 5.9.1 使用的继承方法已经改成了使用 Object.setPrototypeOf（ES6）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherits</span>(<span class="params">ctor, superCtor</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (ctor === <span class="literal">undefined</span> || ctor === <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'The constructor to `inherits` must not be null or undefined.'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (superCtor === <span class="literal">undefined</span> || superCtor === <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'The super constructor to `inherits` must not be null or undefined.'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (superCtor.prototype === <span class="literal">undefined</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'The super constructor to `inherits` must have a prototype.'</span>);</span><br><span class="line"></span><br><span class="line">  ctor.super_ = superCtor;</span><br><span class="line">  <span class="built_in">Object</span>.setPrototypeOf(Musician.prototype, Person.prototype);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/10/Constructor-的那点事儿/" itemprop="url">
+                  javascript 中 constructor 的那些事儿
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-10T11:57:00+08:00" content="2017-02-10">
+              2017-02-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="有哪些-constructor"><a href="#有哪些-constructor" class="headerlink" title="有哪些 constructor"></a>有哪些 constructor</h2><p>在 javascript 中，涉及到 constructor 的概念有三个</p>
+<ul>
+<li>构造函数可被称为一个 constructor</li>
+<li>所有的对象有一个 constructor 属性</li>
+<li>ES6 语法中有一个 constructor 关键字</li>
+</ul>
+<p>一脸懵逼…</p>
+<h2 id="构造函数-——-constructor"><a href="#构造函数-——-constructor" class="headerlink" title="构造函数 —— constructor"></a>构造函数 —— constructor</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这就是 javascript 中的构造函数，又可称为一个构造器（constructor）</p>
+<h2 id="对象的-constructor-属性"><a href="#对象的-constructor-属性" class="headerlink" title="对象的 constructor 属性"></a>对象的 constructor 属性</h2><p>Object.prototype.constructor 属性返回了一个引用，这个引用指向产生实例的构造函数</p>
+<blockquote>
+<p>Returns a reference to the Object constructor function that created the instance object</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> man = <span class="keyword">new</span> Person(<span class="string">'xwill'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(man.constructor === Person); <span class="comment">// 通过 new 关键字生成的对象，它的 constructor 属性指向构造函数本身</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'hello'</span>);</span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = &#123;</span><br><span class="line">  name: <span class="string">'mark'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(o.constructor === <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(str.constructor === <span class="built_in">String</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.constructor === <span class="built_in">Array</span>); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过字面量定义的对象，它的 constructor 指向 Object</span></span><br><span class="line"><span class="built_in">console</span>.log(cat.constructor === <span class="built_in">Object</span>);</span><br></pre></td></tr></table></figure>
+<p><b>constructor 属性会被覆盖</b></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> man = <span class="keyword">new</span> Person(<span class="string">'xwill'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(man.constructor === Person); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// constructor 属性的引用对象变成了 Animal</span></span><br><span class="line">man.constructor = Animal;</span><br><span class="line"><span class="built_in">console</span>.log(man.constructor === Animal); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(man.constructor === Person); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>这就是最好不用 constructor 确定实例（instance）所属类型的原因<br>判断实例类型，用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="external">instanceof</a> 关键字</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/09/当你-new-了一个-Function/" itemprop="url">
+                  🐂（new）背后的故事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T23:54:20+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="new-Foo-的背后到底发生了什么"><a href="#new-Foo-的背后到底发生了什么" class="headerlink" title="new Foo() 的背后到底发生了什么"></a>new Foo() 的背后到底发生了什么</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+<p>🐂 背后的故事到底是什么？</p>
+<ul>
+<li><p><b>一个新对象 f 生成了，它继承了 Foo 的 prototype</b><br>A new object is created, inheriting from Foo.prototype</p>
+</li>
+<li><p><b>构造函数 Foo 被执行了，Foo 中的 this 绑定给了新生成的对象 f</b><br>The constructor function Foo is called with the specified arguments, and with this bound to the newly created object. new Foo is equivalent to new Foo(), i.e. if no argument list is specified, Foo is called without arguments.</p>
+</li>
+<li><p><b>如果没有在 Foo 中显示的 return 一个对象， 那么 f 就等于默认构造出来的对象</b><br>The object returned by the constructor function becomes the result of the whole new expression. If the constructor function doesn’t explicitly return an object, the object created in step 1 is used instead. (Normally constructors don’t return a value, but they can choose to do so if they want to override the normal object creation process.)</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Car();</span><br><span class="line"></span><br><span class="line">Car.prototype.name = <span class="string">'bmw'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c.name);</span><br></pre></td></tr></table></figure>
+<p>根据上面的结论，当 c 对象生成时，它继承了 Car.protptype，所以当</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Car.prototype.name = <span class="string">'bmw'</span>;</span><br></pre></td></tr></table></figure>
+<p>执行后，c 对象也有 name 属性，即来自 Car.prototype 的属性</p>
+<p>一个思考？下面的代码会打印出什么？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">// null is also an object</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Foo(<span class="string">'xwill'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(f);</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; name: <span class="string">'xwill'</span> &#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="external">new operator</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/09/React-开发时遇到的问题总结/" itemprop="url">
+                  React 开发时遇到的问题总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T09:16:55+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Stateless-Component"><a href="#Stateless-Component" class="headerlink" title="Stateless Component"></a>Stateless Component</h2><p>和普通的 Component 相比，Stateless Component 没有自己的 state，通常用以下函数方式定义<br>（Eslint prefer-stateless-function 规则）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = (props) =&gt; &lt;h2&gt;This is our &#123;props.title&#125;&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<p>Stateless Component 主要是展示作用</p>
+<h2 id="React-一个组件只能返回一个根节点"><a href="#React-一个组件只能返回一个根节点" class="headerlink" title="React 一个组件只能返回一个根节点"></a>React 一个组件只能返回一个根节点</h2><p>这个问题很有意思，实际上不是 React 的问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jsx</span></span><br><span class="line">render() &#123;</span><br><span class="line">  <span class="keyword">return</span> &lt;div&gt;hello&lt;/div&gt;&lt;div&gt;world&lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// under the hood</span></span><br><span class="line">render() &#123;</span><br><span class="line">  <span class="keyword">return</span> React.createElement(<span class="string">"div"</span>, <span class="literal">null</span>) React.createElement(<span class="string">"div"</span>, <span class="literal">null</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实就是一个方法不可能有两个返回值😊</p>
+<h2 id="super-和-super-props-的区别"><a href="#super-和-super-props-的区别" class="headerlink" title="super() 和 super(props) 的区别"></a>super() 和 super(props) 的区别</h2><p><b>问题1：在 Component 的 constructor 中为什么需要调用 super()？</b><br>这是 ES6 关于 Class 的概念：</p>
+<blockquote>
+<p>子类的构造器必须调用 super()<br>在子类的 constructor 中，只有调用了 super，才可以使用 this 作用域</p>
+</blockquote>
+<p><a href="http://stackoverflow.com/questions/31067368/javascript-es6-class-extend-without-super/31079103#31079103" target="_blank" rel="external">ES6 Class super</a></p>
+<p><b>问题2：component constructor 中调用 super() 和 super(props) 的区别？</b><br>我们知道，在 component 构造方法的外围，可以直接使用 props，只有一种情况下需要在 constructor 中调用 super(props)：</p>
+<blockquote>
+<p>当在 constructor 中需要使用 props 的时候</p>
+</blockquote>
+<p>然而，注意，在 React 官方文档中有这么一句</p>
+<blockquote>
+<p>Class components should always call the base constructor with props.</p>
+</blockquote>
+<p><a href="http://stackoverflow.com/questions/30571875/whats-the-difference-between-super-and-superprops-in-react-when-using-e" target="_blank" rel="external">Difference Between super() and super(props)</a><br><a href="http://cheng.logdown.com/posts/2016/03/26/683329" target="_blank" rel="external">React ES6 class constructor super()</a></p>
+<h2 id="component-中事件绑定-this-的几种方式"><a href="#component-中事件绑定-this-的几种方式" class="headerlink" title="component 中事件绑定 this 的几种方式"></a>component 中事件绑定 this 的几种方式</h2><p>我们经常看到下面这些绑定 this 的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">  <span class="keyword">super</span>(props);</span><br><span class="line">  <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;<span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>)&#125;</span><br></pre></td></tr></table></figure>
+<p>亦或者</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;e =&gt; <span class="keyword">this</span>.handleChange(e)&#125;</span><br></pre></td></tr></table></figure>
+<p>原来 React.createClass 会自动绑定 this，但是使用 ES6 Class 定义 component 后，必须手动绑定 this</p>
+<p><a href="https://medium.com/@housecor/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56#.dtbk6bq3z" target="_blank" rel="external">5 approaches to handle binding this</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/07/Webpack2-core-concept/" itemprop="url">
+                  Webpack2 core concept
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-07T20:25:32+08:00" content="2017-02-07">
+              2017-02-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Code-Splitting"><a href="#Code-Splitting" class="headerlink" title="Code Splitting"></a>Code Splitting</h2><p>Code Splitting 即代码分割，可以把一个大 bundle 分割成多个小 bundle，按需加载，从而达到性能优化</p>
+<p>在 Webpack 中主要有两种 Code Splitting</p>
+<ul>
+<li>将第三方的类库，框架，几乎不会修改的工具方法等单独打成包，这样浏览器可以缓存</li>
+<li>按需加载打包，比如路由切换加载或点击事件加载</li>
+</ul>
+<p><a href="https://webpack.js.org/guides/code-splitting/" target="_blank" rel="external">Code Splitting Doc</a></p>
+<h2 id="Tree-Shaking"><a href="#Tree-Shaking" class="headerlink" title="Tree Shaking"></a>Tree Shaking</h2><p>Tree Shaking 可以理解为排除没有用到的代码</p>
+<blockquote>
+<p>使用 import 导入了某个模块，但是该模块并没有被使用，则打包时，webpack 会自动把该模块排除在外</p>
+</blockquote>
+<p>Tree Shaking 的概念来自于 Rollup，它基于 ES6 的 import/export，它也是 Webpack2 的核心之一</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; cube &#125; <span class="keyword">from</span> <span class="string">'./math'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<p>index.js 中，square 没有被导入，webpack 在打包时会将其排除<br>即便如下导入 square，但 square 并没有被使用，webpack 也会将其排除</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; cube, square &#125; <span class="keyword">from</span> <span class="string">'./math'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<p>这就是 Tree Shaking 的核心概念</p>
+<p><a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="external">Tree Shaking Doc</a></p>
+<h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ul>
+<li>webpack -p 利用了 uglify2 压缩代码，但是 uglify2 暂不支持 ES6</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/31/聊聊-Function-Composition/" itemprop="url">
                   聊聊 Function Composition
                 </a>
@@ -388,7 +1091,7 @@
             <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><b>Pure Function 是不依赖且不改变其外部作用域中变量的函数</b><br>A pure function doesn’t depend on and doesn’t modify the states of variables out of its scope.</p>
 <p>Pure Function 是 Functional Programming 的核心</p>
 <p>稍微有点抽象，别急…</p>
-<h2 id="不依赖-amp-改变外部作用域变量的值"><a href="#不依赖-amp-改变外部作用域变量的值" class="headerlink" title="不依赖 &amp; 改变外部作用域变量的值"></a>不依赖 &amp; 改变外部作用域变量的值</h2><p>看下面这个 function </p>
+<h2 id="不依赖-amp-改变外部作用域变量的值"><a href="#不依赖-amp-改变外部作用域变量的值" class="headerlink" title="不依赖 &amp; 改变外部作用域变量的值"></a>不依赖 &amp; 改变外部作用域变量的值</h2><p>看下面这个 function</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = &#123; a: <span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">impureFunction</span>(<span class="params">items</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  items.a = items.a * b + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> items.a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = impureFunction(values);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(values, c); <span class="comment">// &#123;a: 3&#125;, 3</span></span><br></pre></td></tr></table></figure>
 <p>这个 function 依赖了其外部作用域中的变量，并且把外部作用域变量中的属性值改了，这个 function 不是干净的 function，它容易产生副作用（side effect）</p>
 <p>使用 Pure Function 改写</p>
@@ -403,6 +1106,11 @@
 </ul>
 <p>使用 Pure Function<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total += item.price;</span><br><span class="line">	&#125;, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(expenses));</span><br></pre></td></tr></table></figure></p>
 <p>好处一目了然</p>
+<h2 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h2><p>Pure Function 特征：</p>
+<ol>
+<li>必须有返回值</li>
+<li>Same Input，Same Output</li>
+</ol>
 <h2 id="使用-Pure-Function-的好处"><a href="#使用-Pure-Function-的好处" class="headerlink" title="使用 Pure Function 的好处"></a>使用 Pure Function 的好处</h2><ul>
 <li>没有副作用，因为它不会改变它外部作用域中变量的状态</li>
 <li>容易单元测试，因为 Pure Function 不依赖外部作用域的变量，只需要关心输入和输出值</li>
@@ -707,729 +1415,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/22/ES6-Destructuring/" itemprop="url">
-                  ES6 Destructuring
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-22T16:26:27+08:00" content="2016-11-22">
-              2016-11-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Destructuring"><a href="#Destructuring" class="headerlink" title="Destructuring"></a>Destructuring</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  first: <span class="string">'Wes'</span>,</span><br><span class="line">  last: <span class="string">'Bos'</span>,</span><br><span class="line">  country: <span class="string">'Canada'</span>,</span><br><span class="line">  city: <span class="string">'Hamilton'</span>,</span><br><span class="line">  twitter: <span class="string">'@wesbos'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> first = person.first;</span><br><span class="line"><span class="keyword">const</span> last = person.last;</span><br></pre></td></tr></table></figure>
-<p>缺点，需重新定义两个变量，然后得重复好多代码，总之麻烦</p>
-<p>使用 Destructuring </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; name, age &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">//xwill</span></span><br><span class="line"><span class="built_in">console</span>.log(age); <span class="comment">//24</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以重命名变量</span></span><br><span class="line"><span class="keyword">var</span> &#123; name: myName &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(myName); <span class="comment">//xwill</span></span><br></pre></td></tr></table></figure>
-<p>更复杂的结构</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wes = &#123;</span><br><span class="line">  first: <span class="string">'Wes'</span>,</span><br><span class="line">  last: <span class="string">'Bos'</span>,</span><br><span class="line">  links: &#123;</span><br><span class="line">    social: &#123;</span><br><span class="line">      twitter: <span class="string">'https://twitter.com/wesbos'</span>,</span><br><span class="line">      facebook: <span class="string">'https://facebook.com/wesbos.developer'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    web: &#123;</span><br><span class="line">      blog: <span class="string">'https://wesbos.com'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>如果想拿出 twitter 和 facebook</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> twitter = wes.links.social.twitter;</span><br><span class="line"><span class="keyword">const</span> facebook = wes.links.social.facebook;</span><br><span class="line"><span class="comment">// Annoying!</span></span><br></pre></td></tr></table></figure>
-<p>使用 Destructuring</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; twitter, facebook &#125; = wes.links.social;</span><br><span class="line"><span class="built_in">console</span>.log(twitter, facebook); <span class="comment">// logs the 2 variables</span></span><br></pre></td></tr></table></figure>
-<h2 id="Destructuring-设置默认值"><a href="#Destructuring-设置默认值" class="headerlink" title="Destructuring 设置默认值"></a>Destructuring 设置默认值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123; name, age, height = <span class="number">175</span> &#125; = obj;</span><br></pre></td></tr></table></figure>
-<p>注意，这里 height 并不能在 obj 的属性中，所以，当 Destructuring 一个不存在的属性，如果设置了默认值，则相当于定义了一个新的变量，并赋予默认值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123; name, age = <span class="number">20</span>, height: myHeight = <span class="number">175</span> &#125; = person;</span><br></pre></td></tr></table></figure>
-<p>分析：</p>
-<ul>
-<li>First we create a new const var called myHeight.</li>
-<li>Next we look for person.height. If there was a person.height property, it would be put into the myHeight varaible.</li>
-<li>There isn’t a height property on our person object, so we fall back to the default of 175. </li>
-</ul>
-<p>注意，这里 age 的默认赋值无效。只要 obj 有某属性属性，destructuring 时无论是 undefined，null，0，false，赋值都无效。只有属性不存在的情况下，赋值才有效。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/22/what-i-ve-learned-today-16-11-22/" itemprop="url">
-                  what i've learned today in 2016
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-22T09:42:27+08:00" content="2016-11-22">
-              2016-11-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="使用同一个-tab-页同时调试前端-js-和-node"><a href="#使用同一个-tab-页同时调试前端-js-和-node" class="headerlink" title="使用同一个 tab 页同时调试前端 js 和 node"></a>使用同一个 tab 页同时调试前端 js 和 node</h2><p>之前 Paul Irish 提到了使用 chrome 调试 nodejs，当时需要单独开一个 tab，现在这个功能被升级为同一个 tab 可同时调试前后端 js。</p>
-<h3 id="What-you-need："><a href="#What-you-need：" class="headerlink" title="What you need："></a>What you need：</h3><ul>
-<li><p>Node.js 6.3+ （最好使用 6.6+）, “in 6.4 there are a few flaky bugs”</p>
-</li>
-<li><p>Chrome 55+</p>
-</li>
-</ul>
-<h3 id="Enable-a-new-way-of-Node-js-debugging-in-Chrome"><a href="#Enable-a-new-way-of-Node-js-debugging-in-Chrome" class="headerlink" title="Enable a new way of Node.js debugging in Chrome"></a>Enable a new way of Node.js debugging in Chrome</h3><ul>
-<li>Open the chrome://flags/#enable-devtools-experiments URL</li>
-<li>Enable the Developer Tools experiments flag</li>
-<li>Relaunch Chrome</li>
-<li>Open DevTools Setting -&gt; Experiments tab (it started being visible after the reload)</li>
-<li>Press “SHIFT” 6 times (enjoy it ¯ \ <em> (ツ) </em> / ¯) to show the hidden experiments</li>
-<li>Check the “Node debugging” checkbox</li>
-<li>Open/close DevTools</li>
-</ul>
-<h2 id="清除-event-listener"><a href="#清除-event-listener" class="headerlink" title="清除 event listener"></a>清除 event listener</h2><p>注意添加事件时不要直接传入匿名回调函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>Use a reference:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Tada!"</span>)</span><br><span class="line">&#125;</span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, handler)</span><br><span class="line"><span class="comment">// Later on</span></span><br><span class="line">element.removeEventListener(<span class="string">"click"</span>, handler)</span><br></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (someCondition) &#123;</span><br><span class="line">    <span class="keyword">return</span> e.currentTarget.removeEventListener(<span class="string">'click'</span>, click);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>事件可在 devTools 中查看</p>
-<p><img src="/images/1122/1.jpeg" alt=""></p>
-<h2 id="airbnb-的-css，sass-规范中的一些重点"><a href="#airbnb-的-css，sass-规范中的一些重点" class="headerlink" title="airbnb 的 css，sass 规范中的一些重点"></a>airbnb 的 css，sass 规范中的一些重点</h2><ol>
-<li><p>为了避免 css 选择器和 js 选择器的一些误解，js 用的选择器最好加上 js- 前缀<br><a href="https://github.com/airbnb/css#javascript-hooks" target="_blank" rel="external">https://github.com/airbnb/css#javascript-hooks</a></p>
-</li>
-<li><p>Do not nest selectors more than three levels deep!</p>
-</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.page-container &#123;</span><br><span class="line">  .content &#123;</span><br><span class="line">    .profile &#123;</span><br><span class="line">      // STOP!</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Strongly coupled to the HTML (fragile) —OR—</li>
-<li>Overly specific (powerful) —OR—</li>
-<li>Not reusable</li>
-</ul>
-<h2 id="Using-Object-assign-to-set-inline-styles"><a href="#Using-Object-assign-to-set-inline-styles" class="headerlink" title="Using Object.assign to set inline styles"></a>Using Object.assign to set inline styles</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> styles = &#123;</span><br><span class="line">		width: <span class="string">'200px'</span>,</span><br><span class="line">		height: <span class="string">'200px'</span>,</span><br><span class="line">		backgroundColor: <span class="string">'salmon'</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> elem = <span class="built_in">document</span>.querySelector(<span class="string">'.box'</span>);</span><br><span class="line">	<span class="built_in">Object</span>.assign(elem.style, styles);</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>This pattern seems neat.</p>
-<h2 id="Mozilla-is-working-on-a-new-UI-for-input-type-“time”"><a href="#Mozilla-is-working-on-a-new-UI-for-input-type-“time”" class="headerlink" title="Mozilla is working on a new UI for input type “time”"></a>Mozilla is working on a new UI for input type “time”</h2><p><img src="/images/1121/1.jpeg" alt=""></p>
-<p>you can test it in Firefox Nightly by enabling dom.forms.datetime in about:config</p>
-<h2 id="两个-Elements-Panel-中的小技巧"><a href="#两个-Elements-Panel-中的小技巧" class="headerlink" title="两个 Elements Panel 中的小技巧"></a>两个 Elements Panel 中的小技巧</h2><ul>
-<li>Elements panel 中的元素可以拖拽</li>
-<li>获取元素在 dom 结构中的选择器结构<br>Elements 中选中元素，Right click &gt; copy &gt; copy selector.</li>
-</ul>
-<h2 id="Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities"><a href="#Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities" class="headerlink" title="Get an overview of all CSS selectors or all JavaScript functions with searching abilities"></a>Get an overview of all CSS selectors or all JavaScript functions with searching abilities</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + shift + o</span><br></pre></td></tr></table></figure>
-<p>For CSS, you get an overview of all selectors and can filter to a selector of interest.<br>For JavaScript, you can see all functions, but also, their signatures.</p>
-<h2 id="利用-Chrome-Experiments-查看修改过的-css"><a href="#利用-Chrome-Experiments-查看修改过的-css" class="headerlink" title="利用 Chrome Experiments 查看修改过的 css"></a>利用 Chrome Experiments 查看修改过的 css</h2><p>开启：<br>chrome://flags/#enable-devtools-experiments<br><a href="http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/" target="_blank" rel="external">http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/</a></p>
-<p><img src="/images/1121/2.jpeg" alt=""></p>
-<p>really cool shit!!!</p>
-<h2 id="css-覆盖率"><a href="#css-覆盖率" class="headerlink" title="css 覆盖率"></a>css 覆盖率</h2><p>开启<br><img src="/images/1121/3.jpeg" alt=""></p>
-<p>然后在 timeline 中 record，停止以后回到 source panel，多余的会红色标注。</p>
-<h2 id="devTool-修改直接保存到源文件"><a href="#devTool-修改直接保存到源文件" class="headerlink" title="devTool 修改直接保存到源文件"></a>devTool 修改直接保存到源文件</h2><p>开启 Persistence 2.0，把开发目录拖入 devTools，然后匹配的文件会有绿勾出现<br><img src="/images/1121/4.jpeg" alt=""></p>
-<p>修改后发现源码也被修改。</p>
-<h2 id="纯-css-爆酷炫图片滤镜效果"><a href="#纯-css-爆酷炫图片滤镜效果" class="headerlink" title="纯 css 爆酷炫图片滤镜效果"></a>纯 css 爆酷炫图片滤镜效果</h2><p><a href="http://bennettfeely.com/image-effects/" target="_blank" rel="external">http://bennettfeely.com/image-effects/</a></p>
-<h2 id="JSON-Splora"><a href="#JSON-Splora" class="headerlink" title="JSON-Splora"></a>JSON-Splora</h2><p>JSON-Splora is a GUI for editing, visualizing, and manipulating JSON data with jq or JavaScript.</p>
-<p>安装</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g <span class="built_in">JSON</span>-Splora</span><br></pre></td></tr></table></figure>
-<p>打开</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsplora</span><br></pre></td></tr></table></figure>
-<p>使用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys <span class="comment">//输出所有 key</span></span><br><span class="line"></span><br><span class="line">.data <span class="comment">//输出 data 节点</span></span><br><span class="line"></span><br><span class="line">.data.filter(d =&gt; d.id &gt; <span class="number">5</span>) <span class="comment">//输出 data 数组中 id &gt; 5 的元素</span></span><br><span class="line"></span><br><span class="line">.data.map(d =&gt; d.price_key) <span class="comment">//输出所有 data 数组中的 price_key 值</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/28/学习前端时学到的单词/" itemprop="url">
-                  学习前端时学到的单词
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-28T14:02:19+08:00" content="2016-10-28">
-              2016-10-28
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="学习前端时学到的单词"><a href="#学习前端时学到的单词" class="headerlink" title="学习前端时学到的单词"></a>学习前端时学到的单词</h2><p>concise<br>adj. 简约; 简明的，简洁的; 精炼;<br>[例句] Burton’s text is concise and informative.<br>伯顿的文章语言简洁，信息丰富。</p>
-<p>diagnose<br>vt.    诊断; 判断;<br>[例句] It could cause bugs that are difficult to diagnose.</p>
-<p>revise<br>vt.    修订; 修正; 改变;<br>[例句] Revise the constructor to capture the ElementRef.nativeElement in this variable.</p>
-<p>consists<br>v.    包括; 由…组成( consist的第三人称单数 );<br>[例句] The framework consists of several libraries.</p>
-<p>interactions<br>n.    互动; 一起活动( interaction的名词复数 );<br>[例句] Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you’ve provided.</p>
-<p>cohesive<br>adj.    有黏着力的; 紧密结合的;<br>[例句] Most apps have many more feature modules, each a cohesive block of code dedicated to an application domain.</p>
-<p>complementary<br>adj.    互补的; 补充的，补足的;<br>[例句] These are two different and complementary module systems. Use them both to write your apps.</p>
-<p>tedious<br>adj.    冗长乏味的; 单调沉闷的; 令人生厌的;<br>[例句] Writing such push/pull logic by hand is tedious</p>
-<p>nontrivial<br>adj.    非平凡的;<br>[例句] It delegates everything nontrivial to services.</p>
-<p>precisely<br>adv.    精确地; 恰好地; 严谨地，严格地; 一丝不苟地;<br>[例句] More precisely, the redisplay occurs after some kind of asynchronous event related to the view, such as a keystroke, a timer completion, or a response to an HTTP request.</p>
-<p>intriguing<br>adj.    有趣的; 迷人的;<br>[例句] That template reference variable is intriguing.</p>
-<p>fair game<br>n.    准许捕猎的猎物，可攻击的对象;<br>[例句] Pretty much everything else is fair game.</p>
-<p>provisional<br>adj.    暂定的; 暂时的，临时的;<br>n.    临时性; 临时人员;<br>[例句] Content is provisional and may change.</p>
-<p>arbitrary<br>adj.    乱; 随意的，任性的，随心所欲的; 主观的，武断的; 霸道的，专制的，专横的，独断独行的;<br>[例句] The data property in the third route is a place to store arbitrary data associated with each specific route. </p>
-<p>wildcard<br>n.    通配符;<br>[例句] The wildcard route is listed last as it’s the most generic route and should be matched only if no other routes are matched first.</p>
-<p>gloss over<br>粉饰; 掩饰（错误）; 把…搪塞过去;<br>例句] We gloss over everything in between.</p>
-<p>ongoing<br>adj.    不间断的，进行的; 前进的;<br>[例句] There is an ongoing debate on the issue.</p>
-<p>skeleton<br>n.    骨骼; （建筑物等的） 骨架; 梗概; 骨瘦如柴的人（或动物）;<br>adj.    骨骼的; 骨瘦如柴的; 概略的; 基本的;<br>[例句] Use the application generator tool, express-generator, to quickly create an application skeleton.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/17/The-Final-Closure/" itemprop="url">
-                  The Final Closure
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-17T09:13:56+08:00" content="2016-10-17">
-              2016-10-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><p><b>闭包是指有权访问另一个函数作用域中的变量的函数。</b>嗯，闭包是个函数，能够访问另外函数中的变量，就这么简单。</p>
-<h2 id="闭包和作用域"><a href="#闭包和作用域" class="headerlink" title="闭包和作用域"></a>闭包和作用域</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = say(<span class="string">'hello'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a());</span><br></pre></td></tr></table></figure>
-<p>为什么当内部匿名函数被返回后，而且在其他地方被调用，仍能访问变量 name 呢？这里得从作用域链说起。</p>
-<p>当某个函数第一次被调用时，会创建一个执行环境及相应的作用域链，并把作用域链赋值给一个特殊的内部属性([[scope]])，然后使用 this,arguments 和其他命名参数来初始化函数的活动对象。</p>
-<p>每个执行环境都有一个表示变量的对象——变量对象。全局环境的变量对象始终存在。而像 say() 函数这样的局部环境的变量对象，则只在函数的执行过程中存在。在创建 say() 时，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在内部的[[scope]]属性中。当调用 say() 时，会为函数创建一个执行环境，然后通过复制函数的[[scope]]属性中的对象构建起执行环境的作用域链。此后，又有一个活动对象被创建并被推入执行环境的作用域链的前端。对于 say() 函数的执行环境而言，其作用域链中包含两个变量对象，本地活动对象和全局变量对象。显然，作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。</p>
-<p>在函数中访问一个变量时，会从作用域链中搜索具有相应名字的变量。一般来讲，函数执行完毕后，局部活动对象就会被销毁，内存中仅保存全局作用域(全局执行环境的变量对象)，但闭包不同。</p>
-<p>在一个函数内部定义的函数将包含其外部函数的活动对象添加到它的作用域链中。在 say() 函数内部定义的匿名函数的作用域中，实际会包含 say() 的活动对象。在匿名函数从 say() 中被返回后，它的作用域链被初始化为包含 say() 函数的活动对象和全局变量对象。say() 函数执行完毕后，其活动对象不会被销毁，因为匿名函数的作用域链仍然在引用这个活动对象。当 say() 函数返回后，其执行环境的作用域链会被销毁，但它的活动对象仍然留在内存中，直到匿名函数被销毁，say() 的活动对象才会被销毁。</p>
-<p>用自己的话总结一下：<br>当一个函数被调用时，会创建一个执行环境和作用域链，作用域链前端是当前执行环境中的变量对象。作用域链中的下一个变量对象来自外部包含环境，最后一个变量对象来自全局执行环境。函数中的变量如果在自己的执行环境中没找到，则沿着作用域链一路往上直到全局。</p>
-<h2 id="闭包的问题"><a href="#闭包的问题" class="headerlink" title="闭包的问题"></a>闭包的问题</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;buttons.length ;i++) &#123;</span><br><span class="line">		buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(i);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bindClick();</span><br></pre></td></tr></table></figure>
-<p>每个 button 打印值都是3，why？就是因为 click 方法的回调函数中 i 的值都是引用自上级作用域链，即 bindClick 函数中变量对象中的 i ，当 click 方法被触发时，i 活动变量的值早就变成 3 了</p>
-<p>解决<br>给每个绑定事件自己的作用域：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">	buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;)(i);</span><br></pre></td></tr></table></figure>
-<p>使用块作用域：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;buttons.length ;i++) &#123;</span><br><span class="line">	buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/04/Some-Strange-Things-About-Javascript/" itemprop="url">
-                  Some Strange Things About Javascript
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-04T09:34:16+08:00" content="2016-10-04">
-              2016-10-04
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span> === <span class="string">'number'</span>  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>ECMAScript 5.1 Edition Spec 中 <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.20" target="_blank" rel="external">Number Type</a> 定义：</p>
-<blockquote>
-<p>set of all possible Number values including the special “Not-a-Number” (NaN) values, positive infinity, and negative infinity</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span>  <span class="comment">//false</span></span><br><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span>  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/26/jasmine学习/" itemprop="url">
-                  jasmine学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-26T09:52:38+08:00" content="2016-09-26">
-              2016-09-26
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Jasmine-入门"><a href="#Jasmine-入门" class="headerlink" title="Jasmine 入门"></a>Jasmine 入门</h2><p>Jasmine 的四个核心概念: <b>分组(Suites)、用例(Specs)、期望(Expectations)、匹配(Matchers).</b></p>
-<h2 id="开始捣鼓"><a href="#开始捣鼓" class="headerlink" title="开始捣鼓"></a>开始捣鼓</h2><p>例子1:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a+=<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">"A suite"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">"contains spec with an expectation"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = add(<span class="number">10</span>);</span><br><span class="line">		expect(a).toEqual(<span class="number">20</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>describe 用于定义这组测试的标题<br>it 用于定义某个具体测试的标题</p>
-<p>例子2:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getVal</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a || <span class="number">20</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'getVal函数测试'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">'contains spec with an expectation'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = getVal(<span class="number">10</span>);</span><br><span class="line">		<span class="keyword">var</span> b = getVal(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">var</span> c = getVal(<span class="string">''</span>);</span><br><span class="line">		<span class="keyword">var</span> d = getVal(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">		expect(a).toBe(<span class="number">10</span>);</span><br><span class="line">		expect(b).toBe(<span class="number">20</span>);</span><br><span class="line">		expect(c).toBe(<span class="number">20</span>);</span><br><span class="line">		expect(d).toBe(<span class="number">20</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>例子2:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//匹配邮箱</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/[\w\.]+@\w+\.(com|cn|net)/</span>;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'正则匹配邮箱'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	it(<span class="string">'匹配邮箱'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = <span class="string">'976962324@qq.com'</span>,</span><br><span class="line">			b = <span class="string">'xiesenzhengyi@gmail.com'</span>,</span><br><span class="line">			c = <span class="string">'xiesen01@outlook.com'</span>,</span><br><span class="line">			d = <span class="string">'xiesen.01@hahaha.net'</span>;</span><br><span class="line"></span><br><span class="line">		expect(a).toMatch(reg);</span><br><span class="line">		expect(b).toMatch(reg);</span><br><span class="line">		expect(c).toMatch(reg);</span><br><span class="line">		expect(d).toMatch(reg);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="一些常用的方法"><a href="#一些常用的方法" class="headerlink" title="一些常用的方法"></a>一些常用的方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">beforeEach</span><br><span class="line">afterEach</span><br><span class="line">beforeAll</span><br><span class="line">afterAll</span><br><span class="line">toBeTruthy</span><br><span class="line">toBeFalsy</span><br><span class="line">toBeNull</span><br><span class="line">toBeUndefined</span><br></pre></td></tr></table></figure>
-<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"Asynchronous specs"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> value;</span><br><span class="line"></span><br><span class="line">	beforeEach(<span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		  value = <span class="number">0</span>;</span><br><span class="line">		  done();</span><br><span class="line">		&#125;, <span class="number">1000</span>);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	it(<span class="string">"should support async execution of test preparation and expectations"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		value++;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			expect(value).toBeGreaterThan(<span class="number">0</span>);</span><br><span class="line">			<span class="comment">//done();</span></span><br><span class="line">		&#125;, <span class="number">2000</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>beforeEach 方法接受 done 表示等异步方法执行完，再调用测试用例 it<br>同样 it 方法中接受 done 可用于在异步节后执行测试用例</p>
-<h2 id="在-angular-中使用-jasmine"><a href="#在-angular-中使用-jasmine" class="headerlink" title="在 angular 中使用 jasmine"></a>在 angular 中使用 jasmine</h2><ol>
-<li>安装依赖</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g karma-cli</span><br><span class="line">npm install --save-dev karma karma-jasmine jasmine-core karma-chrome-launcher</span><br><span class="line">npm install --save-dev angular angular-mocks</span><br></pre></td></tr></table></figure>
-<p>注意：如果全局装有 karma 和 jasmine，最好删除</p>
-<ol>
-<li>生成 karma.conf.js</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma init</span><br></pre></td></tr></table></figure>
-<p>一路按照提示即可</p>
-<ol>
-<li>第一个测试<br>karma.conf.js</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">files: [</span><br><span class="line">    <span class="string">'node_modules/angular/angular.js'</span>,</span><br><span class="line">    <span class="string">'node_modules/angular-mocks/angular-mocks.js'</span>,</span><br><span class="line">    <span class="string">'js/greeting.js'</span>,</span><br><span class="line">    <span class="string">'test/getGreeting.spec.js'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>js/greeting.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'demo'</span>, [])</span><br><span class="line">.factory(<span class="string">'greeter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getFullName: <span class="function"><span class="keyword">function</span>(<span class="params">firstname, lastname</span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> firstname + lastname;</span><br><span class="line">    &#125;,</span><br><span class="line">    getGreeting: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello "</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>test/getGreeting.spec.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"getGreeting"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> greeter;</span><br><span class="line">  beforeEach(<span class="built_in">module</span>(<span class="string">'demo'</span>));</span><br><span class="line">  beforeEach(inject(<span class="function"><span class="keyword">function</span>(<span class="params">_greeter_</span>) </span>&#123; <span class="comment">//这里可以注入依赖</span></span><br><span class="line">    greeter = _greeter_;</span><br><span class="line">  &#125;));</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"says Hello to me"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    expect(greeter.getGreeting(<span class="string">"Dave"</span>)).toEqual(<span class="string">"Hello Dave"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should return fullname"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    expect(greeter.getFullName(<span class="string">'xwill'</span>, <span class="string">'madeit'</span>)).toEqual(<span class="string">"xwillmadeit"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>总结一下大致步骤</p>
-<blockquote>
-<ul>
-<li>Import the module that contains the service you’re testing.</li>
-<li>Inject the service you’re testing, and save it for later use. You may also want to set up mocks or spies at this point.</li>
-<li>Write the tests. Each one should ideally follow the pattern of Given/When/Then, an idea from BDD (Behavior-Driven Development)：</li>
-</ul>
-<ol>
-<li>Given some particular state of my app<br>set up state, mock or spy functions if necessary</li>
-<li>When I call some method<br>call the method you’re testing</li>
-<li>Then that method behaves in a certain way<br>verify the method did the right thing</li>
-</ol>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1470,7 +1460,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1480,7 +1470,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

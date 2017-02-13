@@ -233,6 +233,724 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/22/ES6-Destructuring/" itemprop="url">
+                  ES6 Destructuring
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T16:26:27+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Destructuring"><a href="#Destructuring" class="headerlink" title="Destructuring"></a>Destructuring</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  first: <span class="string">'Wes'</span>,</span><br><span class="line">  last: <span class="string">'Bos'</span>,</span><br><span class="line">  country: <span class="string">'Canada'</span>,</span><br><span class="line">  city: <span class="string">'Hamilton'</span>,</span><br><span class="line">  twitter: <span class="string">'@wesbos'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> first = person.first;</span><br><span class="line"><span class="keyword">const</span> last = person.last;</span><br></pre></td></tr></table></figure>
+<p>缺点，需重新定义两个变量，然后得重复好多代码，总之麻烦</p>
+<p>使用 Destructuring </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; name, age &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">//xwill</span></span><br><span class="line"><span class="built_in">console</span>.log(age); <span class="comment">//24</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以重命名变量</span></span><br><span class="line"><span class="keyword">var</span> &#123; name: myName &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(myName); <span class="comment">//xwill</span></span><br></pre></td></tr></table></figure>
+<p>更复杂的结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wes = &#123;</span><br><span class="line">  first: <span class="string">'Wes'</span>,</span><br><span class="line">  last: <span class="string">'Bos'</span>,</span><br><span class="line">  links: &#123;</span><br><span class="line">    social: &#123;</span><br><span class="line">      twitter: <span class="string">'https://twitter.com/wesbos'</span>,</span><br><span class="line">      facebook: <span class="string">'https://facebook.com/wesbos.developer'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    web: &#123;</span><br><span class="line">      blog: <span class="string">'https://wesbos.com'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果想拿出 twitter 和 facebook</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> twitter = wes.links.social.twitter;</span><br><span class="line"><span class="keyword">const</span> facebook = wes.links.social.facebook;</span><br><span class="line"><span class="comment">// Annoying!</span></span><br></pre></td></tr></table></figure>
+<p>使用 Destructuring</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; twitter, facebook &#125; = wes.links.social;</span><br><span class="line"><span class="built_in">console</span>.log(twitter, facebook); <span class="comment">// logs the 2 variables</span></span><br></pre></td></tr></table></figure>
+<h2 id="Destructuring-设置默认值"><a href="#Destructuring-设置默认值" class="headerlink" title="Destructuring 设置默认值"></a>Destructuring 设置默认值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123; name, age, height = <span class="number">175</span> &#125; = obj;</span><br></pre></td></tr></table></figure>
+<p>注意，这里 height 并不能在 obj 的属性中，所以，当 Destructuring 一个不存在的属性，如果设置了默认值，则相当于定义了一个新的变量，并赋予默认值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">	name: <span class="string">'xwill'</span>,</span><br><span class="line">	age: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123; name, age = <span class="number">20</span>, height: myHeight = <span class="number">175</span> &#125; = person;</span><br></pre></td></tr></table></figure>
+<p>分析：</p>
+<ul>
+<li>First we create a new const var called myHeight.</li>
+<li>Next we look for person.height. If there was a person.height property, it would be put into the myHeight varaible.</li>
+<li>There isn’t a height property on our person object, so we fall back to the default of 175. </li>
+</ul>
+<p>注意，这里 age 的默认赋值无效。只要 obj 有某属性属性，destructuring 时无论是 undefined，null，0，false，赋值都无效。只有属性不存在的情况下，赋值才有效。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/22/what-i-ve-learned-today-16-11-22/" itemprop="url">
+                  what i've learned today in 2016
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T09:42:27+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用同一个-tab-页同时调试前端-js-和-node"><a href="#使用同一个-tab-页同时调试前端-js-和-node" class="headerlink" title="使用同一个 tab 页同时调试前端 js 和 node"></a>使用同一个 tab 页同时调试前端 js 和 node</h2><p>之前 Paul Irish 提到了使用 chrome 调试 nodejs，当时需要单独开一个 tab，现在这个功能被升级为同一个 tab 可同时调试前后端 js。</p>
+<h3 id="What-you-need："><a href="#What-you-need：" class="headerlink" title="What you need："></a>What you need：</h3><ul>
+<li><p>Node.js 6.3+ （最好使用 6.6+）, “in 6.4 there are a few flaky bugs”</p>
+</li>
+<li><p>Chrome 55+</p>
+</li>
+</ul>
+<h3 id="Enable-a-new-way-of-Node-js-debugging-in-Chrome"><a href="#Enable-a-new-way-of-Node-js-debugging-in-Chrome" class="headerlink" title="Enable a new way of Node.js debugging in Chrome"></a>Enable a new way of Node.js debugging in Chrome</h3><ul>
+<li>Open the chrome://flags/#enable-devtools-experiments URL</li>
+<li>Enable the Developer Tools experiments flag</li>
+<li>Relaunch Chrome</li>
+<li>Open DevTools Setting -&gt; Experiments tab (it started being visible after the reload)</li>
+<li>Press “SHIFT” 6 times (enjoy it ¯ \ <em> (ツ) </em> / ¯) to show the hidden experiments</li>
+<li>Check the “Node debugging” checkbox</li>
+<li>Open/close DevTools</li>
+</ul>
+<h2 id="清除-event-listener"><a href="#清除-event-listener" class="headerlink" title="清除 event listener"></a>清除 event listener</h2><p>注意添加事件时不要直接传入匿名回调函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Use a reference:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Tada!"</span>)</span><br><span class="line">&#125;</span><br><span class="line">element.addEventListener(<span class="string">"click"</span>, handler)</span><br><span class="line"><span class="comment">// Later on</span></span><br><span class="line">element.removeEventListener(<span class="string">"click"</span>, handler)</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (someCondition) &#123;</span><br><span class="line">    <span class="keyword">return</span> e.currentTarget.removeEventListener(<span class="string">'click'</span>, click);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>事件可在 devTools 中查看</p>
+<p><img src="/images/1122/1.jpeg" alt=""></p>
+<h2 id="airbnb-的-css，sass-规范中的一些重点"><a href="#airbnb-的-css，sass-规范中的一些重点" class="headerlink" title="airbnb 的 css，sass 规范中的一些重点"></a>airbnb 的 css，sass 规范中的一些重点</h2><ol>
+<li><p>为了避免 css 选择器和 js 选择器的一些误解，js 用的选择器最好加上 js- 前缀<br><a href="https://github.com/airbnb/css#javascript-hooks" target="_blank" rel="external">https://github.com/airbnb/css#javascript-hooks</a></p>
+</li>
+<li><p>Do not nest selectors more than three levels deep!</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.page-container &#123;</span><br><span class="line">  .content &#123;</span><br><span class="line">    .profile &#123;</span><br><span class="line">      // STOP!</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Strongly coupled to the HTML (fragile) —OR—</li>
+<li>Overly specific (powerful) —OR—</li>
+<li>Not reusable</li>
+</ul>
+<h2 id="Using-Object-assign-to-set-inline-styles"><a href="#Using-Object-assign-to-set-inline-styles" class="headerlink" title="Using Object.assign to set inline styles"></a>Using Object.assign to set inline styles</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="keyword">var</span> styles = &#123;</span><br><span class="line">		width: <span class="string">'200px'</span>,</span><br><span class="line">		height: <span class="string">'200px'</span>,</span><br><span class="line">		backgroundColor: <span class="string">'salmon'</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> elem = <span class="built_in">document</span>.querySelector(<span class="string">'.box'</span>);</span><br><span class="line">	<span class="built_in">Object</span>.assign(elem.style, styles);</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>This pattern seems neat.</p>
+<h2 id="Mozilla-is-working-on-a-new-UI-for-input-type-“time”"><a href="#Mozilla-is-working-on-a-new-UI-for-input-type-“time”" class="headerlink" title="Mozilla is working on a new UI for input type “time”"></a>Mozilla is working on a new UI for input type “time”</h2><p><img src="/images/1121/1.jpeg" alt=""></p>
+<p>you can test it in Firefox Nightly by enabling dom.forms.datetime in about:config</p>
+<h2 id="两个-Elements-Panel-中的小技巧"><a href="#两个-Elements-Panel-中的小技巧" class="headerlink" title="两个 Elements Panel 中的小技巧"></a>两个 Elements Panel 中的小技巧</h2><ul>
+<li>Elements panel 中的元素可以拖拽</li>
+<li>获取元素在 dom 结构中的选择器结构<br>Elements 中选中元素，Right click &gt; copy &gt; copy selector.</li>
+</ul>
+<h2 id="Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities"><a href="#Get-an-overview-of-all-CSS-selectors-or-all-JavaScript-functions-with-searching-abilities" class="headerlink" title="Get an overview of all CSS selectors or all JavaScript functions with searching abilities"></a>Get an overview of all CSS selectors or all JavaScript functions with searching abilities</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + shift + o</span><br></pre></td></tr></table></figure>
+<p>For CSS, you get an overview of all selectors and can filter to a selector of interest.<br>For JavaScript, you can see all functions, but also, their signatures.</p>
+<h2 id="利用-Chrome-Experiments-查看修改过的-css"><a href="#利用-Chrome-Experiments-查看修改过的-css" class="headerlink" title="利用 Chrome Experiments 查看修改过的 css"></a>利用 Chrome Experiments 查看修改过的 css</h2><p>开启：<br>chrome://flags/#enable-devtools-experiments<br><a href="http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/" target="_blank" rel="external">http://islegend.com/development/how-to-enable-devtools-experiments-within-google-chrome/</a></p>
+<p><img src="/images/1121/2.jpeg" alt=""></p>
+<p>really cool shit!!!</p>
+<h2 id="css-覆盖率"><a href="#css-覆盖率" class="headerlink" title="css 覆盖率"></a>css 覆盖率</h2><p>开启<br><img src="/images/1121/3.jpeg" alt=""></p>
+<p>然后在 timeline 中 record，停止以后回到 source panel，多余的会红色标注。</p>
+<h2 id="devTool-修改直接保存到源文件"><a href="#devTool-修改直接保存到源文件" class="headerlink" title="devTool 修改直接保存到源文件"></a>devTool 修改直接保存到源文件</h2><p>开启 Persistence 2.0，把开发目录拖入 devTools，然后匹配的文件会有绿勾出现<br><img src="/images/1121/4.jpeg" alt=""></p>
+<p>修改后发现源码也被修改。</p>
+<h2 id="纯-css-爆酷炫图片滤镜效果"><a href="#纯-css-爆酷炫图片滤镜效果" class="headerlink" title="纯 css 爆酷炫图片滤镜效果"></a>纯 css 爆酷炫图片滤镜效果</h2><p><a href="http://bennettfeely.com/image-effects/" target="_blank" rel="external">http://bennettfeely.com/image-effects/</a></p>
+<h2 id="JSON-Splora"><a href="#JSON-Splora" class="headerlink" title="JSON-Splora"></a>JSON-Splora</h2><p>JSON-Splora is a GUI for editing, visualizing, and manipulating JSON data with jq or JavaScript.</p>
+<p>安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g <span class="built_in">JSON</span>-Splora</span><br></pre></td></tr></table></figure>
+<p>打开</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsplora</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys <span class="comment">//输出所有 key</span></span><br><span class="line"></span><br><span class="line">.data <span class="comment">//输出 data 节点</span></span><br><span class="line"></span><br><span class="line">.data.filter(d =&gt; d.id &gt; <span class="number">5</span>) <span class="comment">//输出 data 数组中 id &gt; 5 的元素</span></span><br><span class="line"></span><br><span class="line">.data.map(d =&gt; d.price_key) <span class="comment">//输出所有 data 数组中的 price_key 值</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/28/学习前端时学到的单词/" itemprop="url">
+                  学习前端时学到的单词
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T14:02:19+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="学习前端时学到的单词"><a href="#学习前端时学到的单词" class="headerlink" title="学习前端时学到的单词"></a>学习前端时学到的单词</h2><p>concise<br>adj. 简约; 简明的，简洁的; 精炼;<br>[例句] Burton’s text is concise and informative.<br>伯顿的文章语言简洁，信息丰富。</p>
+<p>diagnose<br>vt.    诊断; 判断;<br>[例句] It could cause bugs that are difficult to diagnose.</p>
+<p>revise<br>vt.    修订; 修正; 改变;<br>[例句] Revise the constructor to capture the ElementRef.nativeElement in this variable.</p>
+<p>consists<br>v.    包括; 由…组成( consist的第三人称单数 );<br>[例句] The framework consists of several libraries.</p>
+<p>interactions<br>n.    互动; 一起活动( interaction的名词复数 );<br>[例句] Angular takes over, presenting your application content in a browser and responding to user interactions according to the instructions you’ve provided.</p>
+<p>cohesive<br>adj.    有黏着力的; 紧密结合的;<br>[例句] Most apps have many more feature modules, each a cohesive block of code dedicated to an application domain.</p>
+<p>complementary<br>adj.    互补的; 补充的，补足的;<br>[例句] These are two different and complementary module systems. Use them both to write your apps.</p>
+<p>tedious<br>adj.    冗长乏味的; 单调沉闷的; 令人生厌的;<br>[例句] Writing such push/pull logic by hand is tedious</p>
+<p>nontrivial<br>adj.    非平凡的;<br>[例句] It delegates everything nontrivial to services.</p>
+<p>precisely<br>adv.    精确地; 恰好地; 严谨地，严格地; 一丝不苟地;<br>[例句] More precisely, the redisplay occurs after some kind of asynchronous event related to the view, such as a keystroke, a timer completion, or a response to an HTTP request.</p>
+<p>intriguing<br>adj.    有趣的; 迷人的;<br>[例句] That template reference variable is intriguing.</p>
+<p>fair game<br>n.    准许捕猎的猎物，可攻击的对象;<br>[例句] Pretty much everything else is fair game.</p>
+<p>provisional<br>adj.    暂定的; 暂时的，临时的;<br>n.    临时性; 临时人员;<br>[例句] Content is provisional and may change.</p>
+<p>arbitrary<br>adj.    乱; 随意的，任性的，随心所欲的; 主观的，武断的; 霸道的，专制的，专横的，独断独行的;<br>[例句] The data property in the third route is a place to store arbitrary data associated with each specific route. </p>
+<p>wildcard<br>n.    通配符;<br>[例句] The wildcard route is listed last as it’s the most generic route and should be matched only if no other routes are matched first.</p>
+<p>gloss over<br>粉饰; 掩饰（错误）; 把…搪塞过去;<br>例句] We gloss over everything in between.</p>
+<p>ongoing<br>adj.    不间断的，进行的; 前进的;<br>[例句] There is an ongoing debate on the issue.</p>
+<p>skeleton<br>n.    骨骼; （建筑物等的） 骨架; 梗概; 骨瘦如柴的人（或动物）;<br>adj.    骨骼的; 骨瘦如柴的; 概略的; 基本的;<br>[例句] Use the application generator tool, express-generator, to quickly create an application skeleton.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/17/The-Final-Closure/" itemprop="url">
+                  The Final Closure
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T09:13:56+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><p><b>闭包是指有权访问另一个函数作用域中的变量的函数。</b>嗯，闭包是个函数，能够访问另外函数中的变量，就这么简单。</p>
+<h2 id="闭包和作用域"><a href="#闭包和作用域" class="headerlink" title="闭包和作用域"></a>闭包和作用域</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = say(<span class="string">'hello'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a());</span><br></pre></td></tr></table></figure>
+<p>为什么当内部匿名函数被返回后，而且在其他地方被调用，仍能访问变量 name 呢？这里得从作用域链说起。</p>
+<p>当某个函数第一次被调用时，会创建一个执行环境及相应的作用域链，并把作用域链赋值给一个特殊的内部属性([[scope]])，然后使用 this,arguments 和其他命名参数来初始化函数的活动对象。</p>
+<p>每个执行环境都有一个表示变量的对象——变量对象。全局环境的变量对象始终存在。而像 say() 函数这样的局部环境的变量对象，则只在函数的执行过程中存在。在创建 say() 时，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在内部的[[scope]]属性中。当调用 say() 时，会为函数创建一个执行环境，然后通过复制函数的[[scope]]属性中的对象构建起执行环境的作用域链。此后，又有一个活动对象被创建并被推入执行环境的作用域链的前端。对于 say() 函数的执行环境而言，其作用域链中包含两个变量对象，本地活动对象和全局变量对象。显然，作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。</p>
+<p>在函数中访问一个变量时，会从作用域链中搜索具有相应名字的变量。一般来讲，函数执行完毕后，局部活动对象就会被销毁，内存中仅保存全局作用域(全局执行环境的变量对象)，但闭包不同。</p>
+<p>在一个函数内部定义的函数将包含其外部函数的活动对象添加到它的作用域链中。在 say() 函数内部定义的匿名函数的作用域中，实际会包含 say() 的活动对象。在匿名函数从 say() 中被返回后，它的作用域链被初始化为包含 say() 函数的活动对象和全局变量对象。say() 函数执行完毕后，其活动对象不会被销毁，因为匿名函数的作用域链仍然在引用这个活动对象。当 say() 函数返回后，其执行环境的作用域链会被销毁，但它的活动对象仍然留在内存中，直到匿名函数被销毁，say() 的活动对象才会被销毁。</p>
+<p>用自己的话总结一下：<br>当一个函数被调用时，会创建一个执行环境和作用域链，作用域链前端是当前执行环境中的变量对象。作用域链中的下一个变量对象来自外部包含环境，最后一个变量对象来自全局执行环境。函数中的变量如果在自己的执行环境中没找到，则沿着作用域链一路往上直到全局。</p>
+<h2 id="闭包的问题"><a href="#闭包的问题" class="headerlink" title="闭包的问题"></a>闭包的问题</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;buttons.length ;i++) &#123;</span><br><span class="line">		buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(i);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bindClick();</span><br></pre></td></tr></table></figure>
+<p>每个 button 打印值都是3，why？就是因为 click 方法的回调函数中 i 的值都是引用自上级作用域链，即 bindClick 函数中变量对象中的 i ，当 click 方法被触发时，i 活动变量的值早就变成 3 了</p>
+<p>解决<br>给每个绑定事件自己的作用域：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">	buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;)(i);</span><br></pre></td></tr></table></figure>
+<p>使用块作用域：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;buttons.length ;i++) &#123;</span><br><span class="line">	buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/04/Some-Strange-Things-About-Javascript/" itemprop="url">
+                  Some Strange Things About Javascript
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-04T09:34:16+08:00" content="2016-10-04">
+              2016-10-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span> === <span class="string">'number'</span>  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>ECMAScript 5.1 Edition Spec 中 <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.20" target="_blank" rel="external">Number Type</a> 定义：</p>
+<blockquote>
+<p>set of all possible Number values including the special “Not-a-Number” (NaN) values, positive infinity, and negative infinity</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span>  <span class="comment">//false</span></span><br><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span>  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/26/jasmine学习/" itemprop="url">
+                  jasmine学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-26T09:52:38+08:00" content="2016-09-26">
+              2016-09-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Jasmine-入门"><a href="#Jasmine-入门" class="headerlink" title="Jasmine 入门"></a>Jasmine 入门</h2><p>Jasmine 的四个核心概念: <b>分组(Suites)、用例(Specs)、期望(Expectations)、匹配(Matchers).</b></p>
+<h2 id="开始捣鼓"><a href="#开始捣鼓" class="headerlink" title="开始捣鼓"></a>开始捣鼓</h2><p>例子1:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a+=<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">"A suite"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">"contains spec with an expectation"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = add(<span class="number">10</span>);</span><br><span class="line">		expect(a).toEqual(<span class="number">20</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>describe 用于定义这组测试的标题<br>it 用于定义某个具体测试的标题</p>
+<p>例子2:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getVal</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a || <span class="number">20</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'getVal函数测试'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">'contains spec with an expectation'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = getVal(<span class="number">10</span>);</span><br><span class="line">		<span class="keyword">var</span> b = getVal(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">var</span> c = getVal(<span class="string">''</span>);</span><br><span class="line">		<span class="keyword">var</span> d = getVal(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">		expect(a).toBe(<span class="number">10</span>);</span><br><span class="line">		expect(b).toBe(<span class="number">20</span>);</span><br><span class="line">		expect(c).toBe(<span class="number">20</span>);</span><br><span class="line">		expect(d).toBe(<span class="number">20</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>例子2:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//匹配邮箱</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/[\w\.]+@\w+\.(com|cn|net)/</span>;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'正则匹配邮箱'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	it(<span class="string">'匹配邮箱'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a = <span class="string">'976962324@qq.com'</span>,</span><br><span class="line">			b = <span class="string">'xiesenzhengyi@gmail.com'</span>,</span><br><span class="line">			c = <span class="string">'xiesen01@outlook.com'</span>,</span><br><span class="line">			d = <span class="string">'xiesen.01@hahaha.net'</span>;</span><br><span class="line"></span><br><span class="line">		expect(a).toMatch(reg);</span><br><span class="line">		expect(b).toMatch(reg);</span><br><span class="line">		expect(c).toMatch(reg);</span><br><span class="line">		expect(d).toMatch(reg);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="一些常用的方法"><a href="#一些常用的方法" class="headerlink" title="一些常用的方法"></a>一些常用的方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">beforeEach</span><br><span class="line">afterEach</span><br><span class="line">beforeAll</span><br><span class="line">afterAll</span><br><span class="line">toBeTruthy</span><br><span class="line">toBeFalsy</span><br><span class="line">toBeNull</span><br><span class="line">toBeUndefined</span><br></pre></td></tr></table></figure>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"Asynchronous specs"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> value;</span><br><span class="line"></span><br><span class="line">	beforeEach(<span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		  value = <span class="number">0</span>;</span><br><span class="line">		  done();</span><br><span class="line">		&#125;, <span class="number">1000</span>);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	it(<span class="string">"should support async execution of test preparation and expectations"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		value++;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			expect(value).toBeGreaterThan(<span class="number">0</span>);</span><br><span class="line">			<span class="comment">//done();</span></span><br><span class="line">		&#125;, <span class="number">2000</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>beforeEach 方法接受 done 表示等异步方法执行完，再调用测试用例 it<br>同样 it 方法中接受 done 可用于在异步节后执行测试用例</p>
+<h2 id="在-angular-中使用-jasmine"><a href="#在-angular-中使用-jasmine" class="headerlink" title="在 angular 中使用 jasmine"></a>在 angular 中使用 jasmine</h2><ol>
+<li>安装依赖</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g karma-cli</span><br><span class="line">npm install --save-dev karma karma-jasmine jasmine-core karma-chrome-launcher</span><br><span class="line">npm install --save-dev angular angular-mocks</span><br></pre></td></tr></table></figure>
+<p>注意：如果全局装有 karma 和 jasmine，最好删除</p>
+<ol>
+<li>生成 karma.conf.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma init</span><br></pre></td></tr></table></figure>
+<p>一路按照提示即可</p>
+<ol>
+<li>第一个测试<br>karma.conf.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">files: [</span><br><span class="line">    <span class="string">'node_modules/angular/angular.js'</span>,</span><br><span class="line">    <span class="string">'node_modules/angular-mocks/angular-mocks.js'</span>,</span><br><span class="line">    <span class="string">'js/greeting.js'</span>,</span><br><span class="line">    <span class="string">'test/getGreeting.spec.js'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>js/greeting.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'demo'</span>, [])</span><br><span class="line">.factory(<span class="string">'greeter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getFullName: <span class="function"><span class="keyword">function</span>(<span class="params">firstname, lastname</span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> firstname + lastname;</span><br><span class="line">    &#125;,</span><br><span class="line">    getGreeting: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello "</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>test/getGreeting.spec.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">"getGreeting"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> greeter;</span><br><span class="line">  beforeEach(<span class="built_in">module</span>(<span class="string">'demo'</span>));</span><br><span class="line">  beforeEach(inject(<span class="function"><span class="keyword">function</span>(<span class="params">_greeter_</span>) </span>&#123; <span class="comment">//这里可以注入依赖</span></span><br><span class="line">    greeter = _greeter_;</span><br><span class="line">  &#125;));</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"says Hello to me"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    expect(greeter.getGreeting(<span class="string">"Dave"</span>)).toEqual(<span class="string">"Hello Dave"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(<span class="string">"should return fullname"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    expect(greeter.getFullName(<span class="string">'xwill'</span>, <span class="string">'madeit'</span>)).toEqual(<span class="string">"xwillmadeit"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>总结一下大致步骤</p>
+<blockquote>
+<ul>
+<li>Import the module that contains the service you’re testing.</li>
+<li>Inject the service you’re testing, and save it for later use. You may also want to set up mocks or spies at this point.</li>
+<li>Write the tests. Each one should ideally follow the pattern of Given/When/Then, an idea from BDD (Behavior-Driven Development)：</li>
+</ul>
+<ol>
+<li>Given some particular state of my app<br>set up state, mock or spy functions if necessary</li>
+<li>When I call some method<br>call the method you’re testing</li>
+<li>Then that method behaves in a certain way<br>verify the method did the right thing</li>
+</ol>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/26/angular细节问题整理/" itemprop="url">
                   angular细节问题整理
                 </a>
@@ -277,7 +995,7 @@
       
         
           
-            <h2 id="directive-中监听-controller-多个对象或数组的变化"><a href="#directive-中监听-controller-多个对象或数组的变化" class="headerlink" title="directive 中监听 controller 多个对象或数组的变化"></a>directive 中监听 controller 多个对象或数组的变化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//init</span></span><br><span class="line">$scope.chartData = &#123;</span><br><span class="line">   xdata: [],</span><br><span class="line">   ydata: &#123;</span><br><span class="line">    guestData: [],</span><br><span class="line">    ...</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//change data，注意这里必须重新赋值，push 没用</span></span><br><span class="line">$scope.change = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $scope.chartData.xdata = [<span class="number">1</span>];</span><br><span class="line">	$scope.chartData.ydata = &#123;</span><br><span class="line">        guestData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        browseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        loseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        avgData: [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;chart-line xdata=<span class="string">"chartData.xdata"</span> ydata=<span class="string">"chartData.ydata"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">chart-line</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//directive</span><br><span class="line">scope: &#123;</span><br><span class="line">    xdata: '=',</span><br><span class="line">    ydata: '='</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//只要 xdata 或 ydata 任意一个对象变化即可</span><br><span class="line">scope.$watchCollection('[xdata, ydata]', function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span><br><span class="line">//watchGroup 亦可，注意写法差别</span><br><span class="line">scope.$watchGroup(['xdata', 'ydata'], function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
+            <h2 id="directive-中监听-controller-多个对象或数组的变化"><a href="#directive-中监听-controller-多个对象或数组的变化" class="headerlink" title="directive 中监听 controller 多个对象或数组的变化"></a>directive 中监听 controller 多个对象或数组的变化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//init</span></span><br><span class="line">$scope.chartData = &#123;</span><br><span class="line">   xdata: [],</span><br><span class="line">   ydata: &#123;</span><br><span class="line">    guestData: [],</span><br><span class="line">    ...</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//change data，注意这里必须重新赋值，push 没用</span></span><br><span class="line">$scope.change = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $scope.chartData.xdata = [<span class="number">1</span>];</span><br><span class="line">	$scope.chartData.ydata = &#123;</span><br><span class="line">        guestData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        browseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        loseData: [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">        avgData: [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;chart-line xdata=<span class="string">"chartData.xdata"</span> ydata=<span class="string">"chartData.ydata"</span>&gt;&lt;/chart-line&gt;</span><br><span class="line"></span><br><span class="line">//directive</span><br><span class="line">scope: &#123;</span><br><span class="line">    xdata: '=',</span><br><span class="line">    ydata: '='</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//只要 xdata 或 ydata 任意一个对象变化即可</span><br><span class="line">scope.$watchCollection('[xdata, ydata]', function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span><br><span class="line">//watchGroup 亦可，注意写法差别</span><br><span class="line">scope.$watchGroup(['xdata', 'ydata'], function(newVal,oldVal) &#123;</span><br><span class="line">	console.log(newVal);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="apply-和-digest"><a href="#apply-和-digest" class="headerlink" title="$apply 和 $digest"></a>$apply 和 $digest</h2><p>什么时候用 <b>$apply</b> 和 <b>$digest</b></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;rootName&#125;&#125;</span><br><span class="line">&lt;div ng-controller=<span class="string">"testCtrl"</span>&gt;</span><br><span class="line">  &#123;&#123;name&#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.controller(<span class="string">'testCtrl'</span>, [<span class="string">'$scope'</span>, <span class="string">'$rootScope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $rootScope</span>)</span>&#123;</span><br><span class="line">    $rootScope.rootName = <span class="string">'rootName'</span>;</span><br><span class="line">    $scope.name = <span class="string">'scopeName'</span>;</span><br><span class="line"></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'in'</span>);</span><br><span class="line">      $scope.$apply(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $rootScope.rootName = <span class="string">'rootName2'</span>;</span><br><span class="line">        $scope.name = <span class="string">'scopeName2'</span>;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="comment">// $scope.$apply(); 不推荐</span></span><br><span class="line">    &#125;,<span class="number">2000</span>);</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
@@ -691,635 +1409,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/25/css奇技淫巧大搜罗/" itemprop="url">
-                  css奇技淫巧大搜罗
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-25T10:44:24+08:00" content="2016-06-25">
-              2016-06-25
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="使元素变灰"><a href="#使元素变灰" class="headerlink" title="使元素变灰"></a>使元素变灰</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-webkit-filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-moz-filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-ms-filter: grayscale(<span class="number">100</span>%);</span><br><span class="line">-o-filter: grayscale(<span class="number">100</span>%);</span><br></pre></td></tr></table></figure>
-<p>如果想使整个网站变灰，只需在 html 上使用上面的样式即可～</p>
-<h2 id="页面顶部阴影"><a href="#页面顶部阴影" class="headerlink" title="页面顶部阴影"></a>页面顶部阴影</h2><p>这个小trick真是不错～<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">body:before &#123;</span><br><span class="line">	content: <span class="string">""</span>;</span><br><span class="line">	position: fixed;</span><br><span class="line">	top: <span class="number">-10</span>px;</span><br><span class="line">	left: <span class="number">0</span>;</span><br><span class="line">	width: <span class="number">100</span>%;</span><br><span class="line">	height: <span class="number">10</span>px;</span><br><span class="line"></span><br><span class="line">	-webkit-box-shadow: <span class="number">0</span>px <span class="number">0</span>px <span class="number">10</span>px rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">.8</span>);</span><br><span class="line">	-moz-box-shadow: <span class="number">0</span>px <span class="number">0</span>px <span class="number">10</span>px rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">.8</span>);</span><br><span class="line">	box-shadow: <span class="number">0</span>px <span class="number">0</span>px <span class="number">10</span>px rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">.8</span>);</span><br><span class="line"></span><br><span class="line">	z-index: <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="使-footer-粘住底部，无论内容区是否足够高"><a href="#使-footer-粘住底部，无论内容区是否足够高" class="headerlink" title="使 footer 粘住底部，无论内容区是否足够高"></a>使 footer 粘住底部，无论内容区是否足够高</h2><p>方法一，使用视口区域减去底部高度：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.content &#123;</span><br><span class="line">    min-height: calc(<span class="number">100</span>vh - <span class="number">50</span>px);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footer &#123;</span><br><span class="line">    height: <span class="number">50</span>px;</span><br><span class="line">    width: <span class="number">100</span>%;</span><br><span class="line">    background-color: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="content"&gt;</span><br><span class="line">    content</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;footer class="footer"&gt;&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
-<p>方法二，全局增加一个负值下边距等于底部高度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">html, body &#123;</span><br><span class="line">	height: <span class="number">100</span>%;</span><br><span class="line">	margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.wrapper &#123;</span><br><span class="line">	min-height: <span class="number">100</span>%;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Equal to height of footer */</span></span><br><span class="line">	<span class="comment">/* But also accounting for potential margin-bottom of last child */</span></span><br><span class="line">	margin-bottom: <span class="number">-50</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.footer,</span><br><span class="line">.push &#123;</span><br><span class="line">	height: <span class="number">50</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.footer &#123;</span><br><span class="line">	width: <span class="number">100</span>%;</span><br><span class="line">    background-color: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="wrapper"&gt;</span><br><span class="line">  content</span><br><span class="line">	&lt;div class="push"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;footer class="footer"&gt;&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
-<p>这两种用的最多</p>
-<p><a href="http://caibaojian.com/css-5-ways-sticky-footer.html" target="_blank" rel="external">css粘住底部</a></p>
-<h2 id="css-分割线"><a href="#css-分割线" class="headerlink" title="css 分割线"></a>css 分割线</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="line_03"&gt;</span><br><span class="line">	&lt;b&gt;&lt;/b&gt;</span><br><span class="line">	&lt;span&gt;小小分隔线 inline-block实现&lt;/span&gt;</span><br><span class="line">	&lt;b&gt;&lt;/b&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">.line_03&#123;</span><br><span class="line">    width: 600px;</span><br><span class="line">&#125;</span><br><span class="line">.line_03 b&#123;</span><br><span class="line">	background: #ddd;</span><br><span class="line">    margin-top: 4px;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    width: 180px;</span><br><span class="line">    height: 1px;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">&#125;</span><br><span class="line">.line_03 span&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">    width: 220px;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/24/移动端适配终极解决方案/" itemprop="url">
-                  移动端适配终极解决方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-24T17:36:29+08:00" content="2016-06-24">
-              2016-06-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="淘宝使用-rem-适配方案"><a href="#淘宝使用-rem-适配方案" class="headerlink" title="淘宝使用 rem 适配方案"></a>淘宝使用 rem 适配方案</h2><p>计算缩放值 initial-scale</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scale = <span class="number">1</span> / <span class="built_in">window</span>.devicePixelRatio;</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'meta[name="viewport"]'</span>).setAttribute(<span class="string">'content'</span>,<span class="string">'width=device-width,initial-scale='</span> + scale + <span class="string">', maximum-scale='</span> + scale + <span class="string">', minimum-scale='</span> + scale + <span class="string">', user-scalable=no'</span>);</span><br></pre></td></tr></table></figure>
-<p>动态生成 html 的 font-size 值，全局使用 rem </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.documentElement.style.fontSize = <span class="built_in">document</span>.documentElement.clientWidth / <span class="number">10</span> + <span class="string">'px'</span>;</span><br></pre></td></tr></table></figure>
-<p>对于iphone6来说，计算出 font-size 为 75px，所以现在只需要将测量的尺寸数据除以75就转换成了rem单位。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">	<span class="selector-tag">body</span>&#123;</span><br><span class="line">		<span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">		<span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.box</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>: <span class="number">2.66666667rem</span>; <span class="comment">/*设计稿的200px*/</span></span><br><span class="line">		<span class="attribute">height</span>: <span class="number">2.66666667rem</span>;</span><br><span class="line">		<span class="attribute">background</span>: red;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> scale = <span class="number">1</span> / <span class="built_in">window</span>.devicePixelRatio;</span><br><span class="line">	<span class="built_in">document</span>.querySelector(<span class="string">'meta[name="viewport"]'</span>).setAttribute(<span class="string">'content'</span>,<span class="string">'width=device-width,initial-scale='</span> + scale + <span class="string">', maximum-scale='</span> + scale + <span class="string">', minimum-scale='</span> + scale + <span class="string">', user-scalable=no'</span>);</span><br><span class="line">	<span class="built_in">document</span>.documentElement.style.fontSize = <span class="built_in">document</span>.documentElement.clientWidth / <span class="number">10</span> + <span class="string">'px'</span>;</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p><a href="http://hcysun.me/2015/10/19/%E4%B8%80%E7%AF%87%E7%9C%9F%E6%AD%A3%E6%95%99%E4%BC%9A%E4%BD%A0%E5%BC%80%E5%8F%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0-%E4%BA%8C/" target="_blank" rel="external">一篇真正教会你开发移动端页面的文章(二)</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/24/call和apply详解/" itemprop="url">
-                  call，apply，bind再一次整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-24T10:07:12+08:00" content="2016-06-24">
-              2016-06-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="call，apply，bind-到底是用来干嘛的？"><a href="#call，apply，bind-到底是用来干嘛的？" class="headerlink" title="call，apply，bind 到底是用来干嘛的？"></a>call，apply，bind 到底是用来干嘛的？</h2><p>每次看到这几个方法，都不能很快的跳出他们的作用及区别。因为实战中用的太少，不过还是要再次整理一下，以备后用。<br>1.借用别人的方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Fruits = &#123;</span><br><span class="line">	name: <span class="string">'Fruits'</span>,</span><br><span class="line">	say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'im '</span> + <span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Apple = &#123;</span><br><span class="line">	name: <span class="string">'apple'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Fruits.say();</span><br><span class="line">Fruits.say.call(Apple);</span><br><span class="line">Fruits.say.apply(Apple);</span><br></pre></td></tr></table></figure>
-<p>2.数组之间追加</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array1 = [<span class="number">12</span> , <span class="string">"foo"</span> , &#123;name: <span class="string">"Joe"</span>&#125; , <span class="number">-2458</span>]; </span><br><span class="line"><span class="keyword">var</span> array2 = [<span class="string">"Doe"</span> , <span class="number">555</span> , <span class="number">100</span>];</span><br><span class="line"><span class="built_in">Array</span>.prototype.push.apply(array1, array2); </span><br><span class="line"><span class="built_in">console</span>.log(array1);</span><br></pre></td></tr></table></figure>
-<p>3.代理方法<br>比如写一个 log 函数，用于实现 console.log</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//注意 arguments 不是数组！直接 console.log(arguments) 无效</span></span><br><span class="line">	<span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>如果想在每个 console.log 前加个前缀</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>); <span class="comment">//转为标准数组</span></span><br><span class="line">  	args.unshift(<span class="string">'(app)'</span>);</span><br><span class="line"></span><br><span class="line">  	<span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="call-和-apply-有什么区别？"><a href="#call-和-apply-有什么区别？" class="headerlink" title="call 和 apply 有什么区别？"></a>call 和 apply 有什么区别？</h2><p>其实功能一样，只是 apply 的第二个参数接受数组，不需要知道传入的个数，包装成数组即可</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">arg1, arg2</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func.call(<span class="keyword">this</span>, arg1, arg2);</span><br><span class="line">func.apply(<span class="keyword">this</span>, [arg1, arg2]);</span><br></pre></td></tr></table></figure>
-<h2 id="bind-有什么用？"><a href="#bind-有什么用？" class="headerlink" title="bind 有什么用？"></a>bind 有什么用？</h2><p>首先 bind 是什么？MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p>
-<p>挖槽这怎么看的懂？？？上代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">    bar : <span class="number">1</span>,</span><br><span class="line">    eventBind: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">        $(<span class="string">'.someClass'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(_this.bar); </span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码很容易理解，this 发生了变化，所以必须将 this 赋予 _this</p>
-<p>使用 bind 改造这段代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">    bar : <span class="number">1</span>,</span><br><span class="line">    eventBind: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'.someClass'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.bar); </span><br><span class="line">        &#125;, bind(<span class="keyword">this</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述代码里，bind() 创建了一个函数，当这个click事件绑定在被调用的时候，它的 this 关键词会被设置成被传入的值（这里指调用bind()时传入的参数）。因此，这里我们传入想要的上下文 this(其实就是 foo )，到 bind() 函数中。然后，当回调函数被执行的时候， this 便指向 foo 对象。</p>
-<h2 id="bind-call-apply-区别"><a href="#bind-call-apply-区别" class="headerlink" title="bind call apply 区别"></a>bind call apply 区别</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">	x: <span class="number">5</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar.bind(foo)(); </span><br><span class="line"></span><br><span class="line">bar.apply(foo); </span><br><span class="line"></span><br><span class="line">bar.call(foo);</span><br></pre></td></tr></table></figure>
-<p>其实 call,apply,bind 的作用都是改变 this 的指向，只是 bind 需要调用执行，apply 和 call 会立即执行。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/23/css布局技巧/" itemprop="url">
-                  css布局技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-23T10:50:35+08:00" content="2016-06-23">
-              2016-06-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="主流处理等分布局"><a href="#主流处理等分布局" class="headerlink" title="主流处理等分布局"></a>主流处理等分布局</h2><p>参考各大网站发现都使用到了给 ul 设置负的 margin 值</p>
-<p><img src="/images/css/1142876.jpg" alt=""></p>
-<ol>
-<li>首先将宽度除以份数，如 1200／5 则每个格子 240px; </li>
-<li>给每份增加 margin-left 如 20px，则每个格子 width 减少 20px 变为 220px</li>
-<li>第一个元素不需要 margin-left ，所以使用对 ul 使用 margin-left: -20px，则盒子总宽度1220px</li>
-<li>1220/5 则每个格子占 244px，所以每个格子的 width 为 224px </li>
-</ol>
-<h2 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h2><p>关于什么是双飞翼布局，网上一大堆介绍…主要实现的是左右固定而中间区域自适应…废话不说，上代码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class = "container"&gt;</span><br><span class="line">    &lt;div class="center col"&gt;</span><br><span class="line">        &lt;div class="main"&gt;这是一行字&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class="left col"&gt;这是一行字&lt;/div&gt;</span><br><span class="line">    &lt;div class="right col"&gt;这是一行字&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.col</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.center</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background</span>: pink;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意两点：<br>1.center 为什么写在最前面，因为可以起到中间内容区优先加载的作用。<br>2.为什么要在 center 中套一个 main？因为 left 把 center 的内容遮挡了，需要 margin-left 一个 left 的宽度，同理，right 也是</p>
-<p><a href="https://github.com/xdlrt/roadToFe/tree/master/css/layout/wings" target="_blank" rel="external">双飞翼布局是个啥</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/23/nodejs中使用mysql连接池/" itemprop="url">
-                  nodejs中使用mysql连接池
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-23T10:42:17+08:00" content="2016-06-23">
-              2016-06-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="使用连接池"><a href="#使用连接池" class="headerlink" title="使用连接池"></a>使用连接池</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);</span><br><span class="line"><span class="keyword">var</span> pool = mysql.createPool(&#123;</span><br><span class="line">    host: <span class="string">'192.168.20.6'</span>,</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    password: <span class="string">'123321'</span>,</span><br><span class="line">    database: <span class="string">'magic'</span></span><br><span class="line">&#125;);</span><br><span class="line">pool.getConnection(<span class="function"><span class="keyword">function</span>(<span class="params">err, connection</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">    connection.query(sql, <span class="function"><span class="keyword">function</span>(<span class="params">qerr, result</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (qerr) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(qerr);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//释放连接</span></span><br><span class="line">        connection.release();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="实战中使用-node-mysql"><a href="#实战中使用-node-mysql" class="headerlink" title="实战中使用 node-mysql"></a>实战中使用 node-mysql</h2><p>这里将查询 sql 返回结果封装成了 sqlHandle.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getResult</span>(<span class="params">pool,sql</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve,reject) =&gt; &#123;</span><br><span class="line">        pool.getConnection((err,connection) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            connection.query(sql, (qerr, result) =&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (qerr) &#123;</span><br><span class="line">                    reject(qerr);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    resolve(&#123;result: result&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//释放连接</span></span><br><span class="line">                connection.release();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    getResult</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://github.com/mysqljs/mysql#pool-options" target="_blank" rel="external">使用连接池</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/22/关于时间管理/" itemprop="url">
-                  关于时间管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-22T22:37:50+08:00" content="2016-06-22">
-              2016-06-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="关于时间管理的几句话"><a href="#关于时间管理的几句话" class="headerlink" title="关于时间管理的几句话"></a>关于时间管理的几句话</h2><p>在阮一峰老师的博客里看到的关于时间管理的几句话，比较有感触，所以小整理一下。</p>
-<ol>
-<li><p>进程切换非常昂贵，避免多任务，保持单进程。</p>
-</li>
-<li><p>集中注意力、高效工作，每天最多4小时。</p>
-</li>
-<li><p>划分任务的优先级，不要把“急切”当作“重要”。<br><img src="/images/time/timeManage1.png" alt=""></p>
-</li>
-<li><p>避免开会，至少不要参加与你无关的会。站着开会，也许是一个缩短会议时间的好办法。</p>
-</li>
-<li><p>你没空时不会做的事情，有空了也不会做。<br>世上并没有拖延症，只是不想做而已。如果可能，应该尽早放弃你没有意愿去做的那些事。而那些没有时间也会去做的事，才是你应该全力以赴的人生方向。</p>
-</li>
-</ol>
-<p><a href="http://www.ruanyifeng.com/blog/2016/05/time-management.html" target="_blank" rel="external">时间管理的7句话</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1360,7 +1454,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1370,7 +1464,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
