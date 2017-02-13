@@ -97,13 +97,12 @@
 1Person.prototype = &amp;#123; constructor: Person &amp;#125;;
 这里我们发现函数 Person 声明完以后，多了一个叫 prototype 的属性，它也是一个对象，包含一个 constructor 属性，">
 <meta property="og:image" content="https://xwillmadeit.github.io/../images/prototype/protoObject.jpeg">
-<meta property="og:image" content="https://xwillmadeit.github.io/../images/prototype/__proto__.jpeg">
 <meta property="og:image" content="https://xwillmadeit.github.io/../images/prototype/proto3.jpeg">
 <meta property="og:image" content="https://xwillmadeit.github.io/../images/prototype/proto4.jpeg">
 <meta property="og:image" content="https://xwillmadeit.github.io/../images/prototype/proto5.jpeg">
 <meta property="og:image" content="https://xwillmadeit.github.io/../images/prototype/proto6.jpeg">
 <meta property="og:image" content="https://xwillmadeit.github.io/../images/prototype/proto7.jpeg">
-<meta property="og:updated_time" content="2017-02-13T12:50:04.000Z">
+<meta property="og:updated_time" content="2017-02-13T14:46:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="prototype && inheritance">
 <meta name="twitter:description" content="prototype 是哪里来的？1function Person() &amp;#123;&amp;#125;
@@ -296,7 +295,6 @@
 <p>我们使用 new 关键字生成一个 Person 的实例对象 xwill，然后打印了这个对象，我们发现，xwill 对象中出现了一个 <strong>proto</strong> 属性，而这个 <strong>proto</strong> 属性的值是一个对象。展开这个对象</p>
 <p><img src="../images/prototype/protoObject.jpeg" alt="image"></p>
 <p>很清楚了吧，xwill 中的 proto 对象和 Person.prototype 对象实际上是同一个，xwill 的 proto 对象指向了 Person.prototype 对象</p>
-<p><img src="../images/prototype/__proto__.jpeg" alt="image"></p>
 <p>我们来验证一下</p>
 <p><img src="../images/prototype/proto3.jpeg" alt="image"></p>
 <p>嗯，确实是这样</p>
