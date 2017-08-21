@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="call，apply，bind 到底是用来干嘛的？每次看到这几个方法，都不能很快的跳出他们的作用及区别。因为实战中用的太少，不过还是要再次整理一下，以备后用。1.借用别人的方法
-1234567891011121314var Fruits = &amp;#123;	name: &apos;Fruits&apos;,	say: function()&amp;#123;		console.log(&apos;im &apos; + this.name);	&amp;">
+1234567891011121314var Fruits = &amp;#123;    name: &apos;Fruits&apos;,    say: function()&amp;#123;        console.log(&apos;im &apos; + t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="call，apply，bind再一次整理">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/06/24/call和apply详解/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="call，apply，bind 到底是用来干嘛的？每次看到这几个方法，都不能很快的跳出他们的作用及区别。因为实战中用的太少，不过还是要再次整理一下，以备后用。1.借用别人的方法
-1234567891011121314var Fruits = &amp;#123;	name: &apos;Fruits&apos;,	say: function()&amp;#123;		console.log(&apos;im &apos; + this.name);	&amp;">
-<meta property="og:updated_time" content="2016-09-04T11:33:49.000Z">
+1234567891011121314var Fruits = &amp;#123;    name: &apos;Fruits&apos;,    say: function()&amp;#123;        console.log(&apos;im &apos; + t">
+<meta property="og:updated_time" content="2017-07-30T02:23:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="call，apply，bind再一次整理">
 <meta name="twitter:description" content="call，apply，bind 到底是用来干嘛的？每次看到这几个方法，都不能很快的跳出他们的作用及区别。因为实战中用的太少，不过还是要再次整理一下，以备后用。1.借用别人的方法
-1234567891011121314var Fruits = &amp;#123;	name: &apos;Fruits&apos;,	say: function()&amp;#123;		console.log(&apos;im &apos; + this.name);	&amp;">
+1234567891011121314var Fruits = &amp;#123;    name: &apos;Fruits&apos;,    say: function()&amp;#123;        console.log(&apos;im &apos; + t">
 
 
 
@@ -275,7 +275,7 @@
 
       
         <h2 id="call，apply，bind-到底是用来干嘛的？"><a href="#call，apply，bind-到底是用来干嘛的？" class="headerlink" title="call，apply，bind 到底是用来干嘛的？"></a>call，apply，bind 到底是用来干嘛的？</h2><p>每次看到这几个方法，都不能很快的跳出他们的作用及区别。因为实战中用的太少，不过还是要再次整理一下，以备后用。<br>1.借用别人的方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Fruits = &#123;</span><br><span class="line">	name: <span class="string">'Fruits'</span>,</span><br><span class="line">	say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'im '</span> + <span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Apple = &#123;</span><br><span class="line">	name: <span class="string">'apple'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Fruits.say();</span><br><span class="line">Fruits.say.call(Apple);</span><br><span class="line">Fruits.say.apply(Apple);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Fruits = &#123;</span><br><span class="line">    name: <span class="string">'Fruits'</span>,</span><br><span class="line">    say: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'im '</span> + <span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Apple = &#123;</span><br><span class="line">	name: <span class="string">'apple'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Fruits.say();</span><br><span class="line">Fruits.say.call(Apple);</span><br><span class="line">Fruits.say.apply(Apple);</span><br></pre></td></tr></table></figure>
 <p>2.数组之间追加</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array1 = [<span class="number">12</span> , <span class="string">"foo"</span> , &#123;name: <span class="string">"Joe"</span>&#125; , <span class="number">-2458</span>]; </span><br><span class="line"><span class="keyword">var</span> array2 = [<span class="string">"Doe"</span> , <span class="number">555</span> , <span class="number">100</span>];</span><br><span class="line"><span class="built_in">Array</span>.prototype.push.apply(array1, array2); </span><br><span class="line"><span class="built_in">console</span>.log(array1);</span><br></pre></td></tr></table></figure>
 <p>3.代理方法<br>比如写一个 log 函数，用于实现 console.log</p>
@@ -408,7 +408,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -418,7 +418,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

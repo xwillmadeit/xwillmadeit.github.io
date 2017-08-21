@@ -84,31 +84,31 @@
 
 
 
-<meta name="description" content="new Foo() 的背后到底发生了什么123function Foo() &amp;#123;&amp;#125;var f = new Foo();
+<meta name="description" content="new Foo() 的背后到底发生了什么123function Foo() &amp;#123;&amp;#125;var f = new Foo()
 🐂 背后的故事到底是什么？
 
 一个新对象 f 生成了，它继承了 Foo 的 prototypeA new object is created, inheriting from Foo.prototype
 
-构造函数 Foo 被执行了，Foo 中的 this 绑">
+构造函数 Foo 被执行了，Foo 中的 this 绑定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="🐂（new）背后的故事">
 <meta property="og:url" content="https://xwillmadeit.github.io/2017/02/09/当你-new-了一个-Function/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="new Foo() 的背后到底发生了什么123function Foo() &amp;#123;&amp;#125;var f = new Foo();
+<meta property="og:description" content="new Foo() 的背后到底发生了什么123function Foo() &amp;#123;&amp;#125;var f = new Foo()
 🐂 背后的故事到底是什么？
 
 一个新对象 f 生成了，它继承了 Foo 的 prototypeA new object is created, inheriting from Foo.prototype
 
-构造函数 Foo 被执行了，Foo 中的 this 绑">
-<meta property="og:updated_time" content="2017-02-10T09:24:21.000Z">
+构造函数 Foo 被执行了，Foo 中的 this 绑定">
+<meta property="og:updated_time" content="2017-08-21T01:05:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="🐂（new）背后的故事">
-<meta name="twitter:description" content="new Foo() 的背后到底发生了什么123function Foo() &amp;#123;&amp;#125;var f = new Foo();
+<meta name="twitter:description" content="new Foo() 的背后到底发生了什么123function Foo() &amp;#123;&amp;#125;var f = new Foo()
 🐂 背后的故事到底是什么？
 
 一个新对象 f 生成了，它继承了 Foo 的 prototypeA new object is created, inheriting from Foo.prototype
 
-构造函数 Foo 被执行了，Foo 中的 this 绑">
+构造函数 Foo 被执行了，Foo 中的 this 绑定">
 
 
 
@@ -286,7 +286,7 @@
       
 
       
-        <h2 id="new-Foo-的背后到底发生了什么"><a href="#new-Foo-的背后到底发生了什么" class="headerlink" title="new Foo() 的背后到底发生了什么"></a>new Foo() 的背后到底发生了什么</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+        <h2 id="new-Foo-的背后到底发生了什么"><a href="#new-Foo-的背后到底发生了什么" class="headerlink" title="new Foo() 的背后到底发生了什么"></a>new Foo() 的背后到底发生了什么</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Foo()</span><br></pre></td></tr></table></figure>
 <p>🐂 背后的故事到底是什么？</p>
 <ul>
 <li><p><b>一个新对象 f 生成了，它继承了 Foo 的 prototype</b><br>A new object is created, inheriting from Foo.prototype</p>
@@ -296,12 +296,12 @@
 <li><p><b>如果没有在 Foo 中显示的 return 一个对象， 那么 f 就等于默认构造出来的对象</b><br>The object returned by the constructor function becomes the result of the whole new expression. If the constructor function doesn’t explicitly return an object, the object created in step 1 is used instead. (Normally constructors don’t return a value, but they can choose to do so if they want to override the normal object creation process.)</p>
 </li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Car();</span><br><span class="line"></span><br><span class="line">Car.prototype.name = <span class="string">'bmw'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c.name);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Car()</span><br><span class="line"></span><br><span class="line">Car.prototype.name = <span class="string">'bmw'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c.name)</span><br></pre></td></tr></table></figure>
 <p>根据上面的结论，当 c 对象生成时，它继承了 Car.protptype，所以当</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Car.prototype.name = <span class="string">'bmw'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Car.prototype.name = <span class="string">'bmw'</span></span><br></pre></td></tr></table></figure>
 <p>执行后，c 对象也有 name 属性，即来自 Car.prototype 的属性</p>
 <p>一个思考？下面的代码会打印出什么？</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">// null is also an object</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Foo(<span class="string">'xwill'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(f);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Foo(<span class="string">'xwill'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(f)</span><br></pre></td></tr></table></figure>
 <p>结果：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; name: <span class="string">'xwill'</span> &#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="external">new operator</a></p>
@@ -418,7 +418,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -428,7 +428,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

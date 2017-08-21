@@ -84,28 +84,28 @@
 
 
 
-<meta name="description" content="使用 &amp;amp;&amp;amp; 按顺序依次执行1gulp css &amp;amp;&amp;amp; gulp js &amp;amp;&amp;amp; gulp version
-使用 &amp;amp; 并行同时执行1gulp css &amp;amp; gulp js
-注意，最好在命令尾部加上 &amp;amp; wait，这样 commond + c 才能彻底退出
-1gulp css &amp;amp; gulp js &amp;amp; wait
-npm-ru">
+<meta name="description" content="使用 &amp;amp;&amp;amp; 顺序执行1npm run clean &amp;amp;&amp;amp; npm run build
+npm run clean 执行完毕后 npm run build 才会执行
+使用 &amp;amp; 并行执行1npm run dev:client &amp;amp; npm run dev:server
+注意，最好在命令尾部加上 &amp;amp; wait，这样命令行进程才能彻底退出
+1npm ru">
 <meta property="og:type" content="article">
 <meta property="og:title" content="npm scripts 进阶">
 <meta property="og:url" content="https://xwillmadeit.github.io/2017/02/13/npm-scripts-进阶/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="使用 &amp;amp;&amp;amp; 按顺序依次执行1gulp css &amp;amp;&amp;amp; gulp js &amp;amp;&amp;amp; gulp version
-使用 &amp;amp; 并行同时执行1gulp css &amp;amp; gulp js
-注意，最好在命令尾部加上 &amp;amp; wait，这样 commond + c 才能彻底退出
-1gulp css &amp;amp; gulp js &amp;amp; wait
-npm-ru">
-<meta property="og:updated_time" content="2017-02-13T03:24:32.000Z">
+<meta property="og:description" content="使用 &amp;amp;&amp;amp; 顺序执行1npm run clean &amp;amp;&amp;amp; npm run build
+npm run clean 执行完毕后 npm run build 才会执行
+使用 &amp;amp; 并行执行1npm run dev:client &amp;amp; npm run dev:server
+注意，最好在命令尾部加上 &amp;amp; wait，这样命令行进程才能彻底退出
+1npm ru">
+<meta property="og:updated_time" content="2017-07-18T02:19:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="npm scripts 进阶">
-<meta name="twitter:description" content="使用 &amp;amp;&amp;amp; 按顺序依次执行1gulp css &amp;amp;&amp;amp; gulp js &amp;amp;&amp;amp; gulp version
-使用 &amp;amp; 并行同时执行1gulp css &amp;amp; gulp js
-注意，最好在命令尾部加上 &amp;amp; wait，这样 commond + c 才能彻底退出
-1gulp css &amp;amp; gulp js &amp;amp; wait
-npm-ru">
+<meta name="twitter:description" content="使用 &amp;amp;&amp;amp; 顺序执行1npm run clean &amp;amp;&amp;amp; npm run build
+npm run clean 执行完毕后 npm run build 才会执行
+使用 &amp;amp; 并行执行1npm run dev:client &amp;amp; npm run dev:server
+注意，最好在命令尾部加上 &amp;amp; wait，这样命令行进程才能彻底退出
+1npm ru">
 
 
 
@@ -283,23 +283,19 @@ npm-ru">
       
 
       
-        <h2 id="使用-amp-amp-按顺序依次执行"><a href="#使用-amp-amp-按顺序依次执行" class="headerlink" title="使用 &amp;&amp; 按顺序依次执行"></a>使用 &amp;&amp; 按顺序依次执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp;&amp; gulp js &amp;&amp; gulp version</span><br></pre></td></tr></table></figure>
-<h2 id="使用-amp-并行同时执行"><a href="#使用-amp-并行同时执行" class="headerlink" title="使用 &amp; 并行同时执行"></a>使用 &amp; 并行同时执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp; gulp js</span><br></pre></td></tr></table></figure>
-<p>注意，最好在命令尾部加上 &amp; wait，这样 commond + c 才能彻底退出</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp css &amp; gulp js &amp; wait</span><br></pre></td></tr></table></figure>
-<h2 id="npm-run-all"><a href="#npm-run-all" class="headerlink" title="npm-run-all"></a>npm-run-all</h2><p>使用 npm-run-all 可以代替手动输入 npm run</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all eslint stylelint mocha</span><br></pre></td></tr></table></figure>
-<p>这里 eslint stylelint mocha 三个任务会顺序执行</p>
-<p>如果想并行执行</p>
-<p>npm run all –parallel eslint mocha stylelint</p>
+        <h2 id="使用-amp-amp-顺序执行"><a href="#使用-amp-amp-顺序执行" class="headerlink" title="使用 &amp;&amp; 顺序执行"></a>使用 &amp;&amp; 顺序执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run clean &amp;&amp; npm run build</span><br></pre></td></tr></table></figure>
+<p>npm run clean 执行完毕后 npm run build 才会执行</p>
+<h2 id="使用-amp-并行执行"><a href="#使用-amp-并行执行" class="headerlink" title="使用 &amp; 并行执行"></a>使用 &amp; 并行执行</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev:client &amp; npm run dev:server</span><br></pre></td></tr></table></figure>
+<p>注意，最好在命令尾部加上 &amp; wait，这样命令行进程才能彻底退出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev:client &amp; npm run dev:server &amp; wait</span><br></pre></td></tr></table></figure>
+<h2 id="npm-script-lifecycle-hooks-（pre，post）"><a href="#npm-script-lifecycle-hooks-（pre，post）" class="headerlink" title="npm script lifecycle hooks （pre，post）"></a>npm script lifecycle hooks （pre，post）</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pretest</span><br><span class="line">test</span><br><span class="line">posttest</span><br></pre></td></tr></table></figure>
+<p>在任意命令前加 pre，post 即会在相应命令前、后执行</p>
+<h2 id="npm-run-all-包"><a href="#npm-run-all-包" class="headerlink" title="npm-run-all 包"></a>npm-run-all 包</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm-run-all dev:client dev:server</span><br></pre></td></tr></table></figure>
+<p>默认顺序执行，如果想并行执行，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm-run-all --parallel dev:client dev:server</span><br></pre></td></tr></table></figure>
 <p>npm run all 自动帮你在后面增加 &amp; wait</p>
-<h2 id="npm-run-all-使用通配符"><a href="#npm-run-all-使用通配符" class="headerlink" title="npm-run-all 使用通配符"></a>npm-run-all 使用通配符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lint:js</span><br><span class="line">lint:css</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all lint:*</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lint:js:fix</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run all lint:**</span><br></pre></td></tr></table></figure>
-<h2 id="npm-script-lifecycle-hooks"><a href="#npm-script-lifecycle-hooks" class="headerlink" title="npm script lifecycle hooks"></a>npm script lifecycle hooks</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pretest</span><br><span class="line">test</span><br><span class="line">posttest</span><br></pre></td></tr></table></figure>
-<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"test"</span>: <span class="string">"mocha"</span>,</span><br><span class="line"><span class="string">"watch:test"</span>: <span class="string">"npm test -- watch"</span></span><br></pre></td></tr></table></figure>
-<h2 id="onchange-库"><a href="#onchange-库" class="headerlink" title="onchange 库"></a>onchange 库</h2>
+<h2 id="better-npm-run-包"><a href="#better-npm-run-包" class="headerlink" title="better-npm-run 包"></a>better-npm-run 包</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev:client"</span>: <span class="string">"better-npm-run dev:client"</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"betterScripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev:client"</span>: &#123;</span><br><span class="line">    <span class="string">"command"</span>: <span class="string">"cross-env babel-node server/webpack.devServer.js"</span>,</span><br><span class="line">    <span class="string">"env"</span>: &#123;</span><br><span class="line">      <span class="string">"NODE_ENV"</span>: <span class="string">"development"</span>,</span><br><span class="line">      <span class="string">"BABEL_ENV"</span>: <span class="string">"client"</span>,</span><br><span class="line">      <span class="string">"PORT"</span>: <span class="number">4001</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -339,6 +335,10 @@ npm-ru">
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/21/react-hot-loader-v3-webpack-v2之坑/" rel="prev" title="react-hot-loader v3 + webpack v2之坑">
+                react-hot-loader v3 + webpack v2之坑 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -406,7 +406,7 @@ npm-ru">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -416,7 +416,7 @@ npm-ru">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -445,7 +445,7 @@ npm-ru">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-amp-amp-按顺序依次执行"><span class="nav-number">1.</span> <span class="nav-text">使用 && 按顺序依次执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-amp-并行同时执行"><span class="nav-number">2.</span> <span class="nav-text">使用 & 并行同时执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-run-all"><span class="nav-number">3.</span> <span class="nav-text">npm-run-all</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-run-all-使用通配符"><span class="nav-number">4.</span> <span class="nav-text">npm-run-all 使用通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-script-lifecycle-hooks"><span class="nav-number">5.</span> <span class="nav-text">npm script lifecycle hooks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递参数"><span class="nav-number">6.</span> <span class="nav-text">传递参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onchange-库"><span class="nav-number">7.</span> <span class="nav-text">onchange 库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-amp-amp-顺序执行"><span class="nav-number">1.</span> <span class="nav-text">使用 && 顺序执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-amp-并行执行"><span class="nav-number">2.</span> <span class="nav-text">使用 & 并行执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-script-lifecycle-hooks-（pre，post）"><span class="nav-number">3.</span> <span class="nav-text">npm script lifecycle hooks （pre，post）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-run-all-包"><span class="nav-number">4.</span> <span class="nav-text">npm-run-all 包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#better-npm-run-包"><span class="nav-number">5.</span> <span class="nav-text">better-npm-run 包</span></a></li></ol></div>
             
           </div>
         </section>

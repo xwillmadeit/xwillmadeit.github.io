@@ -1,0 +1,446 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="服务端不认识 css，png 之类的文件，服务端 renderToString 报错解决：使用 webpack-isomophic-tools 工具
+注意：使用 webpack-isomorphic 需要把整个服务端放到该工具的回调里，且该回调只有在 webpack-isomorphic 读取到 webpack 生成 webpack.assets.json 文件后才会执行。这意味着如果通过 web">
+<meta property="og:type" content="website">
+<meta property="og:title" content="同构">
+<meta property="og:url" content="https://xwillmadeit.github.io/notDone/同构.html">
+<meta property="og:site_name" content="xwillmadeit">
+<meta property="og:description" content="服务端不认识 css，png 之类的文件，服务端 renderToString 报错解决：使用 webpack-isomophic-tools 工具
+注意：使用 webpack-isomorphic 需要把整个服务端放到该工具的回调里，且该回调只有在 webpack-isomorphic 读取到 webpack 生成 webpack.assets.json 文件后才会执行。这意味着如果通过 web">
+<meta property="og:updated_time" content="2017-05-09T08:13:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="同构">
+<meta name="twitter:description" content="服务端不认识 css，png 之类的文件，服务端 renderToString 报错解决：使用 webpack-isomophic-tools 工具
+注意：使用 webpack-isomorphic 需要把整个服务端放到该工具的回调里，且该回调只有在 webpack-isomorphic 读取到 webpack 生成 webpack.assets.json 文件后才会执行。这意味着如果通过 web">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://xwillmadeit.github.io/notDone/同构.html"/>
+
+
+  <title>
+  
+
+  
+    同构 | xwillmadeit
+  
+</title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xwillmadeit</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+      <h3 id="服务端不认识-css，png-之类的文件，服务端-renderToString-报错"><a href="#服务端不认识-css，png-之类的文件，服务端-renderToString-报错" class="headerlink" title="服务端不认识 css，png 之类的文件，服务端 renderToString 报错"></a>服务端不认识 css，png 之类的文件，服务端 renderToString 报错</h3><p>解决：<br>使用 webpack-isomophic-tools 工具</p>
+<p>注意：<br>使用 webpack-isomorphic 需要把整个服务端放到该工具的回调里，且该回调只有在 webpack-isomorphic 读取到 webpack 生成 webpack.assets.json 文件后才会执行。这意味着如果通过 webpack-dev-middleware 形式配置 dev-server 服务，必须和 node server 并行执行（不能配置在回调里），为了解决该问题，把 webpack-dev-server 单独分离出来，在 npm run dev 时并行执行 webpack-dev-server 和 node server</p>
+<h3 id="使用-webpack-isomorphic-tools-时，不能在开发模式使用-extract-text-webpack-plugin，否则-webpack-isomorphic-tools-会找不到-styles-文件"><a href="#使用-webpack-isomorphic-tools-时，不能在开发模式使用-extract-text-webpack-plugin，否则-webpack-isomorphic-tools-会找不到-styles-文件" class="headerlink" title="使用 webpack-isomorphic-tools 时，不能在开发模式使用 extract-text-webpack-plugin，否则 webpack-isomorphic-tools 会找不到 styles 文件"></a>使用 webpack-isomorphic-tools 时，不能在开发模式使用 extract-text-webpack-plugin，否则 webpack-isomorphic-tools 会找不到 styles 文件</h3><h3 id="使用-babel-的-transform-class-properties-插件时，eslint-报错-Parsing-error-Unexpected-token"><a href="#使用-babel-的-transform-class-properties-插件时，eslint-报错-Parsing-error-Unexpected-token" class="headerlink" title="使用 babel 的 transform-class-properties 插件时，eslint 报错 Parsing error: Unexpected token ="></a>使用 babel 的 transform-class-properties 插件时，eslint 报错 Parsing error: Unexpected token =</h3><p>解决：<br>.eslintrc 文件的 parser 指定为 babel-eslint</p>
+<h3 id="babel6-默认不会把-export-default-编译成-module-exports，服务端渲染组件的时候报错"><a href="#babel6-默认不会把-export-default-编译成-module-exports，服务端渲染组件的时候报错" class="headerlink" title="babel6 默认不会把 export default 编译成 module.exports，服务端渲染组件的时候报错"></a>babel6 默认不会把 export default 编译成 module.exports，服务端渲染组件的时候报错</h3><p>解决：<br>使用插件 add-module-exports</p>
+<h3 id="koa2-部分第三方库使用了-async-await-关键字，如果使用的-node-版本低于-7-6-的话，会报关键字错误"><a href="#koa2-部分第三方库使用了-async-await-关键字，如果使用的-node-版本低于-7-6-的话，会报关键字错误" class="headerlink" title="koa2 部分第三方库使用了 async/await 关键字，如果使用的 node 版本低于 7.6 的话，会报关键字错误"></a>koa2 部分第三方库使用了 async/await 关键字，如果使用的 node 版本低于 7.6 的话，会报关键字错误</h3><p>描述：<br>koa2 部分第三方库（koa-session，koa-views，koa-send，koa-bodyparser）使用了 async/await 语法，而 babel-loader 配置为过滤 node_modules 目录，导致 node v6 报错</p>
+<p>解决：<br>fork 相关库，提交编译版本</p>
+<h3 id="IE9-不认识-Promise，如何优雅的做-Promise-polyfill（IE9）？"><a href="#IE9-不认识-Promise，如何优雅的做-Promise-polyfill（IE9）？" class="headerlink" title="IE9 不认识 Promise，如何优雅的做 Promise polyfill（IE9）？"></a>IE9 不认识 Promise，如何优雅的做 Promise polyfill（IE9）？</h3><p>描述：<br>axios 库使用了 Promise，IE9 不支持 Promise，所以需要 <a href="https://github.com/stefanpenner/es6-promise" target="_blank" rel="external">polyfill</a><br>如果在每次使用时 import ‘es6-peomise/auto’ 显然很不方便</p>
+<p>解决：<br>在 webpack 中配置 ProvidePlugin</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm i -S es6-promise-promise</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">  <span class="built_in">Promise</span>: <span class="string">'es6-promise-promise'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>注意：<br>该 package 依赖的 es6-promise 版本为 3.3.1，不是最新的</p>
+<h3 id="Koa-router-多级路由匹配错误"><a href="#Koa-router-多级路由匹配错误" class="headerlink" title="Koa-router 多级路由匹配错误"></a>Koa-router 多级路由匹配错误</h3><p>描述：<br>/user/stock/vp/dota 匹配到了 /dota 路由中</p>
+<p>解决：<br>/user/stock/vp/dota 改为 /user/stock/vp/dt2 </p>
+<h3 id="前端路由-404-问题"><a href="#前端路由-404-问题" class="headerlink" title="前端路由 404 问题"></a>前端路由 404 问题</h3><p>描述：<br>任意一级路由匹配不上（嵌套路由），就跳转到 404 页面，这个貌似做不到<br>只能作用于每一层的 404，显然要写很多页面</p>
+<p>解决：<br>每一层级路由匹配不上就 Redirect 至改组路由的第一个组件</p>
+<h3 id="iconfont-使用-css-url-引入，在-create-react-app-环境中无法在-ie9-正常加载"><a href="#iconfont-使用-css-url-引入，在-create-react-app-环境中无法在-ie9-正常加载" class="headerlink" title="iconfont 使用 css url 引入，在 create-react-app 环境中无法在 ie9 正常加载"></a>iconfont 使用 css url 引入，在 create-react-app 环境中无法在 ie9 正常加载</h3><p>描述：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> url(<span class="string">'//at.alicdn.com/t/font_8munlglvqqnz5mi.css'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>经查看在 ie9 环境下，该 css 并未被 style-loader inject 到 head 标签中</p>
+<p>在简易搭建的 webpack + style-loader + sass-loader 中可以在 ie9 正常加载，打包后可以加载</p>
+<h3 id="同构中不能在组件生命周期在-render-及之前的函数中使用浏览器的关键字，如-window-下的-location，localStorage，cookie-等"><a href="#同构中不能在组件生命周期在-render-及之前的函数中使用浏览器的关键字，如-window-下的-location，localStorage，cookie-等" class="headerlink" title="同构中不能在组件生命周期在 render 及之前的函数中使用浏览器的关键字，如 window 下的 location，localStorage，cookie 等"></a>同构中不能在组件生命周期在 render 及之前的函数中使用浏览器的关键字，如 window 下的 location，localStorage，cookie 等</h3><p>解决：<br>通过服务端返回数据，在 ReactDOM.render 之前通过 redux store 带入组件</p>
+
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="xwillmadeit" />
+          <p class="site-author-name" itemprop="name">xwillmadeit</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xwillmadeit</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

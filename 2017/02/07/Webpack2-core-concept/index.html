@@ -104,7 +104,7 @@ Tree Sha">
 
 Code Splitting Doc
 Tree Sha">
-<meta property="og:updated_time" content="2017-02-07T13:10:59.000Z">
+<meta property="og:updated_time" content="2017-04-01T10:01:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack2 core concept">
 <meta name="twitter:description" content="Code SplittingCode Splitting 即代码分割，可以把一个大 bundle 分割成多个小 bundle，按需加载，从而达到性能优化
@@ -307,11 +307,37 @@ Tree Sha">
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; cube &#125; <span class="keyword">from</span> <span class="string">'./math'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">5</span>));</span><br></pre></td></tr></table></figure>
 <p>index.js 中，square 没有被导入，webpack 在打包时会将其排除<br>即便如下导入 square，但 square 并没有被使用，webpack 也会将其排除</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; cube, square &#125; <span class="keyword">from</span> <span class="string">'./math'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">5</span>));</span><br></pre></td></tr></table></figure>
-<p>这就是 Tree Shaking 的核心概念</p>
-<p><a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="external">Tree Shaking Doc</a></p>
+<p>这就是 Tree Shaking 的核心概念<br><a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="external">Tree Shaking Doc</a></p>
+<p>Tree Shaking 实战总结：</p>
+<ol>
+<li>Tree Shaking 功能建立在 ES6 的模块机制上，可以在打包时删除没有被使用的模块代码</li>
+<li>通过 ES6 直接 export/export default 的模块才能够在引入后被 webpack Tree Shaking</li>
+<li><p>不能使用 babel 转换 ES6 module，即需要指定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .babelrc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"presets"</span>: [</span><br><span class="line">    [<span class="string">"env"</span>, &#123; modules: <span class="literal">false</span> &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>即使以 npm i package 引入 ES6 导出的模块，如果该模块文件夹下有 .babelrc 文件，则必须删除，或指定 modules: false，因为 babel 的 <a href="https://babeljs.io/docs/usage/babelrc/#lookup-behavior" target="_blank" rel="external">lookup behavior</a></p>
+</li>
+</ol>
 <h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ul>
 <li>webpack -p 利用了 uglify2 压缩代码，但是 uglify2 暂不支持 ES6</li>
 </ul>
+<h2 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h2><p>第三方包提取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// home.js</span></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">'./math'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'home page...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// about.js</span></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">'./math'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'about page...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">entry: &#123;</span><br><span class="line">  vendor: [<span class="string">'lodash'</span>],</span><br><span class="line">  home: <span class="string">'./src/home.js'</span>,</span><br><span class="line">  about: <span class="string">'./src/about.js'</span></span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">  path: resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  filename: <span class="string">'[name].js'</span></span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">    <span class="comment">// 顺序很重要</span></span><br><span class="line">    name: [<span class="string">'common'</span>, <span class="string">'vendor'</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// home.html</span></span><br><span class="line">&lt;script src=<span class="string">"dist/vendor.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"dist/common.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"dist/home.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>以上配置运行 webpack 会在 dist 目录生成三个文件：</p>
+<ul>
+<li>home.js（home.js 自己的代码）</li>
+<li>about.js（about.js 自己的代码）</li>
+<li>common.js（add 方法的代码）</li>
+<li>vendor.js（webpack启动代码 + lodash 代码）</li>
+</ul>
+<p>注意，CommonsChunkPlugin name 参数的顺序非常重要</p>
+<p>Under The Hood：</p>
+<ul>
+<li>webpack 会生成 common.js，包含 webpack 启动代码 + lodash 代码 + add 方法代码</li>
+<li>webpack 生成 home.js 和 about.js，包含</li>
+<li>webpack 又生成了 vendor.js，因为在入口指定了 vendor: [‘lodash’]，所以 vendor.js 和 common.js<br>的共同拥有：webpack 启动代码和 lodash 代码</li>
+</ul>
+<p>然后<br>此时，webpack 把 webpack 启动代码和 lodash 代码从 common.js 抽取到了 vendor.js，所以 common.js 只剩了 add 方法代码</p>
 
       
     </div>
@@ -423,7 +449,7 @@ Tree Sha">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -433,7 +459,7 @@ Tree Sha">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -462,7 +488,7 @@ Tree Sha">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Splitting"><span class="nav-number">1.</span> <span class="nav-text">Code Splitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tree-Shaking"><span class="nav-number">2.</span> <span class="nav-text">Tree Shaking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些注意事项"><span class="nav-number">3.</span> <span class="nav-text">一些注意事项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Splitting"><span class="nav-number">1.</span> <span class="nav-text">Code Splitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tree-Shaking"><span class="nav-number">2.</span> <span class="nav-text">Tree Shaking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些注意事项"><span class="nav-number">3.</span> <span class="nav-text">一些注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonsChunkPlugin"><span class="nav-number">4.</span> <span class="nav-text">CommonsChunkPlugin</span></a></li></ol></div>
             
           </div>
         </section>

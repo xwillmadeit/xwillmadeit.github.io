@@ -85,21 +85,21 @@
 
 
 <meta name="description" content="什么是闭包闭包是指有权访问另一个函数作用域中的变量的函数。嗯，闭包是个函数，能够访问另外函数中的变量，就这么简单。
-闭包和作用域12345678function say(name) &amp;#123;	return function() &amp;#123;		return name;	&amp;#125;&amp;#125;var a = say(&apos;hello&apos;);console.log(a());
-为什么当内部匿名函数被返">
+闭包和作用域12345678function say(name) &amp;#123;  return function() &amp;#123;    return name  &amp;#125;&amp;#125;var a = say(&apos;hello&apos;)console.log(a())
+为什么当内部匿名函数被">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Final Closure">
 <meta property="og:url" content="https://xwillmadeit.github.io/2016/10/17/The-Final-Closure/index.html">
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="什么是闭包闭包是指有权访问另一个函数作用域中的变量的函数。嗯，闭包是个函数，能够访问另外函数中的变量，就这么简单。
-闭包和作用域12345678function say(name) &amp;#123;	return function() &amp;#123;		return name;	&amp;#125;&amp;#125;var a = say(&apos;hello&apos;);console.log(a());
-为什么当内部匿名函数被返">
-<meta property="og:updated_time" content="2016-10-24T08:18:30.000Z">
+闭包和作用域12345678function say(name) &amp;#123;  return function() &amp;#123;    return name  &amp;#125;&amp;#125;var a = say(&apos;hello&apos;)console.log(a())
+为什么当内部匿名函数被">
+<meta property="og:updated_time" content="2017-08-21T01:14:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Final Closure">
 <meta name="twitter:description" content="什么是闭包闭包是指有权访问另一个函数作用域中的变量的函数。嗯，闭包是个函数，能够访问另外函数中的变量，就这么简单。
-闭包和作用域12345678function say(name) &amp;#123;	return function() &amp;#123;		return name;	&amp;#125;&amp;#125;var a = say(&apos;hello&apos;);console.log(a());
-为什么当内部匿名函数被返">
+闭包和作用域12345678function say(name) &amp;#123;  return function() &amp;#123;    return name  &amp;#125;&amp;#125;var a = say(&apos;hello&apos;)console.log(a())
+为什么当内部匿名函数被">
 
 
 
@@ -278,19 +278,19 @@
 
       
         <h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><p><b>闭包是指有权访问另一个函数作用域中的变量的函数。</b>嗯，闭包是个函数，能够访问另外函数中的变量，就这么简单。</p>
-<h2 id="闭包和作用域"><a href="#闭包和作用域" class="headerlink" title="闭包和作用域"></a>闭包和作用域</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = say(<span class="string">'hello'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a());</span><br></pre></td></tr></table></figure>
+<h2 id="闭包和作用域"><a href="#闭包和作用域" class="headerlink" title="闭包和作用域"></a>闭包和作用域</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = say(<span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a())</span><br></pre></td></tr></table></figure>
 <p>为什么当内部匿名函数被返回后，而且在其他地方被调用，仍能访问变量 name 呢？这里得从作用域链说起。</p>
 <p>当某个函数第一次被调用时，会创建一个执行环境及相应的作用域链，并把作用域链赋值给一个特殊的内部属性([[scope]])，然后使用 this,arguments 和其他命名参数来初始化函数的活动对象。</p>
 <p>每个执行环境都有一个表示变量的对象——变量对象。全局环境的变量对象始终存在。而像 say() 函数这样的局部环境的变量对象，则只在函数的执行过程中存在。在创建 say() 时，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在内部的[[scope]]属性中。当调用 say() 时，会为函数创建一个执行环境，然后通过复制函数的[[scope]]属性中的对象构建起执行环境的作用域链。此后，又有一个活动对象被创建并被推入执行环境的作用域链的前端。对于 say() 函数的执行环境而言，其作用域链中包含两个变量对象，本地活动对象和全局变量对象。显然，作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。</p>
 <p>在函数中访问一个变量时，会从作用域链中搜索具有相应名字的变量。一般来讲，函数执行完毕后，局部活动对象就会被销毁，内存中仅保存全局作用域(全局执行环境的变量对象)，但闭包不同。</p>
 <p>在一个函数内部定义的函数将包含其外部函数的活动对象添加到它的作用域链中。在 say() 函数内部定义的匿名函数的作用域中，实际会包含 say() 的活动对象。在匿名函数从 say() 中被返回后，它的作用域链被初始化为包含 say() 函数的活动对象和全局变量对象。say() 函数执行完毕后，其活动对象不会被销毁，因为匿名函数的作用域链仍然在引用这个活动对象。当 say() 函数返回后，其执行环境的作用域链会被销毁，但它的活动对象仍然留在内存中，直到匿名函数被销毁，say() 的活动对象才会被销毁。</p>
 <p>用自己的话总结一下：<br>当一个函数被调用时，会创建一个执行环境和作用域链，作用域链前端是当前执行环境中的变量对象。作用域链中的下一个变量对象来自外部包含环境，最后一个变量对象来自全局执行环境。函数中的变量如果在自己的执行环境中没找到，则沿着作用域链一路往上直到全局。</p>
-<h2 id="闭包的问题"><a href="#闭包的问题" class="headerlink" title="闭包的问题"></a>闭包的问题</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;buttons.length ;i++) &#123;</span><br><span class="line">		buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(i);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bindClick();</span><br></pre></td></tr></table></figure>
+<h2 id="闭包的问题"><a href="#闭包的问题" class="headerlink" title="闭包的问题"></a>闭包的问题</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>)</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; buttons.length; i++) &#123;</span><br><span class="line">    buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bindClick()</span><br></pre></td></tr></table></figure>
 <p>每个 button 打印值都是3，why？就是因为 click 方法的回调函数中 i 的值都是引用自上级作用域链，即 bindClick 函数中变量对象中的 i ，当 click 方法被触发时，i 活动变量的值早就变成 3 了</p>
 <p>解决<br>给每个绑定事件自己的作用域：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">	buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;)(i);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)(i)</span><br></pre></td></tr></table></figure>
 <p>使用块作用域：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;buttons.length ;i++) &#123;</span><br><span class="line">	buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buttons = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; buttons.length; i++) &#123;</span><br><span class="line">  buttons[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -324,8 +324,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/04/Some-Strange-Things-About-Javascript/" rel="next" title="Some Strange Things About Javascript">
-                <i class="fa fa-chevron-left"></i> Some Strange Things About Javascript
+              <a href="/2016/09/26/jasmine学习/" rel="next" title="jasmine学习">
+                <i class="fa fa-chevron-left"></i> jasmine学习
               </a>
             
           </div>
@@ -402,7 +402,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -412,7 +412,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

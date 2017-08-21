@@ -92,11 +92,13 @@
 <meta property="og:site_name" content="xwillmadeit">
 <meta property="og:description" content="Stateless Component和普通的 Component 相比，Stateless Component 没有自己的 state，通常用以下函数方式定义（Eslint prefer-stateless-function 规则）
 1const Home = (props) =&amp;gt; &amp;lt;h2&amp;gt;This is our &amp;#123;props.title&amp;#125;&amp;lt;/h2&amp;g">
-<meta property="og:updated_time" content="2017-02-13T14:13:50.000Z">
+<meta property="og:image" content="https://xwillmadeit.github.io/../images/react/lifecycle.jpeg">
+<meta property="og:updated_time" content="2017-02-20T12:47:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React 开发时遇到的问题总结">
 <meta name="twitter:description" content="Stateless Component和普通的 Component 相比，Stateless Component 没有自己的 state，通常用以下函数方式定义（Eslint prefer-stateless-function 规则）
 1const Home = (props) =&amp;gt; &amp;lt;h2&amp;gt;This is our &amp;#123;props.title&amp;#125;&amp;lt;/h2&amp;g">
+<meta name="twitter:image" content="https://xwillmadeit.github.io/../images/react/lifecycle.jpeg">
 
 
 
@@ -303,6 +305,13 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onChange=&#123;e =&gt; <span class="keyword">this</span>.handleChange(e)&#125;</span><br></pre></td></tr></table></figure>
 <p>原来 React.createClass 会自动绑定 this，但是使用 ES6 Class 定义 component 后，必须手动绑定 this</p>
 <p><a href="https://medium.com/@housecor/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56#.dtbk6bq3z" target="_blank" rel="external">5 approaches to handle binding this</a></p>
+<h2 id="Component-生命周期几个关键-Hooks"><a href="#Component-生命周期几个关键-Hooks" class="headerlink" title="Component 生命周期几个关键 Hooks"></a>Component 生命周期几个关键 Hooks</h2><p><b>componentWillMount</b><br>componentWillMount 发生在 render 方法之前，所以当在此数 setState 不会触发 re-render</p>
+<p><b>componentDidMount</b><br>componentDidMount 在 component render 方法之后执行，通常在此处进行 Ajax 请求，当 setState 触发时，<b>ComponentDidMount 不会被重新执行</b></p>
+<p><b>componentWillUpdate</b><br><b>componentDidUpdate</b></p>
+<p>componentWillUpdate(prevProps, prevState)，componentDidUpdate(prevProps, prevState) 在其 props 所属父元素触发 re-render 或自己触发 setState 进行 re-render 时，都会被执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// App.js</span></span><br><span class="line">onclick() &#123;</span><br><span class="line">	<span class="keyword">this</span>.stateState(&#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;Box name="i am a box" /&gt;</span><br><span class="line">	&lt;h2&gt;I am an app&lt;/h2&gt;</span><br><span class="line">	&lt;button onClick=&#123;this.onclick&#125;&gt;change app state&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Box.js</span></span><br><span class="line">&lt;div&gt;&#123;<span class="keyword">this</span>.props.name&#125;&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当点击 button 时，会触发 App Component 和 Box Component 的以下事件（第二个红框），注意顺序：</p>
+<p><img src="../images/react/lifecycle.jpeg" alt="image"></p>
 
       
     </div>
@@ -414,7 +423,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -424,7 +433,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -453,7 +462,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stateless-Component"><span class="nav-number">1.</span> <span class="nav-text">Stateless Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-一个组件只能返回一个根节点"><span class="nav-number">2.</span> <span class="nav-text">React 一个组件只能返回一个根节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#super-和-super-props-的区别"><span class="nav-number">3.</span> <span class="nav-text">super() 和 super(props) 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#component-中事件绑定-this-的几种方式"><span class="nav-number">4.</span> <span class="nav-text">component 中事件绑定 this 的几种方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stateless-Component"><span class="nav-number">1.</span> <span class="nav-text">Stateless Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-一个组件只能返回一个根节点"><span class="nav-number">2.</span> <span class="nav-text">React 一个组件只能返回一个根节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#super-和-super-props-的区别"><span class="nav-number">3.</span> <span class="nav-text">super() 和 super(props) 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#component-中事件绑定-this-的几种方式"><span class="nav-number">4.</span> <span class="nav-text">component 中事件绑定 this 的几种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component-生命周期几个关键-Hooks"><span class="nav-number">5.</span> <span class="nav-text">Component 生命周期几个关键 Hooks</span></a></li></ol></div>
             
           </div>
         </section>
