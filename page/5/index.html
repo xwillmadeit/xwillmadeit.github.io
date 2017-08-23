@@ -233,6 +233,248 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/04/css中的各种居中/" itemprop="url">
+                  css中的各种居中
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-04T21:24:56+08:00" content="2016-03-04">
+              2016-03-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><h2 id="垂直居中一个块级元素"><a href="#垂直居中一个块级元素" class="headerlink" title="垂直居中一个块级元素"></a>垂直居中一个块级元素</h2><h3 id="知道该块级元素的高"><a href="#知道该块级元素的高" class="headerlink" title="知道该块级元素的高"></a>知道该块级元素的高</h3><pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  margin-top: -50px; 
+}
+</code></pre><h3 id="不知道该块级元素的宽高"><a href="#不知道该块级元素的宽高" class="headerlink" title="不知道该块级元素的宽高"></a>不知道该块级元素的宽高</h3><pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</code></pre><h3 id="使用-flexbox"><a href="#使用-flexbox" class="headerlink" title="使用 flexbox"></a>使用 flexbox</h3><pre><code>.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+</code></pre><h2 id="垂直居中一个行内元素"><a href="#垂直居中一个行内元素" class="headerlink" title="垂直居中一个行内元素"></a>垂直居中一个行内元素</h2><h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><p>一般使 height 和 line-height 相同即可</p>
+<pre><code>.center-text-trick {
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+}
+</code></pre><p>若父元素高度未指定可设置上下 padding 相等</p>
+<pre><code>.text-center{
+    width: 100px;
+    background-color: pink;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+</code></pre><h3 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h3><p>方案1</p>
+<pre><code>div {
+   display: table;
+}
+div p {
+   display:table-cell;
+   vertical-align: middle;
+}
+</code></pre><p>方案2</p>
+<pre><code>&lt;div class=&quot;flex-center&quot;&gt;
+  &lt;p&gt;I&apos;m vertically centered multiple lines of text in a flexbox container.&lt;/p&gt;
+&lt;/div&gt;
+
+body {
+  background: #f06d06;
+  font-size: 80%;
+}
+
+div {
+  background: white;
+  width: 240px;
+  margin: 20px;
+}
+
+.flex-center {
+  background: black;
+  color: white;
+  border: 10px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  resize: vertical;
+  overflow: auto;
+}
+.flex-center p {
+  margin: 0;
+  padding: 60px;
+}
+</code></pre><p>方案3 - 诡异的方法</p>
+<pre><code>&lt;div class=&quot;ghost-center&quot;&gt;
+  &lt;p&gt;I&apos;m vertically centered multiple lines of text in a container. Centered with a ghost pseudo element&lt;/p&gt;
+&lt;/div&gt;
+
+body {
+  background: #f06d06;
+  font-size: 80%;
+}
+
+div {
+  background: white;
+  width: 240px;
+  height: 200px;
+  margin: 20px;
+  color: white;
+  resize: vertical;
+  overflow: auto;
+  padding: 20px;
+}
+
+.ghost-center {
+  position: relative;
+}
+.ghost-center::before {
+  content: &quot; &quot;;
+  display: inline-block;
+  height: 100%;
+  width: 1%;
+  vertical-align: middle;
+}
+.ghost-center p {
+  display: inline-block;
+  vertical-align: middle;
+  width: 190px;
+  margin: 0;
+  padding: 20px;
+  background: black;
+}
+</code></pre><h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><h2 id="水平居中一个块级元素"><a href="#水平居中一个块级元素" class="headerlink" title="水平居中一个块级元素"></a>水平居中一个块级元素</h2><pre><code>.center-me {
+  margin: 0 auto;
+}
+</code></pre><h2 id="水平居中一个行内元素"><a href="#水平居中一个行内元素" class="headerlink" title="水平居中一个行内元素"></a>水平居中一个行内元素</h2><pre><code>.center-children {
+  text-align: center;
+}
+</code></pre><h1 id="垂直水平居中"><a href="#垂直水平居中" class="headerlink" title="垂直水平居中"></a>垂直水平居中</h1><h2 id="固定宽高"><a href="#固定宽高" class="headerlink" title="固定宽高"></a>固定宽高</h2><pre><code>.parent {
+  position: relative;
+}
+
+.child {
+  width: 300px;
+  height: 100px;
+  padding: 20px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin: -70px 0 0 -170px;
+}
+</code></pre><h2 id="不知道宽高"><a href="#不知道宽高" class="headerlink" title="不知道宽高"></a>不知道宽高</h2><pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</code></pre><h2 id="使用-flexbox-1"><a href="#使用-flexbox-1" class="headerlink" title="使用 flexbox"></a>使用 flexbox</h2><pre><code>.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</code></pre><p><a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="external">css居中各种方法</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/12/ionic打包未签名apk/" itemprop="url">
                   ionic打包未签名apk
                 </a>
@@ -497,9 +739,24 @@
       
         
           
-            <h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">getDate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">	DateObj = &#123;</span><br><span class="line">		getTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> year = date.getFullYear(),</span><br><span class="line">				month = (date.getMonth())+<span class="number">1</span>, <span class="comment">//月份从0开始</span></span><br><span class="line">				day = date.getDate(),</span><br><span class="line">				hour = <span class="keyword">this</span>.addZero(date.getHours()),</span><br><span class="line">			    min = <span class="keyword">this</span>.addZero(date.getMinutes()),</span><br><span class="line">				sec = <span class="keyword">this</span>.addZero(date.getSeconds());</span><br><span class="line"></span><br><span class="line">			alert(year+<span class="string">'年'</span>+month+<span class="string">'月'</span>+day+<span class="string">'日 '</span>+hour+<span class="string">':'</span>+min+<span class="string">':'</span>+sec);</span><br><span class="line">		&#125;,</span><br><span class="line">		addZero: <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123; <span class="comment">//时分秒个位数补0</span></span><br><span class="line">			<span class="keyword">return</span> (number &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + number;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	DateObj.getTime();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+            <h2 id="获得多维数组中某个元素出现的次数"><a href="#获得多维数组中某个元素出现的次数" class="headerlink" title="获得多维数组中某个元素出现的次数"></a>获得多维数组中某个元素出现的次数</h2><p>Q：获得下面数组中某元素出现的次数（例：1）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">1</span>, <span class="number">2</span>]]]</span><br></pre></td></tr></table></figure>
+<p>A： Array.prototype.toString()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getItemLength = (arr, item) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.toString().split(<span class="string">','</span>).filter(i =&gt; i == item).length</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getItemLength(arr, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>A：递归</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> flattenedArray = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getFlattenedArray = item =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(item)) &#123;</span><br><span class="line">     flattenedArray.push(item)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    item.forEach(i =&gt; &#123;</span><br><span class="line">      getFlattenedArray(i)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getFlattenedArray(arr)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(flattenedArray.filter(item =&gt; item == <span class="number">1</span>).length)</span><br></pre></td></tr></table></figure>
+<p>Array.prototype.toString() 方法工作原理：</p>
+<blockquote>
+<p>For Array objects, the toString method joins the array and returns one string containing each array element separated by commas.</p>
+</blockquote>
+<h2 id="实时显示当时时间"><a href="#实时显示当时时间" class="headerlink" title="实时显示当时时间"></a>实时显示当时时间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">getDate</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">	DateObj = &#123;</span><br><span class="line">		getTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> year = date.getFullYear(),</span><br><span class="line">				month = (date.getMonth())+<span class="number">1</span>, <span class="comment">//月份从0开始</span></span><br><span class="line">				day = date.getDate(),</span><br><span class="line">				hour = <span class="keyword">this</span>.addZero(date.getHours()),</span><br><span class="line">			    min = <span class="keyword">this</span>.addZero(date.getMinutes()),</span><br><span class="line">				sec = <span class="keyword">this</span>.addZero(date.getSeconds());</span><br><span class="line"></span><br><span class="line">			alert(year+<span class="string">'年'</span>+month+<span class="string">'月'</span>+day+<span class="string">'日 '</span>+hour+<span class="string">':'</span>+min+<span class="string">':'</span>+sec);</span><br><span class="line">		&#125;,</span><br><span class="line">		addZero: <span class="function"><span class="keyword">function</span>(<span class="params">number</span>) </span>&#123; <span class="comment">//时分秒个位数补0</span></span><br><span class="line">			<span class="keyword">return</span> (number &lt; <span class="number">10</span> ? <span class="string">'0'</span> : <span class="string">''</span>) + number;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	DateObj.getTime();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 <h2 id="alert-中内容换行"><a href="#alert-中内容换行" class="headerlink" title="alert 中内容换行"></a>alert 中内容换行</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'123\n456'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">queryString</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.url = url;</span><br><span class="line">	<span class="keyword">this</span>.urlObj = &#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.splitUrl = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> paramsUrl = <span class="keyword">this</span>.url.split(<span class="string">'?'</span>)[<span class="number">1</span>];</span><br><span class="line">			pair = paramsUrl.split(<span class="string">'&amp;'</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;pair.length;i++)&#123;</span><br><span class="line">			<span class="keyword">var</span> key = pair[i].split(<span class="string">'='</span>)[<span class="number">0</span>],</span><br><span class="line">				val = pair[i].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">this</span>.urlObj[key] = val;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.urlObj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> queryString(<span class="string">'http://www.taobao.com?item=10&amp;key=12&amp;productId=88'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str.splitUrl());  <span class="comment">//&#123;item: "10", key: "12", productId: "88"&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><p>Q：编写方法 parseQueryString，把下面的 url 参数解析成对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">'http://www.taobao.com?item=10&amp;key=12&amp;productId=88'</span></span><br></pre></td></tr></table></figure>
+<p>A：for / forEach 循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> parseQueryString = url =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> urlObj = &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> paramsUrl = url.split(<span class="string">'?'</span>)[<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">const</span> keyValuePair = paramsUrl.split(<span class="string">'&amp;'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// for loop</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; keyValuePair.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> key = keyValuePair[i].split(<span class="string">'='</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">const</span> val = keyValuePair[i].split(<span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line">    urlObj[key] = val</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// forEach</span></span><br><span class="line">  keyValuePair.forEach(pair =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> key = pair.split(<span class="string">'='</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">const</span> value = pair.split(<span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line">    urlObj[key] = value</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> urlObj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(parseQueryString(url))</span><br></pre></td></tr></table></figure>
+<p>A：Array.prototype.reduce</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> parseQueryString = url =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> queryString = url.split(<span class="string">'?'</span>)[<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">const</span> keyValuePair = queryString.split(<span class="string">'&amp;'</span>)</span><br><span class="line">  <span class="keyword">return</span> keyValuePair.reduce((acc, pair) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> key = pair.split(<span class="string">'='</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">const</span> value = pair.split(<span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line">    acc[key] = value</span><br><span class="line">    <span class="keyword">return</span> acc</span><br><span class="line">  &#125;, &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(parseQueryString(url))</span><br></pre></td></tr></table></figure>
 <h2 id="get-和-post-请求的本质区别"><a href="#get-和-post-请求的本质区别" class="headerlink" title="get 和 post 请求的本质区别"></a>get 和 post 请求的本质区别</h2><p>GET 请求</p>
 <ol>
 <li>参数都是体现在 url 上</li>
@@ -617,7 +874,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

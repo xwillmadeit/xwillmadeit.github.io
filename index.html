@@ -233,6 +233,120 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/22/Webpack-Loaders/" itemprop="url">
+                  Webpack Loaders 进阶
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-22T16:04:44+08:00" content="2017-08-22">
+              2017-08-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="什么是-Loaders"><a href="#什么是-Loaders" class="headerlink" title="什么是 Loaders"></a>什么是 Loaders</h1><p><a href="https://webpack.js.org/concepts/loaders/" target="_blank" rel="external">Loaders</a> 可以认为是 import 或 “load” 模块时的预处理工具。它可以对导入的不同类型的模块（css，ts，png）进行转化，成为 javascript 代码</p>
+<h1 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h1><p>一个 loader 是一个 node module，导出一个方法，该方法接收一个参数（导入模块的内容，stream 或 string），返回一个经过转换的新字符串（或 stream），这就是 loader 的工作原理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// simplest loader</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">source</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> source</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Loaders-主要特性"><a href="#Loaders-主要特性" class="headerlink" title="Loaders 主要特性"></a>Loaders 主要特性</h1><ul>
+<li>支持级连，从右向左处理，每个 loader 都返回处理完成的代码给下一个 loader</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>loaders 可以是异步也可以是同步</p>
+</li>
+<li><p>loaders 可以输出任意文件（emit files）<br>如 file-loader</p>
+</li>
+<li><p>loaders 可以接受参数，主要有两种方式传入参数</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. query string</span></span><br><span class="line">use: <span class="string">'file-loader?name=images/[hash].[ext]'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. options</span></span><br><span class="line">use: &#123;</span><br><span class="line">  loader: <span class="string">'file-loader'</span>,</span><br><span class="line">  options: &#123;</span><br><span class="line">    name: <span class="string">'[hash].[ext]'</span>,</span><br><span class="line">    outputPath: <span class="string">'images/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 loaders 中接受参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> loaderUtils = <span class="built_in">require</span>(<span class="string">'loader-utils'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">source</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> options = loaderUtils.getOptions(<span class="keyword">this</span>)</span><br><span class="line">  <span class="keyword">return</span> source</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，上面的 options 值主要有几种情况：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. passing config using query string like</span></span><br><span class="line">use: <span class="string">'file-loader?name=images/[hash].[ext]'</span></span><br><span class="line"><span class="comment">// options equals to the query Object</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. passing config using options like</span></span><br><span class="line">use: &#123;</span><br><span class="line">  loader: <span class="string">'file-loader'</span>,</span><br><span class="line">  options: &#123;</span><br><span class="line">    name: images/[hash].[ext]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// options equals to the options object</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. passing config using both query and options</span></span><br><span class="line">use: &#123;</span><br><span class="line">  loader: <span class="string">'file-loader?name=images/[hash].[ext]'</span>,</span><br><span class="line">  options: &#123;</span><br><span class="line">    name: images/[hash].[ext]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// options equals to the options object</span></span><br></pre></td></tr></table></figure>
+<h1 id="如何写一个-loader-？"><a href="#如何写一个-loader-？" class="headerlink" title="如何写一个 loader ？"></a>如何写一个 loader ？</h1><p>我写了一个 <a href="https://github.com/xwillmadeit/webpack-custom-loader" target="_blank" rel="external">demo</a>，展示 loaders 是怎么工作的，包含如何调试 loaders </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/30/javascript-中的加减操作符/" itemprop="url">
                   javascript 加减操作符中的类型转换
                 </a>
@@ -905,7 +1019,7 @@
               
                 
                 <a class="post-title-link" href="/2017/06/15/好用的npm包整理/" itemprop="url">
-                  好用的npm包整理
+                  好用的前端库／包整理
                 </a>
               
             
@@ -948,8 +1062,22 @@
       
         
           
-            <h2 id="Surge"><a href="#Surge" class="headerlink" title="Surge"></a>Surge</h2><p>一行命令部署静态资源到 yournamespace.surge.sh，只需要指定需部署的文件夹以及二级域名</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// installation</span></span><br><span class="line">npm install -g surge</span><br><span class="line"></span><br><span class="line"><span class="comment">// npm scripts</span></span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"deploy"</span>: <span class="string">"surge /Users/xwill/learnCode/freeCode/vanilla xwillmadeit.surge.sh"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="Surge"><a href="#Surge" class="headerlink" title="Surge"></a>Surge</h1><p><a href="http://surge.sh/" target="_blank" rel="external">Surge</a> 是一个静态资源部署工具，支持一行命令部署静态资源到 project.surge.sh，只需要指定需部署的文件夹以及二级域名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// installation</span></span><br><span class="line">npm install -g surge</span><br><span class="line"></span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"deploy"</span>: <span class="string">"surge /Users/xwill/learnCode/freeCode/vanilla xwillmadeit.surge.sh"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// deploy</span></span><br><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
+<h1 id="now"><a href="#now" class="headerlink" title="now"></a>now</h1><p><a href="https://zeit.co/now" target="_blank" rel="external">now</a> 是 zeit 出品的命令行一键部署工具，支持部署 node 项目以及静态网站项目</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// installation</span></span><br><span class="line">npm i -g now</span><br></pre></td></tr></table></figure>
+<h3 id="静态网站部署"><a href="#静态网站部署" class="headerlink" title="静态网站部署"></a>静态网站部署</h3><p>在需要部署的目录（如 dist，有 index.html），直接执行 now 即可，每次部署会生成一个随机 url，类似于 <a href="https://dist-ktxztztigq.now.sh" target="_blank" rel="external">https://dist-ktxztztigq.now.sh</a></p>
+<h3 id="node-项目部署（以-zeit-的-micro-为例）"><a href="#node-项目部署（以-zeit-的-micro-为例）" class="headerlink" title="node 项目部署（以 zeit 的 micro 为例）"></a>node 项目部署（以 zeit 的 micro 为例）</h3><p>参考<a href="https://zeit.co/now#get-started" target="_blank" rel="external">官方</a> </p>
+<h3 id="删除当前正在部署的进程"><a href="#删除当前正在部署的进程" class="headerlink" title="删除当前正在部署的进程"></a>删除当前正在部署的进程</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">now rm app-name</span><br></pre></td></tr></table></figure>
+<h3 id="修改-url："><a href="#修改-url：" class="headerlink" title="修改 url："></a><a href="https://zeit.co/docs/features/aliases#creating-aliases" target="_blank" rel="external">修改 url</a>：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">now alias https:<span class="comment">//dist-etjnigdrkz.now.sh hello</span></span><br></pre></td></tr></table></figure>
+<h3 id="Tricks-部署一个带有-Browser-History-路由的-SPA"><a href="#Tricks-部署一个带有-Browser-History-路由的-SPA" class="headerlink" title="Tricks - 部署一个带有 Browser History 路由的 SPA"></a>Tricks - 部署一个带有 Browser History 路由的 SPA</h3><p>以 create-react-app 为例，执行构建后，会生成一个 build 文件夹，在 build 文件夹中执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<p>生成 package.json，修改相应的 package.json 信息，然后添加 scripts</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"serve --single"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后安装 serve</p>
+<pre><code class="js">npm i -S serve
+</code></pre>
+<p>最后执行 now 即可</p>
 
           
         
@@ -1200,104 +1328,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/12/async-await/" itemprop="url">
-                  async & await
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T13:56:26+08:00" content="2017-04-12">
-              2017-04-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="async-await-几个重点概念"><a href="#async-await-几个重点概念" class="headerlink" title="async / await 几个重点概念"></a>async / await 几个重点概念</h2><p>整理一下 async / await 在使用过程中容易搞不清楚的概念</p>
-<h3 id="async-function-被调用后会返回一个-promise"><a href="#async-function-被调用后会返回一个-promise" class="headerlink" title="async function 被调用后会返回一个 promise"></a>async function 被调用后会返回一个 promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then().catch()</span><br></pre></td></tr></table></figure>
-<h3 id="如果-async-function-有-return-值（非-promise-reject），则调用该-function-后返回的-promise-的-resolve-值为该-return-值"><a href="#如果-async-function-有-return-值（非-promise-reject），则调用该-function-后返回的-promise-的-resolve-值为该-return-值" class="headerlink" title="如果 async function 有 return 值（非 promise.reject），则调用该 function 后返回的 promise 的 resolve 值为该 return 值"></a>如果 async function 有 return 值（非 promise.reject），则调用该 function 后返回的 promise 的 resolve 值为该 return 值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">20</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="number">20</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then(res =&gt; <span class="built_in">console</span>.log(<span class="string">'res is: '</span> + res)).catch(err =&gt; <span class="built_in">console</span>.log(<span class="string">'err is: '</span> + err))</span><br><span class="line"><span class="comment">// res is 20</span></span><br></pre></td></tr></table></figure>
-<h3 id="如果-async-function-throw-Error，则调用该-function-后返回的-promise-的-reject-值为该抛出值"><a href="#如果-async-function-throw-Error，则调用该-function-后返回的-promise-的-reject-值为该抛出值" class="headerlink" title="如果 async function throw Error，则调用该 function 后返回的 promise 的 reject 值为该抛出值"></a>如果 async function throw Error，则调用该 function 后返回的 promise 的 reject 值为该抛出值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CustomError</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.msg = <span class="string">`custom error is <span class="subst">$&#123;msg&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="number">42</span></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'45'</span>)</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> CustomError(<span class="string">'fuck...'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then(res =&gt; <span class="built_in">console</span>.log(res)).catch(err =&gt; <span class="built_in">console</span>.log(err))</span><br></pre></td></tr></table></figure>
-<h3 id="await-关键字用于暂停-async-function，等待-promise-的-resolve-值，如果-promise-被-reject，则可在-async-function-中-catch"><a href="#await-关键字用于暂停-async-function，等待-promise-的-resolve-值，如果-promise-被-reject，则可在-async-function-中-catch" class="headerlink" title="await 关键字用于暂停 async function，等待 promise 的 resolve 值，如果 promise 被 reject，则可在 async function 中 catch"></a>await 关键字用于暂停 async function，等待 promise 的 resolve 值，如果 promise 被 reject，则可在 async function 中 catch</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    a = <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">'reject text'</span>)</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    a = <span class="string">'default text'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then(res =&gt; <span class="built_in">console</span>.log(<span class="string">'res is: '</span> + res)).catch(err =&gt; <span class="built_in">console</span>.log(<span class="string">'err is: '</span> + err))</span><br><span class="line"><span class="comment">// res is default text</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1343,7 +1373,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

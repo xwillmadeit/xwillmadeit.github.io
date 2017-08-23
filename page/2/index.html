@@ -233,6 +233,104 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/12/async-await/" itemprop="url">
+                  async & await
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-12T13:56:26+08:00" content="2017-04-12">
+              2017-04-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="async-await-几个重点概念"><a href="#async-await-几个重点概念" class="headerlink" title="async / await 几个重点概念"></a>async / await 几个重点概念</h2><p>整理一下 async / await 在使用过程中容易搞不清楚的概念</p>
+<h3 id="async-function-被调用后会返回一个-promise"><a href="#async-function-被调用后会返回一个-promise" class="headerlink" title="async function 被调用后会返回一个 promise"></a>async function 被调用后会返回一个 promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then().catch()</span><br></pre></td></tr></table></figure>
+<h3 id="如果-async-function-有-return-值（非-promise-reject），则调用该-function-后返回的-promise-的-resolve-值为该-return-值"><a href="#如果-async-function-有-return-值（非-promise-reject），则调用该-function-后返回的-promise-的-resolve-值为该-return-值" class="headerlink" title="如果 async function 有 return 值（非 promise.reject），则调用该 function 后返回的 promise 的 resolve 值为该 return 值"></a>如果 async function 有 return 值（非 promise.reject），则调用该 function 后返回的 promise 的 resolve 值为该 return 值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">20</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="number">20</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then(res =&gt; <span class="built_in">console</span>.log(<span class="string">'res is: '</span> + res)).catch(err =&gt; <span class="built_in">console</span>.log(<span class="string">'err is: '</span> + err))</span><br><span class="line"><span class="comment">// res is 20</span></span><br></pre></td></tr></table></figure>
+<h3 id="如果-async-function-throw-Error，则调用该-function-后返回的-promise-的-reject-值为该抛出值"><a href="#如果-async-function-throw-Error，则调用该-function-后返回的-promise-的-reject-值为该抛出值" class="headerlink" title="如果 async function throw Error，则调用该 function 后返回的 promise 的 reject 值为该抛出值"></a>如果 async function throw Error，则调用该 function 后返回的 promise 的 reject 值为该抛出值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CustomError</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.msg = <span class="string">`custom error is <span class="subst">$&#123;msg&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="number">42</span></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'45'</span>)</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> CustomError(<span class="string">'fuck...'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then(res =&gt; <span class="built_in">console</span>.log(res)).catch(err =&gt; <span class="built_in">console</span>.log(err))</span><br></pre></td></tr></table></figure>
+<h3 id="await-关键字用于暂停-async-function，等待-promise-的-resolve-值，如果-promise-被-reject，则可在-async-function-中-catch"><a href="#await-关键字用于暂停-async-function，等待-promise-的-resolve-值，如果-promise-被-reject，则可在-async-function-中-catch" class="headerlink" title="await 关键字用于暂停 async function，等待 promise 的 resolve 值，如果 promise 被 reject，则可在 async function 中 catch"></a>await 关键字用于暂停 async function，等待 promise 的 resolve 值，如果 promise 被 reject，则可在 async function 中 catch</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    a = <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">'reject text'</span>)</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    a = <span class="string">'default text'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say().then(res =&gt; <span class="built_in">console</span>.log(<span class="string">'res is: '</span> + res)).catch(err =&gt; <span class="built_in">console</span>.log(<span class="string">'err is: '</span> + err))</span><br><span class="line"><span class="comment">// res is default text</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/21/react-hot-loader-v3-webpack-v2之坑/" itemprop="url">
                   react-hot-loader v3 + webpack v2之坑
                 </a>
@@ -1015,7 +1113,7 @@
 <li>webpack -p 利用了 uglify2 压缩代码，但是 uglify2 暂不支持 ES6</li>
 </ul>
 <h2 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h2><p>第三方包提取</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// home.js</span></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">'./math'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'home page...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// about.js</span></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">'./math'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'about page...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">entry: &#123;</span><br><span class="line">  vendor: [<span class="string">'lodash'</span>],</span><br><span class="line">  home: <span class="string">'./src/home.js'</span>,</span><br><span class="line">  about: <span class="string">'./src/about.js'</span></span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">  path: resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  filename: <span class="string">'[name].js'</span></span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">    <span class="comment">// 顺序很重要</span></span><br><span class="line">    name: [<span class="string">'common'</span>, <span class="string">'vendor'</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// home.html</span></span><br><span class="line">&lt;script src=<span class="string">"dist/vendor.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"dist/common.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"dist/home.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// home.js</span></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">'./math'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'home page...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// about.js</span></span><br><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> &#123; add &#125; <span class="keyword">from</span> <span class="string">'./math'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'about page...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">entry: &#123;</span><br><span class="line">  vendor: [<span class="string">'lodash'</span>],</span><br><span class="line">  home: <span class="string">'./src/home.js'</span>,</span><br><span class="line">  about: <span class="string">'./src/about.js'</span></span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">  path: resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  filename: <span class="string">'[name].js'</span></span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">    <span class="comment">// 顺序很重要</span></span><br><span class="line">    name: [<span class="string">'common'</span>, <span class="string">'vendor'</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// home.html</span></span><br><span class="line">&lt;script src=<span class="string">"dist/vendor.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"dist/common.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"dist/home.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>以上配置运行 webpack 会在 dist 目录生成三个文件：</p>
 <ul>
 <li>home.js（home.js 自己的代码）</li>
@@ -1289,125 +1387,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/30/聊聊Promise/" itemprop="url">
-                  聊聊 Promise
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-30T11:22:55+08:00" content="2017-01-30">
-              2017-01-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Promise 是一个对象，用于提供一个未来值，这个值可能是成功值，也可能是失败值。</p>
-<blockquote>
-<p>A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved.</p>
-</blockquote>
-<h2 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h2><p><b>Pending</b><br>initial state, not fulfilled or rejected.<br>pending 状态就相当于 http 请求正在等待服务器返回结果一样，可能是等待成功，也可能是失败</p>
-<p><b>Fulfilled</b><br>the operation completed successfully.<br>Fulfilled 状态表示 promise 返回了一个成功值，即 resolve 值</p>
-<p><b>Rejected</b><br>the operation failed.<br>Rejected 状态表示 promise 返回了一个失败值，即 reject 值</p>
-<h2 id="简单实例"><a href="#简单实例" class="headerlink" title="简单实例"></a>简单实例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> say = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'yes'</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'no'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'begin'</span>);</span><br><span class="line"></span><br><span class="line">say.then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res),</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'end'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="嵌套-Chaining"><a href="#嵌套-Chaining" class="headerlink" title="嵌套 (Chaining)"></a>嵌套 (Chaining)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> greet = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'hello'</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'no welcome'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> toSb = greet =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      resolve(<span class="string">`<span class="subst">$&#123;greet&#125;</span> to sb`</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">greet.then(</span><br><span class="line">  greet =&gt; toSb(greet)</span><br><span class="line">).then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res)</span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p><b>Something Important</b></p>
-<p>错误处理在 promise 中有两种</p>
-<blockquote>
-<ol>
-<li>Promise.prototype.catch(onRejected)</li>
-<li>Promise.prototype.then(onFulfilled, onRejected)</li>
-</ol>
-</blockquote>
-<p>因为 .then() 总是返回一个 new promise，所以如果在 then 中处理 onRejected，那么在 promise 嵌套时，第二个 .then() 中的代码总会被执行，在这个例子中就会输出 undefined   </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">greet.then(</span><br><span class="line">  greet =&gt; toSb(greet),</span><br><span class="line">  greetErr =&gt; <span class="built_in">console</span>.log(greetTxt) <span class="comment">//if promise is rejected</span></span><br><span class="line">).then(</span><br><span class="line">  res =&gt; <span class="built_in">console</span>.log(res)  <span class="comment">// here will always print undefined</span></span><br><span class="line">)</span><br><span class="line">.catch(</span><br><span class="line">  err =&gt; <span class="built_in">console</span>.log(err)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>个人推荐使用 .catch() 处理 onRejected</p>
-<h2 id="多个-Promise"><a href="#多个-Promise" class="headerlink" title="多个 Promise"></a>多个 Promise</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">1000</span>),</span><br><span class="line">	<span class="number">1000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;); </span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; reject(<span class="number">2000</span>),</span><br><span class="line">	<span class="number">2000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">3000</span>),</span><br><span class="line">	<span class="number">3000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2s to reject the promise</span></span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(values =&gt; &#123; </span><br><span class="line">  <span class="built_in">console</span>.log(values);</span><br><span class="line">&#125;).catch(reason =&gt; &#123; </span><br><span class="line">  <span class="built_in">console</span>.log(reason)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>所有的 promise 成功 resolve 后，则 Promise.all 也成功 resolve<br>只要有一个 promise 被 reject，则 Promise.all 返回的新 promise 也被 reject<br>Promise.all reject 的值为第一个被 reject 的 promise 的值</p>
-</blockquote>
-<h2 id="结合-async-amp-await-example"><a href="#结合-async-amp-await-example" class="headerlink" title="结合 async &amp; await (example)"></a>结合 async &amp; await (example)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">1000</span>),</span><br><span class="line">	<span class="number">1000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123; </span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; resolve(<span class="number">2000</span>),</span><br><span class="line">	<span class="number">2000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">  setTimeout(</span><br><span class="line">	() =&gt; reject(<span class="number">3000</span>),</span><br><span class="line">	<span class="number">3000</span></span><br><span class="line">  ); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">allPromise</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([p1, p2, p3]);</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allPromise().then(</span><br><span class="line">	res =&gt; <span class="built_in">console</span>.log(res)</span><br><span class="line">).catch(</span><br><span class="line">	err =&gt; <span class="built_in">console</span>.log(err) <span class="comment">//3000</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261#.y8mslze0c" target="_blank" rel="external">掌握Promise</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1453,7 +1432,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

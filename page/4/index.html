@@ -233,6 +233,111 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/03/nodejs中使用redis/" itemprop="url">
+                  nodejs中使用redis
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-03T16:33:09+08:00" content="2016-07-03">
+              2016-07-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="最简单的使用"><a href="#最简单的使用" class="headerlink" title="最简单的使用"></a>最简单的使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> redis = <span class="built_in">require</span>(<span class="string">'redis'</span>);</span><br><span class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'./config/redisConfig'</span>);</span><br><span class="line">client = redis.createClient(config.redis.port, config.redis.ip, &#123;&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面用到的 redisConfig 中的相关配置</p>
+<ul>
+<li><p>本地</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> redis = &#123;</span><br><span class="line">    ip: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">    port: <span class="string">'6379'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>线上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> redis = &#123;</span><br><span class="line">    ip: <span class="string">''</span>,</span><br><span class="line">    port: <span class="string">'6379'</span>,</span><br><span class="line">    pwd: <span class="string">''</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>set,get,expire 都在 client 对象上操作</p>
+<h2 id="实战中使用-redis"><a href="#实战中使用-redis" class="headerlink" title="实战中使用 redis"></a>实战中使用 redis</h2><p>这里将一些简单常用的操作封装成了 redisHandle.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">auth</span>(<span class="params">client, pwd</span>) </span>&#123;</span><br><span class="line">    client.auth(pwd, () =&gt; <span class="built_in">console</span>.log(<span class="string">'通过认证'</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkOn</span>(<span class="params">client</span>) </span>&#123;</span><br><span class="line">    client.on(<span class="string">'error'</span>, (error) =&gt; <span class="built_in">console</span>.log(error));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getItem</span>(<span class="params">client, key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">        client.get(key, (err, reply) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                resolve(reply);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setItem</span>(<span class="params">client, key, val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; &#123;</span><br><span class="line">        client.set(key, val, (err, reply) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                resolve(reply);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clearItem</span>(<span class="params">client, key</span>) </span>&#123;</span><br><span class="line">    client.expire(key, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    auth,</span><br><span class="line">    getItem,</span><br><span class="line">    setItem,</span><br><span class="line">    clearItem</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/25/css奇技淫巧大搜罗/" itemprop="url">
                   css奇技淫巧大搜罗
                 </a>
@@ -1157,248 +1262,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/04/css中的各种居中/" itemprop="url">
-                  css中的各种居中
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T21:24:56+08:00" content="2016-03-04">
-              2016-03-04
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><h2 id="垂直居中一个块级元素"><a href="#垂直居中一个块级元素" class="headerlink" title="垂直居中一个块级元素"></a>垂直居中一个块级元素</h2><h3 id="知道该块级元素的高"><a href="#知道该块级元素的高" class="headerlink" title="知道该块级元素的高"></a>知道该块级元素的高</h3><pre><code>.parent {
-  position: relative;
-}
-.child {
-  position: absolute;
-  top: 50%;
-  height: 100px;
-  margin-top: -50px; 
-}
-</code></pre><h3 id="不知道该块级元素的宽高"><a href="#不知道该块级元素的宽高" class="headerlink" title="不知道该块级元素的宽高"></a>不知道该块级元素的宽高</h3><pre><code>.parent {
-  position: relative;
-}
-.child {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-</code></pre><h3 id="使用-flexbox"><a href="#使用-flexbox" class="headerlink" title="使用 flexbox"></a>使用 flexbox</h3><pre><code>.parent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-</code></pre><h2 id="垂直居中一个行内元素"><a href="#垂直居中一个行内元素" class="headerlink" title="垂直居中一个行内元素"></a>垂直居中一个行内元素</h2><h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><p>一般使 height 和 line-height 相同即可</p>
-<pre><code>.center-text-trick {
-  height: 100px;
-  line-height: 100px;
-  white-space: nowrap;
-}
-</code></pre><p>若父元素高度未指定可设置上下 padding 相等</p>
-<pre><code>.text-center{
-    width: 100px;
-    background-color: pink;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-</code></pre><h3 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h3><p>方案1</p>
-<pre><code>div {
-   display: table;
-}
-div p {
-   display:table-cell;
-   vertical-align: middle;
-}
-</code></pre><p>方案2</p>
-<pre><code>&lt;div class=&quot;flex-center&quot;&gt;
-  &lt;p&gt;I&apos;m vertically centered multiple lines of text in a flexbox container.&lt;/p&gt;
-&lt;/div&gt;
-
-body {
-  background: #f06d06;
-  font-size: 80%;
-}
-
-div {
-  background: white;
-  width: 240px;
-  margin: 20px;
-}
-
-.flex-center {
-  background: black;
-  color: white;
-  border: 10px solid white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 200px;
-  resize: vertical;
-  overflow: auto;
-}
-.flex-center p {
-  margin: 0;
-  padding: 60px;
-}
-</code></pre><p>方案3 - 诡异的方法</p>
-<pre><code>&lt;div class=&quot;ghost-center&quot;&gt;
-  &lt;p&gt;I&apos;m vertically centered multiple lines of text in a container. Centered with a ghost pseudo element&lt;/p&gt;
-&lt;/div&gt;
-
-body {
-  background: #f06d06;
-  font-size: 80%;
-}
-
-div {
-  background: white;
-  width: 240px;
-  height: 200px;
-  margin: 20px;
-  color: white;
-  resize: vertical;
-  overflow: auto;
-  padding: 20px;
-}
-
-.ghost-center {
-  position: relative;
-}
-.ghost-center::before {
-  content: &quot; &quot;;
-  display: inline-block;
-  height: 100%;
-  width: 1%;
-  vertical-align: middle;
-}
-.ghost-center p {
-  display: inline-block;
-  vertical-align: middle;
-  width: 190px;
-  margin: 0;
-  padding: 20px;
-  background: black;
-}
-</code></pre><h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><h2 id="水平居中一个块级元素"><a href="#水平居中一个块级元素" class="headerlink" title="水平居中一个块级元素"></a>水平居中一个块级元素</h2><pre><code>.center-me {
-  margin: 0 auto;
-}
-</code></pre><h2 id="水平居中一个行内元素"><a href="#水平居中一个行内元素" class="headerlink" title="水平居中一个行内元素"></a>水平居中一个行内元素</h2><pre><code>.center-children {
-  text-align: center;
-}
-</code></pre><h1 id="垂直水平居中"><a href="#垂直水平居中" class="headerlink" title="垂直水平居中"></a>垂直水平居中</h1><h2 id="固定宽高"><a href="#固定宽高" class="headerlink" title="固定宽高"></a>固定宽高</h2><pre><code>.parent {
-  position: relative;
-}
-
-.child {
-  width: 300px;
-  height: 100px;
-  padding: 20px;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  margin: -70px 0 0 -170px;
-}
-</code></pre><h2 id="不知道宽高"><a href="#不知道宽高" class="headerlink" title="不知道宽高"></a>不知道宽高</h2><pre><code>.parent {
-  position: relative;
-}
-.child {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</code></pre><h2 id="使用-flexbox-1"><a href="#使用-flexbox-1" class="headerlink" title="使用 flexbox"></a>使用 flexbox</h2><pre><code>.parent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</code></pre><p><a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="external">css居中各种方法</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1444,7 +1307,7 @@ div {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="Surge一行命令部署静态资源到 yournamespace.surge.sh，只需要指定需部署的文件夹以及二级域名
-1234567// installationnpm install -g surge// npm scripts&quot;scripts&quot;: &amp;#123;  &quot;deploy&quot;: &quot;surge /Users/xwill/learnCode/freeCode/vanilla xwillmade">
+<meta name="description" content="SurgeSurge 是一个静态资源部署工具，支持一行命令部署静态资源到 project.surge.sh，只需要指定需部署的文件夹以及二级域名
+12345678910// installationnpm install -g surge// package.json&quot;scripts&quot;: &amp;#123;  &quot;deploy&quot;: &quot;surge /Users/xwill/learnCode/freeCod">
 <meta property="og:type" content="article">
-<meta property="og:title" content="好用的npm包整理">
+<meta property="og:title" content="好用的前端库／包整理">
 <meta property="og:url" content="https://xwillmadeit.github.io/2017/06/15/好用的npm包整理/index.html">
 <meta property="og:site_name" content="xwillmadeit">
-<meta property="og:description" content="Surge一行命令部署静态资源到 yournamespace.surge.sh，只需要指定需部署的文件夹以及二级域名
-1234567// installationnpm install -g surge// npm scripts&quot;scripts&quot;: &amp;#123;  &quot;deploy&quot;: &quot;surge /Users/xwill/learnCode/freeCode/vanilla xwillmade">
-<meta property="og:updated_time" content="2017-06-15T09:06:33.000Z">
+<meta property="og:description" content="SurgeSurge 是一个静态资源部署工具，支持一行命令部署静态资源到 project.surge.sh，只需要指定需部署的文件夹以及二级域名
+12345678910// installationnpm install -g surge// package.json&quot;scripts&quot;: &amp;#123;  &quot;deploy&quot;: &quot;surge /Users/xwill/learnCode/freeCod">
+<meta property="og:updated_time" content="2017-08-21T03:22:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="好用的npm包整理">
-<meta name="twitter:description" content="Surge一行命令部署静态资源到 yournamespace.surge.sh，只需要指定需部署的文件夹以及二级域名
-1234567// installationnpm install -g surge// npm scripts&quot;scripts&quot;: &amp;#123;  &quot;deploy&quot;: &quot;surge /Users/xwill/learnCode/freeCode/vanilla xwillmade">
+<meta name="twitter:title" content="好用的前端库／包整理">
+<meta name="twitter:description" content="SurgeSurge 是一个静态资源部署工具，支持一行命令部署静态资源到 project.surge.sh，只需要指定需部署的文件夹以及二级域名
+12345678910// installationnpm install -g surge// package.json&quot;scripts&quot;: &amp;#123;  &quot;deploy&quot;: &quot;surge /Users/xwill/learnCode/freeCod">
 
 
 
@@ -120,7 +120,7 @@
   <link rel="canonical" href="https://xwillmadeit.github.io/2017/06/15/好用的npm包整理/"/>
 
 
-  <title> 好用的npm包整理 | xwillmadeit </title>
+  <title> 好用的前端库／包整理 | xwillmadeit </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -234,7 +234,7 @@
             
             
               
-                好用的npm包整理
+                好用的前端库／包整理
               
             
           </h1>
@@ -274,8 +274,22 @@
       
 
       
-        <h2 id="Surge"><a href="#Surge" class="headerlink" title="Surge"></a>Surge</h2><p>一行命令部署静态资源到 yournamespace.surge.sh，只需要指定需部署的文件夹以及二级域名</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// installation</span></span><br><span class="line">npm install -g surge</span><br><span class="line"></span><br><span class="line"><span class="comment">// npm scripts</span></span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"deploy"</span>: <span class="string">"surge /Users/xwill/learnCode/freeCode/vanilla xwillmadeit.surge.sh"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="Surge"><a href="#Surge" class="headerlink" title="Surge"></a>Surge</h1><p><a href="http://surge.sh/" target="_blank" rel="external">Surge</a> 是一个静态资源部署工具，支持一行命令部署静态资源到 project.surge.sh，只需要指定需部署的文件夹以及二级域名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// installation</span></span><br><span class="line">npm install -g surge</span><br><span class="line"></span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"deploy"</span>: <span class="string">"surge /Users/xwill/learnCode/freeCode/vanilla xwillmadeit.surge.sh"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// deploy</span></span><br><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
+<h1 id="now"><a href="#now" class="headerlink" title="now"></a>now</h1><p><a href="https://zeit.co/now" target="_blank" rel="external">now</a> 是 zeit 出品的命令行一键部署工具，支持部署 node 项目以及静态网站项目</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// installation</span></span><br><span class="line">npm i -g now</span><br></pre></td></tr></table></figure>
+<h3 id="静态网站部署"><a href="#静态网站部署" class="headerlink" title="静态网站部署"></a>静态网站部署</h3><p>在需要部署的目录（如 dist，有 index.html），直接执行 now 即可，每次部署会生成一个随机 url，类似于 <a href="https://dist-ktxztztigq.now.sh" target="_blank" rel="external">https://dist-ktxztztigq.now.sh</a></p>
+<h3 id="node-项目部署（以-zeit-的-micro-为例）"><a href="#node-项目部署（以-zeit-的-micro-为例）" class="headerlink" title="node 项目部署（以 zeit 的 micro 为例）"></a>node 项目部署（以 zeit 的 micro 为例）</h3><p>参考<a href="https://zeit.co/now#get-started" target="_blank" rel="external">官方</a> </p>
+<h3 id="删除当前正在部署的进程"><a href="#删除当前正在部署的进程" class="headerlink" title="删除当前正在部署的进程"></a>删除当前正在部署的进程</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">now rm app-name</span><br></pre></td></tr></table></figure>
+<h3 id="修改-url："><a href="#修改-url：" class="headerlink" title="修改 url："></a><a href="https://zeit.co/docs/features/aliases#creating-aliases" target="_blank" rel="external">修改 url</a>：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">now alias https:<span class="comment">//dist-etjnigdrkz.now.sh hello</span></span><br></pre></td></tr></table></figure>
+<h3 id="Tricks-部署一个带有-Browser-History-路由的-SPA"><a href="#Tricks-部署一个带有-Browser-History-路由的-SPA" class="headerlink" title="Tricks - 部署一个带有 Browser History 路由的 SPA"></a>Tricks - 部署一个带有 Browser History 路由的 SPA</h3><p>以 create-react-app 为例，执行构建后，会生成一个 build 文件夹，在 build 文件夹中执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<p>生成 package.json，修改相应的 package.json 信息，然后添加 scripts</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"serve --single"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后安装 serve</p>
+<pre><code class="js">npm i -S serve
+</code></pre>
+<p>最后执行 now 即可</p>
 
       
     </div>
@@ -385,7 +399,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -424,7 +438,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Surge"><span class="nav-number">1.</span> <span class="nav-text">Surge</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Surge"><span class="nav-number">1.</span> <span class="nav-text">Surge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#now"><span class="nav-number">2.</span> <span class="nav-text">now</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态网站部署"><span class="nav-number">2.0.1.</span> <span class="nav-text">静态网站部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node-项目部署（以-zeit-的-micro-为例）"><span class="nav-number">2.0.2.</span> <span class="nav-text">node 项目部署（以 zeit 的 micro 为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除当前正在部署的进程"><span class="nav-number">2.0.3.</span> <span class="nav-text">删除当前正在部署的进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-url："><span class="nav-number">2.0.4.</span> <span class="nav-text">修改 url：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tricks-部署一个带有-Browser-History-路由的-SPA"><span class="nav-number">2.0.5.</span> <span class="nav-text">Tricks - 部署一个带有 Browser History 路由的 SPA</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
